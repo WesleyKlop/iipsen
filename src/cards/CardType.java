@@ -1,6 +1,13 @@
 package cards;
 
+
+/**
+ * Enum containing types of cards
+ */
 public enum CardType {
+    /**
+     * LOCOMOTIVE is a special type of card
+     */
     LOCOMOTIVE,
     CART_PURPLE,
     CART_GREEN,
