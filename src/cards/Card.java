@@ -1,5 +1,6 @@
 package cards;
 
+
 /**
  * Card class
  * Contains CardType
@@ -8,9 +9,11 @@ package cards;
  */
 public class Card {
     private final CardType cardType;
+    private String path;
 
     Card(CardType cardType) {
         this.cardType = cardType;
+        path = "images\\" + cardType + ".png";
     }
 
     public CardType getCardType() {
@@ -21,4 +24,6 @@ public class Card {
     public String toString() {
         return "Card{cardType=" + cardType + '}';
     }
+
+    public String getPath(){ return path;}
 }

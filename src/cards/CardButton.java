@@ -1,6 +1,8 @@
 package cards;
 
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * @author Wesley
@@ -16,7 +18,7 @@ public class CardButton extends Button {
      * Card card the card
      */
     private Card card;
-
+    private Image image;
     /**
      * Empty constructor for extending classes
      *
@@ -31,9 +33,11 @@ public class CardButton extends Button {
      * @param card the card that the button links to
      */
     public CardButton(Card card) {
-        super(card.toString());
         this.card = card;
         super.setOnAction(e -> listener.onCardSelected(this));
+
+        image = new Image(getClass().getResourceAsStream(card.getPath()));
+        this.setGraphic(new ImageView(image));
     }
 
     /**
@@ -60,9 +64,11 @@ public class CardButton extends Button {
      * @param card the card to use
      */
     public void setCard(Card card) {
-        this.setText(card.toString());
         this.card = card;
+        image = new Image(getClass().getResourceAsStream(card.getPath()));
+        this.setGraphic(new ImageView(image));
     }
+
 
 }
 
