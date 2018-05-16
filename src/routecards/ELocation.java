@@ -1,6 +1,6 @@
-package cards;
+package routecards;
 
-public enum Destination {
+public enum ELocation {
     HONNINGSVAG,
     KIRKENES,
     MURMANSK,

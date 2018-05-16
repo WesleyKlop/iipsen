@@ -14,7 +14,7 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
     private static final int DEFAULT_LOCOMOTIVE_COUNT = 14;
     private static final int DEFAULT_CART_COUNT = 12;
 
-    private CardStack() {
+    public CardStack() {
         super(CardType.class);
     }
 
@@ -31,10 +31,11 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
     }
 
     private void generateTrainCards() {
+        // Feels kind of hacky tbh
         for (CardType type : CardType.values()) {
             if (type == CardType.LOCOMOTIVE) {
                 this.put(type, DEFAULT_LOCOMOTIVE_COUNT);
-            } else {
+            } else if (type != CardType.CART_ANY) {
                 this.put(type, DEFAULT_CART_COUNT);
             }
         }
@@ -47,7 +48,7 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
      * @return the Card with type
      * @throws Exception when the CardType is not present in the stack
      */
-    Card getCard(CardType type) throws Exception {
+    public Card getCard(CardType type) throws Exception {
         if (!this.containsKey(type)) {
             throw new Exception("CardType is not in the stack");
         }
@@ -90,6 +91,56 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
         }
 
         return new Card(randomCardType);
+    }
+
+    public void addCard(Card card) {
+        addCard(card.getCardType());
+    }
+
+    public void addCard(CardType cardType) {
+        if (!this.containsKey(cardType))
+            this.put(cardType, 1);
+        else
+            this.put(cardType, this.get(cardType) + 1);
+    }
+
+    public boolean containsCards(CardType type, int count) {
+        if (count == 0) return true;
+        Integer cardCount = get(type);
+        return cardCount != null && cardCount >= count;
+    }
+
+    public boolean containsCards(Card... cards) {
+        CardStack tempStack = new CardStack();
+
+        for (Card card : cards) {
+            tempStack.addCard(card);
+        }
+
+        return containsCards(tempStack);
+    }
+
+    public boolean containsCards(CardStack cards) {
+        for (CardStack.Entry<CardType, Integer> entry : cards.entrySet()) {
+            if (this.get(entry.getKey()) < entry.getValue()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void takeCards(CardStack cards) throws Exception {
+        // TODO: This throws when it notices a card is not available, but would still remove the cards it checked before that so we should keep track of the cards removed and place them back in a try-catch
+        for (CardStack.Entry<CardType, Integer> entry : cards.entrySet()) {
+            this.getCard(entry.getKey());
+        }
+    }
+
+    public void takeCards(CardType type, int count) throws Exception {
+        if (this.get(type) == null || this.get(type) < count) {
+            throw new Exception("Not enough cards!");
+        }
+        this.put(type, this.get(type) - count);
     }
 
     @Override

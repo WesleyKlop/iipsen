@@ -17,4 +17,5 @@ public enum CardType {
     CART_WHITE,
     CART_YELLOW,
     CART_BLUE,
+    CART_ANY,
 }
