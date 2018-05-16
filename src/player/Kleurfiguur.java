@@ -1,4 +1,4 @@
-package speler;
+package player;
 
 import javafx.scene.paint.Color;
 

@@ -1,4 +1,4 @@
-package speler;
+package player;
 
 public class Speler {
 	String naam;

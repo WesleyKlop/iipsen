@@ -1,9 +1,8 @@
-package speler;
+package player;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
-import javafx.scene.shape.Circle;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,6 +12,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 public class Scherm extends Application {
@@ -99,7 +99,7 @@ public class Scherm extends Application {
 	}
 	
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
 		maakInhoudVoorScherm();
 		
 		Scene scene = new Scene(flowPane, 600, 500);

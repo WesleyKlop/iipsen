@@ -1,4 +1,4 @@
-package speler;
+package player;
 
 public class RGB extends Scherm {
 	String x;
