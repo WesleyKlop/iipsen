@@ -1,5 +1,8 @@
 package cards;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+
 /**
  * RandomCardButton overrides the set/get card methods with a custom implementation
  * that's used for getting random cards.
@@ -18,7 +21,7 @@ public class RandomCardButton extends CardButton {
     public RandomCardButton(CardStack stack) {
         this.setText("Random card");
         this.stack = stack;
-        super.setOnAction((OnCardSelectListener) e -> listener.onCardSelected(this));
+        super.setOnAction((EventHandler<ActionEvent>) e -> listener.onCardSelected(this));
     }
 
     /**
