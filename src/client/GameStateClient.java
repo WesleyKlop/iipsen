@@ -1,6 +1,8 @@
 package client;
 
 import game.GameState;
+import game.Turn;
+import game.TurnNotFinishedException;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -8,7 +10,9 @@ import java.rmi.RemoteException;
 /**
  * @author wesley
  */
-public interface GameStateListener extends Remote {
+public interface GameStateClient extends Remote {
 
     void onGameStateReceived(GameState newState) throws RemoteException;
+
+    void sendTurn(Turn turn) throws RemoteException, TurnNotFinishedException;
 }

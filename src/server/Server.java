@@ -1,6 +1,6 @@
 package server;
 
-import client.GameStateListener;
+import client.GameStateClient;
 import game.GameState;
 import game.Turn;
 
@@ -18,7 +18,7 @@ import java.util.List;
 public class Server extends UnicastRemoteObject implements GameStateServer {
     public static final String REGISTRY_NAME = "TTRGameService";
     private static final int PORT = 1099;
-    private List<GameStateListener> clients = new ArrayList<>();
+    private List<GameStateClient> clients = new ArrayList<>();
     private GameState currentGameState = new GameState();
 
     public Server() throws RemoteException, MalformedURLException {
@@ -30,12 +30,12 @@ public class Server extends UnicastRemoteObject implements GameStateServer {
     }
 
     @Override
-    public synchronized void registerObserver(GameStateListener listener) {
+    public synchronized void registerObserver(GameStateClient listener) {
         clients.add(listener);
     }
 
     @Override
-    public synchronized void unregisterObserver(GameStateListener listener) {
+    public synchronized void unregisterObserver(GameStateClient listener) {
         clients.remove(listener);
     }
 
@@ -48,7 +48,7 @@ public class Server extends UnicastRemoteObject implements GameStateServer {
 
     @Override
     public synchronized void notifyListeners(GameState newState) throws RemoteException {
-        for (GameStateListener client : clients) {
+        for (GameStateClient client : clients) {
             client.onGameStateReceived(newState);
         }
     }

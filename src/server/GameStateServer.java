@@ -1,6 +1,6 @@
 package server;
 
-import client.GameStateListener;
+import client.GameStateClient;
 import game.GameState;
 import game.Turn;
 
@@ -11,9 +11,9 @@ import java.rmi.RemoteException;
  * @author wesley
  */
 public interface GameStateServer extends Remote {
-    void registerObserver(GameStateListener listener) throws RemoteException;
+    void registerObserver(GameStateClient listener) throws RemoteException;
 
-    void unregisterObserver(GameStateListener listener) throws RemoteException;
+    void unregisterObserver(GameStateClient listener) throws RemoteException;
 
     void onTurnReceived(Turn newState) throws RemoteException;
 

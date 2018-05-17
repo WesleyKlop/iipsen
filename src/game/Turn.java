@@ -5,4 +5,6 @@ package game;
  */
 public interface Turn {
     void updateGameState(GameState state);
+
+    boolean isFinished();
 }
