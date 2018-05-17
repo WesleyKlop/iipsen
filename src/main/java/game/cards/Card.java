@@ -13,7 +13,7 @@ public class Card {
 
     Card(CardType cardType) {
         this.cardType = cardType;
-        path = "images/" + cardType + ".png";
+        path = "/cards/" + cardType + ".png";
     }
 
     public CardType getCardType() {

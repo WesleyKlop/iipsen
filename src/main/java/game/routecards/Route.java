@@ -37,7 +37,7 @@ public class Route {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("Player doesnt have the needed game.cards!!");
+            System.out.println("player doesnt have the needed game.cards!!");
             System.out.println(builder.getCardStack());
         }
     }

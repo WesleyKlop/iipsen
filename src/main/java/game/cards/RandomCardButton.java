@@ -14,17 +14,17 @@ import javafx.scene.image.ImageView;
  */
 public class RandomCardButton extends CardButton {
     private CardStack stack;
-    private Image image;
 
     /**
      * Creates a RandomCardButton
      *
      * @param stack the stack to pull game.cards from
      */
-    public RandomCardButton(CardStack stack) {
+    RandomCardButton(CardStack stack) {
         this.stack = stack;
         super.setOnAction((EventHandler<ActionEvent>) e -> listener.onCardSelected(this));
-        image = new Image(getClass().getResourceAsStream("images/BACK.png"));
+
+        Image image = new Image(RandomCardButton.class.getResourceAsStream("/cards/BACK.png"));
         this.setGraphic(new ImageView(image));
     }
 
