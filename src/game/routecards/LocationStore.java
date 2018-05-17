@@ -1,12 +1,12 @@
-package routecards;
+package game.routecards;
 
-import cards.CardType;
+import game.cards.CardType;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static cards.CardType.*;
-import static routecards.ELocation.*;
+import static game.cards.CardType.*;
+import static game.routecards.ELocation.*;
 
 /**
  * @author wesley

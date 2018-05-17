@@ -1,6 +1,6 @@
-package routecards;
+package game.routecards;
 
-import cards.CardType;
+import game.cards.CardType;
 
 /**
  * @author wesley

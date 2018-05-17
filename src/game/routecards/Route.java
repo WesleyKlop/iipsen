@@ -1,6 +1,6 @@
-package routecards;
+package game.routecards;
 
-import cards.CardType;
+import game.cards.CardType;
 
 /**
  * @author wesley
@@ -37,7 +37,7 @@ public class Route {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("Player doesnt have the needed cards!!");
+            System.out.println("Player doesnt have the needed game.cards!!");
             System.out.println(builder.getCardStack());
         }
     }

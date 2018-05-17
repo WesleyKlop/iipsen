@@ -1,6 +1,6 @@
-package routecards;
+package game.routecards;
 
-import cards.CardStack;
+import game.cards.CardStack;
 
 import java.util.HashSet;
 import java.util.Set;

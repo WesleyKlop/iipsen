@@ -1,4 +1,4 @@
-package cards;
+package game.cards;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

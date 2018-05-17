@@ -1,4 +1,4 @@
-package player;
+package game.player;
 
 public class spelerLijst{
 	static Speler[] spelerLijst = new Speler[3];

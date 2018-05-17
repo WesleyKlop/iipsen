@@ -1,4 +1,4 @@
-package cards;
+package game.cards;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
     }
 
     /**
-     * Creates a stack of train cards
+     * Creates a stack of train game.cards
      *
      * @return a stack containing
      */
@@ -65,18 +65,18 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
 
     /**
      * Get a random card from the stack
-     * Side effects: Generates new stack when there are no cards left
+     * Side effects: Generates new stack when there are no game.cards left
      *
      * @return a random Card
      */
     Card getRandomCard() {
-        // I think we should generate a new stack when we are out of cards...
+        // I think we should generate a new stack when we are out of game.cards...
         if (this.size() == 0) {
-            System.out.println("Out of cards, generating new stack");
+            System.out.println("Out of game.cards, generating new stack");
             this.generateTrainCards();
         }
 
-        // Get a random cards.CardType from the stack
+        // Get a random game.cards.CardType from the stack
         Random random = new Random();
         List<CardType> keys = new ArrayList<>(this.keySet());
 
@@ -85,7 +85,7 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
         // Decrement the amount of that type in the map
         this.put(randomCardType, this.get(randomCardType) - 1);
 
-        // Remove from map when cards are out
+        // Remove from map when game.cards are out
         if (this.get(randomCardType) == 0) {
             this.remove(randomCardType);
         }
@@ -130,7 +130,7 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
     }
 
     public void takeCards(CardStack cards) throws Exception {
-        // TODO: This throws when it notices a card is not available, but would still remove the cards it checked before that so we should keep track of the cards removed and place them back in a try-catch
+        // TODO: This throws when it notices a card is not available, but would still remove the game.cards it checked before that so we should keep track of the game.cards removed and place them back in a try-catch
         for (CardStack.Entry<CardType, Integer> entry : cards.entrySet()) {
             this.getCard(entry.getKey());
         }
@@ -138,13 +138,13 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
 
     public void takeCards(CardType type, int count) throws Exception {
         if (this.get(type) == null || this.get(type) < count) {
-            throw new Exception("Not enough cards!");
+            throw new Exception("Not enough game.cards!");
         }
         this.put(type, this.get(type) - count);
     }
 
     @Override
     public String toString() {
-        return "cards.CardStack" + super.toString();
+        return "game.cards.CardStack" + super.toString();
     }
 }

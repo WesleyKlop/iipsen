@@ -1,4 +1,4 @@
-package player;
+package game.player;
 
 public class Speler {
 	String naam;

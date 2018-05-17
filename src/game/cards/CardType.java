@@ -1,8 +1,8 @@
-package cards;
+package game.cards;
 
 
 /**
- * Enum containing types of cards
+ * Enum containing types of game.cards
  */
 public enum CardType {
     /**

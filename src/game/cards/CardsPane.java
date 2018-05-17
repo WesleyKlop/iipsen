@@ -1,4 +1,4 @@
-package cards;
+package game.cards;
 
 import javafx.scene.layout.VBox;
 

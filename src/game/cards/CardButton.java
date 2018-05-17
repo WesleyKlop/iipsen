@@ -1,4 +1,4 @@
-package cards;
+package game.cards;
 
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;

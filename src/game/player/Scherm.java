@@ -1,4 +1,4 @@
-package player;
+package game.player;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;

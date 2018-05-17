@@ -1,4 +1,4 @@
-package routecards;
+package game.routecards;
 
 public class RouteCard {
     private Location start;

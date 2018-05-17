@@ -1,4 +1,4 @@
-package routecards;
+package game.routecards;
 
 import java.util.HashMap;
 import java.util.Map;

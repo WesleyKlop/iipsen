@@ -1,4 +1,4 @@
-package cards;
+package game.cards;
 
 
 /**
@@ -13,7 +13,7 @@ public class Card {
 
     Card(CardType cardType) {
         this.cardType = cardType;
-        path = "images\\" + cardType + ".png";
+        path = "images/" + cardType + ".png";
     }
 
     public CardType getCardType() {
