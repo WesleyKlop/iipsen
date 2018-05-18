@@ -14,10 +14,14 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+
+}
+
 sourceCompatibility = 10
 targetCompatibility = 10
 
 jar {
     baseName = 'Ticket-To-Ride'
-    version =  '0.1.0'
+    version = '0.1.0'
 }
