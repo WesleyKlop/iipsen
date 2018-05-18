@@ -15,7 +15,8 @@ repositories {
 }
 
 dependencies {
-
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.2.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.2.0'
 }
 
 sourceCompatibility = 10
@@ -24,4 +25,8 @@ targetCompatibility = 10
 jar {
     baseName = 'Ticket-To-Ride'
     version = '0.1.0'
+}
+
+test {
+    useJUnitPlatform()
 }
