@@ -8,7 +8,7 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'application'
 
-mainClassName = 'game.cards.CardsViewApp'
+mainClassName = 'game.cards.CardsViewApp' // TODO: change to proper entry point
 
 repositories {
     mavenCentral()
