@@ -7,23 +7,25 @@ package game.cards;
  * TODO: Path for graphic depending on #cardType
  * TODO: Custom card functionality
  */
-public class Card {
+class Card {
     private final CardType cardType;
     private String path;
 
     Card(CardType cardType) {
         this.cardType = cardType;
-        path = "/cards/" + cardType + ".png";
+        this.path = "/cards/" + cardType + ".png";
     }
 
-    public CardType getCardType() {
+    CardType getCardType() {
         return cardType;
     }
 
-    @Override
-    public String toString() {
-        return "Card{cardType=" + cardType + '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Card{cardType=" + cardType + '}';
+//    }
 
-    public String getPath(){ return path;}
+    String getPath() {
+        return path;
+    }
 }

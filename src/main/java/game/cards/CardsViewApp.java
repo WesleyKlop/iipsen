@@ -30,8 +30,10 @@ public class CardsViewApp extends Application implements OnCardSelectListener {
     public void onCardSelected(CardButton caller) {
         System.out.println(caller.getCard());
         if (!(caller instanceof RandomCardButton)) {
-            Card newCard = stack.getRandomCard();
-            caller.setCard(newCard);
+            if (stack.isEmpty()) {
+                stack.generateTrainCards();
+            }
+            caller.setCard(stack.getRandomCard());
         }
     }
 }
