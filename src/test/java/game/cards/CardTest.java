@@ -34,4 +34,5 @@ class CardTest {
     void cardPathIsNotNull() {
         assertNotEquals(null, testCard.getPath());
     }
+
 }
