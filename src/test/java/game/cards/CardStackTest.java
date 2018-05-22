@@ -1,3 +1,5 @@
+/*
+
 package game.cards;
 
 import org.junit.jupiter.api.Test;
@@ -8,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author wesley
- */
+
 class CardStackTest {
 
     @Test
@@ -97,3 +99,4 @@ class CardStackTest {
         assertTrue(stack.containsCards(CardType.CART_BLACK, 2));
     }
 }
+*/

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<?import javafx.geometry.Insets?>
+<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="main.java.client.ui.Controller">
+
+    <Label text="Fill in your name"/>
+    <TextField fx:id="nameField"/>
+    <HBox spacing="5">
+        <padding><Insets top="3" left="1" right="1"/></padding>
+        <Circle radius="5" fill="#FFFF00" stroke="#000" fx:id="yellowButton" onMouseClicked="#setColorYellow" onMouseEntered="#yellowEnterHover" onMouseExited="#yellowLeaveHover"/>
+        <Circle radius="5" fill="#FF9000" stroke="#000" fx:id="orangeButton" onMouseClicked="#setColorOrange" onMouseEntered="#orangeEnterHover" onMouseExited="#orangeLeaveHover"/>
+        <Circle radius="5" fill="#FF0000" stroke="#000" fx:id="redButton" onMouseClicked="#setColorRed" onMouseEntered="#redEnterHover" onMouseExited="#redLeaveHover"/>
+        <Circle radius="5" fill="#AA0039" stroke="#000" fx:id="redPurpleButton" onMouseClicked="#setColorRedPurple" onMouseEntered="#redPurpleEnterHover" onMouseExited="#redPurpleLeaveHover"/>
+        <Circle radius="5" fill="#550461" stroke="#000" fx:id="purpleButton" onMouseClicked="#setColorPurple" onMouseEntered="#purpleEnterHover" onMouseExited="#purpleLeaveHover"/>
+        <Circle radius="5" fill="#0000FF" stroke="#000" fx:id="blueButton" onMouseClicked="#setColorBlue" onMouseEntered="#blueEnterHover" onMouseExited="#blueLeaveHover"/>
+        <Circle radius="5" fill="#00FF00" stroke="#000" fx:id="greenButton" onMouseClicked="#setColorGreen" onMouseEntered="#greenEnterHover" onMouseExited="#greenLeaveHover"/>
+        <Circle radius="5" fill="#FFFFFF" stroke="#000" fx:id="whiteButton" onMouseClicked="#setColorWhite" onMouseEntered="#whiteEnterHover" onMouseExited="#whiteLeaveHover"/>
+        <Circle radius="5" fill="#000000" stroke="#000" fx:id="blackButton" onMouseClicked="#setColorBlack" onMouseEntered="#blackEnterHover" onMouseExited="#blackLeaveHover"/>
+        <Circle radius="5" fill="#7D7D7D" stroke="#000" fx:id="grayButton" onMouseClicked="#setColorGray" onMouseEntered="#grayEnterHover" onMouseExited="#grayLeaveHover"/>
+        <Circle radius="5" fill="#FF00A5" stroke="#000" fx:id="pinkButton" onMouseClicked="#setColorPink" onMouseEntered="#pinkEnterHover" onMouseExited="#pinkLeaveHover"/>
+        <Circle radius="5" fill="#B4FF00" stroke="#000" fx:id="lgreenButton" onMouseClicked="#setColorLGreen" onMouseEntered="#lgreenEnterHover" onMouseExited="#lgreenLeaveHover"/>
+        <Circle radius="10" stroke="#000" fx:id="displayCircle"/>
+    </HBox>
+
+
+    <Button text="Submit" fx:id="submitPreferencesButton" onAction="#submitName"/>
+
+</VBox>

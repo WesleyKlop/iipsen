@@ -1,4 +1,4 @@
-package client.ui;
+package main.java.client.ui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class FXMLView extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Preferences.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("main/resources/views/Preferences.fxml"));
         Scene scene = new Scene(root, 300, 275);
         primaryStage.setTitle("Preferences Form");
         primaryStage.setScene(scene);
