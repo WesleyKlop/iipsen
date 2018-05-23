@@ -1,4 +1,4 @@
-/*package game.cards;
+package game.cards;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
  * @author wesley
-
+ */
 class CardTest {
 
     private Card testCard;
@@ -36,4 +36,3 @@ class CardTest {
     }
 
 }
-*/
