@@ -120,7 +120,7 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
 
     public boolean containsCards(CardStack cards) {
         for (CardStack.Entry<CardType, Integer> entry : cards.entrySet()) {
-            if (this.get(entry.getKey()) < entry.getValue()) {
+            if (!this.containsKey(entry.getKey()) || this.get(entry.getKey()) < entry.getValue()) {
                 return false;
             }
         }

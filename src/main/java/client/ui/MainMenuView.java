@@ -12,7 +12,7 @@ public class MainMenuView extends Application {
 
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(getClass().getResource("/views/MainMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/views/layout_main_menu.fxml"));
         Scene scene = new Scene(root, 500, 500);
         primaryStage.setTitle("Main Menu");
         primaryStage.setScene(scene);

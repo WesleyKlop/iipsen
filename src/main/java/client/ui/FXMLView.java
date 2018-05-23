@@ -10,7 +10,7 @@ public class FXMLView extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(getClass().getResource("/views/Preferences.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/views/layout_preferences.fxml"));
         Scene scene = new Scene(root, 300, 275);
         primaryStage.setTitle("Preferences Form");
         primaryStage.setScene(scene);

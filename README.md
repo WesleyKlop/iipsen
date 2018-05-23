@@ -38,16 +38,27 @@ gradlew.bat run
 ## Project layout
 ```
 src
-└── main
-    ├── java
-    │   ├── client # Client related code
-    │   │   └── ui
-    │   ├── game # Shared code (models etc)
-    │   │   ├── cards
-    │   │   ├── player
-    │   │   └── routecards
-    │   └── server # Server related code
-    └── resources # Assets like images
-        ├── cards
-        └── ui
+├── main
+│   ├── java
+│   │   ├── client
+│   │   │   ├── ui 
+│   │   │   └── views
+│   │   ├── game # Shared logic
+│   │   │   ├── cards
+│   │   │   ├── player
+│   │   │   └── routecards
+│   │   └── server # Server logic
+│   └── resources
+│       ├── cards # Card assets
+│       └── views # FXML views
+└── test
+    └── java
+        ├── client
+        │   ├── ui
+        │   └── views
+        ├── game
+        │   ├── cards
+        │   ├── player
+        │   └── routecards
+        └── server
 ```

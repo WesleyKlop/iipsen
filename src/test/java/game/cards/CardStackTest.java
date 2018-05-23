@@ -96,4 +96,21 @@ class CardStackTest {
         stack.addCard(CardType.CART_BLACK);
         assertTrue(stack.containsCards(CardType.CART_BLACK, 2));
     }
+
+    @Test
+    void returnsTrueWhenContainsCards() {
+        var stack = CardStack.CreateTrainCardStack();
+        assertTrue(stack.containsCards(new Card(CardType.CART_BLACK), new Card(CardType.CART_BLUE)));
+    }
+
+    @Test
+    void returnsFalseWhenNotEnoughCards() {
+        var stack = new CardStack();
+        assertFalse(stack.containsCards(new Card(CardType.CART_BLACK), new Card(CardType.CART_BLACK)));
+    }
+
+    @Test
+    void toStringDoesNotThrow() {
+        assertDoesNotThrow(() -> CardStack.CreateTrainCardStack().toString());
+    }
 }
