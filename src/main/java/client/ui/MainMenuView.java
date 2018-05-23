@@ -6,17 +6,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class FXMLView extends Application {
-    @Override
+public class MainMenuView extends Application {
+
+    private Boolean close = false;
+
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(getClass().getResource("/views/Preferences.fxml"));
-        Scene scene = new Scene(root, 300, 275);
-        primaryStage.setTitle("Preferences Form");
+        Parent root = loader.load(getClass().getResource("/views/MainMenu.fxml"));
+        Scene scene = new Scene(root, 500, 500);
+        primaryStage.setTitle("Main Menu");
         primaryStage.setScene(scene);
+        primaryStage.setFullScreen(true);
         primaryStage.show();
-
-
     }
 
     public static void main(String[] args) {

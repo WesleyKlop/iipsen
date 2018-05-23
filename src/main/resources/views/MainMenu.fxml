@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<Pane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="client.ui.MainMenuController" fx:id="rootPane">
+
+    <HBox spacing="10">
+        <padding><Insets top="20" left="20"/></padding>
+        <VBox spacing="10">
+            <Label text="Ticket To Ride" fx:id="titleLabel"/>
+            <Label text="Play" fx:id="playLabel" onMouseEntered="#hoverEnterPlay" onMouseExited="#hoverExitPlay"/>
+            <Label text="Load" fx:id="loadLabel" onMouseEntered="#hoverEnterLoad" onMouseExited="#hoverExitLoad"/>
+            <Label text="Rules" fx:id="ruleLabel" onMouseEntered="#hoverEnterRule" onMouseExited="#hoverExitRule"/>
+            <Label text="Options" fx:id="optionLabel" onMouseEntered="#hoverEnterOption" onMouseExited="#hoverExitOption"/>
+            <Label text="Quit" fx:id="quitLabel" onMouseEntered="#hoverEnterQuit" onMouseExited="#hoverExitQuit" onMouseClicked="#quitGame"/>
+        </VBox>
+        <VBox>
+        </VBox>
+    </HBox>
+
+</Pane>

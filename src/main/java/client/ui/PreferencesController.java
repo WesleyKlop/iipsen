@@ -1,13 +1,13 @@
-package main.java.client.ui;
+package client.ui;
 
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class Controller {
+public class PreferencesController {
 
+    // Declare Circles
     public Button submitPreferencesButton;
     public TextField nameField;
     public Circle yellowButton;
@@ -26,6 +26,8 @@ public class Controller {
 
     public void submitName(){ submitPreferencesButton.setText(nameField.getText()); }
 
+
+    // Click methods called from Preferences.FXML
     public void setColorYellow(){ setCircleColor(yellowButton); }
     public void setColorOrange(){ setCircleColor(orangeButton); }
     public void setColorRed(){ setCircleColor(redButton); }
@@ -38,10 +40,13 @@ public class Controller {
     public void setColorGray(){ setCircleColor(grayButton); }
     public void setColorPink(){ setCircleColor(pinkButton); }
     public void setColorLGreen(){ setCircleColor(lgreenButton); }
-    
-    private void setCircleColor(Circle circle){
+
+    // Click effect
+    public void setCircleColor(Circle circle){
         displayCircle.setFill(circle.getFill());
     }
+
+    // Hover methods called from Preferences.FXML
     public void yellowEnterHover(){ hoverEnterEffect(yellowButton); }
     public void yellowLeaveHover(){ hoverLeaveEffect(yellowButton); }
     public void orangeEnterHover(){ hoverEnterEffect(orangeButton); }
@@ -67,6 +72,7 @@ public class Controller {
     public void lgreenEnterHover(){ hoverEnterEffect(lgreenButton); }
     public void lgreenLeaveHover(){ hoverLeaveEffect(lgreenButton); }
 
+    // Hover effects
     private void hoverEnterEffect(Circle circle){
         circle.setStroke(Color.YELLOW);
         circle.setStrokeWidth(2);
