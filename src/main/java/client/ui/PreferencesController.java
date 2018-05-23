@@ -75,7 +75,6 @@ public class PreferencesController {
     // Hover effects
     private void hoverEnterEffect(Circle circle){
         circle.setStroke(Color.YELLOW);
-        circle.setStrokeWidth(2);
     }
     private void hoverLeaveEffect(Circle circle){
         circle.setStroke(Color.BLACK);

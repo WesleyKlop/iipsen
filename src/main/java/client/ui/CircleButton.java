@@ -14,20 +14,19 @@ public class CircleButton extends Circle {
         setRadius(5);
         setStroke(Color.BLACK);
 
-
         setOnMouseEntered(e -> {
             setFill(hoverColor);
             setStroke(Color.YELLOW);
         });
 
         setOnMouseExited(e -> {
-            setFill(Color.web(getColor()));
+            setFill(getColor());
             setStroke(Color.BLACK);
         });
     }
 
-    public String getColor() {
-        return color.toString();
+    public Color getColor() {
+        return color;
     }
 
     public void setColor(String color) {
