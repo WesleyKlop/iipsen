@@ -8,12 +8,14 @@ public class CircleButton extends Circle {
     private Color color;
     private Color hoverColor;
     private static final int RADIUS = 10;
+    private static final int STROKE_WIDTH = 2;
     private boolean isSelected = false;
 
     public CircleButton() {
         super();
         setRadius(RADIUS);
         setStroke(Color.BLACK);
+        setStrokeWidth(STROKE_WIDTH);
 
         setOnMouseEntered(e -> {
             setFill(hoverColor);

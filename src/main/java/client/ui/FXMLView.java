@@ -14,8 +14,6 @@ public class FXMLView extends Application {
         primaryStage.setTitle("Preferences Form");
         primaryStage.setScene(scene);
         primaryStage.show();
-
-
     }
 
     public static void main(String[] args) {

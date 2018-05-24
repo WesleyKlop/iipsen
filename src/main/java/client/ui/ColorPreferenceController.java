@@ -5,10 +5,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
-interface ColorPreferenceListener {
-    void onColorSelected(Color color);
-}
-
 /**
  * @author wesley
  */
@@ -16,29 +12,27 @@ public class ColorPreferenceController {
     @FXML
     public HBox container;
 
-    private ColorPreferenceListener listener;
+    private Color selectedColor;
 
     public void onColorSelected(MouseEvent mouseEvent) {
-        Color selectedColor = ((CircleButton) mouseEvent.getSource()).getColorObj();
-        System.out.println("Color selected: " + selectedColor);
-        if (listener != null) {
-            listener.onColorSelected(selectedColor);
-        }
-        setSelectedColor(selectedColor);
+        selectedColor = ((CircleButton) mouseEvent.getSource()).getColorObj();
+        setSelectedColor();
     }
 
-    public void setListener(ColorPreferenceListener listener) {
-        this.listener = listener;
-    }
-
-    public void setSelectedColor(Color color) {
+    public void setSelectedColor() {
+        // Loop through all buttons and select the right one
         container.getChildren().forEach(e -> {
             CircleButton button = (CircleButton) e;
-            if (color == button.getColorObj()) {
+            if (selectedColor == button.getColorObj()) {
                 button.setSelected();
             } else {
                 button.setDeselected();
             }
         });
     }
+
+    public Color getSelectedColor() {
+        return selectedColor;
+    }
+
 }

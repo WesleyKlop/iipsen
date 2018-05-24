@@ -3,33 +3,22 @@ package client.ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
-public class PreferencesController implements ColorPreferenceListener {
+public class PreferencesController {
 
     // Declare Circles
     @FXML
-    public Button submitPreferencesButton;
+    private Button submitPreferencesButton;
     @FXML
-    public TextField nameField;
+    private TextField nameField;
     @FXML
-    public HBox colorPreference;
-    @FXML
-    public ColorPreferenceController colorPreferenceController;
+    private ColorPreferenceController colorPreferenceController;
 
-    public void submitName() {
-        submitPreferencesButton.setText(nameField.getText());
-    }
+    public void submitPreferences() {
+        String name = nameField.getText();
+        Color color = colorPreferenceController.getSelectedColor();
 
-    @FXML
-    public void initialize() {
-        System.out.println("init");
-        colorPreferenceController.setListener(this);
-    }
-
-    @Override
-    public void onColorSelected(Color color) {
-        System.out.println("Controller received color: " + color);
+        System.out.printf("Name: %s%nColor: %s%n", name, color);
     }
 }
