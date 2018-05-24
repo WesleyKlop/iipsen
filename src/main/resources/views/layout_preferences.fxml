@@ -4,7 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" prefHeight="800.0" prefWidth="800.0" spacing="5" xmlns="http://javafx.com/javafx/8.0.121"
+<VBox xmlns:fx="http://javafx.com/fxml/1" prefHeight="800.0" prefWidth="800.0" spacing="5"
+      xmlns="http://javafx.com/javafx/8.0.121"
       fx:controller="client.ui.PreferencesController">
     <Label text="Fill in your name"/>
 
@@ -12,6 +13,6 @@
 
     <fx:include source="layout_color_preference.fxml" fx:id="colorPreference"/>
 
-    <Button fx:id="submitPreferencesButton" onAction="#submitPreferences" text="Submit"/>
+    <Button onAction="#submitPreferences" text="Submit"/>
 
 </VBox>
