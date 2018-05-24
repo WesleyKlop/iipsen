@@ -8,7 +8,7 @@
       fx:controller="client.ui.PreferencesController">
     <Label text="Fill in your name"/>
     <TextField fx:id="nameField"/>
-    <fx:include source="layout_color_preference.fxml"/>
+    <fx:include source="layout_color_preference.fxml" fx:id="colorPreference"/>
 
 
     <Button fx:id="submitPreferencesButton" onAction="#submitName" text="Submit"/>

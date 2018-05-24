@@ -7,23 +7,35 @@ public class CircleButton extends Circle {
 
     private Color color;
     private Color hoverColor;
+    private static final int RADIUS = 10;
+    private boolean isSelected = false;
 
     public CircleButton() {
         super();
-        this.setColor(getColor());
-        setRadius(5);
+        setRadius(RADIUS);
         setStroke(Color.BLACK);
-
 
         setOnMouseEntered(e -> {
             setFill(hoverColor);
-            setStroke(Color.YELLOW);
+            if (!isSelected)
+                setStroke(Color.YELLOW);
         });
 
         setOnMouseExited(e -> {
-            setFill(Color.web(getColor()));
-            setStroke(Color.BLACK);
+            setFill(color);
+            if (!isSelected)
+                setStroke(Color.BLACK);
         });
+    }
+
+    public void setSelected() {
+        isSelected = true;
+        setStroke(color);
+    }
+
+    public void setDeselected() {
+        isSelected = false;
+        setStroke(Color.BLACK);
     }
 
     public String getColor() {
@@ -31,12 +43,12 @@ public class CircleButton extends Circle {
     }
 
     public void setColor(String color) {
-        this.setColor(Color.web(color));
+        this.color = Color.web(color);
         setFill(this.color);
     }
 
-    public void setColor(Color color) {
-        this.color = color;
+    public Color getColorObj() {
+        return color;
     }
 
     public String getHoverColor() {
