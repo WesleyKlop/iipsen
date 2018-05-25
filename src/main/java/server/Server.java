@@ -34,7 +34,7 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
     @Override
     public synchronized void registerObserver(GameStoreClient listener) throws RemoteException {
         clients.add(listener);
-        listener.onGameStoreReceived(currentGameStore);
+        listener.onConnect(currentGameStore);
     }
 
     @Override
@@ -50,14 +50,15 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
     }
 
     @Override
-    public synchronized void onActionReceived(Action action) throws RemoteException {
+    public synchronized void onActionReceived(Action action) {
         try {
             action.executeAction(currentGameStore);
+            System.out.println("Executed action");
+            notifyListeners(currentGameStore);
+            System.out.println("Notified listeners");
         } catch (Exception ex) {
             System.out.println("Server error while executing action");
             ex.printStackTrace();
-        } finally {
-            notifyListeners(currentGameStore);
         }
     }
 }

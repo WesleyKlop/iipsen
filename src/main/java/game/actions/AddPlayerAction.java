@@ -2,6 +2,7 @@ package game.actions;
 
 import game.GameStore;
 import game.routecards.Player;
+import javafx.scene.paint.Color;
 
 /**
  * @author wesley
@@ -9,8 +10,8 @@ import game.routecards.Player;
 public class AddPlayerAction implements Action {
     private Player player;
 
-    public AddPlayerAction(Player player) {
-        this.player = player;
+    public AddPlayerAction(String name, Color color) {
+        this.player = new Player(name, color);
     }
 
     @Override
@@ -18,6 +19,7 @@ public class AddPlayerAction implements Action {
         if (player == null) {
             throw new Exception("Player should not be null!");
         }
-        state.getPlayers().add(player);
+
+        state.addPlayer(player);
     }
 }

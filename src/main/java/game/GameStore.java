@@ -1,6 +1,7 @@
 package game;
 
 import game.routecards.Player;
+import javafx.scene.paint.Color;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,16 +18,23 @@ public class GameStore implements Serializable {
         return players;
     }
 
-    public void startGame() {
-        currentState = GameState.GAME;
-    }
-
-    public void goToLobby() {
-        currentState = GameState.LOBBY;
+    public Player getPlayer(String name, Color color) {
+        for (Player player : players) {
+            if (player.getPlayerName().equals(name) && player.getColor() == color) {
+                return player;
+            }
+        }
+        return null;
     }
 
     public GameState getCurrentState() {
         return currentState;
+    }
+
+    public void addPlayer(Player player) {
+        // Generate int for player id
+        player.setId(players.size());
+        players.add(player);
     }
     //TODO
 }

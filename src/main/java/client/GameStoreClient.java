@@ -15,4 +15,6 @@ public interface GameStoreClient extends Remote, Serializable {
     void onGameStoreReceived(GameStore newState) throws RemoteException;
 
     void sendAction(Action action) throws RemoteException;
+
+    void onConnect(GameStore initialStore) throws RemoteException;
 }

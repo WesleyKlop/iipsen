@@ -8,7 +8,7 @@ import game.cards.CardType;
 public class Route {
     private int length;
     private int locomotiveCost;
-    private EPlayer owner;
+    private int owner;
     private CardType color;
 
     public Route(int length, int locomotiveCost, CardType color) {
@@ -31,7 +31,7 @@ public class Route {
                     builder.getCardStack().takeCards(CardType.LOCOMOTIVE, locomotiveCost);
 
                 builder.removeTrainCarts(length);
-                this.owner = builder.getPlayer();
+                this.owner = builder.getId();
                 System.out.println("Route build! by " + builder.getPlayerName());
             } catch (Exception e) {
                 e.printStackTrace();
@@ -43,7 +43,7 @@ public class Route {
     }
 
     public boolean hasOwner() {
-        return owner != null;
+        return owner != 0;
     }
 
     public int getCartCost() {
