@@ -1,6 +1,6 @@
 package server;
 
-import client.GameStateClient;
+import client.GameStoreClient;
 import game.GameStore;
 import game.actions.Action;
 
@@ -15,11 +15,13 @@ import java.util.List;
 /**
  * @author wesley
  */
-public class Server extends UnicastRemoteObject implements GameStateServer {
+public class Server extends UnicastRemoteObject implements GameStoreServer {
+
     public static final String REGISTRY_NAME = "TTRGameService";
     private static final int PORT = 1099;
-    private List<GameStateClient> clients = new ArrayList<>();
-    private GameStore currentGameStore = new GameStore();
+
+    private List<GameStoreClient> clients = new ArrayList<>();
+    private game.GameStore currentGameStore = new GameStore();
 
     public Server() throws RemoteException, MalformedURLException {
         System.out.println("Starting server");
@@ -30,20 +32,20 @@ public class Server extends UnicastRemoteObject implements GameStateServer {
     }
 
     @Override
-    public synchronized void registerObserver(GameStateClient listener) throws RemoteException {
+    public synchronized void registerObserver(GameStoreClient listener) throws RemoteException {
         clients.add(listener);
-        listener.onGameStateReceived(currentGameStore);
+        listener.onGameStoreReceived(currentGameStore);
     }
 
     @Override
-    public synchronized void unregisterObserver(GameStateClient listener) {
+    public synchronized void unregisterObserver(GameStoreClient listener) {
         clients.remove(listener);
     }
 
     @Override
     public synchronized void notifyListeners(GameStore newState) throws RemoteException {
-        for (GameStateClient client : clients) {
-            client.onGameStateReceived(newState);
+        for (GameStoreClient client : clients) {
+            client.onGameStoreReceived(newState);
         }
     }
 
