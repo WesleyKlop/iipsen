@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 import server.Server;
 
@@ -32,9 +33,10 @@ public class Client extends Application implements SceneListener {
         primaryStage.setTitle("Main Menu");
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
+        primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         primaryStage.show();
 
-        connectServer(null);
+        //connectServer(null);
 //        startServer();
     }
 
