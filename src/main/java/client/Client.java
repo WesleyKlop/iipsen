@@ -2,6 +2,7 @@ package client;
 
 import game.GameState;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,6 +14,8 @@ import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 
 public class Client extends Application implements SceneListener {
+
+    private static final String DEFAULT_IP = "127.0.0.1";
 
     private GameClient client;
     private Stage stage;
@@ -31,7 +34,8 @@ public class Client extends Application implements SceneListener {
         primaryStage.setFullScreen(true);
         primaryStage.show();
 
-        startServer();
+        connectServer(null);
+//        startServer();
     }
 
     private void startServer() throws MalformedURLException, RemoteException {
@@ -39,6 +43,9 @@ public class Client extends Application implements SceneListener {
     }
 
     private void connectServer(String ip) throws RemoteException {
+        if (ip == null) {
+            ip = DEFAULT_IP;
+        }
         client = new GameClient(ip, this);
     }
 
@@ -53,22 +60,23 @@ public class Client extends Application implements SceneListener {
 
     @Override
     public void onSceneChange(GameState state) {
-        System.out.println("Got new scene");
+        System.out.println("Got new scene, currently on Thread: " + Thread.currentThread().getName());
 
         Parent newRoot = null;
+        String newTitle = null;
         switch (state) {
             case INIT:
-                stage.setTitle("Ticket To Ride - Connect");
+                newTitle = "Ticket To Ride - Connect";
                 newRoot = getParent("layout_preferences");
                 // Switch to name/color select
                 break;
             case LOBBY:
-                stage.setTitle("Ticket To Ride - Lobby");
+                newTitle = "Ticket To Ride - Lobby";
                 newRoot = getParent("layout_lobby");
                 // Switch to lobby
                 break;
             case GAME:
-                stage.setTitle("Ticket To Ride");
+                newTitle = "Ticket To Ride";
                 newRoot = getParent("layout_game");
                 // Switch to game view
                 break;
@@ -81,7 +89,16 @@ public class Client extends Application implements SceneListener {
                 // Switch to end screen
                 break;
         }
-
-        scene.setRoot(newRoot);
+        setStage(newRoot, newTitle);
     }
+
+    private void setStage(final Parent newRoot, final String newTitle) {
+        Platform.runLater(() -> {
+            scene.setRoot(newRoot);
+            if (newTitle != null) {
+                stage.setTitle(newTitle);
+            }
+        });
+    }
+
 }

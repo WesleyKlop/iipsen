@@ -3,23 +3,24 @@ package game.routecards;
 import game.cards.CardStack;
 import javafx.scene.paint.Color;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * @author wesley
  */
-public class Player {
+public class Player implements Serializable {
     private CardStack stack = new CardStack();
     private Set<RouteCard> routeCards = new HashSet<>();
     private final String playerName;
-    private final Color color;
+    private final String color;
     private int id;
     private int score;
     private int traincarts = 40;
 
     public Player(String name, Color color) {
-        this.color = color;
+        this.color = color.toString();
         this.playerName = name;
     }
 
@@ -47,12 +48,7 @@ public class Player {
         this.id = player;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("Player{id=%d, playerName='%s', color=%s, score=%d, traincarts=%d}", id, playerName, color, score, traincarts);
     }
 }

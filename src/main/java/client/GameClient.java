@@ -16,10 +16,6 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-interface SceneListener {
-    void onSceneChange(GameState state);
-}
-
 /**
  * @author wesley
  */
@@ -70,13 +66,21 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
         }
 
         // Set player
-        if (lastAction instanceof AddPlayerAction) {
-            var players = newState.getPlayers();
-            player = players.get(players.size() - 1);
+        if (lastAction != null) {
+            processLastActionResponse(newState);
+            lastAction = null;
         }
 
         // finally
         storeObservable.setValue(newState);
+    }
+
+    public void processLastActionResponse(GameStore newState) {
+        if (lastAction instanceof AddPlayerAction) {
+            var players = newState.getPlayers();
+            player = players.get(players.size() - 1);
+            sceneListener.onSceneChange(GameState.LOBBY);
+        }
     }
 
     @Override
@@ -88,7 +92,7 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
     @Override
     public void onConnect(GameStore initialStore) {
         storeObservable.setValue(initialStore);
-        System.out.println("Connected");
+        System.out.println("Connected, running on thread: " + Thread.currentThread().getName());
         sceneListener.onSceneChange(GameState.INIT);
     }
 }

@@ -2,9 +2,11 @@ package game.actions;
 
 import game.GameStore;
 
+import java.io.Serializable;
+
 /**
  * @author wesley
  */
-public interface Action {
+public interface Action extends Serializable {
     void executeAction(GameStore state) throws Exception;
 }
