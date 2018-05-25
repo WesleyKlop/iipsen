@@ -10,30 +10,11 @@ git clone https://github.com/WesleyKlop/IIPSEN
 cd IIPSEN
 ```
 
-## Building
+## Developing
+Dunno just press the button in IntelliJ
 
-Build the app with Gradle  
-MacOS / Unix
-```bash
-./gradlew build
-```
-
-Windows
-```powershell
-gradlew.bat build
-```
-
-## Running
-Run the app  
-MacOS / Unix
-```bash
-./gradlew run
-```
-
-Windows
-```powershell
-gradlew.bat run
-```
+## Testing
+We should really write unit tests
 
 ## Project layout
 ```
@@ -41,17 +22,17 @@ src
 ├── main
 │   ├── java
 │   │   ├── client
-│   │   │   ├── ui 
-│   │   │   └── views
-│   │   ├── game # Shared logic
+│   │   │   └── ui          # JavaFX controllers, views
+│   │   ├── game            # Shared logic
 │   │   │   ├── cards
 │   │   │   ├── player
 │   │   │   └── routecards
-│   │   └── server # Server logic
+│   │   ├── server          # Server logic
+│   │   └── util            # Utility classes
 │   └── resources
-│       ├── cards # Card assets
-│       └── views # FXML views
-└── test
+│       ├── cards           # Card assets
+│       └── views           # FXML views
+└── test                    # Basically the same as main but with tests
     └── java
         ├── client
         │   ├── ui

@@ -1,6 +1,8 @@
 package game.routecards;
 
-public class RouteCard {
+import java.io.Serializable;
+
+public class RouteCard implements Serializable {
     private Location start;
     private Location end;
     private int value;
