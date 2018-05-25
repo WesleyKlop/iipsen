@@ -1,7 +1,7 @@
 package client.ui;
 
 
-import javafx.fxml.Initializable;
+import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -10,21 +10,26 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+// TODO THIS REALLY SHITTY CODE
+public class MainMenuController {
 
-public class MainMenuController implements Initializable {
-
+    @FXML
     public Label titleLabel;
+    @FXML
     public Label playLabel;
+    @FXML
     public Label loadLabel;
+    @FXML
     public Label ruleLabel;
+    @FXML
     public Label optionLabel;
+    @FXML
     public Label quitLabel;
+    @FXML
     public Pane rootPane;
 
-    @Override
-    public void initialize(URL url, ResourceBundle bundle) {
+    @FXML
+    public void initialize() {
         style(playLabel);
         style(loadLabel);
         style(ruleLabel);
@@ -33,7 +38,7 @@ public class MainMenuController implements Initializable {
         rootPane.setStyle("-fx-background-color: linear-gradient(to bottom, #bfe8f9 0%,#0082ED 70%);");
     }
 
-    public void style(Label label) {
+    private void style(Label label) {
         label.setFont(Font.font("Californian FB", FontWeight.BOLD, 20));
         label.setStyle("-fx-background-color: white;" + "-fx-border-color: black;");
         label.setAlignment(Pos.CENTER);
