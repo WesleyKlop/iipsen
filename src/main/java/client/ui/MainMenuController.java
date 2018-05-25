@@ -13,7 +13,7 @@ import javafx.scene.text.FontWeight;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainMenuController implements Initializable{
+public class MainMenuController implements Initializable {
 
     public Label titleLabel;
     public Label playLabel;
@@ -24,7 +24,7 @@ public class MainMenuController implements Initializable{
     public Pane rootPane;
 
     @Override
-    public void initialize(URL url, ResourceBundle bundle){
+    public void initialize(URL url, ResourceBundle bundle) {
         style(playLabel);
         style(loadLabel);
         style(ruleLabel);
@@ -33,7 +33,7 @@ public class MainMenuController implements Initializable{
         rootPane.setStyle("-fx-background-color: linear-gradient(to bottom, #bfe8f9 0%,#0082ED 70%);");
     }
 
-    public void style(Label label){
+    public void style(Label label) {
         label.setFont(Font.font("Californian FB", FontWeight.BOLD, 20));
         label.setStyle("-fx-background-color: white;" + "-fx-border-color: black;");
         label.setAlignment(Pos.CENTER);
@@ -43,26 +43,55 @@ public class MainMenuController implements Initializable{
         label.setPrefWidth(200);
     }
 
-    public void hoverEnterPlay(){ hoverEnter(playLabel); }
-    public void hoverEnterLoad(){ hoverEnter(loadLabel); }
-    public void hoverEnterRule(){ hoverEnter(ruleLabel); }
-    public void hoverEnterOption(){ hoverEnter(optionLabel); }
-    public void hoverEnterQuit(){ hoverEnter(quitLabel); }
+    public void hoverEnterPlay() {
+        hoverEnter(playLabel);
+    }
 
-    public void hoverExitPlay(){ hoverExit(playLabel); }
-    public void hoverExitLoad(){ hoverExit(loadLabel); }
-    public void hoverExitRule(){ hoverExit(ruleLabel); }
-    public void hoverExitOption(){ hoverExit(optionLabel); }
-    public void hoverExitQuit(){ hoverExit(quitLabel); }
+    public void hoverEnterLoad() {
+        hoverEnter(loadLabel);
+    }
 
-    public void hoverEnter(Label label){
+    public void hoverEnterRule() {
+        hoverEnter(ruleLabel);
+    }
+
+    public void hoverEnterOption() {
+        hoverEnter(optionLabel);
+    }
+
+    public void hoverEnterQuit() {
+        hoverEnter(quitLabel);
+    }
+
+    public void hoverExitPlay() {
+        hoverExit(playLabel);
+    }
+
+    public void hoverExitLoad() {
+        hoverExit(loadLabel);
+    }
+
+    public void hoverExitRule() {
+        hoverExit(ruleLabel);
+    }
+
+    public void hoverExitOption() {
+        hoverExit(optionLabel);
+    }
+
+    public void hoverExitQuit() {
+        hoverExit(quitLabel);
+    }
+
+    public void hoverEnter(Label label) {
         label.setTextFill(Color.RED);
     }
-    public void hoverExit(Label label){
+
+    public void hoverExit(Label label) {
         label.setTextFill(Color.BLACK);
     }
 
-    public void quitGame(){
+    public void quitGame() {
         System.exit(0);
     }
 

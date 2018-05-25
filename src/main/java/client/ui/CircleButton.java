@@ -5,10 +5,10 @@ import javafx.scene.shape.Circle;
 
 public class CircleButton extends Circle {
 
-    private Color color;
-    private Color hoverColor;
     private static final int RADIUS = 10;
     private static final int STROKE_WIDTH = 2;
+    private Color color;
+    private Color hoverColor;
     private boolean isSelected = false;
 
     public CircleButton() {

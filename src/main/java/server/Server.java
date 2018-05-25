@@ -1,8 +1,8 @@
 package server;
 
 import client.GameStateClient;
-import game.GameState;
-import game.Turn;
+import game.GameStore;
+import game.actions.Action;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -19,7 +19,7 @@ public class Server extends UnicastRemoteObject implements GameStateServer {
     public static final String REGISTRY_NAME = "TTRGameService";
     private static final int PORT = 1099;
     private List<GameStateClient> clients = new ArrayList<>();
-    private GameState currentGameState = new GameState();
+    private GameStore currentGameStore = new GameStore();
 
     public Server() throws RemoteException, MalformedURLException {
         System.out.println("Starting server");
@@ -30,8 +30,9 @@ public class Server extends UnicastRemoteObject implements GameStateServer {
     }
 
     @Override
-    public synchronized void registerObserver(GameStateClient listener) {
+    public synchronized void registerObserver(GameStateClient listener) throws RemoteException {
         clients.add(listener);
+        listener.onGameStateReceived(currentGameStore);
     }
 
     @Override
@@ -40,16 +41,21 @@ public class Server extends UnicastRemoteObject implements GameStateServer {
     }
 
     @Override
-    public synchronized void onTurnReceived(Turn newState) throws RemoteException {
-        newState.updateGameState(currentGameState);
-        // TODO: Next turn
-        notifyListeners(currentGameState);
+    public synchronized void notifyListeners(GameStore newState) throws RemoteException {
+        for (GameStateClient client : clients) {
+            client.onGameStateReceived(newState);
+        }
     }
 
     @Override
-    public synchronized void notifyListeners(GameState newState) throws RemoteException {
-        for (GameStateClient client : clients) {
-            client.onGameStateReceived(newState);
+    public synchronized void onActionReceived(Action action) throws RemoteException {
+        try {
+            action.executeAction(currentGameStore);
+        } catch (Exception ex) {
+            System.out.println("Server error while executing action");
+            ex.printStackTrace();
+        } finally {
+            notifyListeners(currentGameStore);
         }
     }
 }

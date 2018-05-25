@@ -1,4 +1,4 @@
-package client.ui;
+package client;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,21 +6,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class MainMenuView extends Application {
+public class Client extends Application {
 
-    private Boolean close = false;
+    private GameClient client;
 
-    public void start(Stage primaryStage) throws Exception{
-        FXMLLoader loader = new FXMLLoader();
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/views/layout_main_menu.fxml"));
-        Scene scene = new Scene(root, 500, 500);
+        Scene scene = new Scene(root);
         primaryStage.setTitle("Main Menu");
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
         primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

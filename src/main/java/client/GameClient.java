@@ -1,10 +1,11 @@
 package client;
 
 import game.GameState;
-import game.Turn;
-import game.TurnNotFinishedException;
+import game.GameStore;
+import game.actions.Action;
 import server.GameStateServer;
 import server.Server;
+import util.Observable;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -16,7 +17,7 @@ import java.rmi.server.UnicastRemoteObject;
 public class GameClient extends UnicastRemoteObject implements GameStateClient {
 
     // Transient because we don't want to send this to the server
-    private transient GameState gameState;
+    private transient Observable<GameStore> gameStore = new Observable<>();
     private transient GameStateServer server;
 
     public GameClient(String ip) throws RemoteException {
@@ -33,16 +34,44 @@ public class GameClient extends UnicastRemoteObject implements GameStateClient {
     }
 
     @Override
-    public void onGameStateReceived(GameState newState) {
-        this.gameState = newState;
-        // TODO: UI stuff when state changes
+    public void onGameStateReceived(GameStore newState) {
+        if (gameStore.getValue() == null) {
+            gameStore.setValue(newState);
+            return;
+        }
+        // Compare gameStates and change views accordingly
+        changeViewIfNeeded(newState.getCurrentState());
+
+        // finally
+        gameStore.setValue(newState);
+    }
+
+    private void changeViewIfNeeded(GameState newState) {
+        if (newState == gameStore.getValue().getCurrentState()) {
+            return;
+        }
+
+        switch (newState) {
+            case GAME:
+                // Switch to game view
+                break;
+            case INIT:
+                // Switch to name/color select
+                break;
+            case LOBBY:
+                // Switch to lobby
+                break;
+            case PAUSED:
+                // Switch to pause screen
+                break;
+            case FINISHED:
+                // Switch to end screen
+                break;
+        }
     }
 
     @Override
-    public void sendTurn(Turn turn) throws TurnNotFinishedException, RemoteException {
-        if (!turn.isFinished()) {
-            throw new TurnNotFinishedException("Turn not finished!");
-        }
-        this.server.onTurnReceived(turn);
+    public void sendAction(Action action) throws RemoteException {
+        server.onActionReceived(action);
     }
 }

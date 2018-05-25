@@ -7,16 +7,16 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class FXMLView extends Application {
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/views/layout_preferences.fxml"));
-        Scene scene = new Scene(root, 300, 275);
-        primaryStage.setTitle("Preferences Form");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
     public static void main(String[] args) {
         launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/views/layout_lobby.fxml"));
+        Scene scene = new Scene(root, 300, 275);
+        primaryStage.setTitle("Lobby");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }

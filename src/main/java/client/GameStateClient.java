@@ -1,18 +1,18 @@
 package client;
 
-import game.GameState;
-import game.Turn;
-import game.TurnNotFinishedException;
+import game.GameStore;
+import game.actions.Action;
 
+import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 /**
  * @author wesley
  */
-public interface GameStateClient extends Remote {
+public interface GameStateClient extends Remote, Serializable {
 
-    void onGameStateReceived(GameState newState) throws RemoteException;
+    void onGameStateReceived(GameStore newState) throws RemoteException;
 
-    void sendTurn(Turn turn) throws RemoteException, TurnNotFinishedException;
+    void sendAction(Action action) throws RemoteException;
 }
