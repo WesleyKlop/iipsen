@@ -43,9 +43,9 @@ public class Client extends Application implements SceneListener {
     }
 
     private void connectServer(String ip) throws RemoteException {
-        if (ip == null) {
+        if (ip == null)
             ip = DEFAULT_IP;
-        }
+
         client = new GameClient(ip, this);
     }
 
