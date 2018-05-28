@@ -30,5 +30,9 @@ public class GameStore implements Serializable {
         player.setId(players.size());
         players.add(player);
     }
+
+    public void setGameState(GameState newState) {
+        currentState = newState;
+    }
     //TODO
 }

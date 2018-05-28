@@ -34,8 +34,8 @@ public class Client extends Application implements SceneListener {
         primaryStage.setFullScreen(true);
         primaryStage.show();
 
-        connectServer(null);
-//        startServer();
+//        connectServer(null);
+        startServer();
     }
 
     private void startServer() throws MalformedURLException, RemoteException {
@@ -60,7 +60,7 @@ public class Client extends Application implements SceneListener {
 
     @Override
     public void onSceneChange(GameState state) {
-        System.out.println("Got new scene, currently on Thread: " + Thread.currentThread().getName());
+        System.out.printf("Got new scene, %s currently on Thread: %s%n", state, Thread.currentThread().getName());
 
         Parent newRoot = null;
         String newTitle = null;
@@ -68,12 +68,10 @@ public class Client extends Application implements SceneListener {
             case INIT:
                 newTitle = "Ticket To Ride - Connect";
                 newRoot = getParent("layout_preferences");
-                // Switch to name/color select
                 break;
             case LOBBY:
                 newTitle = "Ticket To Ride - Lobby";
                 newRoot = getParent("layout_lobby");
-                // Switch to lobby
                 break;
             case GAME:
                 newTitle = "Ticket To Ride";

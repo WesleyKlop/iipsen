@@ -5,6 +5,7 @@ import game.GameStore;
 import game.GameStoreProvider;
 import game.actions.Action;
 import game.actions.AddPlayerAction;
+import game.actions.ChangeStateAction;
 import game.routecards.Player;
 import server.GameStoreServer;
 import server.Server;
@@ -60,12 +61,7 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
     public void onGameStoreReceived(GameStore newState) {
         System.out.println("Received new gamestore");
 
-        // Compare gameStates and change views accordingly
-        if (newState.getCurrentState() != GameStoreProvider.getStore().getCurrentState()) {
-            sceneListener.onSceneChange(newState.getCurrentState());
-        }
-
-        // Set player
+        // Process previous actions' response
         if (lastAction != null) {
             processLastActionResponse(newState);
             lastAction = null;
@@ -75,11 +71,13 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
         storeObservable.setValue(newState);
     }
 
-    public void processLastActionResponse(GameStore newState) {
+    private void processLastActionResponse(GameStore newState) {
         if (lastAction instanceof AddPlayerAction) {
             var players = newState.getPlayers();
             player = players.get(players.size() - 1);
             sceneListener.onSceneChange(GameState.LOBBY);
+        } else if (lastAction instanceof ChangeStateAction) {
+            sceneListener.onSceneChange(newState.getCurrentState());
         }
     }
 
