@@ -8,5 +8,5 @@ import java.io.Serializable;
  * @author wesley
  */
 public interface Action extends Serializable {
-    void executeAction(GameStore state) throws Exception;
+    void executeAction(GameStore store) throws Exception;
 }
