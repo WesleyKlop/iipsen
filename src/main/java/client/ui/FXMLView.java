@@ -14,6 +14,8 @@ public class FXMLView extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/views/layout_lobby.fxml"));
+        root.prefWidth(1920);
+        root.prefHeight(1080);
         Scene scene = new Scene(root, 300, 275);
         primaryStage.setTitle("Lobby");
         primaryStage.setScene(scene);

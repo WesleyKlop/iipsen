@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -55,28 +56,33 @@
         </ImageView>
         <HBox spacing="5" fx:id="HBoxRule1">
             <Label fx:id="ruleObjective" text="Object of the game" onMouseEntered="#hoverEnter"
-                   onMouseExited="#hoverExit"/>
-            <Label fx:id="ruleTurn" text="Game turn" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"/>
-            <Label fx:id="ruleTrainCards" text="Train cards" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"/>
+                   onMouseExited="#hoverExit" onMouseClicked="#manageRules"/>
+            <Label fx:id="ruleTurn" text="Game turn" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
+                   onMouseClicked="#manageRules"/>
+            <Label fx:id="ruleTrainCards" text="Train cards" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
+                   onMouseClicked="#manageRules"/>
         </HBox>
         <HBox spacing="5" fx:id="HBoxRule2">
-            <Label fx:id="ruleRoutes" text="Routes" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"/>
-            <Label fx:id="ruleTunnels" text="Tunnels" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"/>
-            <Label fx:id="ruleFerries" text="Ferries" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"/>
+            <Label fx:id="ruleRoutes" text="Routes" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
+                   onMouseClicked="#manageRules"/>
+            <Label fx:id="ruleTunnels" text="Tunnels" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
+                   onMouseClicked="#manageRules"/>
+            <Label fx:id="ruleFerries" text="Ferries" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
+                   onMouseClicked="#manageRules"/>
         </HBox>
         <HBox spacing="5" fx:id="HBoxRule3">
             <Label fx:id="ruleDestinationCards" text="Destination Cards" onMouseEntered="#hoverEnter"
-                   onMouseExited="#hoverExit"/>
-            <Label fx:id="ruleEnd" text="End of the game" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"/>
-            <Label fx:id="ruleScore" text="Score Calculation" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"/>
+                   onMouseExited="#hoverExit" onMouseClicked="#manageRules"/>
+            <Label fx:id="ruleEnd" text="End of the game" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
+                   onMouseClicked="#manageRules"/>
+            <Label fx:id="ruleScore" text="Score Calculation" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
+                   onMouseClicked="#manageRules"/>
         </HBox>
-        <ScrollPane>
-            <Text fx:id="ruleObjectiveRules" wrappingWidth="760"
-                  text="There are 8 types of regular Train Car cards, plus Locomotive cards. The colors of each type of Train Car card match various routes between cities on the board - Purple, Blue, Orange, White, Green, Yellow, Black, and Red. Locomotives are multi-colored and act as a wild card that can be part of a set of cards only when claiming Tunnel or Ferry routes (see Tunnels and Ferries below). Locomotive cards can complement or replace the colored cards required to claim a Tunnel or Ferry route, but they
-can never be used to help claim a regular route. A player may have any number of cards in his hand at any time. When the deck is exhausted, the discards are reshuffled
-into a new draw pile deck. The cards should be shuffled thoroughly, since all the cards have been discarded in sets. In the unlikely event that there are no cards left
-in the deck and there are no discards (because players are hoarding many cards in their hands), a player cannot draw Train Car Cards. Instead he may only Claim a Route
-or draw Destination Ticket cards."/>
+        <ScrollPane hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" maxHeight="300" minWidth="760">
+            <padding>
+                <Insets left="10" top="10" right="10" bottom="10"/>
+            </padding>
+            <Text fx:id="ruleRules" wrappingWidth="730"/>
         </ScrollPane>
     </VBox>
 
@@ -96,6 +102,21 @@ or draw Destination Ticket cards."/>
     <ImageView fx:id="mountains" preserveRatio="true" layoutX="0" layoutY="540">
         <image>
             <Image url="/images/mountains.png"/>
+        </image>
+    </ImageView>
+    <ImageView fx:id="train1" preserveRatio="true" layoutX="-1300" layoutY="780" scaleX="0.4" scaleY="0.4">
+        <image>
+            <Image url="/images/train_blue.png"/>
+        </image>
+    </ImageView>
+    <ImageView fx:id="train2" preserveRatio="true" layoutX="-1000" layoutY="780" scaleX="0.4" scaleY="0.4">
+        <image>
+            <Image url="/images/train_blue.png"/>
+        </image>
+    </ImageView>
+    <ImageView fx:id="train3" preserveRatio="true" layoutX="-700" layoutY="780" scaleX="0.4" scaleY="0.4">
+        <image>
+            <Image url="/images/train_blue.png"/>
         </image>
     </ImageView>
 

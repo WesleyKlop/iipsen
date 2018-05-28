@@ -1,6 +1,7 @@
 package client.ui;
 
 
+import javafx.animation.Animation;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -8,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -19,7 +21,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import org.w3c.dom.Document;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -53,27 +59,98 @@ public class MainMenuController implements Initializable {
     public Label ruleDestinationCards;
     public Label ruleEnd;
     public Label ruleScore;
-    public Text ruleObjectiveRules;
+    public Text ruleRules;
 
     public VBox VBoxOption;
     public Slider optionVolumeSlider;
     public CheckBox optionColorblind;
 
+    public ImageView train1;
+    public ImageView train2;
+    public ImageView train3;
+
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
-        playMusic("/Sound/background.mp3");
+        playMusic("/sound/background.mp3");
         style(VBoxMain);
         style(VBoxPlay);
         style(VBoxLoad);
         style(HBoxRule1);
         style(HBoxRule2);
         style(HBoxRule3);
-        ruleObjectiveRules.setFont(Font.font("Californian FB", 20));
+        ruleRules.setFont(Font.font("Californian FB", 20));
+        ImageView[] trains = {train1, train2, train3};
+        trainAnimation(trains);
 
         rootPane.setStyle("-fx-background-color: linear-gradient(to bottom, #bfe8f9 0%,#0082ED 70%);");
     }
 
-    public void playMusic(String name) {
+    private void trainAnimation(ImageView[] image) {
+        for (int i = 0; i < image.length; i++) {
+            TranslateTransition trainAnimation = new TranslateTransition(Duration.seconds(30), image[i]);
+            trainAnimation.setToX(3100);
+            trainAnimation.setCycleCount(Animation.INDEFINITE);
+            trainAnimation.play();
+        }
+    }
+
+    private String generateTrainColorImage() {
+        int imageNumber = (int) (Math.random() * 5);
+        String path = "/images/train_";
+        switch (imageNumber) {
+            case 0:
+                path += "blue.png";
+                break;
+            case 1:
+                path += "green.png";
+                break;
+            case 2:
+                path += "orange.png";
+                break;
+            case 3:
+                path += "pink.png";
+                break;
+            case 4:
+                path += "red.png";
+                break;
+            default:
+                path += "blue.png";
+                break;
+        }
+        return path;
+    }
+
+    public void manageRules(MouseEvent mouseEvent) {
+        Label label = (Label) mouseEvent.getSource();
+        String rules = getRule(label);
+        displayRules(rules);
+    }
+
+    private String getRule(Label label) {
+        // Gets label from mouseEvent
+        String labelId = label.getId();
+        String rules = "";
+        try {
+            File ruleFile = new File("/string/rules.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document rulesDoc = dBuilder.parse(ruleFile);
+            rulesDoc.getDocumentElement().normalize();
+
+            rules = rulesDoc.getElementsByTagName(labelId).item(0).getTextContent();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rules;
+    }
+
+    private void displayRules(String rules) {
+        // Sets rules scrollpane text to given text
+        ruleRules.setText(rules);
+    }
+
+    private void playMusic(String name) {
         Media backgroundMusic = new Media(getClass().getResource(name).toString());
         MediaPlayer player = new MediaPlayer(backgroundMusic);
         player.volumeProperty().bind(optionVolumeSlider.valueProperty());
@@ -81,7 +158,7 @@ public class MainMenuController implements Initializable {
         player.play();
     }
 
-    public void style(Label label) {
+    private void style(Label label) {
         label.setFont(Font.font("Californian FB", FontWeight.BOLD, 25));
         label.setStyle("-fx-background-color: white;" + "-fx-border-color: black;");
         label.setAlignment(Pos.CENTER);
@@ -91,13 +168,13 @@ public class MainMenuController implements Initializable {
         label.setPrefWidth(250);
     }
 
-    public void style(VBox menu) {
+    private void style(VBox menu) {
         for (int i = 1; i < menu.getChildren().size(); i++) {
             style((Label) menu.getChildren().get(i));
         }
     }
 
-    public void style(HBox menu) {
+    private void style(HBox menu) {
         for (int i = 0; i < menu.getChildren().size(); i++) {
             style((Label) menu.getChildren().get(i));
         }
@@ -121,7 +198,7 @@ public class MainMenuController implements Initializable {
         enableMain(disabledMenu);
     }
 
-    public void openMenu(MouseEvent mouseEvent, VBox menu) {
+    private void openMenu(MouseEvent mouseEvent, VBox menu) {
         Label label = (Label) mouseEvent.getSource();
         label.setDisable(true);
         TranslateTransition ani = new TranslateTransition(Duration.millis(500), menu);
@@ -129,18 +206,18 @@ public class MainMenuController implements Initializable {
         ani.play();
     }
 
-    public void closeMenu() {
+    private void closeMenu() {
         VBox menu = getDisabledMenu();
         TranslateTransition ani = new TranslateTransition(Duration.millis(500), menu);
         ani.setToY(20);
         ani.play();
     }
 
-    public void enableMain(int disabled) {
+    private void enableMain(int disabled) {
         VBoxMain.getChildren().get(disabled).setDisable(false);
     }
 
-    public int getDisabledInt() {
+    private int getDisabledInt() {
         for (int i = 0; i < 5; i++) {
             if (VBoxMain.getChildren().get(i).isDisable()) {
                 return i;
@@ -149,7 +226,7 @@ public class MainMenuController implements Initializable {
         return 0;
     }
 
-    public VBox getDisabledMenu() {
+    private VBox getDisabledMenu() {
         VBox menu = null;
         switch (getDisabledInt()) {
             case 1:
@@ -170,7 +247,7 @@ public class MainMenuController implements Initializable {
         return menu;
     }
 
-    public VBox getMenu(MouseEvent mouseEvent) {
+    private VBox getMenu(MouseEvent mouseEvent) {
         Label label = (Label) mouseEvent.getSource();
         VBox menu = null;
         switch (label.getId()) {
@@ -196,6 +273,5 @@ public class MainMenuController implements Initializable {
     public void quitGame() {
         System.exit(0);
     }
-
 
 }
