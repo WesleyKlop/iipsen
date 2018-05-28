@@ -26,9 +26,7 @@ class CardStackTest {
 
     @Test
     void newCardStackIsEmpty() {
-        if (!new CardStack().isEmpty()) {
-            fail("new stack is not empty");
-        }
+        assertTrue(new CardStack().isEmpty());
     }
 
     @Test
@@ -105,8 +103,7 @@ class CardStackTest {
 
     @Test
     void returnsFalseWhenNotEnoughCards() {
-        var stack = new CardStack();
-        assertFalse(stack.containsCards(new Card(CardType.CART_BLACK), new Card(CardType.CART_BLACK)));
+        assertFalse(new CardStack().containsCards(new Card(CardType.CART_BLACK), new Card(CardType.CART_BLACK)));
     }
 
     @Test

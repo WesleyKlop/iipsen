@@ -15,10 +15,7 @@ public class AddPlayerAction implements Action {
     }
 
     @Override
-    public void executeAction(GameStore state) throws Exception {
-        if (player == null) {
-            throw new Exception("Player should not be null!");
-        }
+    public void executeAction(GameStore state) {
 
         state.addPlayer(player);
     }

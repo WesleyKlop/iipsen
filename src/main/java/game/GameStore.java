@@ -26,9 +26,9 @@ public class GameStore implements Serializable {
     }
 
     public void addPlayer(Player player) {
-        // Generate int for player id
-        player.setId(players.size());
         players.add(player);
+        // Calling setId after adding makes the player id start at 1
+        player.setId(players.size());
     }
 
     public void setGameState(GameState newState) {

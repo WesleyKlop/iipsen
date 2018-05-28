@@ -51,4 +51,9 @@ public class Player implements Serializable {
     public String getColor() {
         return color;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Player{playerName='%s', color='%s', id=%d, score=%d, traincarts=%d}", playerName, color, id, score, traincarts);
+    }
 }
