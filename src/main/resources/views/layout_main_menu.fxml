@@ -18,8 +18,7 @@
             <Label text="Options" fx:id="optionLabel" onMouseEntered="#hoverEnterOption" onMouseExited="#hoverExitOption"/>
             <Label text="Quit" fx:id="quitLabel" onMouseEntered="#hoverEnterQuit" onMouseExited="#hoverExitQuit" onMouseClicked="#quitGame"/>
         </VBox>
-        <VBox>
-        </VBox>
+        <VBox/>
     </HBox>
 
 </Pane>
