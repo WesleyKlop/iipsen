@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import server.Server;
 
@@ -28,7 +29,8 @@ public class Client extends Application implements SceneListener {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/views/layout_main_menu.fxml"));
         stage = primaryStage;
-        scene = new Scene(root);
+        var screenInfo = Screen.getPrimary().getVisualBounds();
+        scene = new Scene(root, screenInfo.getWidth(), screenInfo.getHeight());
         primaryStage.setTitle("Main Menu");
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
