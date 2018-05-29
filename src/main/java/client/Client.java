@@ -37,7 +37,7 @@ public class Client extends Application implements SceneListener {
         primaryStage.show();
 
 //        connectServer(null);
-        startServer();
+ //       startServer();
     }
 
     private void startServer() throws MalformedURLException, RemoteException {

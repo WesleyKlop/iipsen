@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<BorderPane fx:id="bPane" fx:controller="client.ui.PlayscreenController" xmlns:fx="http://javafx.com/fxml"
+            prefHeight="1280" prefWidth="720" >
+    <top>
+    </top>
+    <left>
+    </left>
+    <right>
+    </right>
+    <center>
+        <VBox>
+            <HBox  fx:id="green" onMouseEntered="#greenEntered" onMouseExited="#greenExited" minHeight="9" maxWidth="27" TranslateX="715" TranslateY="182" rotate="128" alignment="center" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                <children>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/green_place.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </HBox>
+            <HBox  fx:id="green2" onMouseEntered="#greenEntered" onMouseExited="#greenExited" minHeight="9" maxWidth="27" TranslateX="705" TranslateY="205" rotate="76" alignment="center" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                <children>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/green_place.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </HBox>
+            <HBox  fx:id="orange" onMouseEntered="#orangeEntered" onMouseExited="#orangeExited" minHeight="11" maxWidth="102" TranslateX="565" TranslateY="207" alignment="center" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                <children>
+                    <ImageView id="orange_place" >
+                        <image>
+                            <Image url="/Routes/orange_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView id="orange_place">
+                        <image>
+                            <Image url="/Routes/orange_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView id="orange_place">
+                        <image>
+                            <Image url="/Routes/orange_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView id="orange_place">
+                        <image>
+                            <Image url="/Routes/orange_place.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </HBox>
+            <HBox onMouseEntered="#whiteEntered" onMouseExited="#whiteExited" minHeight="11" maxWidth="102" TranslateX="742" TranslateY="222" alignment="center" rotate="10" fx:id="white" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                <children>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/yellow_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/yellow_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/yellow_place.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </HBox>
+            <HBox fx:id="steen" onMouseEntered="#purpleEntered" onMouseExited="#purpleExited" maxHeight="2" maxWidth="102" TranslateX="745" TranslateY="192" alignment="center" rotate="10" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                <children>
+                    <ImageView id="purple_place" >
+                        <image>
+                            <Image url="/Routes/purple_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView id="purple_place">
+                        <image>
+                            <Image url="/Routes/purple_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView id="purple_place">
+                        <image>
+                            <Image url="/Routes/purple_place.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </HBox>
+            <HBox fx:id="white2" onMouseEntered="#white2Entered" onMouseExited="#white2Exited" minHeight="2" maxWidth="102" TranslateX="873" TranslateY="182" alignment="center" rotate="174" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                <children>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/white_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/white_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/white_place.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </HBox>
+            <HBox fx:id="red" onMouseEntered="#redEntered" onMouseExited="#redExited" minHeight="2" maxWidth="102" TranslateX="875" TranslateY="182" alignment="center" rotate="174" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                <children>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/red_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/red_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/red_place.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </HBox>
+            <HBox fx:id="red2" onMouseEntered="#red2Entered" onMouseExited="#red2Exited" minHeight="9" maxWidth="32" TranslateX="1012" TranslateY="200" alignment="center" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                <children>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/red_place.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </HBox>
+            <HBox fx:id="green3" onMouseEntered="#green3Entered" onMouseExited="#green3Exited" minHeight="9" maxWidth="32" TranslateX="980" TranslateY="155" rotate="80" alignment="center" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                <children>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/green_place.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </HBox>
+            <HBox fx:id="white3" onMouseEntered="#white3Entered" onMouseExited="#white3Exited" minHeight="9" maxWidth="32" TranslateX="960" TranslateY="187" rotate="130" alignment="center" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                <children>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/white_place.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </HBox>
+            <HBox fx:id="black" onMouseEntered="#blackEntered" onMouseExited="#blackExited" minHeight="11" maxWidth="102" TranslateX="840" TranslateY="178" rotate="10" alignment="center" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                <children>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/black_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/black_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/black_place.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </HBox>
+            <HBox fx:id="orange2" onMouseEntered="#orange2Entered" onMouseExited="#orange2Exited" minHeight="11" maxWidth="64" TranslateX="977" TranslateY="170" rotate="160" alignment="center" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                <children>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/orange_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/orange_place.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </HBox>
+            <HBox fx:id="yellow2" onMouseEntered="#yellow2Entered" onMouseExited="#yellow2Exited" minHeight="11" maxWidth="64" TranslateX="933" TranslateY="200" rotate="80" alignment="center" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                <children>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/yellow_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/yellow_place.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </HBox>
+            <HBox fx:id="yellow3" onMouseEntered="#yellow3Entered" onMouseExited="#yellow3Exited" minHeight="11" maxWidth="64" TranslateX="497" TranslateY= "9" rotate="66" alignment="center" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                <children>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/yellow_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/yellow_place.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </HBox>
+            <HBox fx:id="green4" onMouseEntered="#green4Entered" onMouseExited="#green4Exited" minHeight="11" maxWidth="64" TranslateX="483" TranslateY= "0" rotate="66" alignment="center" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                <children>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/green_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/green_place.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </HBox>
+            <HBox fx:id="black2" onMouseEntered="#black2Entered" onMouseExited="#black2Exited" minHeight="11" maxWidth="64" TranslateX="516" TranslateY= "60" rotate="66" alignment="center" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                <children>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/black_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/black_place.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </HBox>
+            <HBox fx:id="purple2" onMouseEntered="#purple2Entered" onMouseExited="#purple2Exited" minHeight="11" maxWidth="64" TranslateX="530" TranslateY= "40" rotate="66" alignment="center" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                <children>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/purple_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/purple_place.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </HBox>
+            <HBox fx:id="white4" onMouseEntered="#white4Entered" onMouseExited="#white4Exited" minHeight="11" maxWidth="102" TranslateX="380" TranslateY="68" rotate="173" alignment="center" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                <children>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/white_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/white_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/white_place.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </HBox>
+            <HBox fx:id="yellow4" onMouseEntered="#yellow4Entered" onMouseExited="#yellow4Exited" minHeight="11" maxWidth="102" TranslateX="380" TranslateY="68" rotate="173" alignment="center" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                <children>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/yellow_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/yellow_place.png" />
+                        </image>
+                    </ImageView>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/yellow_place.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </HBox>
+            <HBox fx:id="red3" onMouseEntered="#red3Entered" onMouseExited="#red3Exited" minHeight="9" maxWidth="32" TranslateX="513" TranslateY="45" rotate="7" alignment="center" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                <children>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/red_place.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </HBox>
+            <HBox fx:id="red4" onMouseEntered="#red3Entered" onMouseExited="#red3Exited" minHeight="9" maxWidth="32" TranslateX="705" TranslateY="90" rotate="0" alignment="center" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                <children>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/red_place.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </HBox>
+            <HBox fx:id="orange3" onMouseEntered="#orange3Entered" onMouseExited="#orange3Exited" minHeight="9" maxWidth="32" TranslateX="515" TranslateY="1" rotate="7" alignment="center" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                <children>
+                    <ImageView>
+                        <image>
+                            <Image url="/Routes/orange_place.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </HBox>
+        </VBox>
+    </center>
+    <bottom>
+    </bottom>
+
+</BorderPane>
