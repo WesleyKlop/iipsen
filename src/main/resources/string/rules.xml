@@ -57,9 +57,6 @@
         routes.
         A player may only claim a maximum of one route, hence connect two adjacent cities, never more, on his turn.
         Some cities are connected by Double-Routes. One player cannot claim both routes to the same cities.
-
-        Important note: In 2 player games, only one of the Double-Routes can be used. A player can claim either of the
-        two routes between cities, but the other route is then closed to other players.
     </ruleRoutes>
     <ruleTunnels>TUNNELS
         Tunnels are special routes that are easily identified by the special tunnel marks and outlines surrounding each
