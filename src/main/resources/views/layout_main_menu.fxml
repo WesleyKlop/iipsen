@@ -8,6 +8,13 @@
 <Pane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="client.ui.MainMenuController" fx:id="rootPane">
 
+    <ImageView fx:id="exitButton" fitWidth="50" preserveRatio="true" layoutX="1860" layoutY="10"
+               onMouseEntered="#widthUpImageView" onMouseExited="#widthDownImageView" onMouseClicked="#quitGame">
+        <image>
+            <Image url="/images/exitButton.png"/>
+        </image>
+    </ImageView>
+
     <VBox spacing="20" fx:id="VBoxMain" alignment="BASELINE_CENTER" layoutY="20" layoutX="50">
         <ImageView fx:id="Icon" fitWidth="550" preserveRatio="true">
             <image>
@@ -80,9 +87,9 @@
         </HBox>
         <ScrollPane hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" maxHeight="300" minWidth="760">
             <padding>
-                <Insets left="10" top="10" right="10" bottom="10"/>
+                <Insets left="15" top="10" right="15" bottom="10"/>
             </padding>
-            <Text fx:id="ruleRules" wrappingWidth="730"/>
+            <Text fx:id="ruleRules" wrappingWidth="720"/>
         </ScrollPane>
     </VBox>
 
@@ -96,7 +103,8 @@
         <Label text="Volume:" scaleX="2.0" scaleY="2.0"/>
         <Slider fx:id="optionVolumeSlider" orientation="HORIZONTAL" max="1.0" min="0" value="0.5" showTickLabels="false"
                 showTickMarks="true" majorTickUnit="0.1" blockIncrement="0.1"/>
-        <CheckBox fx:id="optionColorblind" text="Colorblind" scaleX="2.0" scaleY="2.0"/>
+        <CheckBox fx:id="optionMute" text="Mute" scaleX="2.0" scaleY="2.0" onMouseClicked="#mute" minWidth="100"/>
+        <CheckBox fx:id="optionColorblind" text="Colorblind" scaleX="2.0" scaleY="2.0" minWidth="100"/>
     </VBox>
 
     <ImageView fx:id="mountains" preserveRatio="true" layoutX="0" layoutY="540">
@@ -104,17 +112,17 @@
             <Image url="/images/mountains.png"/>
         </image>
     </ImageView>
-    <ImageView fx:id="train1" preserveRatio="true" layoutX="-1300" layoutY="780" scaleX="0.4" scaleY="0.4">
+    <ImageView fx:id="train1" preserveRatio="true" layoutX="-1500" layoutY="910" fitWidth="300">
         <image>
             <Image url="/images/train_blue.png"/>
         </image>
     </ImageView>
-    <ImageView fx:id="train2" preserveRatio="true" layoutX="-1000" layoutY="780" scaleX="0.4" scaleY="0.4">
+    <ImageView fx:id="train2" preserveRatio="true" layoutX="-1200" layoutY="910" fitWidth="300">
         <image>
             <Image url="/images/train_blue.png"/>
         </image>
     </ImageView>
-    <ImageView fx:id="train3" preserveRatio="true" layoutX="-700" layoutY="780" scaleX="0.4" scaleY="0.4">
+    <ImageView fx:id="train3" preserveRatio="true" layoutX="-900" layoutY="910" fitWidth="300">
         <image>
             <Image url="/images/train_blue.png"/>
         </image>
