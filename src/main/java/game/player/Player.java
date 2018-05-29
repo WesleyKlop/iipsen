@@ -49,6 +49,10 @@ public class Player implements Serializable {
         this.traincarts -= count;
     }
 
+    public int getTraincarts() {
+        return this.traincarts;
+    }
+
     public String getColor() {
         return color;
     }
