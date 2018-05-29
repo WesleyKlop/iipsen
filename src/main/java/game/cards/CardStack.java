@@ -136,7 +136,7 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
 
     public void takeCards(CardType type, int count) throws Exception {
         if (this.get(type) == null || this.get(type) < count) {
-            throw new Exception("Not enough game.cards!");
+            throw new Exception("Not enough cards!");
         }
         this.put(type, this.get(type) - count);
     }
