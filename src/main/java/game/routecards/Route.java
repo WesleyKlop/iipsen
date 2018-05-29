@@ -1,11 +1,14 @@
 package game.routecards;
 
 import game.cards.CardType;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author wesley
  */
 public class Route {
+    private static final Logger Log = LogManager.getLogger(Route.class);
     private int length;
     private int locomotiveCost;
     private int owner;
@@ -18,7 +21,7 @@ public class Route {
     }
 
     public void build(Player builder) {
-        System.out.println(color + " " + getCartCost() + " " + getLocomotiveCost());
+        Log.debug(color + " " + getCartCost() + " " + getLocomotiveCost());
         var costsLocomotives = getLocomotiveCost() > 0;
         var costsCarts = getCartCost() > 0;
         if ((costsCarts || builder.getCardStack().containsCards(color, getCartCost())) &&
@@ -32,13 +35,13 @@ public class Route {
 
                 builder.removeTrainCarts(length);
                 this.owner = builder.getId();
-                System.out.println("Route build! by " + builder.getPlayerName());
+                Log.debug("Route build! by " + builder.getPlayerName());
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("player doesnt have the needed game.cards!!");
-            System.out.println(builder.getCardStack());
+            Log.debug("player doesnt have the needed game.cards!!");
+            Log.debug(builder.getCardStack());
         }
     }
 

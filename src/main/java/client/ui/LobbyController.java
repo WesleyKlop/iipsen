@@ -9,6 +9,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.rmi.RemoteException;
 
@@ -16,13 +18,14 @@ import java.rmi.RemoteException;
  * @author wesley
  */
 public class LobbyController {
+    private static final Logger Log = LogManager.getLogger(LobbyController.class);
     @FXML
     public VBox container;
 
     @FXML
     public void initialize() {
         GameStoreProvider.getInstance().subscribe(gameState -> {
-            System.out.println("List changed");
+            Log.debug("List changed");
             // TODO: This could be optimized
             // Maybe compare array size and add/remove based on that
             Platform.runLater(() -> {
@@ -37,7 +40,7 @@ public class LobbyController {
 
     public void onStartButtonClicked(ActionEvent actionEvent) throws RemoteException {
         var action = new ChangeStateAction(GameState.GAME);
-        System.out.println("Changing to GameState.GAME");
+        Log.debug("Changing to GameState.GAME");
         GameStoreProvider.sendAction(action);
     }
 }
