@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,7 +32,8 @@ public class Client extends Application implements SceneListener {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/views/layout_main_menu.fxml"));
         stage = primaryStage;
-        scene = new Scene(root);
+        var screenInfo = Screen.getPrimary().getVisualBounds();
+        scene = new Scene(root, screenInfo.getWidth(), screenInfo.getHeight());
         primaryStage.setTitle("Main Menu");
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
@@ -46,9 +48,9 @@ public class Client extends Application implements SceneListener {
     }
 
     private void connectServer(String ip) throws RemoteException {
-        if (ip == null) {
+        if (ip == null)
             ip = DEFAULT_IP;
-        }
+
         client = new GameClient(ip, this);
     }
 
