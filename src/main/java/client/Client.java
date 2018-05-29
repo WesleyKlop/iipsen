@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import server.Server;
 
@@ -29,7 +30,8 @@ public class Client extends Application implements SceneListener {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/views/layout_main_menu.fxml"));
         stage = primaryStage;
-        scene = new Scene(root);
+        var screenInfo = Screen.getPrimary().getVisualBounds();
+        scene = new Scene(root, screenInfo.getWidth(), screenInfo.getHeight());
         primaryStage.setTitle("Main Menu");
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
@@ -45,9 +47,9 @@ public class Client extends Application implements SceneListener {
     }
 
     private void connectServer(String ip) throws RemoteException {
-        if (ip == null) {
+        if (ip == null)
             ip = DEFAULT_IP;
-        }
+
         client = new GameClient(ip, this);
     }
 
@@ -62,7 +64,7 @@ public class Client extends Application implements SceneListener {
 
     @Override
     public void onSceneChange(GameState state) {
-        System.out.println("Got new scene, currently on Thread: " + Thread.currentThread().getName());
+        System.out.printf("Got new scene, %s currently on Thread: %s%n", state, Thread.currentThread().getName());
 
         Parent newRoot = null;
         String newTitle = null;
@@ -70,12 +72,10 @@ public class Client extends Application implements SceneListener {
             case INIT:
                 newTitle = "Ticket To Ride - Connect";
                 newRoot = getParent("layout_preferences");
-                // Switch to name/color select
                 break;
             case LOBBY:
                 newTitle = "Ticket To Ride - Lobby";
                 newRoot = getParent("layout_lobby");
-                // Switch to lobby
                 break;
             case GAME:
                 newTitle = "Ticket To Ride";

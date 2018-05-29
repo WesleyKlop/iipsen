@@ -21,7 +21,7 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
     private static final int PORT = 1099;
 
     private List<GameStoreClient> clients = new ArrayList<>();
-    private game.GameStore currentGameStore = new GameStore();
+    private GameStore currentGameStore = new GameStore();
 
     public Server() throws RemoteException, MalformedURLException {
         System.out.println("Starting server");
