@@ -6,7 +6,7 @@ import game.GameStoreProvider;
 import game.actions.Action;
 import game.actions.AddPlayerAction;
 import game.actions.ChangeStateAction;
-import game.routecards.Player;
+import game.player.Player;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import server.GameStoreServer;

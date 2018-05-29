@@ -1,7 +1,7 @@
 package game.actions;
 
 import game.GameStore;
-import game.routecards.Player;
+import game.player.Player;
 import javafx.scene.paint.Color;
 
 /**

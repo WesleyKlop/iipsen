@@ -1,6 +1,7 @@
 package game.routecards;
 
 import game.cards.CardType;
+import game.player.Player;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

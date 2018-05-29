@@ -1,6 +1,7 @@
-package game.routecards;
+package game.player;
 
 import game.cards.CardStack;
+import game.routecards.RouteCard;
 import javafx.scene.paint.Color;
 
 import java.io.Serializable;
@@ -11,10 +12,10 @@ import java.util.Set;
  * @author wesley
  */
 public class Player implements Serializable {
-    private CardStack stack = new CardStack();
-    private Set<RouteCard> routeCards = new HashSet<>();
     private final String playerName;
     private final String color;
+    private CardStack stack = new CardStack();
+    private Set<RouteCard> routeCards = new HashSet<>();
     private int id;
     private int score;
     private int traincarts = 40;
@@ -26,6 +27,10 @@ public class Player implements Serializable {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int player) {
+        this.id = player;
     }
 
     public CardStack getCardStack() {
@@ -42,10 +47,6 @@ public class Player implements Serializable {
 
     public void removeTrainCarts(int count) {
         this.traincarts -= count;
-    }
-
-    public void setId(int player) {
-        this.id = player;
     }
 
     public String getColor() {

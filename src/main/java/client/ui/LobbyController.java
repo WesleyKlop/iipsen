@@ -3,7 +3,7 @@ package client.ui;
 import game.GameState;
 import game.GameStoreProvider;
 import game.actions.ChangeStateAction;
-import game.routecards.Player;
+import game.player.Player;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

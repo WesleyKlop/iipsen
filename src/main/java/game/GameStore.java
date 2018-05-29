@@ -1,6 +1,6 @@
 package game;
 
-import game.routecards.Player;
+import game.player.Player;
 
 import java.io.Serializable;
 import java.util.ArrayList;
