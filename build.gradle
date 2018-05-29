@@ -17,12 +17,10 @@ plugins {
 // Define the main class for the application
 mainClassName = 'client.Client'
 
-dependencies {
-    // This dependency is found on compile classpath of this component and consumers.
 
-    // Use JUnit test framework
-    testCompile 'org.junit.jupiter:junit-jupiter-api:5.2.0'
-    testCompile 'org.junit.jupiter:junit-jupiter-engine:5.2.0'
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.2.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.2.0'
 }
 
 // In this section you declare where to find the dependencies of your project
@@ -30,4 +28,17 @@ repositories {
     // Use jcenter for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+}
+
+test {
+    // Enable JUnit 5 (Gradle 4.6+).
+    useJUnitPlatform()
+
+    // Always run tests, even when nothing changed.
+    dependsOn 'cleanTest'
+
+    // Show test results.
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
