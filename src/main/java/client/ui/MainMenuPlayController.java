@@ -7,7 +7,11 @@ import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
+/**
+ * @Author Thom
+ * @Version 2.0
+ * @Since 30-5-2018
+ */
 public class MainMenuPlayController implements Initializable {
 
     public Label createLobby;

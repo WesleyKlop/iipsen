@@ -13,6 +13,6 @@
 
     <fx:include source="layout_color_preference.fxml" fx:id="colorPreference"/>
 
-    <Button onAction="#submitPreferences" text="Submit"/>
+    <Button fx:id="submitButton" text="Submit"/>
 
 </VBox>

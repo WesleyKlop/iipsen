@@ -8,6 +8,11 @@ import javafx.scene.media.MediaPlayer;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * @Author Thom
+ * @Version 2.0
+ * @Since 30-5-2018
+ */
 public class MainMenuOptionController implements Initializable {
 
     public MediaPlayer player;

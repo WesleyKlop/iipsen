@@ -1,12 +1,9 @@
 package client.ui;
 
-import game.GameStoreProvider;
-import game.actions.AddPlayerAction;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-
-import java.rmi.RemoteException;
 
 public class PreferencesController {
 
@@ -14,13 +11,16 @@ public class PreferencesController {
     private TextField nameField;
     @FXML
     private ColorPreferenceController colorPreferenceController;
+    public Button submitButton;
 
-    public void submitPreferences() throws RemoteException {
+    public void submitPreferences() {
         System.out.println("Got prefs");
         String name = nameField.getText();
         Color color = colorPreferenceController.getSelectedColor();
 
-        var action = new AddPlayerAction(name, color);
-        GameStoreProvider.sendAction(action);
+        System.out.println("Name: " + name + "\rColor: " + color);
+
+        //var action = new AddPlayerAction(name, color);
+        //GameStoreProvider.sendAction(action);
     }
 }
