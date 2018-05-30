@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<Pane xmlns:fx="http://javafx.com/fxml"
+      xmlns="http://javafx.com/javafx"
+      fx:controller="client.ui.StartupController"
+      prefHeight="400.0" prefWidth="600.0"
+      fx:id="rootPane">
+
+    <Pane fx:id="snowPane"/>
+    <fx:include source="layout_main_menu.fxml" fx:id="MainMenuPane" disable="false"/>
+    <fx:include source="layout_preferences.fxml" fx:id="preferencesPane" layoutX="1920"/>
+
+    <ImageView fitWidth="50" preserveRatio="true" layoutX="1860" layoutY="10" onMouseEntered="#widthUpImageView"
+               onMouseExited="#widthDownImageView" onMouseClicked="#quitGame">
+        <image>
+            <Image url="/images/exitButton.png"/>
+        </image>
+    </ImageView>
+
+</Pane>

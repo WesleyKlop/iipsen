@@ -28,7 +28,7 @@ public class Client extends Application implements SceneListener {
     }
 
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/views/layout_main_menu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/views/layout_startup.fxml"));
         stage = primaryStage;
         var screenInfo = Screen.getPrimary().getVisualBounds();
         scene = new Scene(root, screenInfo.getWidth(), screenInfo.getHeight());

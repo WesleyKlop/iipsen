@@ -1,142 +1,60 @@
 package client.ui;
 
-
+/**
+ * @author Thom
+ * @version 2.0
+ * @since 29-05-2018
+ */
 import javafx.animation.TranslateTransition;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
-import org.w3c.dom.Document;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainMenuController implements Initializable {
 
     public Pane rootPane;
+
     public VBox VBoxMain;
     public Label playLabel;
     public Label loadLabel;
     public Label ruleLabel;
     public Label optionLabel;
     public Label quitLabel;
-
     public VBox VBoxPlay;
-    public Label playCreateLobby;
-    public Label playJoinLobby;
-
     public VBox VBoxLoad;
-    public Label loadLevelLabel;
-
     public VBox VBoxRule;
-    public HBox HBoxRule1;
-    public Label ruleObjective;
-    public Label ruleTurn;
-    public Label ruleTrainCards;
-    public HBox HBoxRule2;
-    public Label ruleRoutes;
-    public Label ruleTunnels;
-    public Label ruleFerries;
-    public HBox HBoxRule3;
-    public Label ruleDestinationCards;
-    public Label ruleEnd;
-    public Label ruleScore;
-    public Text ruleRules;
-
     public VBox VBoxOption;
-    public Slider optionVolumeSlider;
-    public CheckBox optionColorblind;
-
-    public ImageView train1;
-    public ImageView train2;
-    public ImageView train3;
+    public Pane snowPane;
+    public Pane snowPaneFront;
 
     public MediaPlayer player;
 
+    public MainMenuPlayController VBoxPlayController;
+    public MainMenuLoadController VBoxLoadController;
+
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
-        playMusic();
+
         style(VBoxMain);
         style(VBoxPlay);
         style(VBoxLoad);
-        style(HBoxRule1);
-        style(HBoxRule2);
-        style(HBoxRule3);
-        ImageView[] trains = {train1, train2, train3};
-        trainAnimation(trains);
-        ruleRules.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/MavenPro-Regular.ttf"), 25));
         rootPane.setStyle("-fx-background-color: linear-gradient(to bottom, #bfe8f9 0%,#0082ED 70%);");
-    }
+        snow();
 
-
-    private void trainAnimation(ImageView image) {
-        image.setImage(new Image(getClass().getResource(generateTrainColorImage()).toString()));
-        TranslateTransition trainAni = new TranslateTransition(Duration.seconds(20), image);
-        trainAni.setByX(5000);
-        trainAni.play();
-        trainAni.setOnFinished(e -> {
-            image.setLayoutX(image.getLayoutX() - 5000);
-            trainAnimation(image);
-        });
-    }
-    private void trainAnimation(ImageView[] image) {
-        for (ImageView train : image) {
-            trainAnimation(train);
-        }
-    }
-    private String generateTrainColorImage() {
-        int imageNumber = (int) (Math.random() * 5);
-        String path = "/images/train_";
-        switch (imageNumber) {
-            case 0:
-                path += "blue.png";
-                break;
-            case 1:
-                path += "green.png";
-                break;
-            case 2:
-                path += "orange.png";
-                break;
-            case 3:
-                path += "pink.png";
-                break;
-            case 4:
-                path += "red.png";
-                break;
-            default:
-                path += "blue.png";
-                break;
-        }
-        return path;
-    }
-
-    private void playMusic() {
-        Media backgroundMusic = new Media(getClass().getResource("/sound/background.mp3").toString());
-        player = new MediaPlayer(backgroundMusic);
-        player.volumeProperty().bind(optionVolumeSlider.valueProperty());
-        player.setCycleCount(MediaPlayer.INDEFINITE);
-        player.play();
-    }
-
-    public void mute() {
-        player.setMute(!player.isMute());
-        optionVolumeSlider.setDisable(player.isMute());
     }
 
     private void style(Label label) {
@@ -149,14 +67,13 @@ public class MainMenuController implements Initializable {
         label.setPrefHeight(50);
         label.setPrefWidth(250);
     }
-
     private void style(VBox menu) {
         for (int i = 1; i < menu.getChildren().size(); i++) {
             style((Label) menu.getChildren().get(i));
         }
     }
 
-    private void style(HBox menu) {
+    public void style(HBox menu) {
         for (int i = 0; i < menu.getChildren().size(); i++) {
             style((Label) menu.getChildren().get(i));
         }
@@ -166,57 +83,41 @@ public class MainMenuController implements Initializable {
         Label label = (Label) mouseEvent.getSource();
         label.setTextFill(Color.RED);
     }
-
     public void hoverExit(MouseEvent mouseEvent) {
         Label label = (Label) mouseEvent.getSource();
         label.setTextFill(Color.BLACK);
     }
 
-    public void manageRules(MouseEvent mouseEvent) {
-        Label label = (Label) mouseEvent.getSource();
-        String rules = getRule(label);
-        ruleRules.setText(rules);
-    }
-
-    private String getRule(Label label) {
-        String labelId = label.getId();
-        String rules = "";
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document rulesDoc = builder.parse(getClass().getResourceAsStream("/string/rules.xml"));
-            rulesDoc.getDocumentElement().normalize();
-
-            String[] arr = rulesDoc.getElementsByTagName(labelId).item(0).getTextContent().split("\n");
-            StringBuilder buffer = new StringBuilder();
-            for (String line : arr) {
-                buffer.append(line.trim());
-                buffer.append("\n");
-            }
-            rules = buffer.toString();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return rules;
-    }
-
+    /**
+     * Manages menu opening and closing.
+     *
+     * @param mouseEvent Label source
+     */
     public void openMenuSequence(MouseEvent mouseEvent) {
-        VBox menu = getMenu(mouseEvent);
+        Label label = (Label) mouseEvent.getSource();
+        VBox menu = getMenu(label);
         int disabledMenu = getDisabledInt();
         closeMenu();
-        openMenu(mouseEvent, menu);
+        openMenu(label, menu);
         enableMain(disabledMenu);
     }
 
-    private void openMenu(MouseEvent mouseEvent, VBox menu) {
-        Label label = (Label) mouseEvent.getSource();
+    /**
+     * Opens menu, disables opened menu
+     *
+     * @param label Label source
+     * @param menu  Menu to be opened
+     */
+    private void openMenu(Label label, VBox menu) {
         label.setDisable(true);
         TranslateTransition ani = new TranslateTransition(Duration.millis(500), menu);
         ani.setToY(-1480);
         ani.play();
     }
 
+    /**
+     * Closes disabled menu
+     */
     private void closeMenu() {
         VBox menu = getDisabledMenu();
         TranslateTransition ani = new TranslateTransition(Duration.millis(500), menu);
@@ -228,6 +129,11 @@ public class MainMenuController implements Initializable {
         VBoxMain.getChildren().get(disabled).setDisable(false);
     }
 
+    /**
+     * Searches trough the main labels
+     *
+     * @return disabled main label index number
+     */
     private int getDisabledInt() {
         for (int i = 0; i < 5; i++) {
             if (VBoxMain.getChildren().get(i).isDisable()) {
@@ -237,6 +143,11 @@ public class MainMenuController implements Initializable {
         return 0;
     }
 
+    /**
+     * Matches disabled menu label with menu
+     *
+     * @return disabled menu
+     */
     private VBox getDisabledMenu() {
         VBox menu = null;
         switch (getDisabledInt()) {
@@ -258,8 +169,13 @@ public class MainMenuController implements Initializable {
         return menu;
     }
 
-    private VBox getMenu(MouseEvent mouseEvent) {
-        Label label = (Label) mouseEvent.getSource();
+    /**
+     * Matches label
+     *
+     * @param label main menu label
+     * @return VBox corresponding the param label
+     */
+    private VBox getMenu(Label label) {
         VBox menu = null;
         switch (label.getId()) {
             case "playLabel":
@@ -277,7 +193,6 @@ public class MainMenuController implements Initializable {
             default:
                 break;
         }
-
         return menu;
     }
 
@@ -285,17 +200,23 @@ public class MainMenuController implements Initializable {
         System.exit(0);
     }
 
-    public void widthUpImageView(MouseEvent mouseEvent) {
-        ImageView source = (ImageView) mouseEvent.getSource();
-        source.setFitWidth(source.getFitWidth() + 14);
-        source.setLayoutX(source.getLayoutX() - 7);
-        source.setLayoutY(source.getLayoutY() - 7);
+    private void snow() {
+        int imageXAmount = 10;
+        int imageYAmount = 4;
+        ImageView[][] snow = new ImageView[imageXAmount][imageYAmount];
+        Image snowGif = new Image(getClass().getResourceAsStream("/images/snow.gif"));
+        for (int i = 0; i < imageXAmount; i++) {
+            for (int j = 0; j < imageYAmount; j++) {
+                snow[i][j] = new ImageView(snowGif);
+                snow[i][j].setLayoutX(i * 400);
+                snow[i][j].setLayoutY((j % 2) * 300);
+                if (j >= 2) {
+                    snowPaneFront.getChildren().add(snow[i][j]);
+                } else {
+                    snowPane.getChildren().add(snow[i][j]);
+                }
+            }
+        }
     }
 
-    public void widthDownImageView(MouseEvent mouseEvent) {
-        ImageView source = (ImageView) mouseEvent.getSource();
-        source.setFitWidth(source.getFitWidth() - 14);
-        source.setLayoutX(source.getLayoutX() + 7);
-        source.setLayoutY(source.getLayoutY() + 7);
-    }
 }
