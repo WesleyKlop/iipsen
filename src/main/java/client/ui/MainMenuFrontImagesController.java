@@ -32,7 +32,7 @@ public class MainMenuFrontImagesController implements Initializable {
      */
     private void trainAnimation(ImageView image) {
         image.setImage(new Image(getClass().getResource(generateTrainColorImage()).toString()));
-        TranslateTransition trainAni = new TranslateTransition(Duration.seconds(30), image);
+        TranslateTransition trainAni = new TranslateTransition(Duration.seconds(28), image);
         trainAni.setByX(8000);
         trainAni.play();
         trainAni.setOnFinished(e -> {

@@ -57,7 +57,7 @@ public class MainMenuController implements Initializable {
 
     }
 
-    private void style(Label label) {
+    void style(Label label) {
         Font font = Font.loadFont(getClass().getResourceAsStream("/fonts/MavenPro-Medium.ttf"), 25);
         label.setFont(font);
         label.setStyle("-fx-background-color: white;" + "-fx-background-radius: 10;");

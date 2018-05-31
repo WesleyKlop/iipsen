@@ -28,19 +28,11 @@ public class StartupController implements Initializable {
     private PreferencesController preferencesPaneController;
 
     public void initialize(URL url, ResourceBundle bundle) {
-        /*var screenInfo = Screen.getPrimary().getVisualBounds();
-        double width = screenInfo.getWidth();
-        double height = screenInfo.getHeight();
-        double scaleWidth = (width / 1920);
-        double scaleHeight = (height / 1080);
-
-        MainMenuPane.setScaleX(scaleWidth);
-        MainMenuPane.setScaleY(scaleHeight);*/
-
         MainMenuPaneController.VBoxPlayController.createLobby.setOnMouseClicked(e -> switchMenuCreate());
         MainMenuPaneController.VBoxPlayController.joinLobby.setOnMouseClicked(e -> switchMenuJoin());
         MainMenuPaneController.VBoxLoadController.loadLevelLabel.setOnMouseClicked(e -> openLoadMenu());
-        preferencesPaneController.submitButton.setOnMouseClicked(e -> switchMenu());
+        preferencesPaneController.backButton.setOnMouseClicked(e -> moveMenuRight());
+
     }
 
     public void widthUpImageView(MouseEvent mouseEvent) {
@@ -62,39 +54,44 @@ public class StartupController implements Initializable {
     }
 
     private void switchMenuCreate() {
-        switchMenu();
+        try {
+            preferencesPaneController.buttons.getChildren().add(preferencesPaneController.createButton);
+        } catch (Exception e) {
+            System.out.println("Exception found: " + e.toString());
+        }
+        preferencesPaneController.buttons.getChildren().remove(preferencesPaneController.joinButton);
+        moveMenuLeft();
     }
 
     private void switchMenuJoin() {
-        switchMenu();
-    }
-
-    private void switchMenu() {
-        if (MainMenuPane.isDisable()) {
-            moveMenuRight();
-        } else {
-            moveMenuLeft();
+        try {
+            preferencesPaneController.buttons.getChildren().add(preferencesPaneController.joinButton);
+        } catch (Exception e) {
+            System.out.println("Exception found: " + e.toString());
         }
-
+        preferencesPaneController.buttons.getChildren().remove(preferencesPaneController.createButton);
+        moveMenuLeft();
     }
-
     private void moveMenuLeft() {
         TranslateTransition menuAni = new TranslateTransition(Duration.seconds(1), allPanes);
         menuAni.setToX(-1920);
         menuAni.play();
         menuAni.setOnFinished(e -> MainMenuPane.setDisable(true));
     }
-
     private void moveMenuRight() {
+        preferencesPaneController.rootPane.getChildren().removeAll(preferencesPaneController.createButton, preferencesPaneController.joinButton);
         TranslateTransition menuAni = new TranslateTransition(Duration.seconds(1), allPanes);
         menuAni.setToX(0);
         menuAni.play();
         menuAni.setOnFinished(e -> MainMenuPane.setDisable(false));
     }
 
-    private void openLoadMenu() {
-
+    public void openLoadMenu() {
+        System.out.println("Trying to load game");
     }
 
+    public PreferencesController getPreferenceController() {
+        return preferencesPaneController;
+    }
 
 }

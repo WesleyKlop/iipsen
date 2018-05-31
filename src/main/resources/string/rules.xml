@@ -64,17 +64,18 @@
         What makes a tunnel special is that a player is never quite certain just how long the route he is trying to
         claim will be!
 
-        When attempting to claim a Tunnel route, a player first lays down the number of cards required. Then the 3 top
-        cards from the Train Car card draw pile are turned face-up.
+        When attempting to claim a Tunnel route, a player first lays down the number of cards required.
+        Then the 3 top cards from the Train Car card draw pile are turned face-up.
         For each card revealed whose color matches the color used to claim the Tunnel (including locomotives), an
-        additional card of the same color (or a locomotive) must be played
-        to successfully claim the Tunnel. If the player does not have enough additional Train Car cards of matching
-        color (or does not wish to play them), he may take all his cards back into his hand,
-        and his turn ends. The three Train Car cards revealed for the Tunnel are discarded.
+        additional card of the same color (or a locomotive) must be played to successfully claim the Tunnel.
+        If the player does not have enough additional Train Car cards of matching color (or does not wish to play them),
+        he may take all his cards back into his hand, and his turn ends.
+        The three Train Car cards revealed for the Tunnel are discarded.
 
         Be aware that with regard to Tunnels:
-        Locomotives are multi-colored wild cards. As such, any Locomotive card revealed, forces the player to add a
-        Train Car card (of matching color) or a Locomotive from your hand.
+        Locomotives are multi-colored wild cards.
+        As such, any Locomotive card revealed, forces the player to add a Train Car card (of matching color) or a
+        Locomotive from your hand.
         If a player exclusively plays Locomotive cards to claim a tunnel route, only additional Locomotive cards drawn
         from the deck will be considered a match.
         This means you will not have to worry about a colored card of the Tunnel's color triggering a match! If
@@ -86,24 +87,19 @@
         Locomotive icon(s) featured on at least one of the spaces making the route.
         To claim a Ferry Route, a player must play a Locomotive card for each locomotive symbol on the route, and the
         usual set of cards of the proper color for the remaining spaces of that Ferry Route.
-
-        In addition:
-        A player can play additional Locomotive cards as a substitute for a color card
-        Any three cards can be used as a substitute for a Locomotive card
     </ruleFerries>
     <ruleDestinationCards>DRAWING DESTINATION TICKET CARDS
         A player can use his turn to draw more Destination Ticket cards. To do so, he draws 3 new cards from the top of
-        the Destination Ticket deck. He must keep at least one of the cards,
-        but may also keep two or all three if he chooses. If there are less than 3 Destination Tickets left in the deck,
-        the player only draws what cards are available.
+        the Destination Ticket deck.
+        He must keep at least one of the cards, but may also keep two or all three if he chooses.
+        If there are less than 3 Destination Tickets left in the deck, the player only draws what cards are available.
         Any returned cards are removed from the game and put back in the box.
-        Each Destination Ticket includes the name of two cities on the map and a Point Value. If a player successfully
-        completes a series of routes that connect the two cities,
-        they will add the amount of points indicated on the Destination Ticket to their point totals at the end of the
-        game. If they do not successfully connect the two cities,
-        they deduct the amount of points indicated.
-        Destination Tickets are kept secret from other players until the game's final scoring. A player may accumulate
-        any number of Destination Ticket cards during the game.
+        Each Destination Ticket includes the name of two cities on the map and a Point Value.
+        If a player successfully completes a series of routes that connect the two cities, they will add the amount of
+        points indicated on the Destination Ticket to their point totals at the end of the game.
+        If they do not successfully connect the two cities, they deduct the amount of points indicated.
+        Destination Tickets are kept secret from other players until the game's final scoring.
+        A player may accumulate any number of Destination Ticket cards during the game.
     </ruleDestinationCards>
     <ruleEnd>GAME END
         When one player's stock of colored trains gets down to only two trains or less at the end of his turn, each

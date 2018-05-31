@@ -1,5 +1,6 @@
 package client;
 
+import client.ui.StartupController;
 import game.GameState;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -7,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import server.Server;
@@ -22,24 +24,44 @@ public class Client extends Application implements SceneListener {
     private GameClient client;
     private Stage stage;
     private Scene scene;
+    private StartupController rootPaneController;
 
     public static void main(String[] args) {
         launch(args);
     }
 
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/views/layout_startup.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/layout_startup.fxml"));
+        Pane rootPane = loader.load();
+        rootPaneController = loader.getController();
+        rootPaneController.getPreferenceController().joinButton.setOnMouseClicked(e -> {
+            try {
+                if (rootPaneController.getPreferenceController().submitPreferences()) {
+                    connectServer(null);
+                }
+            } catch (RemoteException e1) {
+                e1.printStackTrace();
+            }
+        });
+        rootPaneController.getPreferenceController().createButton.setOnMouseClicked(e -> {
+            try {
+                if (rootPaneController.getPreferenceController().submitPreferences()) {
+                    startServer();
+                }
+            } catch (MalformedURLException | RemoteException e1) {
+                e1.printStackTrace();
+            }
+        });
+
+
         stage = primaryStage;
         var screenInfo = Screen.getPrimary().getVisualBounds();
-        scene = new Scene(root, screenInfo.getWidth(), screenInfo.getHeight());
+        scene = new Scene(rootPane, screenInfo.getWidth(), screenInfo.getHeight());
         primaryStage.setTitle("Main Menu");
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
         primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         primaryStage.show();
-
-        //connectServer(null);
-//        startServer();
     }
 
     private void startServer() throws MalformedURLException, RemoteException {
