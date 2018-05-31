@@ -36,17 +36,24 @@ public class Client extends Application implements SceneListener {
         rootPaneController = loader.getController();
         rootPaneController.getPreferenceController().joinButton.setOnMouseClicked(e -> {
             try {
-                connectServer(null);
-                rootPaneController.getPreferenceController().submitPreferences();
+                if (rootPaneController.getPreferenceController().checkName()) {
+                    connectServer(null);
+                    rootPaneController.getPreferenceController().submitPreferences();
+                } else {
+                    rootPaneController.getPreferenceController().nameLabel.setText("Please fill in your name!");
+                }
             } catch (RemoteException e1) {
                 e1.printStackTrace();
             }
         });
         rootPaneController.getPreferenceController().createButton.setOnMouseClicked(e -> {
             try {
-                startServer();
-                rootPaneController.getPreferenceController().submitPreferences();
-
+                if (rootPaneController.getPreferenceController().checkName()) {
+                    startServer();
+                    rootPaneController.getPreferenceController().submitPreferences();
+                } else {
+                    rootPaneController.getPreferenceController().nameLabel.setText("Please fill in your name!");
+                }
             } catch (MalformedURLException | RemoteException e1) {
                 e1.printStackTrace();
             }

@@ -52,19 +52,13 @@ public class PreferencesController implements Initializable {
         System.out.println("Got prefs");
         String name = nameField.getText();
         Color color = colorPreferenceController.getSelectedColor();
-
-        if (checkName(name)) {
-            var action = new AddPlayerAction(name, color);
-            GameStoreProvider.sendAction(action);
-            return true;
-        } else {
-            nameLabel.setText("Fill in a name");
-            return false;
-        }
+        var action = new AddPlayerAction(name, color);
+        GameStoreProvider.sendAction(action);
+        return true;
     }
 
-    public boolean checkName(String name) {
-        return name.length() > 1;
+    public boolean checkName() {
+        return nameField.getText().length() > 1;
     }
 
 }
