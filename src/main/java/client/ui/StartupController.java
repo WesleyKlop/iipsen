@@ -26,12 +26,15 @@ public class StartupController implements Initializable {
     private MainMenuController MainMenuPaneController;
     @FXML
     private PreferencesController preferencesPaneController;
+    @FXML
+    private LobbyController lobbyPaneController;
 
     public void initialize(URL url, ResourceBundle bundle) {
         MainMenuPaneController.VBoxPlayController.createLobby.setOnMouseClicked(e -> switchMenuCreate());
         MainMenuPaneController.VBoxPlayController.joinLobby.setOnMouseClicked(e -> switchMenuJoin());
         MainMenuPaneController.VBoxLoadController.loadLevelLabel.setOnMouseClicked(e -> openLoadMenu());
         preferencesPaneController.backButton.setOnMouseClicked(e -> moveMenuRight());
+        lobbyPaneController.quitButtonLabel.setOnMouseClicked(e -> moveMenuUp());
 
     }
 
@@ -84,6 +87,18 @@ public class StartupController implements Initializable {
         menuAni.setToX(0);
         menuAni.play();
         menuAni.setOnFinished(e -> MainMenuPane.setDisable(false));
+    }
+
+    public void moveMenuDown() {
+        TranslateTransition menuAni = new TranslateTransition(Duration.seconds(1), allPanes);
+        menuAni.setToY(-1080);
+        menuAni.play();
+    }
+
+    public void moveMenuUp() {
+        TranslateTransition menuAni = new TranslateTransition(Duration.seconds(1), allPanes);
+        menuAni.setToY(0);
+        menuAni.play();
     }
 
     public void openLoadMenu() {

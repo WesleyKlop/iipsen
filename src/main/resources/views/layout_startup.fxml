@@ -12,7 +12,7 @@
     <Pane fx:id="allPanes">
     <fx:include source="layout_main_menu.fxml" fx:id="MainMenuPane" disable="false"/>
     <fx:include source="layout_preferences.fxml" fx:id="preferencesPane" layoutX="1920"/>
-
+        <fx:include source="layout_lobby.fxml" fx:id="lobbyPane" layoutY="1080" layoutX="1920"/>
     </Pane>
     <ImageView fitWidth="50" preserveRatio="true" layoutX="1860" layoutY="10" onMouseEntered="#widthUpImageView"
                onMouseExited="#widthDownImageView" onMouseClicked="#quitGame">

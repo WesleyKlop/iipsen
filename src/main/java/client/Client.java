@@ -36,18 +36,17 @@ public class Client extends Application implements SceneListener {
         rootPaneController = loader.getController();
         rootPaneController.getPreferenceController().joinButton.setOnMouseClicked(e -> {
             try {
-                if (rootPaneController.getPreferenceController().submitPreferences()) {
-                    connectServer(null);
-                }
+                connectServer(null);
+                rootPaneController.getPreferenceController().submitPreferences();
             } catch (RemoteException e1) {
                 e1.printStackTrace();
             }
         });
         rootPaneController.getPreferenceController().createButton.setOnMouseClicked(e -> {
             try {
-                if (rootPaneController.getPreferenceController().submitPreferences()) {
-                    startServer();
-                }
+                startServer();
+                rootPaneController.getPreferenceController().submitPreferences();
+
             } catch (MalformedURLException | RemoteException e1) {
                 e1.printStackTrace();
             }
@@ -92,12 +91,11 @@ public class Client extends Application implements SceneListener {
         String newTitle = null;
         switch (state) {
             case INIT:
-                newTitle = "Ticket To Ride - Connect";
-                newRoot = getParent("layout_preferences");
+//                newTitle = "Ticket To Ride - Connect";
+//                newRoot = getParent("layout_preferences");
                 break;
             case LOBBY:
-                newTitle = "Ticket To Ride - Lobby";
-                newRoot = getParent("layout_lobby");
+                rootPaneController.moveMenuDown();
                 break;
             case GAME:
                 newTitle = "Ticket To Ride";
@@ -113,7 +111,9 @@ public class Client extends Application implements SceneListener {
                 // Switch to end screen
                 break;
         }
-        setStage(newRoot, newTitle);
+        if (newRoot != null && newTitle != null) {
+            setStage(newRoot, newTitle);
+        }
     }
 
     private void setStage(final Parent newRoot, final String newTitle) {

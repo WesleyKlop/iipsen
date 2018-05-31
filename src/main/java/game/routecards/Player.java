@@ -51,4 +51,8 @@ public class Player implements Serializable {
     public String getColor() {
         return color;
     }
+
+    public Color getColorAsColor() {
+        return Color.web(this.color);
+    }
 }
