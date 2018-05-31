@@ -39,7 +39,7 @@ public class Client extends Application implements SceneListener {
         primaryStage.setFullScreen(true);
         primaryStage.show();
 
-        connectServer(null);
+//        connectServer(null);
 //        startServer();
     }
 
