@@ -49,6 +49,18 @@ class RouteTest {
     }
 
     @Test
+    void cantBuildRouteWithOnlyLocomotiveOrOnlyTrains() {
+        var player = new Player("Thierry Baudet", Color.LAVENDER);
+        player.setId(1);
+        player.getCardStack().addCard(CardType.CART_BLACK);
+        player.getCardStack().addCard(CardType.LOCOMOTIVE);
+
+        assertFalse(testRoute.hasOwner());
+        assertFalse(testRoute.build(player));
+        assertFalse(testRoute.hasOwner());
+    }
+
+    @Test
     void costsAreCorrect() {
         assertEquals(2, testRoute.getCartCost());
         assertEquals(1, testRoute.getLocomotiveCost());

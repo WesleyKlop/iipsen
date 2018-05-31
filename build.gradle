@@ -47,3 +47,8 @@ test {
         events "passed", "skipped", "failed"
     }
 }
+
+javadoc {
+    options.addBooleanOption('html5', true)
+    destinationDir = file("docs")
+}

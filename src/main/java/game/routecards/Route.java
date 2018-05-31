@@ -24,16 +24,13 @@ public class Route {
 
     public boolean build(Player builder) {
         Log.debug(color + " " + getCartCost() + " " + getLocomotiveCost());
-        var costsLocomotives = getLocomotiveCost() > 0;
-        var costsCarts = getCartCost() > 0;
-        if ((costsCarts || builder.getCardStack().containsCards(color, getCartCost())) &&
-                (costsLocomotives || builder.getCardStack().containsCards(CardType.LOCOMOTIVE, locomotiveCost))
-                ) {
+        if (
+            builder.getCardStack().containsCards(color, getCartCost()) &&
+                builder.getCardStack().containsCards(CardType.LOCOMOTIVE, locomotiveCost)
+            ) {
             try {
-                if (costsCarts)
-                    builder.getCardStack().takeCards(color, getCartCost());
-                if (costsLocomotives)
-                    builder.getCardStack().takeCards(CardType.LOCOMOTIVE, locomotiveCost);
+                builder.getCardStack().takeCards(color, getCartCost());
+                builder.getCardStack().takeCards(CardType.LOCOMOTIVE, locomotiveCost);
 
                 builder.removeTrainCarts(length);
                 this.owner = builder.getId();
