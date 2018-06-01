@@ -16,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -97,6 +98,9 @@ public class MainMenuController implements Initializable {
         Label label = (Label) mouseEvent.getSource();
         VBox menu = getMenu(label);
         int disabledMenu = getDisabledInt();
+        Media click = new Media(getClass().getResource("/sound/click.mp3").toString());
+        player = new MediaPlayer(click);
+        player.play();
         closeMenu();
         openMenu(label, menu);
         enableMain(disabledMenu);
