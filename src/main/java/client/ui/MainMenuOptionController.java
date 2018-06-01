@@ -1,6 +1,7 @@
 package client.ui;
 
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -18,6 +19,7 @@ public class MainMenuOptionController implements Initializable {
     public MediaPlayer player;
     public Slider optionVolumeMusicSlider;
     public Slider optionVolumeFXSlider;
+    public CheckBox optionMute;
 
     public void initialize(URL url, ResourceBundle bundle) {
         playMusic();
@@ -34,7 +36,9 @@ public class MainMenuOptionController implements Initializable {
     public void mute() {
         player.setMute(!player.isMute());
         optionVolumeMusicSlider.setDisable(player.isMute());
-        optionVolumeFXSlider.setDisable(player.isMute());
+    }
+
+    public void playFX() {
 
     }
 }

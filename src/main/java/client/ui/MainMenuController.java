@@ -5,7 +5,9 @@ package client.ui;
  * @version 2.0
  * @since 29-05-2018
  */
+
 import javafx.animation.TranslateTransition;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -17,7 +19,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -47,10 +48,11 @@ public class MainMenuController implements Initializable {
 
     public MainMenuPlayController VBoxPlayController;
     public MainMenuLoadController VBoxLoadController;
+    @FXML
+    private MainMenuOptionController VBoxOptionController;
 
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
-
         style(VBoxMain);
         style(VBoxPlay);
         style(VBoxLoad);
@@ -98,13 +100,10 @@ public class MainMenuController implements Initializable {
      * @param mouseEvent Label source
      */
     public void openMenuSequence(MouseEvent mouseEvent) {
+        VBoxOptionController.playFX();
         Label label = (Label) mouseEvent.getSource();
         VBox menu = getMenu(label);
         int disabledMenu = getDisabledInt();
-        Media click = new Media(getClass().getResource("/sound/click.mp3").toString());
-        player = new MediaPlayer(click);
-        player.play();
-        player.setVolume(0.3);
         closeMenu();
         openMenu(label, menu);
         enableMain(disabledMenu);
@@ -226,5 +225,6 @@ public class MainMenuController implements Initializable {
             }
         }
     }
+
 
 }
