@@ -104,6 +104,7 @@ public class MainMenuController implements Initializable {
         Media click = new Media(getClass().getResource("/sound/click.mp3").toString());
         player = new MediaPlayer(click);
         player.play();
+        player.setVolume(0.3);
         closeMenu();
         openMenu(label, menu);
         enableMain(disabledMenu);
