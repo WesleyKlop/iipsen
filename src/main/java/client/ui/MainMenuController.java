@@ -9,6 +9,7 @@ import javafx.animation.TranslateTransition;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -83,10 +84,12 @@ public class MainMenuController implements Initializable {
     public void hoverEnter(MouseEvent mouseEvent) {
         Label label = (Label) mouseEvent.getSource();
         label.setTextFill(Color.RED);
+        label.setCursor(Cursor.HAND);
     }
     public void hoverExit(MouseEvent mouseEvent) {
         Label label = (Label) mouseEvent.getSource();
         label.setTextFill(Color.BLACK);
+        label.setCursor(Cursor.DEFAULT);
     }
 
     /**

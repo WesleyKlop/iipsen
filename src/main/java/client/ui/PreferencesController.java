@@ -2,6 +2,7 @@ package client.ui;
 
 import game.GameStoreProvider;
 import game.actions.AddPlayerAction;
+import game.routecards.Player;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -58,7 +59,35 @@ public class PreferencesController implements Initializable {
     }
 
     public boolean checkName() {
-        return nameField.getText().length() > 1;
+        boolean allowed = false;
+        String name = nameField.getText();
+        String permitted = "abcdefghijklmnopqrstuvwxyz0123456789";
+        for (int i = 0; i < name.length(); i++) {
+            for (int j = 0; j < permitted.length(); j++) {
+                if (name.charAt(i) == permitted.charAt(j)) {
+                    allowed = true;
+                }
+            }
+        }
+
+        if (allowed) {
+            return allowed;
+        } else {
+            nameLabel.setText("Your name must consist of atleast 1 letter of number");
+            return allowed;
+        }
+    }
+
+
+    public boolean checkNameDouble() {
+        String name = nameField.getText();
+        for (Player player : GameStoreProvider.getStore().getPlayers()) {
+            if (name.equalsIgnoreCase(player.getPlayerName())) {
+                nameLabel.setText("Name is already taken, please choose another name");
+                return false;
+            }
+        }
+        return true;
     }
 
 }
