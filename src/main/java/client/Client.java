@@ -1,11 +1,14 @@
 package client;
 
+import client.ui.StartupController;
 import game.GameState;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
@@ -24,23 +27,48 @@ public class Client extends Application implements SceneListener {
     private GameClient client;
     private Stage stage;
     private Scene scene;
+    private StartupController rootPaneController;
 
     public static void main(String[] args) {
         launch(args);
     }
 
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/views/layout_main_menu.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/layout_startup.fxml"));
+        Pane rootPane = loader.load();
+        rootPaneController = loader.getController();
+        rootPaneController.getPreferenceController().joinButton.setOnMouseClicked(e -> {
+            try {
+                if (rootPaneController.getPreferenceController().checkName()) {
+                    if (rootPaneController.getPreferenceController().checkNameDouble()) {
+                        connectServer(null);
+                        rootPaneController.getPreferenceController().submitPreferences();
+                    }
+                }
+            } catch (RemoteException e1) {
+                Log.error(e1.toString());
+            }
+        });
+        rootPaneController.getPreferenceController().createButton.setOnMouseClicked(e -> {
+            try {
+                if (rootPaneController.getPreferenceController().checkName()) {
+                    startServer();
+                    rootPaneController.getPreferenceController().submitPreferences();
+                }
+            } catch (MalformedURLException | RemoteException e1) {
+                Log.error(e1.toString());
+            }
+        });
+
+
         stage = primaryStage;
         var screenInfo = Screen.getPrimary().getVisualBounds();
-        scene = new Scene(root, screenInfo.getWidth(), screenInfo.getHeight());
+        scene = new Scene(rootPane, screenInfo.getWidth(), screenInfo.getHeight());
         primaryStage.setTitle("Main Menu");
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
+        primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         primaryStage.show();
-
-//        connectServer(null);
-//        startServer();
     }
 
     private void startServer() throws MalformedURLException, RemoteException {
@@ -71,12 +99,9 @@ public class Client extends Application implements SceneListener {
         String newTitle = null;
         switch (state) {
             case INIT:
-                newTitle = "Ticket To Ride - Connect";
-                newRoot = getParent("layout_preferences");
                 break;
             case LOBBY:
-                newTitle = "Ticket To Ride - Lobby";
-                newRoot = getParent("layout_lobby");
+                rootPaneController.moveMenuDown();
                 break;
             case GAME:
                 newTitle = "Ticket To Ride";
@@ -92,7 +117,9 @@ public class Client extends Application implements SceneListener {
                 // Switch to end screen
                 break;
         }
-        setStage(newRoot, newTitle);
+        if (newRoot != null && newTitle != null) {
+            setStage(newRoot, newTitle);
+        }
     }
 
     private void setStage(final Parent newRoot, final String newTitle) {

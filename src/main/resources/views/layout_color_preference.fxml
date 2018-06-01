@@ -1,12 +1,14 @@
-<?import client.ui.CircleButton?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.HBox?>
-<HBox xmlns:fx="http://javafx.com/fxml/1" spacing="5" fx:id="container" xmlns="http://javafx.com/javafx/8.0.121"
-      fx:controller="client.ui.ColorPreferenceController">
-    <padding>
-        <Insets left="1" right="1" top="3"/>
-    </padding>
-    <CircleButton color="#ff0000" hoverColor="#990000" onMouseClicked="#onColorSelected"/>
-    <CircleButton color="#00ff00" hoverColor="#009900" onMouseClicked="#onColorSelected"/>
-    <CircleButton color="#0000ff" hoverColor="#000099" onMouseClicked="#onColorSelected"/>
-</HBox>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+<StackPane xmlns:fx="http://javafx.com/fxml/1" alignment="TOP_CENTER" maxHeight="80" maxWidth="300"
+           xmlns="http://javafx.com/javafx/8.0.121" fx:controller="client.ui.ColorPreferenceController"
+           onMouseEntered="#entered" onMouseExited="#exited">
+    <Rectangle fx:id="colorPreferenceRectangle" height="80" width="300"/>
+    <Label fx:id="colorPreferenceLabel" text="Pick a Color!" alignment="BASELINE_CENTER" prefHeight="80"
+           prefWidth="300"/>
+    <ColorPicker fx:id="colorPreferencePicker" minHeight="80" minWidth="300" opacity="0" onHiding="#changeColor"/>
+</StackPane>

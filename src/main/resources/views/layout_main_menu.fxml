@@ -1,24 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<Pane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
+<Pane xmlns:fx="http://javafx.com/fxml/1" prefHeight="1080.0" prefWidth="3840.0"
+      xmlns="http://javafx.com/javafx/8.0.121"
       fx:controller="client.ui.MainMenuController" fx:id="rootPane">
 
-    <HBox spacing="10">
-        <padding><Insets top="20" left="20"/></padding>
-        <VBox spacing="10">
-            <Label text="Ticket To Ride" fx:id="titleLabel"/>
-            <Label text="Play" fx:id="playLabel" onMouseEntered="#hoverEnterPlay" onMouseExited="#hoverExitPlay"/>
-            <Label text="Load" fx:id="loadLabel" onMouseEntered="#hoverEnterLoad" onMouseExited="#hoverExitLoad"/>
-            <Label text="Rules" fx:id="ruleLabel" onMouseEntered="#hoverEnterRule" onMouseExited="#hoverExitRule"/>
-            <Label text="Options" fx:id="optionLabel" onMouseEntered="#hoverEnterOption" onMouseExited="#hoverExitOption"/>
-            <Label text="Quit" fx:id="quitLabel" onMouseEntered="#hoverEnterQuit" onMouseExited="#hoverExitQuit" onMouseClicked="#quitGame"/>
-        </VBox>
-        <VBox/>
-    </HBox>
+    <Pane fx:id="snowPane"/>
+
+    <VBox spacing="20" fx:id="VBoxMain" alignment="BASELINE_CENTER" layoutY="20" layoutX="50">
+        <ImageView fitWidth="550" preserveRatio="true">
+            <image>
+                <Image url="/images/logo.png"/>
+            </image>
+        </ImageView>
+        <Label text="Play" fx:id="playLabel" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
+               onMouseClicked="#openMenuSequence"/>
+        <Label text="Load" fx:id="loadLabel" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
+               onMouseClicked="#openMenuSequence"/>
+        <Label text="Rules" fx:id="ruleLabel" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
+               onMouseClicked="#openMenuSequence"/>
+        <Label text="Options" fx:id="optionLabel" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
+               onMouseClicked="#openMenuSequence"/>
+        <Label text="Quit" fx:id="quitLabel" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
+               onMouseClicked="#quitGame"/>
+    </VBox>
+
+    <fx:include source="layout_main_menu_play.fxml" fx:id="VBoxPlay" alignment="BASELINE_CENTER" layoutY="1500"
+                layoutX="850"/>
+    <fx:include source="layout_main_menu_load.fxml" fx:id="VBoxLoad" alignment="BASELINE_CENTER" layoutY="1500"
+                layoutX="850"/>
+    <fx:include source="layout_main_menu_rules.fxml" fx:id="VBoxRule" alignment="BASELINE_CENTER" layoutY="1500"
+                prefHeight="600" layoutX="850"/>
+    <fx:include source="layout_main_menu_options.fxml" fx:id="VBoxOption" alignment="BASELINE_CENTER" layoutY="1500"
+                layoutX="850"/>
+    <fx:include source="layout_main_menu_front_images.fxml" fx:id="images" translateY="540"/>
+    <Pane fx:id="snowPaneFront" translateY="600"/>
 
 </Pane>

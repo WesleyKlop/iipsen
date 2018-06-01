@@ -57,8 +57,7 @@ public class Player implements Serializable {
         return color;
     }
 
-    @Override
-    public String toString() {
-        return String.format("Player{playerName='%s', color='%s', id=%d, score=%d, traincarts=%d}", playerName, color, id, score, traincarts);
+    public Color getColorAsColor() {
+        return Color.web(this.color);
     }
 }
