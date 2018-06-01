@@ -12,6 +12,10 @@ import java.util.Random;
  */
 public class CardStack extends EnumMap<CardType, Integer> implements Serializable {
     public static final int DEFAULT_LOCOMOTIVE_COUNT = 14;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     public static final int DEFAULT_CART_COUNT = 12;
 
     public CardStack() {
@@ -119,7 +123,7 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
     }
 
     public boolean containsCards(CardStack cards) {
-        for (CardStack.Entry<CardType, Integer> entry : cards.entrySet()) {
+        for (Entry<CardType, Integer> entry : cards.entrySet()) {
             if (!this.containsKey(entry.getKey()) || this.get(entry.getKey()) < entry.getValue()) {
                 return false;
             }
@@ -129,7 +133,7 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
 
     public void takeCards(CardStack cards) throws Exception {
         // TODO: This throws when it notices a card is not available, but would still remove the game.cards it checked before that so we should keep track of the game.cards removed and place them back in a try-catch
-        for (CardStack.Entry<CardType, Integer> entry : cards.entrySet()) {
+        for (Entry<CardType, Integer> entry : cards.entrySet()) {
             this.getCard(entry.getKey());
         }
     }
