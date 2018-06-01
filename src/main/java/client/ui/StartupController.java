@@ -7,6 +7,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,6 +19,8 @@ import java.util.ResourceBundle;
  * @Since 30-5-2018
  */
 public class StartupController implements Initializable {
+
+    private static final Logger logger = LogManager.getLogger(StartupController.class);
 
     public Pane rootPane;
     public Pane MainMenuPane;
@@ -60,7 +64,7 @@ public class StartupController implements Initializable {
         try {
             preferencesPaneController.buttons.getChildren().add(preferencesPaneController.createButton);
         } catch (Exception e) {
-            System.out.println("Exception found: " + e.toString());
+            logger.error("Exception found: " + e.toString());
         }
         preferencesPaneController.buttons.getChildren().remove(preferencesPaneController.joinButton);
         moveMenuLeft();

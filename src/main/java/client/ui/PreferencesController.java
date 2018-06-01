@@ -2,7 +2,7 @@ package client.ui;
 
 import game.GameStoreProvider;
 import game.actions.AddPlayerAction;
-import game.routecards.Player;
+import game.player.Player;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -58,7 +58,6 @@ public class PreferencesController implements Initializable {
         Color color = colorPreferenceController.getSelectedColor();
         var action = new AddPlayerAction(name, color);
         GameStoreProvider.sendAction(action);
-        return true;
     }
 
     public boolean checkName() {

@@ -46,7 +46,7 @@ public class Client extends Application implements SceneListener {
                     }
                 }
             } catch (RemoteException e1) {
-                e1.printStackTrace();
+                Log.error(e1.toString());
             }
         });
         rootPaneController.getPreferenceController().createButton.setOnMouseClicked(e -> {
@@ -56,7 +56,7 @@ public class Client extends Application implements SceneListener {
                     rootPaneController.getPreferenceController().submitPreferences();
                 }
             } catch (MalformedURLException | RemoteException e1) {
-                e1.printStackTrace();
+                Log.error(e1.toString());
             }
         });
 
@@ -99,8 +99,6 @@ public class Client extends Application implements SceneListener {
         String newTitle = null;
         switch (state) {
             case INIT:
-//                newTitle = "Ticket To Ride - Connect";
-//                newRoot = getParent("layout_preferences");
                 break;
             case LOBBY:
                 rootPaneController.moveMenuDown();
