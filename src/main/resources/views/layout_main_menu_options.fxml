@@ -15,9 +15,12 @@
             <Image url="/images/options.png"/>
         </image>
     </ImageView>
-    <Label text="Volume:" scaleX="2.0" scaleY="2.0"/>
-    <Slider fx:id="optionVolumeSlider" orientation="HORIZONTAL" max="1.0" min="0" value="0.5" showTickLabels="false"
+    <Label text="Music Volume:" scaleX="2.0" scaleY="2.0"/>
+    <Slider fx:id="optionVolumeMusicSlider" orientation="HORIZONTAL" max="1.0" min="0" value="0.5" showTickLabels="false"
             showTickMarks="true" majorTickUnit="0.1" blockIncrement="0.1"/>
+    <Label text="Sound FX Volume:" scaleX="2.0" scaleY="2.0"/>
+    <Slider fx:id="optionVolumeFXSlider" orientation="HORIZONTAL" max="0.6" min="0" value="0.3" showTickLabels="false"
+            showTickMarks="true" majorTickUnit="0.15" blockIncrement="0.15"/>
     <CheckBox fx:id="optionMute" text="Mute" scaleX="2.0" scaleY="2.0" onMouseClicked="#mute" minWidth="100"/>
     <CheckBox fx:id="optionColorblind" text="Colorblind" scaleX="2.0" scaleY="2.0" minWidth="100"/>
 </VBox>

@@ -16,7 +16,8 @@ import java.util.ResourceBundle;
 public class MainMenuOptionController implements Initializable {
 
     public MediaPlayer player;
-    public Slider optionVolumeSlider;
+    public Slider optionVolumeMusicSlider;
+    public Slider optionVolumeFXSlider;
 
     public void initialize(URL url, ResourceBundle bundle) {
         playMusic();
@@ -25,13 +26,15 @@ public class MainMenuOptionController implements Initializable {
     private void playMusic() {
         Media backgroundMusic = new Media(getClass().getResource("/sound/background.mp3").toString());
         player = new MediaPlayer(backgroundMusic);
-        player.volumeProperty().bind(optionVolumeSlider.valueProperty());
+        player.volumeProperty().bind(optionVolumeMusicSlider.valueProperty());
         player.setCycleCount(MediaPlayer.INDEFINITE);
         player.play();
     }
 
     public void mute() {
         player.setMute(!player.isMute());
-        optionVolumeSlider.setDisable(player.isMute());
+        optionVolumeMusicSlider.setDisable(player.isMute());
+        optionVolumeFXSlider.setDisable(player.isMute());
+
     }
 }
