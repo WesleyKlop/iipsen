@@ -8,22 +8,17 @@ package client.ui;
  * and open the template in the editor.
  */
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  *
@@ -34,149 +29,327 @@ public class PlayscreenController implements Initializable {
 
 
     @FXML
-    private BackgroundImage myBI= new BackgroundImage(new Image("/Routes/Background.png",1280,650,false,true),
+    private BackgroundImage myBI = new BackgroundImage(new Image("/Routes/Background.png", 996, 555, false, true),
             BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
             BackgroundSize.DEFAULT);
-
     @FXML
     private BorderPane bPane;
     @FXML
-    private HBox steen;
+    private ImageView test;
     @FXML
-    private HBox white;
+    private ImageView orange_cave;
     @FXML
-    private HBox white2;
+    private ImageView yellow_cave;
     @FXML
-    private HBox yellow2;
+    private ImageView black_cave;
     @FXML
-    private HBox red;
+    private ImageView green_route;
     @FXML
-    private HBox orange;
+    private ImageView red_route;
     @FXML
-    private HBox green;
+    private ImageView green_routes;
     @FXML
-    private HBox green2;
+    private ImageView orange_route;
     @FXML
-    private HBox green3;
+    private ImageView orange2_route;
     @FXML
-    private HBox red2;
+    private ImageView blue_route;
     @FXML
-    private HBox white3;
+    private ImageView orange4_route;
     @FXML
-    private HBox black;
+    private ImageView yellow3_route;
     @FXML
-    private HBox orange2;
+    private ImageView red_place;
     @FXML
-    private HBox yellow3;
+    private ImageView red_place2;
     @FXML
-    private HBox green4;
+    private ImageView white_route;
     @FXML
-    private HBox black2;
+    private ImageView green2_route;
     @FXML
-    private HBox purple2;
+    private ImageView red_route2;
     @FXML
-    private HBox white4;
+    private ImageView yellow_route2;
     @FXML
-    private HBox yellow4;
+    private ImageView purple_route;
     @FXML
-    private HBox red3;
+    private ImageView white2_route;
     @FXML
-    private HBox orange3;
+    private ImageView red_route3;
     @FXML
-    public void greenEntered(MouseEvent event) { green.setStyle("-fx-border-color: white;"); green2.setStyle("-fx-border-color: white;");}
+    private ImageView Purple_route2;
     @FXML
-    public void greenExited(MouseEvent event) { green.setStyle("-fx-border-color: black;"); green2.setStyle("-fx-border-color: black;");}
+    private ImageView black_route2;
     @FXML
-    public void orange3Entered(MouseEvent event) { orange3.setStyle("-fx-border-color: white;"); }
+    private ImageView yellow_route4;
     @FXML
-    public void orange3Exited(MouseEvent event) { orange3.setStyle("-fx-border-color: black;"); }
+    private ImageView green_route3;
     @FXML
-    public void white4Entered(MouseEvent event) { white4.setStyle("-fx-border-color: white;"); }
+    private ImageView white_route3;
     @FXML
-    public void white4Exited(MouseEvent event) { white4.setStyle("-fx-border-color: black;"); }
+    private ImageView yellow_route5;
     @FXML
-    public void red3Entered(MouseEvent event) { red3.setStyle("-fx-border-color: white;"); }
+    private ImageView black_route3;
     @FXML
-    public void red3Exited(MouseEvent event) { red3.setStyle("-fx-border-color: black;"); }
+    private ImageView orange_route5;
     @FXML
-    public void yellow4Entered(MouseEvent event) { yellow4.setStyle("-fx-border-color: white;"); }
+    private ImageView black_route4;
     @FXML
-    public void yellow4Exited(MouseEvent event) { yellow4.setStyle("-fx-border-color: black;"); }
-    @FXML
-    public void whiteEntered(MouseEvent event) { white.setStyle("-fx-border-color: white;"); }
-    @FXML
-    public void whiteExited(MouseEvent event) { white.setStyle("-fx-border-color: black;"); }
-    @FXML
-    public void purple2Entered(MouseEvent event) { purple2.setStyle("-fx-border-color: white;"); }
-    @FXML
-    public void purple2Exited(MouseEvent event) { purple2.setStyle("-fx-border-color: black;"); }
-    @FXML
-    public void black2Entered(MouseEvent event) { black2.setStyle("-fx-border-color: white;"); }
-    @FXML
-    public void black2Exited(MouseEvent event) { black2.setStyle("-fx-border-color: black;"); }
-    @FXML
-    public void green4Entered(MouseEvent event) { green4.setStyle("-fx-border-color: white;"); }
-    @FXML
-    public void green4Exited(MouseEvent event) { green4.setStyle("-fx-border-color: black;"); }
-    @FXML
-    public void yellow3Entered(MouseEvent event) { yellow3.setStyle("-fx-border-color: white;"); }
-    @FXML
-    public void yellow3Exited(MouseEvent event) { yellow3.setStyle("-fx-border-color: black;"); }
-    @FXML
-    public void yellow2Entered(MouseEvent event) { yellow2.setStyle("-fx-border-color: white;"); }
-    @FXML
-    public void yellow2Exited(MouseEvent event) { yellow2.setStyle("-fx-border-color: black;"); }
-    @FXML
-    public void orange2Entered(MouseEvent event) { orange2.setStyle("-fx-border-color: white;"); }
-    @FXML
-    public void orange2Exited(MouseEvent event) { orange2.setStyle("-fx-border-color: black;"); }
-    @FXML
-    public void white3Entered(MouseEvent event) { white3.setStyle("-fx-border-color: white;"); }
-    @FXML
-    public void blackExited(MouseEvent event) { black.setStyle("-fx-border-color: black;"); }
-    @FXML
-    public void blackEntered(MouseEvent event) { black.setStyle("-fx-border-color: white;"); }
-    @FXML
-    public void white3Exited(MouseEvent event) { white3.setStyle("-fx-border-color: black;"); }
-    @FXML
-    public void green3Entered(MouseEvent event) { green3.setStyle("-fx-border-color: white;"); }
-    @FXML
-    public void green3Exited(MouseEvent event) { green3.setStyle("-fx-border-color: black;"); }
-    @FXML
-    public void red2Entered(MouseEvent event) { red2.setStyle("-fx-border-color: white;"); }
-    @FXML
-    public void red2Exited(MouseEvent event) { red2.setStyle("-fx-border-color: black;"); }
-    @FXML
-    public void redEntered(MouseEvent event) { red.setStyle("-fx-border-color: white;"); }
-    @FXML
-    public void redExited(MouseEvent event) { red.setStyle("-fx-border-color: black;"); }
-    @FXML
-    public void white2Entered(MouseEvent event) { white2.setStyle("-fx-border-color: white;"); }
-    @FXML
-    public void white2Exited(MouseEvent event) { white2.setStyle("-fx-border-color: black;");
-    }
-    @FXML
-    public void orangeEntered(MouseEvent event) {
-        orange.setStyle("-fx-border-color: white;");
+    private ImageView yellow_route6;
 
+    public void yellow_route6Entered(MouseEvent event) {
+        yellow_route6.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
     }
 
-    @FXML
-    public void orangeExited(MouseEvent event) {
-        orange.setStyle("-fx-border-color: black;");
+    public void yellow_route6Exited(MouseEvent event) {
+        yellow_route6.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
     }
 
-    @FXML
-    public void purpleEntered(MouseEvent event) {
-        steen.setStyle("-fx-border-color: white;");
+    public void black_route4Entered(MouseEvent event) {
+        black_route4.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
     }
 
-    @FXML
-    public void purpleExited(MouseEvent event) {
-        steen.setStyle("-fx-border-color: black;");
+    public void black_route4Exited(MouseEvent event) {
+        black_route4.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
     }
+
+    public void orange_route5Entered(MouseEvent event) {
+        orange_route5.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void orange_route5Exited(MouseEvent event) {
+        orange_route5.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void black_route3Entered(MouseEvent event) {
+        black_route3.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void black_route3Exited(MouseEvent event) {
+        black_route3.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void white_route3Entered(MouseEvent event) {
+        white_route3.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void white_route3Exited(MouseEvent event) {
+        white_route3.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void yellow_route5Entered(MouseEvent event) {
+        yellow_route5.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void yellow_route5Exited(MouseEvent event) {
+        yellow_route5.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void green_route3Entered(MouseEvent event) {
+        green_route3.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void green_route3Exited(MouseEvent event) {
+        green_route3.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void purple_routeEntered(MouseEvent event) {
+        purple_route.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void purple_routeExited(MouseEvent event) {
+        purple_route.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void yellow_route4Entered(MouseEvent event) {
+        yellow_route4.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void yellow_route4Exited(MouseEvent event) {
+        yellow_route4.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void black_route2Entered(MouseEvent event) {
+        black_route2.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void black_route2Exited(MouseEvent event) {
+        black_route2.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void Purple_route2Entered(MouseEvent event) {
+        Purple_route2.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void Purple_route2Exited(MouseEvent event) {
+        Purple_route2.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void red_route3Entered(MouseEvent event) {
+        red_route3.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void red_route3Exited(MouseEvent event) {
+        red_route3.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void yellow_route2Entered(MouseEvent event) {
+        yellow_route2.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void yellow_route2Exited(MouseEvent event) {
+        yellow_route2.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void white2_routeEntered(MouseEvent event) {
+        white2_route.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void white2_routeExited(MouseEvent event) {
+        white2_route.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+
+    public void green2_routeEntered(MouseEvent event) {
+        green2_route.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void green2_routeExited(MouseEvent event) {
+        green2_route.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void red_route2Entered(MouseEvent event) {
+        red_route2.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void red_route2Exited(MouseEvent event) {
+        red_route2.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void testEntered(MouseEvent event) {
+        test.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void testExited(MouseEvent event) {
+        test.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void white_routeEntered(MouseEvent event) {
+        white_route.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void white_routeExited(MouseEvent event) {
+        white_route.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void red_place2Entered(MouseEvent event) {
+        red_place2.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void red_place2Exited(MouseEvent event) {
+        red_place2.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void red_placeEntered(MouseEvent event) {
+        red_place.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void red_placeExited(MouseEvent event) {
+        red_place.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void yellow3_routeEntered(MouseEvent event) {
+        yellow3_route.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void yellow3_routeExited(MouseEvent event) {
+        yellow3_route.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void blue_routeEntered(MouseEvent event) {
+        blue_route.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void blue_routeExited(MouseEvent event) {
+        blue_route.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void orange4_routeEntered(MouseEvent event) {
+        orange4_route.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void orange4_routeExited(MouseEvent event) {
+        orange4_route.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+
+    public void orange_caveEntered(MouseEvent event) {
+        orange_cave.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void orange_caveExited(MouseEvent event) {
+        orange_cave.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void yellow_caveEntered(MouseEvent event) {
+        yellow_cave.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void yellow_caveExited(MouseEvent event) {
+        yellow_cave.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void black_caveEntered(MouseEvent event) {
+        black_cave.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void black_caveExited(MouseEvent event) {
+        black_cave.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void red_routeEntered(MouseEvent event) {
+        red_route.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void red_routeExited(MouseEvent event) {
+        red_route.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void green_routeEntered(MouseEvent event) {
+        green_route.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void green_routeExited(MouseEvent event) {
+        green_route.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void green_routesEntered(MouseEvent event) {
+        green_routes.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void green_routesExited(MouseEvent event) {
+        green_routes.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void orange_routeEntered(MouseEvent event) {
+        orange_route.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void orange_routeExited(MouseEvent event) {
+        orange_route.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
+    public void orange2_routeEntered(MouseEvent event) {
+        orange2_route.setStyle("-fx-effect:dropshadow(gaussian, white, 1, 4, 0, 0);");
+    }
+
+    public void orange2_routeExited(MouseEvent event) {
+        orange2_route.setStyle("-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);");
+    }
+
 
     public void initialize(URL url, ResourceBundle rb) {
+        DropShadow ds = new DropShadow(20, Color.AQUA);
         bPane.setBackground(new Background(myBI));
     }
 }

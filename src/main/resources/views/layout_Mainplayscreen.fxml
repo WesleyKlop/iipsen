@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:id="bPane" fx:controller="client.ui.Mainplaycontroller"
+            prefHeight="1280" prefWidth="720">
+    <center>
+    </center>
+    <left>
+        <ImageView>
+            <Image url="/Routes/left_bar.png"/>
+        </ImageView>
+    </left>
+    <bottom>
+        <HBox>
+            <ScrollPane maxWidth="151" minWidth="151" maxHeight="268" minHeight="268" fx:id="sasd" translateY="-363">
+                <ImageView>
+                    <Image url="/Routes/routecards.png"/>
+                </ImageView>
+            </ScrollPane>
+            <ImageView translateY="-363">
+                <Image url="/Routes/right_bordor.png"/>
+            </ImageView>
+            <ImageView translateY="-263">
+                <Image url="/Routes/bottom.png"/>
+            </ImageView>
+        </HBox>
+    </bottom>
+    <right>
+        <fx:include source="layout_playscreen.fxml"/>
+    </right>
+</BorderPane>

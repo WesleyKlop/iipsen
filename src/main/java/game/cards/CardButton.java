@@ -18,7 +18,6 @@ public class CardButton extends Button {
      */
     private Card card;
     private Image image;
-
     /**
      * Empty constructor for extending classes
      *

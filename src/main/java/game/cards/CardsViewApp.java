@@ -18,7 +18,6 @@ public class CardsViewApp extends Application implements OnCardSelectListener {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Cards app!!");
         this.stack = CardStack.CreateTrainCardStack();
-
         CardsPane root = new CardsPane(stack, this);
         primaryStage.setScene(new Scene(root, 500, 1000));
         primaryStage.show();
