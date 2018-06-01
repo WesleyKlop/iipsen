@@ -23,6 +23,10 @@ public class Location {
         connections.put(destination, route);
     }
 
+    public Map<ELocation, Route> getConnections() {
+        return connections;
+    }
+
     public ELocation getLocation() {
         return this.location;
     }

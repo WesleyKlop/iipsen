@@ -1,7 +1,7 @@
 package game.actions;
 
 import game.GameStore;
-import game.routecards.Player;
+import game.player.Player;
 import javafx.scene.paint.Color;
 
 /**
@@ -15,10 +15,7 @@ public class AddPlayerAction implements Action {
     }
 
     @Override
-    public void executeAction(GameStore state) throws Exception {
-        if (player == null) {
-            throw new Exception("Player should not be null!");
-        }
+    public void executeAction(GameStore state) {
 
         state.addPlayer(player);
     }

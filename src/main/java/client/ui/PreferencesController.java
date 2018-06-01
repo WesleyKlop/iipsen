@@ -11,12 +11,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 public class PreferencesController implements Initializable {
+    private static final Logger Log = LogManager.getLogger(PreferencesController.class);
 
     public Pane rootPane;
     public TextField nameField;
@@ -49,8 +52,8 @@ public class PreferencesController implements Initializable {
         mainMenuController.hoverExit(mouseEvent);
     }
 
-    public boolean submitPreferences() throws RemoteException {
-        System.out.println("Got prefs");
+    public void submitPreferences() throws RemoteException {
+        Log.debug("Got prefs");
         String name = nameField.getText();
         Color color = colorPreferenceController.getSelectedColor();
         var action = new AddPlayerAction(name, color);

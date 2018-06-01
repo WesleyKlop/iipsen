@@ -11,6 +11,8 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import server.Server;
 
 import java.io.IOException;
@@ -18,6 +20,7 @@ import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 
 public class Client extends Application implements SceneListener {
+    private static final Logger Log = LogManager.getLogger(Client.class);
 
     private static final String DEFAULT_IP = "127.0.0.1";
 
@@ -90,7 +93,7 @@ public class Client extends Application implements SceneListener {
 
     @Override
     public void onSceneChange(GameState state) {
-        System.out.printf("Got new scene, %s currently on Thread: %s%n", state, Thread.currentThread().getName());
+        Log.debug("Got new scene {}", state);
 
         Parent newRoot = null;
         String newTitle = null;
@@ -129,5 +132,4 @@ public class Client extends Application implements SceneListener {
             }
         });
     }
-
 }

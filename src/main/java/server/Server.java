@@ -3,6 +3,8 @@ package server;
 import client.GameStoreClient;
 import game.GameStore;
 import game.actions.Action;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -16,6 +18,7 @@ import java.util.List;
  * @author wesley
  */
 public class Server extends UnicastRemoteObject implements GameStoreServer {
+    private static final Logger Log = LogManager.getLogger(Server.class);
 
     public static final String REGISTRY_NAME = "TTRGameService";
     private static final int PORT = 1099;
@@ -24,11 +27,11 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
     private GameStore currentGameStore = new GameStore();
 
     public Server() throws RemoteException, MalformedURLException {
-        System.out.println("Starting server");
+        Log.debug("Starting server");
 
         LocateRegistry.createRegistry(PORT);
         Naming.rebind(REGISTRY_NAME, this);
-        System.out.println("Server started");
+        Log.debug("Server started");
     }
 
     @Override
@@ -53,11 +56,11 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
     public synchronized void onActionReceived(Action action) {
         try {
             action.executeAction(currentGameStore);
-            System.out.println("Executed action");
+            Log.debug("Executed action");
             notifyListeners(currentGameStore);
-            System.out.println("Notified listeners");
+            Log.debug("Notified listeners");
         } catch (Exception ex) {
-            System.out.println("Server error while executing action");
+            Log.debug("Server error while executing action");
             ex.printStackTrace();
         }
     }

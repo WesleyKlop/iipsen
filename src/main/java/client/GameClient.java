@@ -6,7 +6,9 @@ import game.GameStoreProvider;
 import game.actions.Action;
 import game.actions.AddPlayerAction;
 import game.actions.ChangeStateAction;
-import game.routecards.Player;
+import game.player.Player;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import server.GameStoreServer;
 import server.Server;
 import util.Observable;
@@ -21,6 +23,7 @@ import java.rmi.server.UnicastRemoteObject;
  * @author wesley
  */
 public class GameClient extends UnicastRemoteObject implements GameStoreClient {
+    private transient static final Logger Log = LogManager.getLogger(GameClient.class);
 
     // Transient because we don't want to send this to the server
     private transient GameStoreServer server;
@@ -34,7 +37,7 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
         this.sceneListener = sceneListener;
 
         try {
-            System.out.println("Connecting to server via IP");
+            Log.debug("Connecting to server via IP");
             server = (GameStoreServer) Naming.lookup("//" + ip + "/" + Server.REGISTRY_NAME);
             registerClient();
         } catch (NotBoundException | MalformedURLException e) {
@@ -47,7 +50,7 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
         super();
         this.sceneListener = sceneListener;
 
-        System.out.println("Connecting to server via GameStoreServer ref");
+        Log.debug("Connecting to server via GameStoreServer ref");
         this.server = server;
         registerClient();
     }
@@ -59,7 +62,7 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
 
     @Override
     public void onGameStoreReceived(GameStore newState) {
-        System.out.println("Received new gamestore");
+        Log.debug("Received new gamestore");
 
         // Process previous actions' response
         if (lastAction != null) {
@@ -90,7 +93,7 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
     @Override
     public void onConnect(GameStore initialStore) {
         storeObservable.setValue(initialStore);
-        System.out.println("Connected, running on thread: " + Thread.currentThread().getName());
+        Log.debug("Connected to server");
         sceneListener.onSceneChange(GameState.INIT);
     }
 }
