@@ -21,7 +21,6 @@ import java.rmi.RemoteException;
 import static javafx.geometry.Pos.CENTER;
 
 /**
- * @author Wesley Klop <wesley19097@gmail.com>
  */
 public class LobbyController {
     private static final Logger Log = LogManager.getLogger(LobbyController.class);

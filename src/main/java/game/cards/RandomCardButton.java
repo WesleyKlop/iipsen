@@ -9,7 +9,6 @@ import javafx.scene.image.ImageView;
  * RandomCardButton overrides the set/get card methods with a custom implementation
  * that's used for getting random game.cards.
  *
- * @author Wesley Klop <wesley19097@gmail.com>
  * @see CardButton
  */
 public class RandomCardButton extends CardButton {

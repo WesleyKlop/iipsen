@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * @author Wesley Klop <wesley19097@gmail.com>
  * CardStack contains a list of card types and how many there are left of it.
  */
 public class CardStack extends EnumMap<CardType, Integer> implements Serializable {
@@ -105,6 +104,7 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
 
     /**
      * Adds a card to the stack
+     *
      * @param card the card to add
      */
     public void addCard(Card card) {
@@ -113,6 +113,7 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
 
     /**
      * Adds a card to the stack
+     *
      * @param cardType the card type to add
      */
     public void addCard(CardType cardType) {
@@ -124,6 +125,7 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
 
     /**
      * Checks if the stack contains the specified card type with the correct count
+     *
      * @param type the CardType to look for
      * @param count the amount of cards the map should contain
      * @return true if the map contains enough cards of the specified type or false
@@ -136,6 +138,7 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
 
     /**
      * Checks if the stack contains these cards
+     *
      * @param cards an array of cards to look for
      * @return true if the map contains enough cards of the specified type or false
      */
@@ -150,7 +153,8 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
     }
 
     /**
-     *  Check if the card stack contains all cards in the given cardstack
+     * Check if the card stack contains all cards in the given cardstack
+     *
      * @param cards the cardstack to compare against
      * @return true if the map contains enough cards of the specified type or false
      */
@@ -165,6 +169,7 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
 
     /**
      * Remove cards specified in cardstack from the cardstack
+     *
      * @param cards the cards to be removed
      * @throws Exception when a card does not exist in the cardstack
      */
@@ -177,6 +182,7 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
 
     /**
      * Remove x cards of specified type from the map
+     *
      * @param type the type of card to remove
      * @param count the amount of cards to remove
      * @throws Exception when there are not enough cards in the stack
