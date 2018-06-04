@@ -4,7 +4,7 @@ import game.GameState;
 import game.GameStore;
 
 /**
- * @author wesley
+ * @author Wesley Klop <wesley19097@gmail.com>
  */
 public class ChangeStateAction implements Action {
 

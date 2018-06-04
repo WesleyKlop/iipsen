@@ -1,7 +1,7 @@
 package game.cards;
 
 /**
- * @author Wesley
+ * @author Wesley Klop <wesley19097@gmail.com>
  * @see CardButton
  * Listener for when a CardButton is clicked
  */

@@ -20,7 +20,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 /**
- * @author wesley
+ * @author Wesley Klop <wesley19097@gmail.com>
  */
 public class GameClient extends UnicastRemoteObject implements GameStoreClient {
     private transient static final Logger Log = LogManager.getLogger(GameClient.class);

@@ -6,7 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * @author wesley
+ * @author Wesley Klop <wesley19097@gmail.com>
  */
 public class Route {
     private static final Logger Log = LogManager.getLogger(Route.class);

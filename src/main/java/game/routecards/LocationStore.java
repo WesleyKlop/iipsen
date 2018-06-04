@@ -9,7 +9,7 @@ import static game.cards.CardType.*;
 import static game.routecards.ELocation.*;
 
 /**
- * @author wesley
+ * @author Wesley Klop <wesley19097@gmail.com>
  */
 public class LocationStore {
 

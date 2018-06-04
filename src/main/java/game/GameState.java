@@ -1,7 +1,7 @@
 package game;
 
 /**
- * @author wesley
+ * @author Wesley Klop <wesley19097@gmail.com>
  */
 public enum GameState {
     INIT,

@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author wesley
+ * @author Wesley Klop <wesley19097@gmail.com>
  */
 public class Player implements Serializable {
     private final String playerName;

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author wesley
+ * @author Wesley Klop <wesley19097@gmail.com>
  */
 public class Observable<T> {
     private Map<Integer, ObservableSubscriber<T>> subscribers = new HashMap<>();

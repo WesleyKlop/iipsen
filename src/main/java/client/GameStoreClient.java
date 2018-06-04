@@ -8,7 +8,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 /**
- * @author wesley
+ * @author Wesley Klop <wesley19097@gmail.com>
  */
 public interface GameStoreClient extends Remote, Serializable {
 

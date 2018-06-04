@@ -12,7 +12,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * @author wesley
+ * @author Wesley Klop <wesley19097@gmail.com>
  */
 public class ColorPreferenceController implements Initializable {
 
