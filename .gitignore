@@ -7,3 +7,8 @@ out/
 # IntelliJ
 *.iml
 .idea/
+
+.gradle/
+build/
+!gradle-wrapper.jar
+lib/

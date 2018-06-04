@@ -1,11 +1,16 @@
 package game.routecards;
 
 import game.cards.CardType;
+import game.player.Player;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author wesley
  */
 public class Route {
+    private static final Logger Log = LogManager.getLogger(Route.class);
+
     private int length;
     private int locomotiveCost;
     private int owner;
@@ -17,29 +22,28 @@ public class Route {
         this.color = color;
     }
 
-    public void build(Player builder) {
-        System.out.println(color + " " + getCartCost() + " " + getLocomotiveCost());
-        var costsLocomotives = getLocomotiveCost() > 0;
-        var costsCarts = getCartCost() > 0;
-        if ((costsCarts || builder.getCardStack().containsCards(color, getCartCost())) &&
-            (costsLocomotives || builder.getCardStack().containsCards(CardType.LOCOMOTIVE, locomotiveCost))
-        ) {
+    public boolean build(Player builder) {
+        Log.debug(color + " " + getCartCost() + " " + getLocomotiveCost());
+        if (
+            builder.getCardStack().containsCards(color, getCartCost()) &&
+                builder.getCardStack().containsCards(CardType.LOCOMOTIVE, locomotiveCost)
+            ) {
             try {
-                if (costsCarts)
-                    builder.getCardStack().takeCards(color, getCartCost());
-                if (costsLocomotives)
-                    builder.getCardStack().takeCards(CardType.LOCOMOTIVE, locomotiveCost);
+                builder.getCardStack().takeCards(color, getCartCost());
+                builder.getCardStack().takeCards(CardType.LOCOMOTIVE, locomotiveCost);
 
                 builder.removeTrainCarts(length);
                 this.owner = builder.getId();
-                System.out.println("Route build! by " + builder.getPlayerName());
+                Log.debug("Route build! by " + builder.getPlayerName());
+                return true;
             } catch (Exception e) {
-                e.printStackTrace();
+                return false;
             }
         } else {
-            System.out.println("player doesnt have the needed game.cards!!");
-            System.out.println(builder.getCardStack());
+            Log.debug("player doesnt have the needed cards!!");
+            Log.debug(builder.getCardStack());
         }
+        return false;
     }
 
     public boolean hasOwner() {

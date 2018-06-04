@@ -1,5 +1,7 @@
 # Ticket to Ride
 
+[![Build Status](https://travis-ci.com/WesleyKlop/IIPSEN.svg?token=4MypM7sW23T4Q7Go7dyF&branch=master)](https://travis-ci.com/WesleyKlop/IIPSEN)
+
 Repository containing the Ticket to Ride javaFX application, build with Java RMI
 
 ## Installation
