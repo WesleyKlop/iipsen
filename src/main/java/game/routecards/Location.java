@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author wesley
  */
 public class Location {
     private ELocation location;

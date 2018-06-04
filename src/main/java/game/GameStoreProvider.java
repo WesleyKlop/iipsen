@@ -7,7 +7,6 @@ import util.Observable;
 import java.rmi.RemoteException;
 
 /**
- * @author wesley
  */
 public class GameStoreProvider {
     private static final Observable<GameStore> instance = new Observable<>();

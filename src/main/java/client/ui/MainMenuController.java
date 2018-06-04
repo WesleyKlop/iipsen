@@ -1,9 +1,6 @@
 package client.ui;
 
 /**
- * @author Thom
- * @version 2.0
- * @since 29-05-2018
  */
 
 import javafx.animation.TranslateTransition;

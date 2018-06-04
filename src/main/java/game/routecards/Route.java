@@ -6,7 +6,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * @author wesley
  */
 public class Route {
     private static final Logger Log = LogManager.getLogger(Route.class);

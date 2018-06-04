@@ -12,7 +12,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * @author wesley
  */
 public class ColorPreferenceController implements Initializable {
 
