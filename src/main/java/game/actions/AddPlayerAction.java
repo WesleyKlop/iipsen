@@ -5,7 +5,6 @@ import game.player.Player;
 import javafx.scene.paint.Color;
 
 /**
- * @author wesley
  */
 public class AddPlayerAction implements Action {
     private Player player;

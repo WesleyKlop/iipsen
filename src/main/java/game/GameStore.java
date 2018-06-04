@@ -7,22 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author wesley
  */
 public class GameStore implements Serializable {
-    private GameState currentState = GameState.INIT;
-    private List<Player> players;
+    private GameState gameState = GameState.INIT;
+    private List<Player> players = new ArrayList<>();
 
     public GameStore() {
-        players = new ArrayList<>();
     }
 
     public List<Player> getPlayers() {
         return players;
     }
 
-    public GameState getCurrentState() {
-        return currentState;
+    public GameState getGameState() {
+        return gameState;
     }
 
     public void addPlayer(Player player) {
@@ -32,7 +30,7 @@ public class GameStore implements Serializable {
     }
 
     public void setGameState(GameState newState) {
-        currentState = newState;
+        gameState = newState;
     }
     //TODO
 }
