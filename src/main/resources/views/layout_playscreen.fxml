@@ -1,168 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <BorderPane fx:id="bPane" fx:controller="client.ui.PlayscreenController" xmlns:fx="http://javafx.com/fxml"
             prefHeight="555" prefWidth="996">
-    <center>
-        <VBox>
-            <ImageView translateX="240" translateY="155" fx:id="test" onMouseEntered="#testEntered"
-                       onMouseExited="#testExited" style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/testplace.png"/>
-            </ImageView>
-            <ImageView translateX="315" translateY="85" fx:id="orange_cave" onMouseEntered="#orange_caveEntered"
-                       onMouseExited="#orange_caveExited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/orange_cave.png"/>
-            </ImageView>
-            <ImageView translateX="310" fx:id="yellow_cave" onMouseEntered="#yellow_caveEntered"
-                       onMouseExited="#yellow_caveExited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/yellow_cave.png"/>
-            </ImageView>
-            <ImageView translateX="420" translateY="-5" fx:id="black_cave" onMouseEntered="#black_caveEntered"
-                       onMouseExited="#black_caveExited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/black_cave.png"/>
-            </ImageView>
-            <ImageView translateX="425" fx:id="green_route" onMouseEntered="#green_routeEntered"
-                       onMouseExited="#green_routeExited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/green_route.png"/>
-            </ImageView>
-            <ImageView translateX="445" translateY="-200" fx:id="red_route" onMouseEntered="#red_routeEntered"
-                       onMouseExited="#red_routeExited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/red_route.png"/>
-            </ImageView>
-            <ImageView translateX="445" translateY="-200" fx:id="green_routes"
-                       onMouseEntered="#green_routesEntered" onMouseExited="#green_routesExited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/green_routes.png"/>
-            </ImageView>
-            <ImageView translateX="650" translateY="-250" fx:id="orange_route"
-                       onMouseEntered="#orange_routeEntered" onMouseExited="#orange_routeExited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/orange_route.png"/>
-            </ImageView>
-            <ImageView translateX="280" translateY="-125" fx:id="orange2_route"
-                       onMouseEntered="#orange2_routeEntered" onMouseExited="#orange2_routeExited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/orange2.png"/>
-            </ImageView>
-            <ImageView translateX="780" translateY="-70" fx:id="blue_route" onMouseEntered="#blue_routeEntered"
-                       onMouseExited="#blue_routeExited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/blue_route.png"/>
-            </ImageView>
-            <ImageView translateX="687" translateY="-110" fx:id="orange4_route"
-                       onMouseEntered="#orange4_routeEntered" onMouseExited="#orange4_routeExited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/orange4_route.png"/>
-            </ImageView>
-            <ImageView translateX="673" translateY="-115" fx:id="yellow3_route"
-                       onMouseEntered="#yellow3_routeEntered" onMouseExited="#yellow3_routeExited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/yellow3_route.png"/>
-            </ImageView>
-            <ImageView translateX="731" translateY="-242" fx:id="red_place" onMouseEntered="#red_placeEntered"
-                       onMouseExited="#red_placeExited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/red_place.png"/>
-            </ImageView>
-            <ImageView translateX="421" translateY="-162" fx:id="red_place2" onMouseEntered="#red_place2Entered"
-                       onMouseExited="#red_place2Exited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/red_place.png"/>
-            </ImageView>
-            <ImageView translateX="477" translateY="-140" fx:id="white_route"
-                       onMouseEntered="#white_routeEntered" onMouseExited="#white_routeExited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/white_route.png"/>
-            </ImageView>
-            <ImageView translateX="610" translateY="-192" fx:id="green2_route"
-                       onMouseEntered="#green2_routeEntered" onMouseExited="#green2_routeExited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/green2_route.png"/>
-            </ImageView>
-            <ImageView translateX="410" translateY="-192" fx:id="red_route2" onMouseEntered="#red_route2Entered"
-                       onMouseExited="#red_route2Exited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/red_route2.png"/>
-            </ImageView>
-            <ImageView translateX="456" translateY="-461" fx:id="yellow_route2"
-                       onMouseEntered="#yellow_route2Entered" onMouseExited="#yellow_route2Exited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/yellow_route2.png"/>
-            </ImageView>
-            <ImageView translateX="458" translateY="-513" fx:id="purple_route"
-                       onMouseEntered="#purple_routeEntered" onMouseExited="#purple_routeExited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/purple_route.png"/>
-            </ImageView>
-            <ImageView translateX="586" translateY="-543" fx:id="white2_route"
-                       onMouseEntered="#white2_routeEntered" onMouseExited="#white2_routeExited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/white2_route.png"/>
-            </ImageView>
-            <ImageView translateX="588" translateY="-557" fx:id="red_route3" onMouseEntered="#red_route3Entered"
-                       onMouseExited="#red_route3Exited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/red_route3.png"/>
-            </ImageView>
-            <ImageView translateX="260" translateY="-597" fx:id="Purple_route2"
-                       onMouseEntered="#Purple_route2Entered" onMouseExited="#Purple_route2Exited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/Purple_route2.png"/>
-            </ImageView>
-            <ImageView translateX="245" translateY="-662" fx:id="black_route2"
-                       onMouseEntered="#black_route2Entered" onMouseExited="#black_route2Exited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/black_route2.png"/>
-            </ImageView>
-            <ImageView translateX="224" translateY="-814" fx:id="yellow_route4"
-                       onMouseEntered="#yellow_route4Entered" onMouseExited="#yellow_route4Exited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/yellow_route4.png"/>
-            </ImageView>
-            <ImageView translateX="210" translateY="-880" fx:id="green_route3"
-                       onMouseEntered="#green_route3Entered" onMouseExited="#green_route3Exited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/green_route3.png"/>
-            </ImageView>
-            <ImageView translateX="90" translateY="-808" fx:id="white_route3"
-                       onMouseEntered="#white_route3Entered" onMouseExited="#white_route3Exited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/white2_route.png"/>
-            </ImageView>
-            <ImageView translateX="92" translateY="-823" fx:id="yellow_route5"
-                       onMouseEntered="#yellow_route5Entered" onMouseExited="#yellow_route5Exited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/yellow_route5.png"/>
-            </ImageView>
-            <ImageView translateX="552" translateY="-865" fx:id="black_route3"
-                       onMouseEntered="#black_route3Entered" onMouseExited="#black_route3Exited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/black_route3.png"/>
-            </ImageView>
-            <ImageView translateX="700" translateY="-1060" fx:id="orange_route5"
-                       onMouseEntered="#orange_route5Entered" onMouseExited="#orange_route5Exited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/orange_route5.png"/>
-            </ImageView>
-            <ImageView translateX="715" translateY="-1147" fx:id="black_route4"
-                       onMouseEntered="#black_route4Entered" onMouseExited="#black_route4Exited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/black_route4.png"/>
-            </ImageView>
-            <ImageView translateX="473" translateY="-958" fx:id="yellow_route6"
-                       onMouseEntered="#yellow_route6Entered" onMouseExited="#yellow_route6Exited"
-                       style="-fx-effect:dropshadow(gaussian, black, 1, 4, 0, 0);">
-                <Image url="/Routes/yellow_route6.png"/>
-            </ImageView>
-        </VBox>
-    </center>
-    <bottom>
-    </bottom>
+    <HBox onMouseEntered="#orangeroadEntered" onMouseExited="#orangeroadExited" layoutX="273" layoutY="262"
+          maxHeight="15" maxWidth="250" style="-fx-spacing: 3">
+        <HBox fx:id="title1" maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
+              style="-fx-background-color: orange; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+        <HBox fx:id="title2" maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
+              style="-fx-background-color: orange; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+        <HBox fx:id="title3" maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
+              style="-fx-background-color: orange; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+        <HBox fx:id="title4" maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
+              style="-fx-background-color: orange; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+    </HBox>
+    <HBox rotate="11" layoutX="462" layoutY="265" maxHeight="15" maxWidth="250" style="-fx-spacing: 3">
+        <HBox maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
+              style="-fx-background-color: purple; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+        <HBox maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
+              style="-fx-background-color: purple; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+        <HBox maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
+              style="-fx-background-color: purple; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+    </HBox>
+    <HBox rotate="11" layoutX="460" layoutY="274" maxHeight="15" maxWidth="250" style="-fx-spacing: 3">
+        <HBox maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
+              style="-fx-background-color: yellow; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+        <HBox maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
+              style="-fx-background-color: yellow; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+        <HBox maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
+              style="-fx-background-color: yellow; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+    </HBox>
 </BorderPane>
