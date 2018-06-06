@@ -97,4 +97,11 @@
               style="-fx-background-color: yellow; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
         </HBox>
     </HBox>
+
+    <HBox rotate="1" layoutX="422" layoutY="421" maxHeight="15" maxWidth="250" style="-fx-spacing: 3">
+        <HBox maxHeight="15" minHeight="10" minWidth="35" maxWidth="35"
+              style="-fx-background-color: red; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+    </HBox>
+
 </BorderPane>
