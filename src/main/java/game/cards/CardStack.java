@@ -23,6 +23,7 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
      *
      * @return a stack containing
      */
+
     static CardStack CreateTrainCardStack() {
         CardStack stack = new CardStack();
         stack.generateTrainCards();

@@ -4,6 +4,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -33,7 +34,6 @@ public class MainMenuOptionController implements Initializable {
         Media backgroundMusic = new Media(getClass().getResource("/sound/background.mp3").toString());
         player = new MediaPlayer(backgroundMusic);
         player.volumeProperty().bind(optionVolumeMusicSlider.valueProperty());
-        optionVolumeMusicSlider.setCursor(Cursor.HAND);
         player.setCycleCount(MediaPlayer.INDEFINITE);
         player.play();
     }
@@ -55,6 +55,12 @@ public class MainMenuOptionController implements Initializable {
         playerFX.setVolume(0.3);
         playerFX.volumeProperty().bind(optionVolumeFXSlider.valueProperty());
 
+    }
+
+    public void checkBoxCursorChanger(MouseEvent mouseEvent){
+
+        CheckBox checkbox = (CheckBox) mouseEvent.getSource();
+        checkbox.setCursor(Cursor.HAND);
     }
 
 }
