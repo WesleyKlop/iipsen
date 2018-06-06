@@ -11,7 +11,7 @@ import java.rmi.RemoteException;
  */
 public interface GameStoreClient extends Remote, Serializable {
 
-    void onGameStoreReceived(GameStore newState) throws RemoteException;
+    void onGameStoreReceived(GameStore newStore) throws RemoteException;
 
     void sendAction(Action action) throws RemoteException;
 
