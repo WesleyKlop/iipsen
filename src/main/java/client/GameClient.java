@@ -60,26 +60,28 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
     }
 
     @Override
-    public void onGameStoreReceived(GameStore newState) {
+    public void onGameStoreReceived(GameStore newStore) {
         Log.debug("Received new gamestore");
 
         // Process previous actions' response
         if (lastAction != null) {
-            processLastActionResponse(newState);
+            processLastActionResponse();
             lastAction = null;
         }
 
         // finally
-        storeObservable.setValue(newState);
+        storeObservable.setValue(newStore);
     }
 
-    private void processLastActionResponse(GameStore newState) {
+    private void processLastActionResponse() {
+        var store = storeObservable.getValue();
+
         if (lastAction instanceof AddPlayerAction) {
-            var players = newState.getPlayers();
+            var players = store.getPlayers();
             player = players.get(players.size() - 1);
             sceneListener.onSceneChange(GameState.LOBBY);
         } else if (lastAction instanceof ChangeStateAction) {
-            sceneListener.onSceneChange(newState.getGameState());
+            sceneListener.onSceneChange(store.getGameState());
         }
     }
 
