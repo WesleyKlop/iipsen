@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author wesley
  */
 public class Server extends UnicastRemoteObject implements GameStoreServer {
     private static final Logger Log = LogManager.getLogger(Server.class);

@@ -5,7 +5,6 @@ import javafx.scene.layout.VBox;
 /**
  * UI pane for holding (Random)CardButtons
  *
- * @author Wesley
  */
 public class CardsPane extends VBox {
 

@@ -5,7 +5,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
- * @author Wesley
  * CardButton
  */
 public class CardButton extends Button {

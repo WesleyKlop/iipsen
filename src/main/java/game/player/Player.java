@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author wesley
  */
 public class Player implements Serializable {
     private final String playerName;

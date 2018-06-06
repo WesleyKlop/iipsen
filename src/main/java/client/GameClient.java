@@ -20,7 +20,6 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 /**
- * @author wesley
  */
 public class GameClient extends UnicastRemoteObject implements GameStoreClient {
     private transient static final Logger Log = LogManager.getLogger(GameClient.class);
@@ -80,7 +79,7 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
             player = players.get(players.size() - 1);
             sceneListener.onSceneChange(GameState.LOBBY);
         } else if (lastAction instanceof ChangeStateAction) {
-            sceneListener.onSceneChange(newState.getCurrentState());
+            sceneListener.onSceneChange(newState.getGameState());
         }
     }
 
