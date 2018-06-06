@@ -63,10 +63,4 @@ public class MainMenuOptionController implements Initializable {
         checkbox.setCursor(Cursor.HAND);
     }
 
-    public void checkBoxCursorChanger(MouseEvent mouseEvent){
-
-        CheckBox checkbox = (CheckBox) mouseEvent.getSource();
-        checkbox.setCursor(Cursor.HAND);
-    }
-
 }

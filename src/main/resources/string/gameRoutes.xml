@@ -1,0 +1,135 @@
+<?xml version="1.0" ?>
+
+<Routes>
+    <route id="1">
+        <location1>STAVANGER</location1>
+        <location2>KRISTIANSAND</location2>
+        <length>2</length>
+        <locomotive>0</locomotive>
+        <cartType>CART_GREEN</cartType>
+        <type>tunnel</type>
+        <baseX>130</baseX>
+        <baseY>82</baseY>
+        <baseRot>3</baseRot>
+        <cart x="0" y="0" rot="0"/>
+        <cart x="0" y="0" rot="0"/>
+    </route>
+
+    <route id="2">
+        <location1>STAVANGER</location1>
+        <location2>KRISTIANSAND</location2>
+        <length>3</length>
+        <locomotive>1</locomotive>
+        <cartType>CART_ORANGE</cartType>
+        <type>ferry</type>
+        <baseX>85</baseX>
+        <baseY>60</baseY>
+        <baseRot>3</baseRot>
+        <cart x="10" y="0" rot="50"/>
+        <cart x="0" y="0" rot="0"/>
+        <cart x="15" y="-4" rot="-55"/>
+    </route>
+
+    <route id="3">
+        <location1>STAVANGER</location1>
+        <location2>BERGEN</location2>
+        <length>2</length>
+        <locomotive>1</locomotive>
+        <cartType>CART_PURPLE</cartType>
+        <type>ferry</type>
+        <baseX>157</baseX>
+        <baseY>10</baseY>
+        <baseRot>55</baseRot>
+        <cart x="10" y="-5" rot="30"/>
+        <cart x="0" y="0" rot="0"/>
+    </route>
+
+    <route id="4">
+        <location1>OSLO</location1>
+        <location2>BERGEN</location2>
+        <length>4</length>
+        <locomotive>0</locomotive>
+        <cartType>CART_RED</cartType>
+        <type>tunnel</type>
+        <baseX>237</baseX>
+        <baseY>45</baseY>
+        <baseRot>0</baseRot>
+        <cart x="-15" y="3" rot="-40"/>
+        <cart x="0" y="0" rot="-10"/>
+        <cart x="0" y="0" rot="10"/>
+        <cart x="-15" y="0" rot="40"/>
+    </route>
+
+    <route id="5">
+        <location1>OSLO</location1>
+        <location2>BERGEN</location2>
+        <length>4</length>
+        <locomotive>0</locomotive>
+        <cartType>CART_BLUE</cartType>
+        <type>tunnel</type>
+        <baseX>253</baseX>
+        <baseY>45</baseY>
+        <baseRot>0</baseRot>
+        <cart x="-15" y="0" rot="-40"/>
+        <cart x="0" y="-2" rot="-10"/>
+        <cart x="0" y="2" rot="10"/>
+        <cart x="-15" y="6" rot="40"/>
+    </route>
+
+    <route id="6">
+        <location1>OSLO</location1>
+        <location2>KRISTIANSAND</location2>
+        <length>2</length>
+        <locomotive>0</locomotive>
+        <cartType>CART_ANY</cartType>
+        <type>normal</type>
+        <baseX>167</baseX>
+        <baseY>125</baseY>
+        <baseRot>98</baseRot>
+        <cart x="10" y="-4" rot="22"/>
+        <cart x="0" y="0" rot="0"/>
+    </route>
+
+    <route id="7">
+        <location1>ALBORG</location1>
+        <location2>KRISTIANSAND</location2>
+        <length>2</length>
+        <locomotive>1</locomotive>
+        <cartType>CART_RED</cartType>
+        <type>ferry</type>
+        <baseX>75</baseX>
+        <baseY>145</baseY>
+        <baseRot>40</baseRot>
+        <cart x="5" y="-5" rot="22"/>
+        <cart x="0" y="0" rot="-5"/>
+    </route>
+
+    <route id="8">
+        <location1>ALBORG</location1>
+        <location2>OSLO</location2>
+        <length>3</length>
+        <locomotive>1</locomotive>
+        <cartType>CART_WHITE</cartType>
+        <type>ferry</type>
+        <baseX>131</baseX>
+        <baseY>150</baseY>
+        <baseRot>-99</baseRot>
+        <cart x="0" y="-5" rot="0"/>
+        <cart x="0" y="0" rot="0"/>
+        <cart x="0" y="5" rot="0"/>
+    </route>
+
+    <route id="9">
+        <location1>GOTEBORG</location1>
+        <location2>OSLO</location2>
+        <length>2</length>
+        <locomotive>0</locomotive>
+        <cartType>CART_ORANGE</cartType>
+        <type>normal</type>
+        <baseX>168</baseX>
+        <baseY>190</baseY>
+        <baseRot>-127</baseRot>
+        <cart x="0" y="-5" rot="0"/>
+        <cart x="0" y="0" rot="0"/>
+    </route>
+</Routes>

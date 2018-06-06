@@ -40,6 +40,7 @@ public class MainMenuController implements Initializable {
 
     public MediaPlayer player;
 
+
     @FXML
     private MainMenuPlayController VBoxPlayController;
     @FXML
@@ -118,7 +119,7 @@ public class MainMenuController implements Initializable {
      */
     public void openMenuSequence(MouseEvent mouseEvent) {
 
-        VBoxOptionController.playFX(VBoxOptionController.isMute);
+        VBoxOptionController.playFX();
         Label label = (Label) mouseEvent.getSource();
         VBox menu = getMenu(label);
         int disabledMenu = getDisabledInt();
