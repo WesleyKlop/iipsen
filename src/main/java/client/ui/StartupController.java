@@ -3,6 +3,7 @@ package client.ui;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -35,8 +36,6 @@ public class StartupController implements Initializable {
         MainMenuPaneController.getLoadController().loadLevelLabel.setOnMouseClicked(e -> openLoadMenu());
         preferencesPaneController.backButton.setOnMouseClicked(e -> moveMenuRight());
         lobbyPaneController.quitButtonLabel.setOnMouseClicked(e -> moveMenuUp());
-        moveMenuLeft();
-        moveMenuDown();
     }
 
     public void widthUpImageView(MouseEvent mouseEvent) {
@@ -44,6 +43,7 @@ public class StartupController implements Initializable {
         source.setFitWidth(source.getFitWidth() + 14);
         source.setLayoutX(source.getLayoutX() - 7);
         source.setLayoutY(source.getLayoutY() - 7);
+        source.setCursor(Cursor.HAND);
     }
     public void widthDownImageView(MouseEvent mouseEvent) {
         ImageView source = (ImageView) mouseEvent.getSource();

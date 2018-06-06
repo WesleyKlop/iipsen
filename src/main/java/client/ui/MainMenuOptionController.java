@@ -1,6 +1,7 @@
 package client.ui;
 
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
