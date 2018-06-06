@@ -107,6 +107,8 @@
         </HBox>
     </HBox>
 
+
+
     <HBox rotate="1" layoutX="422" layoutY="421" maxHeight="15" maxWidth="250" style="-fx-spacing: 3">
         <HBox maxHeight="15" minHeight="10" minWidth="35" maxWidth="35"
               style="-fx-background-color: red; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
@@ -118,5 +120,50 @@
               style="-fx-background-color:blue; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
         </HBox>
     </HBox>
+
+    <HBox rotate="68" layoutX="225" layoutY="202" maxHeight="15" maxWidth="250" style="-fx-spacing: 3">
+    <HBox maxHeight="15" minHeight="10" minWidth="30" maxWidth="30"
+          style="-fx-background-color: green; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+    </HBox>
+    <HBox maxHeight="15" minHeight="10" minWidth="30" maxWidth="30"
+          style="-fx-background-color: green; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+    </HBox>
+</HBox>
+
+    <HBox rotate="68" layoutX="273" layoutY="275" maxHeight="15" maxWidth="250" style="-fx-spacing: 3">
+        <HBox maxHeight="15" minHeight="10" minWidth="30" maxWidth="30"
+              style="-fx-background-color: purple; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+        <HBox maxHeight="15" minHeight="10" minWidth="30" maxWidth="30"
+              style="-fx-background-color: purple; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+    </HBox>
+
+    <HBox rotate="68" layoutX="259" layoutY="279" maxHeight="15" maxWidth="250" style="-fx-spacing: 3">
+        <HBox maxHeight="15" minHeight="10" minWidth="30" maxWidth="30"
+              style="-fx-background-color: black; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+        <HBox maxHeight="15" minHeight="10" minWidth="30" maxWidth="30"
+              style="-fx-background-color: black; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+    </HBox>
+
+    <HBox rotate="-25" layoutX="310" layoutY="330" maxHeight="15" maxWidth="250" style="-fx-spacing: 3">
+        <HBox maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
+              style="-fx-background-color: grey; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+        <HBox maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
+              style="-fx-background-color: grey; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+        <HBox maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
+              style="-fx-background-color: grey; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+        <HBox maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
+              style="-fx-background-color: grey; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+    </HBox>
+
+
+
 
 </BorderPane>
