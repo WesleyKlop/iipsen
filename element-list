@@ -1,5 +1,6 @@
 client
 client.ui
+client.ui.components
 game
 game.actions
 game.cards
