@@ -74,4 +74,13 @@
         </HBox>
     </HBox>
 
+    <HBox rotate="67" layoutX="240" layoutY="195" maxHeight="15" maxWidth="250" style="-fx-spacing: 3">
+        <HBox maxHeight="15" minHeight="10" minWidth="30" maxWidth="30"
+              style="-fx-background-color: yellow; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+        <HBox maxHeight="15" minHeight="10" minWidth="30" maxWidth="30"
+              style="-fx-background-color: yellow; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+    </HBox>
+
 </BorderPane>
