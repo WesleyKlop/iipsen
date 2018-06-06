@@ -41,17 +41,17 @@ public class PlayscreenController implements Initializable {
     private HBox title4;
 
     public void orangeroadEntered(MouseEvent event) {
-        title1.setStyle("-fx-background-color: white; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;");
-        title2.setStyle("-fx-background-color: white; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;");
-        title3.setStyle("-fx-background-color: white; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;");
-        title4.setStyle("-fx-background-color: white; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;");
+        title1.setStyle("-fx-background-color: orange; -fx-border-color:white; -fx-border-width: 1; -fx-border-style: solid;");
+        title2.setStyle("-fx-background-color: orange; -fx-border-color:white; -fx-border-width: 1; -fx-border-style: solid;");
+        title3.setStyle("-fx-background-color: orange; -fx-border-color:white; -fx-border-width: 1; -fx-border-style: solid;");
+        title4.setStyle("-fx-background-color: orange; -fx-border-color:white; -fx-border-width: 1; -fx-border-style: solid;");
     }
 
     public void orangeroadExited(MouseEvent event) {
-        title1.setStyle("-fx-background-color: black; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;");
-        title2.setStyle("-fx-background-color: black; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;");
-        title3.setStyle("-fx-background-color: black; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;");
-        title4.setStyle("-fx-background-color: black; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;");
+        title1.setStyle("-fx-background-color: orange; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;");
+        title2.setStyle("-fx-background-color: orange; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;");
+        title3.setStyle("-fx-background-color: orange; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;");
+        title4.setStyle("-fx-background-color: orange; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;");
     }
 
 
