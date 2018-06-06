@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.Pane?>
 <Pane xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
@@ -10,9 +9,9 @@
       fx:id="rootPane">
 
     <Pane fx:id="allPanes">
+        <fx:include source="layout_lobby.fxml" fx:id="lobbyPane" layoutY="1080" layoutX="1920"/>
     <fx:include source="layout_main_menu.fxml" fx:id="MainMenuPane" disable="false"/>
     <fx:include source="layout_preferences.fxml" fx:id="preferencesPane" layoutX="1920"/>
-        <fx:include source="layout_lobby.fxml" fx:id="lobbyPane" layoutY="1080" layoutX="1920"/>
     </Pane>
     <ImageView fitWidth="50" preserveRatio="true" layoutX="1860" layoutY="10" onMouseEntered="#widthUpImageView"
                onMouseExited="#widthDownImageView" onMouseClicked="#quitGame">
@@ -21,4 +20,18 @@
         </image>
     </ImageView>
 
+
+    <ImageView fitWidth="50" preserveRatio="true" layoutX="1860" layoutY="1090" onMouseEntered="#widthUpImageView"
+               onMouseExited="#widthDownImageView" onMouseClicked="#openOptionsVertical">
+        <image>
+            <Image url="/images/OptionsButtonImage.png"/>
+        </image>
+    </ImageView>
+
+    <ImageView fitWidth="50" preserveRatio="true" layoutX="1800" layoutY="1090" onMouseEntered="#widthUpImageView"
+               onMouseExited="#widthDownImageView" onMouseClicked="#openRulesVertical">
+        <image>
+            <Image url="/images/RulesButtonImage.png"/>
+        </image>
+    </ImageView>
 </Pane>

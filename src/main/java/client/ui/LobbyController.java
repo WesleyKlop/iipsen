@@ -5,7 +5,6 @@ import game.GameStoreProvider;
 import game.actions.ChangeStateAction;
 import game.player.Player;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -26,8 +25,7 @@ public class LobbyController {
     private static final Logger Log = LogManager.getLogger(LobbyController.class);
     @FXML
     public VBox container;
-    public Label startButtonLabel;
-    public Label quitButtonLabel;
+    public Label startButtonLabel, quitButtonLabel;
 
     private MainMenuController mainMenuController = new MainMenuController();
     @FXML
@@ -55,7 +53,7 @@ public class LobbyController {
         });
     }
 
-    public void onStartButtonClicked(ActionEvent actionEvent) throws RemoteException {
+    public void onStartButtonClicked() throws RemoteException {
         var action = new ChangeStateAction(GameState.GAME);
         Log.debug("Changing to GameState.GAME");
         GameStoreProvider.sendAction(action);
@@ -69,11 +67,11 @@ public class LobbyController {
         mainMenuController.hoverExit(mouseEvent);
     }
 
-    public void style(Label label) {
+    private void style(Label label) {
         mainMenuController.style(label);
     }
 
-    public String contrastCalculator(Color color) {
+    private String contrastCalculator(Color color) {
         double brightness = color.getBrightness();
         double hue = color.getHue();
         double saturation = color.getSaturation();
@@ -87,4 +85,5 @@ public class LobbyController {
                 (int) (color.getGreen() * 255),
                 (int) (color.getBlue() * 255));
     }
+
 }
