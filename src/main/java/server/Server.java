@@ -23,7 +23,7 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
     private static final int PORT = 1099;
 
     private List<GameStoreClient> clients = new ArrayList<>();
-    private GameStore currentGameStore = new GameStore();
+    private GameStore gameStore = new GameStore();
 
     public Server() throws RemoteException, MalformedURLException {
         Log.debug("Starting server");
@@ -36,7 +36,7 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
     @Override
     public synchronized void registerObserver(GameStoreClient listener) throws RemoteException {
         clients.add(listener);
-        listener.onConnect(currentGameStore);
+        listener.onConnect(gameStore);
     }
 
     @Override
@@ -45,18 +45,18 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
     }
 
     @Override
-    public synchronized void notifyListeners(GameStore newState) throws RemoteException {
+    public synchronized void notifyListeners() throws RemoteException {
         for (GameStoreClient client : clients) {
-            client.onGameStoreReceived(newState);
+            client.onGameStoreReceived(gameStore);
         }
     }
 
     @Override
     public synchronized void onActionReceived(Action action) {
         try {
-            action.executeAction(currentGameStore);
+            action.executeAction(gameStore);
             Log.debug("Executed action");
-            notifyListeners(currentGameStore);
+            notifyListeners();
             Log.debug("Notified listeners");
         } catch (Exception ex) {
             Log.debug("Server error while executing action");
