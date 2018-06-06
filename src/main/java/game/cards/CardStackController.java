@@ -22,6 +22,9 @@ public class CardStackController {
      * Default amount of carts in a traincardstack
      */
     private static final int DEFAULT_CART_COUNT = 12;
+    /**
+     * Internal cardstack
+     */
     private CardStack stack = new CardStack();
 
     public CardStackController() {
@@ -53,9 +56,8 @@ public class CardStackController {
      * @return a random Card
      */
     public Card getRandomCard() {
-        // I think we should generate a new stack when we are out of game.cards...
         if (stack.isEmpty()) {
-            return null;
+            generateTrainCards();
         }
 
         // Get a random game.cards.CardType from the stack
