@@ -3,6 +3,7 @@ package client.ui;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import org.apache.logging.log4j.LogManager;
@@ -53,6 +54,12 @@ public class MainMenuOptionController implements Initializable {
         playerFX.setMute(isMute);
         playerFX.setVolume(optionVolumeFXSlider.getValue());
         playerFX.play();
+    }
+
+    public void checkBoxCursorChanger(MouseEvent mouseEvent){
+
+        CheckBox checkbox = (CheckBox) mouseEvent.getSource();
+        checkbox.setCursor(Cursor.HAND);
     }
 
 }
