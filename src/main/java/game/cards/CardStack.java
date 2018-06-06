@@ -80,7 +80,7 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
      *
      * @return a random Card
      */
-    Card getRandomCard() {
+    public Card getRandomCard() {
         // I think we should generate a new stack when we are out of game.cards...
         if (this.isEmpty()) {
             return null;

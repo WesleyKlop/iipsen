@@ -6,7 +6,7 @@ package game.cards;
  * Contains CardType
  * TODO: Custom card functionality
  */
-class Card {
+public class Card {
     private final CardType cardType;
     private String path;
 
@@ -24,7 +24,7 @@ class Card {
 //        return "Card{cardType=" + cardType + '}';
 //    }
 
-    String getPath() {
+    public String getPath() {
         return path;
     }
 }

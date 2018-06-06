@@ -1,5 +1,7 @@
-package game.cards;
+package client.ui.components;
 
+import game.cards.Card;
+import game.cards.CardStack;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;

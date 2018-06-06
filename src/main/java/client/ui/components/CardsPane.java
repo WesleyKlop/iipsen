@@ -1,5 +1,6 @@
-package game.cards;
+package client.ui.components;
 
+import game.cards.CardStack;
 import javafx.scene.layout.VBox;
 
 /**
