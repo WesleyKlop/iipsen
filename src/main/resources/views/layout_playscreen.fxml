@@ -3,7 +3,8 @@
 <?import javafx.scene.layout.*?>
 <BorderPane fx:id="bPane" fx:controller="client.ui.PlayscreenController" xmlns:fx="http://javafx.com/fxml"
             prefHeight="555" prefWidth="996">
-    <HBox onMouseEntered="#orangeroadEntered" onMouseExited="#orangeroadExited" layoutX="273" layoutY="262"
+
+    <HBox onMouseEntered="#orangeroadEntered" onMouseExited="#orangeroadExited" rotate="1" layoutX="277" layoutY="262"
           maxHeight="15" maxWidth="250" style="-fx-spacing: 3">
         <HBox fx:id="title1" maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
               style="-fx-background-color: orange; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
@@ -18,7 +19,8 @@
               style="-fx-background-color: orange; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
         </HBox>
     </HBox>
-    <HBox rotate="11" layoutX="462" layoutY="265" maxHeight="15" maxWidth="250" style="-fx-spacing: 3">
+
+    <HBox rotate="11" layoutX="462" layoutY="268" maxHeight="15" maxWidth="250" style="-fx-spacing: 3">
         <HBox maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
               style="-fx-background-color: purple; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
         </HBox>
@@ -29,7 +31,8 @@
               style="-fx-background-color: purple; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
         </HBox>
     </HBox>
-    <HBox rotate="11" layoutX="460" layoutY="274" maxHeight="15" maxWidth="250" style="-fx-spacing: 3">
+
+    <HBox rotate="11" layoutX="460" layoutY="279" maxHeight="15" maxWidth="250" style="-fx-spacing: 3">
         <HBox maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
               style="-fx-background-color: yellow; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
         </HBox>
@@ -40,4 +43,35 @@
               style="-fx-background-color: yellow; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
         </HBox>
     </HBox>
+
+    <HBox rotate="-6" layoutX="587" layoutY="290" maxHeight="15" maxWidth="250" style="-fx-spacing: 3">
+        <HBox maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
+              style="-fx-background-color: white; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+        <HBox maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
+              style="-fx-background-color: white; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+        <HBox maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
+              style="-fx-background-color: white; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+    </HBox>
+
+    <HBox rotate="-6" layoutX="588" layoutY="302" maxHeight="15" maxWidth="250" style="-fx-spacing: 3">
+    <HBox maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
+          style="-fx-background-color: red; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+    </HBox>
+    <HBox maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
+          style="-fx-background-color: red; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+    </HBox>
+    <HBox maxHeight="15" minHeight="10" minWidth="35" maxWidth="50"
+          style="-fx-background-color: red; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+    </HBox>
+</HBox>
+
+    <HBox rotate="80" layoutX="715" layoutY="296" maxHeight="15" maxWidth="250" style="-fx-spacing: 3">
+        <HBox maxHeight="15" minHeight="10" minWidth="30" maxWidth="30"
+              style="-fx-background-color: green; -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+        </HBox>
+    </HBox>
+
 </BorderPane>
