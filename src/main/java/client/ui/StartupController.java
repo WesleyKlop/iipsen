@@ -128,14 +128,14 @@ public class StartupController implements Initializable {
         TranslateTransition verticalAni = new TranslateTransition(Duration.seconds(1), menu);
         verticalAni.setToX(0);
         verticalAni.play();
-        menu.setDisable(false);
+        MainMenuPaneController.switchDisabled(menu, false);
     }
 
     private void openMenuVertical(VBox menu) {
         TranslateTransition verticalAni = new TranslateTransition(Duration.seconds(1), menu);
         verticalAni.setToX(1280);
         verticalAni.play();
-        menu.setDisable(false);
+        MainMenuPaneController.switchDisabled(menu, false);
     }
 
 }

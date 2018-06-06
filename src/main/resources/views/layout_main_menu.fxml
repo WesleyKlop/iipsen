@@ -52,6 +52,6 @@
     <fx:include source="layout_main_menu_options.fxml" fx:id="VBoxOption" alignment="BASELINE_CENTER" layoutY="1080"
                 layoutX="850"/>
     <fx:include source="layout_main_menu_front_images.fxml" fx:id="images" translateY="540"/>
-    <Pane fx:id="snowPaneFront" translateY="600"/>
+    <Pane fx:id="snowPaneFront" translateY="600" prefHeight="480"/>
 
 </Pane>

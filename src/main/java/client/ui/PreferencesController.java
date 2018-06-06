@@ -67,6 +67,10 @@ public class PreferencesController implements Initializable {
             }
         }
 
+        if (name.length() > 20) {
+            allowed = false;
+        }
+
         if (allowed) {
             return allowed;
         } else {

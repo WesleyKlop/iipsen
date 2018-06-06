@@ -57,4 +57,16 @@ public class Route {
     public int getLocomotiveCost() {
         return locomotiveCost;
     }
+
+    public CardType getType() {
+        return color;
+    }
+
+    public int getOwner() {
+        return this.owner;
+    }
+
+    public void setOwner(int newOwner) {
+        owner = newOwner;
+    }
 }

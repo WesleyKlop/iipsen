@@ -251,7 +251,7 @@ public class MainMenuController implements Initializable {
         return VBoxLoadController;
     }
 
-    void switchDisabled(VBox menu) {
-        menu.setDisable(!menu.isDisable());
+    void switchDisabled(VBox menu, boolean disabled) {
+        menu.setDisable(disabled);
     }
 }
