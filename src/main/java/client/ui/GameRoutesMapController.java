@@ -73,7 +73,7 @@ public class GameRoutesMapController {
                 routes.getChildren().add(route);
 
                 String type = routeElement.getElementsByTagName("type").item(0).getTextContent();
-                double strokeWidth = (type.equals("tunnel")) ? 2 : 0.5;
+                double strokeWidth = (type.equals("tunnel")) ? 3 : 1;
                 double arc = (type.equals("ferry")) ? 10 : 0;
 
                 int locomotiveAmount = Integer.decode(routeElement.getElementsByTagName("locomotive").item(0).getTextContent());

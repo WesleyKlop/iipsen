@@ -22,6 +22,7 @@ public class StartupController implements Initializable {
     private static final Logger logger = LogManager.getLogger(StartupController.class);
 
     public Pane rootPane, MainMenuPane, allPanes;
+    public VBox optionsLobby, rulesLobby;
 
     @FXML
     private MainMenuController MainMenuPaneController;
@@ -36,6 +37,8 @@ public class StartupController implements Initializable {
         MainMenuPaneController.getLoadController().loadLevelLabel.setOnMouseClicked(e -> openLoadMenu());
         preferencesPaneController.backButton.setOnMouseClicked(e -> moveMenuRight());
         lobbyPaneController.quitButtonLabel.setOnMouseClicked(e -> moveMenuUp());
+        moveMenuLeft();
+        moveMenuDown();
     }
 
     public void widthUpImageView(MouseEvent mouseEvent) {
@@ -114,28 +117,35 @@ public class StartupController implements Initializable {
 
 
     public void openRulesVertical() {
-        closeMenuVertical(MainMenuPaneController.VBoxOption);
-        openMenuVertical(MainMenuPaneController.VBoxRule);
+        if (rulesLobby.isDisable()) {
+            closeMenuVertical(optionsLobby);
+            openMenuVertical(rulesLobby);
+        } else {
+            closeMenuVertical(rulesLobby);
+        }
     }
 
     public void openOptionsVertical() {
-        closeMenuVertical(MainMenuPaneController.VBoxRule);
-        openMenuVertical(MainMenuPaneController.VBoxOption);
-
+        if (optionsLobby.isDisable()) {
+            closeMenuVertical(rulesLobby);
+            openMenuVertical(optionsLobby);
+        } else {
+            closeMenuVertical(optionsLobby);
+        }
     }
 
     private void closeMenuVertical(VBox menu) {
-        TranslateTransition verticalAni = new TranslateTransition(Duration.seconds(1), menu);
+        menu.setDisable(true);
+        TranslateTransition verticalAni = new TranslateTransition(Duration.millis(450), menu);
         verticalAni.setToX(0);
         verticalAni.play();
-        MainMenuPaneController.switchDisabled(menu, false);
     }
 
     private void openMenuVertical(VBox menu) {
-        TranslateTransition verticalAni = new TranslateTransition(Duration.seconds(1), menu);
-        verticalAni.setToX(1280);
+        menu.setDisable(false);
+        TranslateTransition verticalAni = new TranslateTransition(Duration.millis(450), menu);
+        verticalAni.setToX(-900);
         verticalAni.play();
-        MainMenuPaneController.switchDisabled(menu, false);
     }
 
 }
