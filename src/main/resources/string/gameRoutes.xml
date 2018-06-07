@@ -156,7 +156,7 @@
         <locomotive>0</locomotive>
         <cartType>CART_PURPLE</cartType>
         <type>normal</type>
-        <baseX>510</baseX>
+        <baseX>508</baseX>
         <baseY>235</baseY>
         <baseRot>101</baseRot>
         <cart x="0" y="-5" rot="0"/>
@@ -180,8 +180,8 @@
     </route>
 
     <route id="13">
-        <location1>SUNDSVALL</location1>
-        <location2>UMEA</location2>
+        <location1>UMEA</location1>
+        <location2>BODEN</location2>
         <length>3</length>
         <locomotive>0</locomotive>
         <cartType>CART_WHITE</cartType>
@@ -194,4 +194,59 @@
         <cart x="0" y="5" rot="0"/>
     </route>
 
+    <route id="14">
+        <location1>UMEA</location1>
+        <location2>BODEN</location2>
+        <length>3</length>
+        <locomotive>0</locomotive>
+        <cartType>CART_RED</cartType>
+        <type>normal</type>
+        <baseX>637</baseX>
+        <baseY>255</baseY>
+        <baseRot>83</baseRot>
+        <cart x="0" y="-5" rot="0"/>
+        <cart x="0" y="0" rot="0"/>
+        <cart x="0" y="5" rot="0"/>
+    </route>
+
+    <route id="15">
+        <location1>BODEN</location1>
+        <location2>TORNIO</location2>
+        <length>1</length>
+        <locomotive>0</locomotive>
+        <cartType>CART_GREEN</cartType>
+        <type>normal</type>
+        <baseX>704</baseX>
+        <baseY>297</baseY>
+        <baseRot>173</baseRot>
+        <cart x="0" y="0" rot="0"/>
+    </route>
+
+    <route id="16">
+        <location1>BODEN</location1>
+        <location2>TORNIO</location2>
+        <length>2</length>
+        <locomotive>0</locomotive>
+        <cartType>CART_YELLOW</cartType>
+        <type>normal</type>
+        <baseX>680</baseX>
+        <baseY>380</baseY>
+        <baseRot>173</baseRot>
+        <cart x="0" y="0" rot="0"/>
+        <cart x="0" y="0" rot="0"/>
+    </route>
+
+    <route id="17">
+        <location1>BODEN</location1>
+        <location2>TORNIO</location2>
+        <length>2</length>
+        <locomotive>0</locomotive>
+        <cartType>CART_YELLOW</cartType>
+        <type>normal</type>
+        <baseX>680</baseX>
+        <baseY>380</baseY>
+        <baseRot>173</baseRot>
+        <cart x="0" y="0" rot="0"/>
+        <cart x="0" y="0" rot="0"/>
+    </route>
 </Routes>
