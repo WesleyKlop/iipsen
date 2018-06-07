@@ -223,8 +223,8 @@
     </route>
 
     <route id="16">
-        <location1>BODEN</location1>
-        <location2>TORNIO</location2>
+        <location1>OULU</location1>
+        <location2>KAJAANI</location2>
         <length>2</length>
         <locomotive>0</locomotive>
         <cartType>CART_YELLOW</cartType>
@@ -237,16 +237,29 @@
     </route>
 
     <route id="17">
-        <location1>BODEN</location1>
-        <location2>TORNIO</location2>
+        <location1>LAHTI</location1>
+        <location2>IMATRA</location2>
         <length>2</length>
         <locomotive>0</locomotive>
         <cartType>CART_YELLOW</cartType>
         <type>normal</type>
-        <baseX>680</baseX>
-        <baseY>380</baseY>
-        <baseRot>173</baseRot>
+        <baseX>500</baseX>
+        <baseY>475</baseY>
+        <baseRot>133</baseRot>
         <cart x="0" y="0" rot="0"/>
+        <cart x="0" y="0" rot="0"/>
+    </route>
+
+    <route id="18">
+        <location1>TURKU</location1>
+        <location2>TAMPERE</location2>
+        <length>1</length>
+        <locomotive>0</locomotive>
+        <cartType>CART_RED</cartType>
+        <type>normal</type>
+        <baseX>432</baseX>
+        <baseY>410</baseY>
+        <baseRot>90</baseRot>
         <cart x="0" y="0" rot="0"/>
     </route>
 </Routes>
