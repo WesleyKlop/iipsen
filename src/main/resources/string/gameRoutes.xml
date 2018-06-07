@@ -132,4 +132,20 @@
         <cart x="0" y="-5" rot="0"/>
         <cart x="0" y="0" rot="0"/>
     </route>
+
+    <route id="10">
+        <location1>GOTEBORG</location1>
+        <location2>OSLO</location2>
+        <length>4</length>
+        <locomotive>0</locomotive>
+        <cartType>CART_ORANGE</cartType>
+        <type>normal</type>
+        <baseX>350</baseX>
+        <baseY>207</baseY>
+        <baseRot>90</baseRot>
+        <cart x="0" y="0" rot="0"/>
+        <cart x="0" y="0" rot="0"/>
+        <cart x="0" y="0" rot="0"/>
+        <cart x="0" y="0" rot="0"/>
+    </route>
 </Routes>
