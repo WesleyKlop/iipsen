@@ -35,6 +35,10 @@ public class PreferencesController implements Initializable {
         style(buttons);
     }
 
+    private void style(Label label) {
+        mainMenuController.style(label);
+    }
+
     private void style(HBox hbox) {
         mainMenuController.style(hbox);
     }
@@ -56,27 +60,18 @@ public class PreferencesController implements Initializable {
     }
 
     public boolean checkName() {
-        boolean allowed = false;
         String name = nameField.getText();
         String permitted = "abcdefghijklmnopqrstuvwxyz0123456789";
         for (int i = 0; i < name.length(); i++) {
             for (int j = 0; j < permitted.length(); j++) {
                 if (name.charAt(i) == permitted.charAt(j)) {
-                    allowed = true;
+                    return true;
                 }
             }
         }
 
-        if (name.length() > 20) {
-            allowed = false;
-        }
-
-        if (allowed) {
-            return allowed;
-        } else {
-            nameLabel.setText("Your name must consist of atleast 1 letter of number");
-            return allowed;
-        }
+        nameLabel.setText("Your name must consist of at least 1 letter or number");
+        return false;
     }
 
 

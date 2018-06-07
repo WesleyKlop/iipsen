@@ -1,5 +1,6 @@
-package game.cards;
+package client.ui.components;
 
+import game.cards.CardStackController;
 import javafx.scene.layout.VBox;
 
 /**
@@ -8,7 +9,7 @@ import javafx.scene.layout.VBox;
  */
 public class CardsPane extends VBox {
 
-    public CardsPane(CardStack stack, OnCardSelectListener listener) {
+    public CardsPane(CardStackController stack, OnCardSelectListener listener) {
         RandomCardButton randomCardButton = new RandomCardButton(stack);
         randomCardButton.setOnAction(listener);
 

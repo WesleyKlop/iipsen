@@ -5,6 +5,7 @@ import game.GameStoreProvider;
 import game.actions.ChangeStateAction;
 import game.player.Player;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -28,12 +29,13 @@ public class LobbyController {
     public Label startButtonLabel, quitButtonLabel;
 
     private MainMenuController mainMenuController = new MainMenuController();
+
     @FXML
     public void initialize() {
         style(startButtonLabel);
         style(quitButtonLabel);
         GameStoreProvider.getInstance().subscribe(gameState -> {
-            Log.debug("List changed");
+            Log.debug("List changed, new size: {}", gameState.getPlayers().size());
             // TODO: This could be optimized
             // Maybe compare array size and add/remove based on that
             Platform.runLater(() -> {
@@ -53,7 +55,8 @@ public class LobbyController {
         });
     }
 
-    public void onStartButtonClicked() throws RemoteException {
+    public void onStartButtonClicked(MouseEvent mouseEvent) throws RemoteException {
+        Log.debug("Starting game");
         var action = new ChangeStateAction(GameState.GAME);
         Log.debug("Changing to GameState.GAME");
         GameStoreProvider.sendAction(action);
@@ -85,5 +88,4 @@ public class LobbyController {
                 (int) (color.getGreen() * 255),
                 (int) (color.getBlue() * 255));
     }
-
 }

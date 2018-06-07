@@ -25,7 +25,7 @@ public class Card {
 //        return "Card{cardType=" + cardType + '}';
 //    }
 
-    String getPath() {
+    public String getPath() {
         return path;
     }
 }

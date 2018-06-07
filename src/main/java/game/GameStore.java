@@ -1,7 +1,7 @@
 package game;
 
+import game.cards.CardStackController;
 import game.player.Player;
-import game.routecards.LocationStore;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.List;
 public class GameStore implements Serializable {
     private GameState gameState = GameState.INIT;
     private List<Player> players = new ArrayList<>();
-    private LocationStore locationStore = new LocationStore();
+    private CardStackController cardStackController = new CardStackController();
 
     public GameStore() {
     }
@@ -25,10 +25,6 @@ public class GameStore implements Serializable {
         return gameState;
     }
 
-    public LocationStore getLocationStore() {
-        return locationStore;
-    }
-
     public void addPlayer(Player player) {
         players.add(player);
         // Calling setId after adding makes the player id start at 1
@@ -37,6 +33,10 @@ public class GameStore implements Serializable {
 
     public void setGameState(GameState newState) {
         gameState = newState;
+    }
+
+    public CardStackController getCardStackController() {
+        return cardStackController;
     }
     //TODO
 }
