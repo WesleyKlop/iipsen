@@ -1,5 +1,6 @@
-package game.cards;
+package client.ui.components;
 
+import game.cards.Card;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

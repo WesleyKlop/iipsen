@@ -1,5 +1,7 @@
-package game.cards;
+package client.ui.components;
 
+import game.cards.Card;
+import game.cards.CardStackController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
@@ -12,14 +14,14 @@ import javafx.scene.image.ImageView;
  * @see CardButton
  */
 public class RandomCardButton extends CardButton {
-    private CardStack stack;
+    private CardStackController stack;
 
     /**
      * Creates a RandomCardButton
      *
      * @param stack the stack to pull game.cards from
      */
-    RandomCardButton(CardStack stack) {
+    RandomCardButton(CardStackController stack) {
         this.stack = stack;
         super.setOnAction((EventHandler<ActionEvent>) e -> listener.onCardSelected(this));
 

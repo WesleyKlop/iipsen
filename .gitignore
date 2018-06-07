@@ -12,6 +12,3 @@ out/
 build/
 !gradle-wrapper.jar
 lib/
-
-# Docs folder, should be commited to gh-pages branch
-docs/
