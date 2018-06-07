@@ -1,5 +1,6 @@
 package client.ui;
 
+import client.MediaController;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
@@ -16,7 +17,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
@@ -32,14 +32,10 @@ import java.util.ResourceBundle;
 public class MainMenuController implements Initializable {
 
     public Pane rootPane;
-
     public Label playLabel, loadLabel, ruleLabel, optionLabel, quitLabel;
     public VBox VBoxMain, VBoxPlay, VBoxLoad, VBoxRule, VBoxOption;
     public Pane snowPane, snowPaneFront;
     public ImageView gear1, gear2, gear3;
-
-    public MediaPlayer player;
-
 
     @FXML
     private MainMenuPlayController VBoxPlayController;
@@ -58,7 +54,7 @@ public class MainMenuController implements Initializable {
         rotateClock(gear1);
         rotateCounterClock(gear2);
         rotateClock(gear3);
-
+        MediaController.playMusic();
     }
 
     private void rotateClock(ImageView image) {
@@ -118,8 +114,7 @@ public class MainMenuController implements Initializable {
      * @param mouseEvent Label source
      */
     public void openMenuSequence(MouseEvent mouseEvent) {
-
-        VBoxOptionController.playFX();
+        MediaController.playClickSound();
         Label label = (Label) mouseEvent.getSource();
         VBox menu = getMenu(label);
         int disabledMenu = getDisabledInt();
@@ -132,7 +127,7 @@ public class MainMenuController implements Initializable {
      * Opens menu, disables opened menu
      *
      * @param label Label source
-     * @param menu  Menu to be opened
+     * @param menu Menu to be opened
      */
     private void openMenu(Label label, VBox menu) {
         label.setDisable(true);

@@ -17,18 +17,14 @@ import javafx.scene.layout.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- *
- * @web http://java-buddy.blogspot.com/
- */
-public class PlayscreenController implements Initializable {
 
+public class PlayscreenController implements Initializable {
 
 
     @FXML
     private BackgroundImage myBI = new BackgroundImage(new Image("/images/Background.png", 996, 555, false, true),
-            BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-            BackgroundSize.DEFAULT);
+        BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+        BackgroundSize.DEFAULT);
     @FXML
     private BorderPane bPane;
     @FXML

@@ -16,16 +16,13 @@ import javafx.scene.layout.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * @web http://java-buddy.blogspot.com/
- */
 public class Mainplaycontroller implements Initializable {
 
 
     @FXML
     private BackgroundImage myBI = new BackgroundImage(new Image("/Routes/Background2.png", 1280, 720, false, true),
-            BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-            BackgroundSize.DEFAULT);
+        BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+        BackgroundSize.DEFAULT);
     @FXML
     private BorderPane bPane;
 

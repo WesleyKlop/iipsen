@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class mainplayvieuw extends Application {
+public class MainPlayView extends Application {
 
     FXMLLoader loader = new FXMLLoader();
 

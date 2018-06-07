@@ -22,6 +22,7 @@ public class StartupController implements Initializable {
     private static final Logger logger = LogManager.getLogger(StartupController.class);
 
     public Pane rootPane, MainMenuPane, allPanes;
+    public VBox optionsLobby, rulesLobby;
 
     @FXML
     private MainMenuController MainMenuPaneController;
@@ -45,6 +46,7 @@ public class StartupController implements Initializable {
         source.setLayoutY(source.getLayoutY() - 7);
         source.setCursor(Cursor.HAND);
     }
+
     public void widthDownImageView(MouseEvent mouseEvent) {
         ImageView source = (ImageView) mouseEvent.getSource();
         source.setFitWidth(source.getFitWidth() - 14);
@@ -66,6 +68,7 @@ public class StartupController implements Initializable {
         preferencesPaneController.buttons.getChildren().remove(preferencesPaneController.joinButton);
         moveMenuLeft();
     }
+
     private void switchMenuJoin() {
         try {
             preferencesPaneController.buttons.getChildren().add(preferencesPaneController.joinButton);
@@ -76,12 +79,14 @@ public class StartupController implements Initializable {
         preferencesPaneController.buttons.getChildren().remove(preferencesPaneController.createButton);
         moveMenuLeft();
     }
+
     private void moveMenuLeft() {
         TranslateTransition menuAni = new TranslateTransition(Duration.seconds(1), allPanes);
         menuAni.setToX(-1920);
         menuAni.play();
         menuAni.setOnFinished(e -> MainMenuPane.setDisable(true));
     }
+
     private void moveMenuRight() {
         preferencesPaneController.ipBox.getChildren().removeAll(preferencesPaneController.createButton, preferencesPaneController.joinButton);
         TranslateTransition menuAni = new TranslateTransition(Duration.seconds(1), allPanes);
@@ -114,28 +119,35 @@ public class StartupController implements Initializable {
 
 
     public void openRulesVertical() {
-        closeMenuVertical(MainMenuPaneController.VBoxOption);
-        openMenuVertical(MainMenuPaneController.VBoxRule);
+        if (rulesLobby.isDisable()) {
+            closeMenuVertical(optionsLobby);
+            openMenuVertical(rulesLobby);
+        } else {
+            closeMenuVertical(rulesLobby);
+        }
     }
 
     public void openOptionsVertical() {
-        closeMenuVertical(MainMenuPaneController.VBoxRule);
-        openMenuVertical(MainMenuPaneController.VBoxOption);
-
+        if (optionsLobby.isDisable()) {
+            closeMenuVertical(rulesLobby);
+            openMenuVertical(optionsLobby);
+        } else {
+            closeMenuVertical(optionsLobby);
+        }
     }
 
     private void closeMenuVertical(VBox menu) {
-        TranslateTransition verticalAni = new TranslateTransition(Duration.seconds(1), menu);
+        menu.setDisable(true);
+        TranslateTransition verticalAni = new TranslateTransition(Duration.millis(450), menu);
         verticalAni.setToX(0);
         verticalAni.play();
-        MainMenuPaneController.switchDisabled(menu, false);
     }
 
     private void openMenuVertical(VBox menu) {
-        TranslateTransition verticalAni = new TranslateTransition(Duration.seconds(1), menu);
-        verticalAni.setToX(1280);
+        menu.setDisable(false);
+        TranslateTransition verticalAni = new TranslateTransition(Duration.millis(450), menu);
+        verticalAni.setToX(-900);
         verticalAni.play();
-        MainMenuPaneController.switchDisabled(menu, false);
     }
 
 }

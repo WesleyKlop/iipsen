@@ -57,9 +57,9 @@ public class GameRoutesMapController {
 
                 NodeList nCartList = routeElement.getElementsByTagName("cart");
 
-                int routeX = Integer.decode(routeElement.getElementsByTagName("baseX").item(0).getTextContent());
-                int routeY = Integer.decode(routeElement.getElementsByTagName("baseY").item(0).getTextContent());
-                int baseRot = Integer.decode(routeElement.getElementsByTagName("baseRot").item(0).getTextContent());
+                int routeX = Integer.parseInt(routeElement.getElementsByTagName("baseX").item(0).getTextContent());
+                int routeY = Integer.parseInt(routeElement.getElementsByTagName("baseY").item(0).getTextContent());
+                int baseRot = Integer.parseInt(routeElement.getElementsByTagName("baseRot").item(0).getTextContent());
                 String id = routeElement.getAttribute("id");
 
                 VBox route = new VBox();
@@ -69,8 +69,12 @@ public class GameRoutesMapController {
                 route.setRotate(baseRot);
                 route.setSpacing(CART_SPACING);
                 route.setAlignment(Pos.CENTER);
+                route.setPickOnBounds(false);
                 routes.getChildren().add(route);
-                route.setOnMouseClicked(this::soutRouteInformation);
+
+                String type = routeElement.getElementsByTagName("type").item(0).getTextContent();
+                double strokeWidth = (type.equals("tunnel")) ? 3 : 1;
+                double arc = (type.equals("ferry")) ? 10 : 0;
 
                 int locomotiveAmount = Integer.decode(routeElement.getElementsByTagName("locomotive").item(0).getTextContent());
 
@@ -95,8 +99,15 @@ public class GameRoutesMapController {
                     cart.setRotate(rot);
                     cart.setFill(routeColor);
                     cart.setStroke(Color.BLACK);
-                    cart.setStrokeWidth(0.5);
+                    cart.setStrokeWidth(strokeWidth);
+                    cart.setArcWidth(arc);
+                    cart.setArcHeight(arc);
+                    cart.setOnMouseClicked(this::soutCartInformation);
+                    cart.setOnMouseEntered(this::cartHoverEnter);
+                    cart.setOnMouseExited(this::cartHoverExit);
+
                     route.getChildren().add(cart);
+
                 }
             }
 
@@ -133,8 +144,13 @@ public class GameRoutesMapController {
         return null;
     }
 
-    private void soutRouteInformation(MouseEvent mouseEvent) {
-        VBox source = (VBox) mouseEvent.getSource();
+    private void soutCartInformation(MouseEvent mouseEvent) {
+        Rectangle source = (Rectangle) mouseEvent.getSource();
+        VBox parent = (VBox) source.getParent();
+        soutRouteInformation(parent);
+    }
+
+    private void soutRouteInformation(VBox source) {
         String id = source.getId();
 
         try {
@@ -164,6 +180,33 @@ public class GameRoutesMapController {
             Log.debug(e.toString());
         }
 
+    }
+
+    private void cartHoverEnter(MouseEvent mouseEvent) {
+        Rectangle source = (Rectangle) mouseEvent.getSource();
+        VBox parent = (VBox) source.getParent();
+        routeHoverEnter(parent);
+    }
+
+    private void cartHoverExit(MouseEvent mouseEvent) {
+        Rectangle source = (Rectangle) mouseEvent.getSource();
+        VBox parent = (VBox) source.getParent();
+        routeHoverExit(parent);
+    }
+
+
+    private void routeHoverEnter(VBox source) {
+        for (int i = 0; i < source.getChildren().size(); i++) {
+            Rectangle child = (Rectangle) source.getChildren().get(i);
+            child.setStroke(Color.WHITE);
+        }
+    }
+
+    private void routeHoverExit(VBox source) {
+        for (int i = 0; i < source.getChildren().size(); i++) {
+            Rectangle child = (Rectangle) source.getChildren().get(i);
+            child.setStroke(Color.BLACK);
+        }
     }
 
 
