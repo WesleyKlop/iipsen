@@ -87,7 +87,6 @@ public class MainMenuController implements Initializable {
         label.setPrefHeight(50);
         label.setPrefWidth(250);
     }
-
     private void style(VBox menu) {
         for (int i = 1; i < menu.getChildren().size(); i++) {
             style((Label) menu.getChildren().get(i));
@@ -105,7 +104,6 @@ public class MainMenuController implements Initializable {
         label.setTextFill(Color.RED);
         label.setCursor(Cursor.HAND);
     }
-
     public void hoverExit(MouseEvent mouseEvent) {
         Label label = (Label) mouseEvent.getSource();
         label.setTextFill(Color.BLACK);
@@ -119,7 +117,6 @@ public class MainMenuController implements Initializable {
      */
     public void openMenuSequence(MouseEvent mouseEvent) {
 
-        VBoxOptionController.playFX();
         Label label = (Label) mouseEvent.getSource();
         VBox menu = getMenu(label);
         int disabledMenu = getDisabledInt();
