@@ -178,4 +178,20 @@
         <cart x="0" y="0" rot="0"/>
         <cart x="0" y="5" rot="0"/>
     </route>
+
+    <route id="13">
+        <location1>SUNDSVALL</location1>
+        <location2>UMEA</location2>
+        <length>3</length>
+        <locomotive>0</locomotive>
+        <cartType>CART_WHITE</cartType>
+        <type>normal</type>
+        <baseX>635</baseX>
+        <baseY>240</baseY>
+        <baseRot>83</baseRot>
+        <cart x="0" y="-5" rot="0"/>
+        <cart x="0" y="0" rot="0"/>
+        <cart x="0" y="5" rot="0"/>
+    </route>
+
 </Routes>
