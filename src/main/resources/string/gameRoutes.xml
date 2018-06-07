@@ -332,4 +332,163 @@
         <cart x="17" y="10" rot="90"/>
         <cart x="0" y="0" rot="0"/>
     </route>
+
+    <route id="23">
+        <location1>TRONDHEIM</location1>
+        <location2>MO_I_RANA</location2>
+        <length>6</length>
+        <locomotive>2</locomotive>
+        <cartType>CART_RED</cartType>
+        <type>ferry</type>
+        <baseX>530</baseX>
+        <baseY>-20</baseY>
+        <baseRot>90</baseRot>
+        <cart x="30" y="-10" rot="45"/>
+        <cart x="12" y="-10" rot="25"/>
+        <cart x="3" y="-5" rot="5"/>
+        <cart x="3" y="3" rot="-5"/>
+        <cart x="12" y="8" rot="-25"/>
+        <cart x="30" y="8" rot="-45"/>
+    </route>
+
+    <route id="24">
+        <location1>NARVIK</location1>
+        <location2>MO_I_RANA</location2>
+        <length>4</length>
+        <locomotive>2</locomotive>
+        <cartType>CART_ORANGE</cartType>
+        <type>ferry</type>
+        <baseX>700</baseX>
+        <baseY>30</baseY>
+        <baseRot>80</baseRot>
+        <cart x="40" y="0" rot="55"/>
+        <cart x="15" y="-10" rot="35"/>
+        <cart x="3" y="-7" rot="5"/>
+        <cart x="7" y="-3" rot="-13"/>
+    </route>
+
+    <route id="25">
+        <location1>TRONDHEIM</location1>
+        <location2>MO_I_RANA</location2>
+        <length>5</length>
+        <locomotive>0</locomotive>
+        <cartType>CART_GREEN</cartType>
+        <type>tunnel</type>
+        <baseX>530</baseX>
+        <baseY>48</baseY>
+        <baseRot>90</baseRot>
+        <cart x="0" y="-10" rot="0"/>
+        <cart x="0" y="-5" rot="0"/>
+        <cart x="0" y="0" rot="0"/>
+        <cart x="0" y="5" rot="0"/>
+        <cart x="0" y="10" rot="0"/>
+    </route>
+
+    <route id="26">
+        <location1>NARVIK</location1>
+        <location2>TROMSO</location2>
+        <length>3</length>
+        <locomotive>1</locomotive>
+        <cartType>CART_YELLOW</cartType>
+        <type>ferry</type>
+        <baseX>840</baseX>
+        <baseY>65</baseY>
+        <baseRot>150</baseRot>
+        <cart x="0" y="0" rot="0"/>
+        <cart x="17" y="-2" rot="-45"/>
+        <cart x="45" y="-20" rot="-90"/>
+    </route>
+
+    <route id="27">
+        <location1>NARVIK</location1>
+        <location2>KIRUNA</location2>
+        <length>1</length>
+        <locomotive>0</locomotive>
+        <cartType>CART_WHITE</cartType>
+        <type>tunnel</type>
+        <baseX>760</baseX>
+        <baseY>150</baseY>
+        <baseRot>20</baseRot>
+        <cart x="0" y="0" rot="0"/>
+    </route>
+
+    <route id="28">
+        <location1>NARVIK</location1>
+        <location2>KIRUNA</location2>
+        <length>1</length>
+        <locomotive>0</locomotive>
+        <cartType>CART_PURPLE</cartType>
+        <type>tunnel</type>
+        <baseX>775</baseX>
+        <baseY>155</baseY>
+        <baseRot>20</baseRot>
+        <cart x="0" y="0" rot="0"/>
+    </route>
+
+    <route id="29">
+        <location1>TROMSO</location1>
+        <location2>HONNINGSVAG</location2>
+        <length>4</length>
+        <locomotive>2</locomotive>
+        <cartType>CART_PURPLE</cartType>
+        <type>ferry</type>
+        <baseX>930</baseX>
+        <baseY>140</baseY>
+        <baseRot>130</baseRot>
+        <cart x="0" y="0" rot="10"/>
+        <cart x="-5" y="0" rot="0"/>
+        <cart x="-3" y="0" rot="-10"/>
+        <cart x="5" y="0" rot="-20"/>
+    </route>
+
+    <route id="30">
+        <location1>MURMANSK</location1>
+        <location2>LIEKSA</location2>
+        <length>9</length>
+        <locomotive>0</locomotive>
+        <cartType>CART_ANY</cartType>
+        <type>normal</type>
+        <baseX>850</baseX>
+        <baseY>390</baseY>
+        <baseRot>45</baseRot>
+        <cart x="-3" y="-3" rot="-10"/>
+        <cart x="0" y="0" rot="0"/>
+        <cart x="-4" y="2" rot="10"/>
+        <cart x="-14" y="6" rot="20"/>
+        <cart x="-30" y="6" rot="30"/>
+        <cart x="-50" y="3" rot="40"/>
+        <cart x="-76" y="-3" rot="50"/>
+        <cart x="-107" y="-12" rot="60"/>
+        <cart x="-140" y="-25" rot="65"/>
+    </route>
+
+    <route id="31">
+        <location1>TRONDHEIM</location1>
+        <location2>LILLEHAMMER</location2>
+        <length>3</length>
+        <locomotive>0</locomotive>
+        <cartType>CART_ORANGE</cartType>
+        <type>tunnel</type>
+        <baseX>360</baseX>
+        <baseY>115</baseY>
+        <baseRot>100</baseRot>
+        <cart x="-30" y="2" rot="-50"/>
+        <cart x="-7" y="-3" rot="-25"/>
+        <cart x="0" y="0" rot="0"/>
+    </route>
+
+    <route id="32">
+        <location1>TRONDHEIM</location1>
+        <location2>OSTERSUND</location2>
+        <length>2</length>
+        <locomotive>0</locomotive>
+        <cartType>CART_BLACK</cartType>
+        <type>tunnel</type>
+        <baseX>425</baseX>
+        <baseY>135</baseY>
+        <baseRot>165</baseRot>
+        <cart x="-6" y="0" rot="-20"/>
+        <cart x="0" y="0" rot="0"/>
+    </route>
+
 </Routes>

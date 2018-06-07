@@ -57,9 +57,9 @@ public class GameRoutesMapController {
 
                 NodeList nCartList = routeElement.getElementsByTagName("cart");
 
-                int routeX = Integer.decode(routeElement.getElementsByTagName("baseX").item(0).getTextContent());
-                int routeY = Integer.decode(routeElement.getElementsByTagName("baseY").item(0).getTextContent());
-                int baseRot = Integer.decode(routeElement.getElementsByTagName("baseRot").item(0).getTextContent());
+                int routeX = Integer.parseInt(routeElement.getElementsByTagName("baseX").item(0).getTextContent());
+                int routeY = Integer.parseInt(routeElement.getElementsByTagName("baseY").item(0).getTextContent());
+                int baseRot = Integer.parseInt(routeElement.getElementsByTagName("baseRot").item(0).getTextContent());
                 String id = routeElement.getAttribute("id");
 
                 VBox route = new VBox();
