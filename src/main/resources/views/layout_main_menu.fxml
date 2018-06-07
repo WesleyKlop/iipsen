@@ -13,9 +13,7 @@
 
     <VBox spacing="20" fx:id="VBoxMain" alignment="BASELINE_CENTER" layoutY="20" layoutX="50">
         <ImageView fitWidth="550" preserveRatio="true">
-            <image>
-                <Image url="/images/logo.png"/>
-            </image>
+            <Image url="/images/logo.png"/>
         </ImageView>
         <Label text="Play" fx:id="playLabel" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
                onMouseClicked="#openMenuSequence"/>

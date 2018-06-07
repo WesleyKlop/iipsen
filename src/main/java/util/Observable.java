@@ -1,12 +1,16 @@
 package util;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
+ * Observable is a utility class for Tracking changes of an Object
+ *
+ * @author Wesley Klop
  */
 public class Observable<T> {
-    private Map<Integer, ObservableSubscriber<T>> subscribers = new HashMap<>();
+    private Set<Observer<T>> observers = new HashSet<>();
+
     private T currentValue;
 
     public Observable() {
@@ -16,36 +20,58 @@ public class Observable<T> {
         this.currentValue = initialValue;
     }
 
-    private int getKey() {
-        return subscribers.size() + 1;
+
+    /**
+     * Subscribe to changes of object T
+     *
+     * @param observer the Object that implements the {@see Observer<T>} interface.
+     */
+    public void addObserver(Observer<T> observer) {
+        observers.add(observer);
     }
 
-    public int subscribe(ObservableSubscriber<T> subscriber) {
-        int key = getKey();
-        subscribers.put(key, subscriber);
-        return key;
+    /**
+     * Remove an observer.
+     *
+     * @param observer the observer to remove
+     */
+    public void removeObserver(Observer<T> observer) {
+        observers.remove(observer);
     }
 
-    public void unsubscribe(int subscriber) {
-        subscribers.remove(subscriber);
-    }
-
+    /**
+     * Return the value
+     *
+     * @return the current value contained in the observer
+     */
     public T getValue() {
         return currentValue;
     }
 
+    /**
+     * Save the value, and notify all observers
+     * @param value the new value
+     */
     public void setValue(T value) {
         currentValue = value;
         notifySubscribers();
     }
 
+    /**
+     * Notify all observers
+     */
     public void notifySubscribers() {
-        for (ObservableSubscriber<T> subscriber : subscribers.values()) {
-            subscriber.onUpdate(currentValue);
+        for (Observer<T> observer : observers) {
+            observer.onUpdate(currentValue);
         }
     }
 
-    public interface ObservableSubscriber<T> {
+    /**
+     * Observer interface, on every change this observers' onUpdate will be called with the new value
+     *
+     * @param <T>
+     */
+    public interface Observer<T> {
         void onUpdate(T value);
     }
 }

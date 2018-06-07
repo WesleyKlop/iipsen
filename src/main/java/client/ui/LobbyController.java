@@ -34,7 +34,7 @@ public class LobbyController {
     public void initialize() {
         style(startButtonLabel);
         style(quitButtonLabel);
-        GameStoreProvider.getInstance().subscribe(gameState -> {
+        GameStoreProvider.getInstance().addObserver(gameState -> {
             Log.debug("List changed, new size: {}", gameState.getPlayers().size());
             // TODO: This could be optimized
             // Maybe compare array size and add/remove based on that
