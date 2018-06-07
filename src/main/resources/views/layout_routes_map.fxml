@@ -14,5 +14,5 @@
             <Image url="/images/Background.png"/>
         </image>
     </ImageView>
-    <Pane fx:id="routes" prefWidth="1920" prefHeight="1080"/>
+    <Pane fx:id="mainPane" prefWidth="1920" prefHeight="1080"/>
 </Pane>

@@ -6,6 +6,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,19 +30,18 @@ public class GameRoutesMapController {
     private final int CART_WIDTH = 13;
     private final int CART_SPACING = 1;
     @FXML
-    private Pane routes;
-
+    private Pane mainPane;
 
     public void initialize() {
-        organize();
+        placeRoutes();
+        placeLocations();
     }
-
 
     /**
      * This method reads every single route node from "/string/gameRoutes.xml"
      * Currently manages the styling of the route as well.
      */
-    private void organize() {
+    private void placeRoutes() {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -70,7 +70,7 @@ public class GameRoutesMapController {
                 route.setSpacing(CART_SPACING);
                 route.setAlignment(Pos.CENTER);
                 route.setPickOnBounds(false);
-                routes.getChildren().add(route);
+                mainPane.getChildren().add(route);
 
                 String type = routeElement.getElementsByTagName("type").item(0).getTextContent();
                 double strokeWidth = (type.equals("tunnel")) ? 3 : 1;
@@ -126,6 +126,50 @@ public class GameRoutesMapController {
         } else {
             return Color.web(colorString);
         }
+    }
+
+    private void placeLocations() {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document locDoc = builder.parse(getClass().getResourceAsStream("/string/gameLocations.xml"));
+            locDoc.getDocumentElement().normalize();
+
+            NodeList NLLocations = locDoc.getElementsByTagName("Location");
+            for (int i = 0; i < NLLocations.getLength(); i++) {
+                Node LocationNode = NLLocations.item(i);
+                Element eLocation = (Element) LocationNode;
+                int x = Integer.parseInt(eLocation.getElementsByTagName("x").item(0).getTextContent());
+                int y = Integer.parseInt(eLocation.getElementsByTagName("y").item(0).getTextContent());
+                String id = eLocation.getAttribute("id");
+                int radius = 10;
+                Circle location = new Circle(radius);
+                location.setCenterX(radius / 2);
+                location.setCenterY(radius / 2);
+                location.setLayoutX(x);
+                location.setLayoutY(y);
+                location.setId(id);
+                location.setFill(Color.ORANGE);
+                location.setStroke(Color.ORANGE);
+                location.setStrokeWidth(3);
+                location.setOnMouseEntered(this::hoverLocationEnter);
+                location.setOnMouseExited(this::hoverLocationExit);
+                mainPane.getChildren().add(location);
+
+            }
+        } catch (Exception e) {
+            Log.error("Exception Found: " + e.toString());
+        }
+    }
+
+    private void hoverLocationEnter(MouseEvent mouseEvent) {
+        Circle source = (Circle) mouseEvent.getSource();
+        source.setStroke(Color.WHITE);
+    }
+
+    private void hoverLocationExit(MouseEvent mouseEvent) {
+        Circle source = (Circle) mouseEvent.getSource();
+        source.setStroke(Color.ORANGE);
     }
 
     private void soutCartInformation(MouseEvent mouseEvent) {
@@ -192,6 +236,5 @@ public class GameRoutesMapController {
             child.setStroke(Color.BLACK);
         }
     }
-
 
 }

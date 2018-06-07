@@ -76,7 +76,7 @@
         <location2>KRISTIANSAND</location2>
         <length>2</length>
         <locomotive>0</locomotive>
-        <cartType>CART_ANY</cartType>
+        <cartType>CART_BLACK</cartType>
         <type>normal</type>
         <baseX>167</baseX>
         <baseY>125</baseY>
@@ -335,7 +335,7 @@
     </route>
     <route id="26">
         <location1>HELSINKI</location1>
-        <location2>TALINN</location2>
+        <location2>TALLINN</location2>
         <length>2</length>
         <locomotive>1</locomotive>
         <cartType>CART_PURPLE</cartType>
@@ -347,7 +347,7 @@
         <cart x="-15" y="-5" rot="86"/>
     </route>
     <route id="27">
-        <location1>TALINN</location1>
+        <location1>TALLINN</location1>
         <location2>STOCKHOLM</location2>
         <length>4</length>
         <locomotive>2</locomotive>
@@ -391,7 +391,6 @@
         <cart x="0" y="0" rot="0"/>
         <cart x="0" y="0" rot="0"/>
     </route>
-    <!-- VANAF HIER THOM ZIJN SHIT -->
     <route id="30">
         <location1>ALBORG</location1>
         <location2>ARHUS</location2>
@@ -726,7 +725,6 @@
         <cart x="-6" y="0" rot="-20"/>
         <cart x="0" y="0" rot="0"/>
     </route>
-    <!-- Mark zijn shit-->
     <route id="54">
         <location1>SUNDSVALL</location1>
         <location2>UMEA</location2>

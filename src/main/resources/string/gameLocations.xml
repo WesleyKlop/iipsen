@@ -1,0 +1,160 @@
+<?xml version="1.0" ?>
+
+<Locations>
+    <Location id="HONNINGSVAG">
+        <x>980</x>
+        <y>253</y>
+    </Location>
+    <Location id="KIRKENES">
+        <x>935</x>
+        <y>320</y>
+    </Location>
+    <Location id="MURMANSK">
+        <x>957</x>
+        <y>410</y>
+    </Location>
+    <Location id="TROMSO">
+        <x>865</x>
+        <y>165</y>
+    </Location>
+    <Location id="NARVIK">
+        <x>780</x>
+        <y>137</y>
+    </Location>
+    <Location id="KIRUNA">
+        <x>763</x>
+        <y>190</y>
+    </Location>
+    <Location id="ROVANIEMI">
+        <x>767</x>
+        <y>335</y>
+    </Location>
+    <Location id="TORNIO">
+        <x>713</x>
+        <y>332</y>
+    </Location>
+    <Location id="KAJAANI">
+        <x>683</x>
+        <y>448</y>
+    </Location>
+    <Location id="LIEKSA">
+        <x>655</x>
+        <y>495</y>
+    </Location>
+    <Location id="OULU">
+        <x>672</x>
+        <y>368</y>
+    </Location>
+    <Location id="BODEN">
+        <x>703</x>
+        <y>283</y>
+    </Location>
+    <Location id="KUOPIO">
+        <x>600</x>
+        <y>483</y>
+    </Location>
+    <Location id="MO_I_RANA">
+        <x>641</x>
+        <y>126</y>
+    </Location>
+    <Location id="UMEA">
+        <x>574</x>
+        <y>307</y>
+    </Location>
+    <Location id="VAASA">
+        <x>535</x>
+        <y>344</y>
+    </Location>
+    <Location id="IMATRA">
+        <x>533</x>
+        <y>536</y>
+    </Location>
+    <Location id="TAMPERE">
+        <x>467</x>
+        <y>419</y>
+    </Location>
+    <Location id="LAHTI">
+        <x>468</x>
+        <y>475</y>
+    </Location>
+    <Location id="HELSINKI">
+        <x>402</x>
+        <y>475</y>
+    </Location>
+    <Location id="TALINN">
+        <x>329</x>
+        <y>492</y>
+    </Location>
+    <Location id="TURKU">
+        <x>410</x>
+        <y>423</y>
+    </Location>
+    <Location id="SUNDSVALL">
+        <x>440</x>
+        <y>277</y>
+    </Location>
+    <Location id="OSTERSUND">
+        <x>465</x>
+        <y>201</y>
+    </Location>
+    <Location id="TRONDHEIM">
+        <x>424</x>
+        <y>124</y>
+    </Location>
+    <Location id="ANDALSNES">
+        <x>378</x>
+        <y>84</y>
+    </Location>
+    <Location id="LILLEHAMMER">
+        <x>305</x>
+        <y>145</y>
+    </Location>
+    <Location id="OREBRO">
+        <x>251</x>
+        <y>266</y>
+    </Location>
+    <Location id="NORRKOPING">
+        <x>216</x>
+        <y>355</y>
+    </Location>
+    <Location id="OSLO">
+        <x>211</x>
+        <y>182</y>
+    </Location>
+    <Location id="GOTEBORG">
+        <x>132</x>
+        <y>252</y>
+    </Location>
+    <Location id="BERGEN">
+        <x>220</x>
+        <y>30</y>
+    </Location>
+    <Location id="KRISTIANSAND">
+        <x>126</x>
+        <y>154</y>
+    </Location>
+    <Location id="STAVANGER">
+        <x>131</x>
+        <y>68</y>
+    </Location>
+    <Location id="ALBORG">
+        <x>72</x>
+        <y>207</y>
+    </Location>
+    <Location id="ARHUS">
+        <x>19</x>
+        <y>234</y>
+    </Location>
+    <Location id="KOBENHAVN">
+        <x>22</x>
+        <y>287</y>
+    </Location>
+    <Location id="KARLSKRONA">
+        <x>70</x>
+        <y>370</y>
+    </Location>
+    <Location id="STOCKHOLM">
+        <x>284</x>
+        <y>352</y>
+    </Location>
+</Locations>
