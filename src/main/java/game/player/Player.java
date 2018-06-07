@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * Player model contains all things that should be kept on the player
  */
 public class Player implements Serializable {
     private final String playerName;

@@ -27,10 +27,18 @@ public class CardStackController {
      */
     private CardStack stack = new CardStack();
 
+    /**
+     * Creates a new CardStackController, pre-fills the cardstack with the default amount of locomotives and carts
+     */
     public CardStackController() {
         generateTrainCards();
     }
 
+    /**
+     * Get the internal cardstack to access its methods
+     *
+     * @return the internal CardStack
+     */
     public CardStack getStack() {
         return stack;
     }
