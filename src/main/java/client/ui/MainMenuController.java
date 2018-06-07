@@ -97,7 +97,7 @@ public class MainMenuController implements Initializable {
      * @param mouseEvent Label source
      */
     public void openMenuSequence(MouseEvent mouseEvent) {
-        VBoxOptionController.playFX();
+//        VBoxOptionController.playFX();
         Label label = (Label) mouseEvent.getSource();
         VBox menu = getMenu(label);
         int disabledMenu = getDisabledInt();
