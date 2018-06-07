@@ -150,14 +150,29 @@
     </route>
 
     <route id="11">
-        <location1>GOTEBORG</location1>
-        <location2>OSLO</location2>
+        <location1>SUNDSVALL</location1>
+        <location2>UMEA</location2>
         <length>3</length>
         <locomotive>0</locomotive>
         <cartType>CART_PURPLE</cartType>
         <type>normal</type>
         <baseX>510</baseX>
         <baseY>235</baseY>
+        <baseRot>101</baseRot>
+        <cart x="0" y="-5" rot="0"/>
+        <cart x="0" y="0" rot="0"/>
+        <cart x="0" y="5" rot="0"/>
+    </route>
+
+    <route id="12">
+        <location1>SUNDSVALL</location1>
+        <location2>UMEA</location2>
+        <length>3</length>
+        <locomotive>0</locomotive>
+        <cartType>CART_YELLOW</cartType>
+        <type>normal</type>
+        <baseX>505</baseX>
+        <baseY>250</baseY>
         <baseRot>101</baseRot>
         <cart x="0" y="-5" rot="0"/>
         <cart x="0" y="0" rot="0"/>
