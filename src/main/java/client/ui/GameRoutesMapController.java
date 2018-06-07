@@ -2,8 +2,10 @@ package client.ui;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -26,15 +28,30 @@ public class GameRoutesMapController {
 
     private static final Logger Log = LogManager.getLogger(GameRoutesMapController.class);
 
+    private Rectangle locationInformationBackground;
+    private Label locationInformation;
+    private StackPane locationInformationStack;
+
     private final int CART_LENGTH = 30;
     private final int CART_WIDTH = 13;
     private final int CART_SPACING = 1;
     @FXML
-    private Pane mainPane;
+    private Pane mainPane, informationPane;
 
     public void initialize() {
         placeRoutes();
         placeLocations();
+        informationPane.setPickOnBounds(false);
+        mainPane.setPickOnBounds(false);
+        locationInformation = new Label();
+        locationInformationBackground = new Rectangle(100, 30, Color.WHITE);
+        locationInformationBackground.setStroke(Color.BLACK);
+        locationInformationBackground.setStrokeWidth(2);
+        locationInformationBackground.setArcWidth(20);
+        locationInformationBackground.setArcHeight(20);
+        locationInformationStack = new StackPane(locationInformationBackground, locationInformation);
+        locationInformationStack.setOpacity(0);
+        informationPane.getChildren().add(locationInformationStack);
     }
 
     /**
@@ -105,7 +122,10 @@ public class GameRoutesMapController {
                     cart.setStroke(Color.BLACK);
                     cart.setStrokeWidth(strokeWidth);
                     cart.setOnMouseClicked(this::soutCartInformation);
-                    cart.setOnMouseEntered(this::cartHoverEnter);
+                    cart.setOnMouseEntered(e -> {
+                        cartHoverEnter(e);
+                        hideLocationInformation();
+                    });
                     cart.setOnMouseExited(this::cartHoverExit);
 
                     route.getChildren().add(cart);
@@ -154,6 +174,7 @@ public class GameRoutesMapController {
                 location.setStrokeWidth(3);
                 location.setOnMouseEntered(this::hoverLocationEnter);
                 location.setOnMouseExited(this::hoverLocationExit);
+                location.setOnMouseClicked(this::locationOnClick);
                 mainPane.getChildren().add(location);
 
             }
@@ -222,7 +243,6 @@ public class GameRoutesMapController {
         routeHoverExit(parent);
     }
 
-
     private void routeHoverEnter(VBox source) {
         for (int i = 0; i < source.getChildren().size(); i++) {
             Rectangle child = (Rectangle) source.getChildren().get(i);
@@ -237,4 +257,41 @@ public class GameRoutesMapController {
         }
     }
 
+    private void locationOnClick(MouseEvent mouseEvent) {
+        Circle source = (Circle) mouseEvent.getSource();
+        locationInformation.setText(source.getId());
+        int[] cords = getLocationPosition(source);
+        locationInformationStack.setLayoutX(Math.min(Math.max(cords[0] - (locationInformationBackground.getWidth() / 2), 0), (1000 - locationInformationBackground.getWidth())));
+        locationInformationStack.setLayoutY(cords[1] - locationInformationBackground.getHeight());
+        locationInformationStack.setOpacity(1);
+    }
+
+    public void hideLocationInformation() {
+        locationInformationStack.setOpacity(0);
+    }
+
+    private int[] getLocationPosition(Circle location) {
+        String id = location.getId();
+        int[] position = {0, 0};
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document locDoc = builder.parse(getClass().getResourceAsStream("/string/gameLocations.xml"));
+            locDoc.getDocumentElement().normalize();
+
+            NodeList nListLoc = locDoc.getElementsByTagName("Location");
+            for (int i = 0; i < nListLoc.getLength(); i++) {
+                if (nListLoc.item(i).getAttributes().getNamedItem("id").getTextContent().equalsIgnoreCase(id)) {
+                    Element eLoc = (Element) nListLoc.item(i);
+                    position[0] = Integer.parseInt(eLoc.getElementsByTagName("x").item(0).getTextContent());
+                    position[1] = Integer.parseInt(eLoc.getElementsByTagName("y").item(0).getTextContent());
+                    return position;
+                }
+            }
+        } catch (Exception e) {
+            Log.error("Exception found in method getLocationPosition(): " + e.toString());
+        }
+        return position;
+    }
 }
