@@ -37,8 +37,6 @@ public class StartupController implements Initializable {
         MainMenuPaneController.getLoadController().loadLevelLabel.setOnMouseClicked(e -> openLoadMenu());
         preferencesPaneController.backButton.setOnMouseClicked(e -> moveMenuRight());
         lobbyPaneController.quitButtonLabel.setOnMouseClicked(e -> moveMenuUp());
-        moveMenuLeft();
-        moveMenuDown();
     }
 
     public void widthUpImageView(MouseEvent mouseEvent) {
