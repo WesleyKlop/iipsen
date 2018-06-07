@@ -1,11 +1,10 @@
 package client.ui;
 
+import client.MediaController;
 import client.UserPreferences;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 
 /**
  * View for managing settings
@@ -13,7 +12,6 @@ import javafx.scene.media.MediaPlayer;
 public class MainMenuOptionController {
     private final UserPreferences prefs = new UserPreferences();
 
-    public MediaPlayer player;
     @FXML
     private Slider optionVolumeMusicSlider;
     @FXML
@@ -23,11 +21,6 @@ public class MainMenuOptionController {
     @FXML
     private CheckBox optionColorblind;
 
-    public MainMenuOptionController() {
-        Media backgroundMusic = new Media(getClass().getResource("/sound/background.mp3").toString());
-        player = new MediaPlayer(backgroundMusic);
-        player.setCycleCount(MediaPlayer.INDEFINITE);
-    }
 
     @FXML
     public void initialize() {
@@ -38,13 +31,9 @@ public class MainMenuOptionController {
         optionColorblind.setSelected(prefs.isColorBlind());
         optionVolumeMusicSlider.setDisable(prefs.isSoundMuted());
 
-        // Mute properties on music player
-        player.setMute(prefs.isSoundMuted());
-        player.setVolume(prefs.getMusicVolume());
-
         optionMute.selectedProperty().addListener((observable, oldValue, newValue) -> {
             prefs.setSoundMuted(newValue);
-            player.setMute(newValue);
+            MediaController.getMusicPlayer().setMute(newValue);
             optionVolumeMusicSlider.setDisable(newValue);
         });
 
@@ -58,9 +47,7 @@ public class MainMenuOptionController {
 
         optionVolumeMusicSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             prefs.setMusicVolume(newValue.doubleValue());
-            player.setVolume(newValue.doubleValue());
+            MediaController.getMusicPlayer().setVolume(newValue.doubleValue());
         });
-
-        player.play();
     }
 }

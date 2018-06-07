@@ -46,6 +46,7 @@ public class StartupController implements Initializable {
         source.setLayoutY(source.getLayoutY() - 7);
         source.setCursor(Cursor.HAND);
     }
+
     public void widthDownImageView(MouseEvent mouseEvent) {
         ImageView source = (ImageView) mouseEvent.getSource();
         source.setFitWidth(source.getFitWidth() - 14);
@@ -67,6 +68,7 @@ public class StartupController implements Initializable {
         preferencesPaneController.buttons.getChildren().remove(preferencesPaneController.joinButton);
         moveMenuLeft();
     }
+
     private void switchMenuJoin() {
         try {
             preferencesPaneController.buttons.getChildren().add(preferencesPaneController.joinButton);
@@ -77,12 +79,14 @@ public class StartupController implements Initializable {
         preferencesPaneController.buttons.getChildren().remove(preferencesPaneController.createButton);
         moveMenuLeft();
     }
+
     private void moveMenuLeft() {
         TranslateTransition menuAni = new TranslateTransition(Duration.seconds(1), allPanes);
         menuAni.setToX(-1920);
         menuAni.play();
         menuAni.setOnFinished(e -> MainMenuPane.setDisable(true));
     }
+
     private void moveMenuRight() {
         preferencesPaneController.ipBox.getChildren().removeAll(preferencesPaneController.createButton, preferencesPaneController.joinButton);
         TranslateTransition menuAni = new TranslateTransition(Duration.seconds(1), allPanes);

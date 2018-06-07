@@ -23,7 +23,7 @@ public class BuildRouteAction implements Action {
     @Override
     public void executeAction(GameStore store) {
         if (player.getCardStack().containsCards(route.getType(), route.getCartCost()) &&
-                player.getCardStack().containsCards(CardType.LOCOMOTIVE, route.getLocomotiveCost())) {
+            player.getCardStack().containsCards(CardType.LOCOMOTIVE, route.getLocomotiveCost())) {
             Log.debug("Player has enough cards! player id: {}", player.getId());
             try {
                 if (!route.hasOwner()) {

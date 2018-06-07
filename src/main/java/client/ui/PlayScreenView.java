@@ -6,9 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Playscreenvieuw extends Application {
+public class PlayScreenView extends Application {
 
     FXMLLoader loader = new FXMLLoader();
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/views/layout_playscreen.fxml"));
@@ -17,9 +21,5 @@ public class Playscreenvieuw extends Application {
         primaryStage.setScene(scene);
         //      primaryStage.setFullScreen(true);
         primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

@@ -36,6 +36,7 @@ public class UserPreferences {
 
     /**
      * Check if sound is muted.
+     *
      * @return true if the sound is muted, false if not or when the value is not set.
      */
     public boolean isSoundMuted() {
@@ -44,6 +45,7 @@ public class UserPreferences {
 
     /**
      * Sets the sound muted setting in preferences.
+     *
      * @param muted true if the application should mute sound.
      */
     public void setSoundMuted(boolean muted) {
@@ -52,6 +54,7 @@ public class UserPreferences {
 
     /**
      * Checks if the application is in colorblind mode.
+     *
      * @return true if colorblind mode is on, false if not or when the value is not set.
      */
     public boolean isColorBlind() {
@@ -60,6 +63,7 @@ public class UserPreferences {
 
     /**
      * Returns the music volume
+     *
      * @return the music volume, or 0.5 by default when the key is not set
      */
     public double getMusicVolume() {
@@ -69,6 +73,7 @@ public class UserPreferences {
     /**
      * Sets the music volume
      * This value should be between 0.0 and 1.0
+     *
      * @param volume the volume for music
      */
     public void setMusicVolume(double volume) {
@@ -77,6 +82,7 @@ public class UserPreferences {
 
     /**
      * Returns the FX volume
+     *
      * @return the fx volume, or 0.3 by default when the key is not set
      */
     public double getFxVolume() {
@@ -86,6 +92,7 @@ public class UserPreferences {
     /**
      * Sets the FX volume
      * This value should be between 0.0 and 0.6
+     *
      * @param volume the volume for sound FX
      */
     public void setFxVolume(double volume) {

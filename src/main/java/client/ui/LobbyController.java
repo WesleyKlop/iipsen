@@ -5,7 +5,6 @@ import game.GameStoreProvider;
 import game.actions.ChangeStateAction;
 import game.player.Player;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -84,8 +83,8 @@ public class LobbyController {
         color = Color.hsb(hue, saturation, brightness);
 
         return String.format("#%02X%02X%02X",
-                (int) (color.getRed() * 255),
-                (int) (color.getGreen() * 255),
-                (int) (color.getBlue() * 255));
+            (int) (color.getRed() * 255),
+            (int) (color.getGreen() * 255),
+            (int) (color.getBlue() * 255));
     }
 }
