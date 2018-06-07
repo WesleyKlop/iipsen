@@ -105,8 +105,8 @@ public class StartupController implements Initializable {
         TranslateTransition menuAni = new TranslateTransition(Duration.seconds(1), rootPane);
         menuAni.setToY(0);
         menuAni.play();
-        closeMenuVertical(MainMenuPaneController.VBoxOption);
-        closeMenuVertical(MainMenuPaneController.VBoxRule);
+        closeMenuVertical(optionsLobby);
+        closeMenuVertical(rulesLobby);
     }
 
     private void openLoadMenu() {

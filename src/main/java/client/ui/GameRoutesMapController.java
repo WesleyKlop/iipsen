@@ -89,8 +89,12 @@ public class GameRoutesMapController {
                     Rectangle cart = new Rectangle();
                     if (i < locomotiveAmount) {
                         cart.setWidth(CART_WIDTH + 5);
+                        cart.setArcWidth(arc + 5);
+                        cart.setArcHeight(arc + 5);
                     } else {
                         cart.setWidth(CART_WIDTH);
+                        cart.setArcWidth(arc);
+                        cart.setArcHeight(arc);
                     }
 
                     cart.setHeight(CART_LENGTH);
@@ -100,8 +104,6 @@ public class GameRoutesMapController {
                     cart.setFill(routeColor);
                     cart.setStroke(Color.BLACK);
                     cart.setStrokeWidth(strokeWidth);
-                    cart.setArcWidth(arc);
-                    cart.setArcHeight(arc);
                     cart.setOnMouseClicked(this::soutCartInformation);
                     cart.setOnMouseEntered(this::cartHoverEnter);
                     cart.setOnMouseExited(this::cartHoverExit);
@@ -118,30 +120,12 @@ public class GameRoutesMapController {
     }
 
     private Color typeToColor(String type) {
-        switch (type) {
-            case "CART_PURPLE":
-                return Color.PURPLE;
-            case "CART_GREEN":
-                return Color.GREEN;
-            case "CART_RED":
-                return Color.RED;
-            case "CART_ORANGE":
-                return Color.ORANGE;
-            case "CART_BLACK":
-                return Color.BLACK;
-            case "CART_WHITE":
-                return Color.WHITE;
-            case "CART_YELLOW":
-                return Color.YELLOW;
-            case "CART_BLUE":
-                return Color.BLUE;
-            case "CART_ANY":
-                return Color.GRAY;
-            default:
-                break;
+        String colorString = type.substring(5);
+        if (colorString.equals("ANY")) {
+            return Color.GRAY;
+        } else {
+            return Color.web(colorString);
         }
-
-        return null;
     }
 
     private void soutCartInformation(MouseEvent mouseEvent) {
