@@ -1,24 +1,20 @@
 package client.ui;
 
-import javafx.animation.Animation;
-import javafx.animation.TranslateTransition;
+import client.ui.components.LocationInformation;
+import client.ui.factories.LocationFactory;
+import client.ui.factories.RouteViewFactory;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
+import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -32,224 +28,38 @@ public class GameRoutesMapController {
 
     private static final Logger Log = LogManager.getLogger(GameRoutesMapController.class);
 
-    private Rectangle locationInformationBackground;
-    private Label locationInformation;
-    private StackPane locationInformationStack;
-    private Polygon locationInformationDecoration;
-
-    private final int CART_LENGTH = 30;
-    private final int CART_WIDTH = 13;
-    private final int CART_SPACING = 1;
     @FXML
     private Pane mainPane, informationPane;
+    private LocationInformation locationInformation;
 
     public void initialize() {
-        placeRoutes();
-        placeLocations();
         informationPane.setPickOnBounds(false);
         mainPane.setPickOnBounds(false);
-        createLocationInformation();
-        animateLocationInformation();
+
+        RouteViewFactory routeViewFactory = new RouteViewFactory(
+            getClass().getResourceAsStream("/string/gameRoutes.xml"),
+            this::printRouteInformation,
+            this::onRouteHoverEnter,
+            this::onRouteHoverExit
+        );
+
+        LocationFactory locationFactory = new LocationFactory(
+            getClass().getResourceAsStream("/string/gameLocations.xml"),
+            this::onLocationClick,
+            this::onLocationHoverEnter,
+            this::onLocationHoverLeave
+        );
+
+        locationInformation = new LocationInformation();
+
+        mainPane.getChildren().addAll(routeViewFactory.getRoutes());
+        mainPane.getChildren().addAll(locationFactory.getLocations());
+        informationPane.getChildren().add(locationInformation);
     }
 
-    private void createLocationInformation() {
-        final double informationWidth = 100;
-        final double informationHeight = 30;
-        locationInformation = new Label();
-        locationInformation.setStyle("-fx-background-color: #fff");
-        locationInformationBackground = new Rectangle(informationWidth, informationHeight, Color.WHITE);
-        locationInformationBackground.setStroke(Color.BLACK);
-        locationInformationBackground.setStrokeWidth(2);
-        locationInformationBackground.setArcWidth(20);
-        locationInformationBackground.setArcHeight(20);
-        locationInformationDecoration = new Polygon();
-        locationInformationDecoration.getPoints().addAll(-10.0, 0.0, 10.0, 0.0, 0.0, 10.0);
-        locationInformationDecoration.setLayoutX(informationWidth / 2);
-        locationInformationDecoration.setTranslateY(informationHeight - 10);
-        locationInformationStack = new StackPane(locationInformationBackground, locationInformation, locationInformationDecoration);
-        locationInformationStack.setOpacity(0);
-        locationInformationStack.setMouseTransparent(true);
-        informationPane.getChildren().add(locationInformationStack);
-    }
 
-    private void animateLocationInformation() {
-        TranslateTransition animation = new TranslateTransition(Duration.seconds(2), locationInformationStack);
-        animation.setToY(-10);
-        animation.setAutoReverse(true);
-        animation.setCycleCount(Animation.INDEFINITE);
-        animation.play();
-    }
-
-    private void createRouteInformation() {
-        final double routeInformationWidth = 100;
-        final double routeInformationHeight = 30;
-        Rectangle routeInformationBackground = new Rectangle(routeInformationWidth, routeInformationHeight, Color.WHITE);
-        Label routeInformation = new Label();
-        Polygon routeInformationDecoration = new Polygon();
-        StackPane routeInformationStack = new StackPane(routeInformationBackground, routeInformation, routeInformationDecoration);
-        routeInformation.setStyle("-fx-background-color: #fff");
-        routeInformationBackground.setStroke(Color.BLACK);
-        routeInformationBackground.setStrokeWidth(2);
-        routeInformationBackground.setArcWidth(20);
-        routeInformationBackground.setArcHeight(20);
-        routeInformationStack.setOpacity(0);
-        routeInformationStack.setMouseTransparent(true);
-        routeInformationDecoration.getPoints().addAll(-10.0, 0.0, 10.0, 0.0, 0.0, 10.0);
-        routeInformationDecoration.setLayoutX(routeInformationWidth / 2);
-        routeInformationDecoration.setTranslateY(routeInformationHeight - 10);
-        informationPane.getChildren().add(routeInformationStack);
-    }
-
-    /**
-     * This method reads every single route node from "/string/gameRoutes.xml"
-     * Currently manages the styling of the route as well.
-     */
-    private void placeRoutes() {
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document routesDoc = builder.parse(getClass().getResourceAsStream("/string/gameRoutes.xml"));
-            routesDoc.getDocumentElement().normalize();
-
-            NodeList nRouteList = routesDoc.getElementsByTagName("route");
-
-            for (int j = 0; j < nRouteList.getLength(); j++) {
-
-                Node routeNode = nRouteList.item(j);
-                Element routeElement = (Element) routeNode;
-
-                NodeList nCartList = routeElement.getElementsByTagName("cart");
-
-                int routeX = Integer.parseInt(routeElement.getElementsByTagName("baseX").item(0).getTextContent());
-                int routeY = Integer.parseInt(routeElement.getElementsByTagName("baseY").item(0).getTextContent());
-                int baseRot = Integer.parseInt(routeElement.getElementsByTagName("baseRot").item(0).getTextContent());
-                String id = routeElement.getAttribute("id");
-
-                VBox route = new VBox();
-                route.setId(id);
-                route.setLayoutX(routeX);
-                route.setLayoutY(routeY);
-                route.setRotate(baseRot);
-                route.setSpacing(CART_SPACING);
-                route.setAlignment(Pos.CENTER);
-                route.setPickOnBounds(false);
-                mainPane.getChildren().add(route);
-
-                String type = routeElement.getElementsByTagName("type").item(0).getTextContent();
-                double strokeWidth = (type.equals("tunnel")) ? 3 : 1;
-                double arc = (type.equals("ferry")) ? 10 : 0;
-
-                int locomotiveAmount = Integer.decode(routeElement.getElementsByTagName("locomotive").item(0).getTextContent());
-
-                Color routeColor = typeToColor(routeElement.getElementsByTagName("cartType").item(0).getTextContent());
-
-                for (int i = 0; i < nCartList.getLength(); i++) {
-                    Element eElement = (Element) nCartList.item(i);
-                    int x = Integer.decode(eElement.getAttribute("x"));
-                    int y = Integer.decode(eElement.getAttribute("y"));
-                    int rot = Integer.decode(eElement.getAttribute("rot"));
-
-                    Rectangle cart = new Rectangle();
-                    if (i < locomotiveAmount) {
-                        cart.setWidth(CART_WIDTH + 5);
-                        cart.setArcWidth(arc + 5);
-                        cart.setArcHeight(arc + 5);
-                    } else {
-                        cart.setWidth(CART_WIDTH);
-                        cart.setArcWidth(arc);
-                        cart.setArcHeight(arc);
-                    }
-
-                    cart.setHeight(CART_LENGTH);
-                    cart.setTranslateX(x);
-                    cart.setTranslateY(y);
-                    cart.setRotate(rot);
-                    cart.setFill(routeColor);
-                    cart.setStroke(Color.BLACK);
-                    cart.setStrokeWidth(strokeWidth);
-                    cart.setOnMouseClicked(this::soutCartInformation);
-                    cart.setOnMouseEntered(e -> {
-                        cartHoverEnter(e);
-                        hideLocationInformation();
-                    });
-                    cart.setOnMouseExited(this::cartHoverExit);
-
-                    route.getChildren().add(cart);
-
-                }
-            }
-
-
-        } catch (Exception e) {
-            Log.debug(e.toString());
-        }
-    }
-
-    private Color typeToColor(String type) {
-        String colorString = type.substring(5);
-        if (colorString.equals("ANY")) {
-            return Color.gray(0.75);
-        } else if (colorString.equals("BLACK")) {
-            return Color.web("#444");
-        } else {
-            return Color.web(colorString);
-        }
-    }
-
-    private void placeLocations() {
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document locDoc = builder.parse(getClass().getResourceAsStream("/string/gameLocations.xml"));
-            locDoc.getDocumentElement().normalize();
-
-            NodeList NLLocations = locDoc.getElementsByTagName("Location");
-            for (int i = 0; i < NLLocations.getLength(); i++) {
-                Node LocationNode = NLLocations.item(i);
-                Element eLocation = (Element) LocationNode;
-                int x = Integer.parseInt(eLocation.getElementsByTagName("x").item(0).getTextContent());
-                int y = Integer.parseInt(eLocation.getElementsByTagName("y").item(0).getTextContent());
-                String id = eLocation.getAttribute("id");
-                int radius = 10;
-                Circle location = new Circle(radius);
-                location.setCenterX(radius / 2);
-                location.setCenterY(radius / 2);
-                location.setLayoutX(x);
-                location.setLayoutY(y);
-                location.setId(id);
-                location.setFill(Color.GOLD);
-                location.setStroke(Color.ORANGE);
-                location.setStrokeWidth(3);
-                location.setOnMouseEntered(e -> {
-                    hoverLocationEnter(e);
-                    showLocationInformation(e);
-                });
-                location.setOnMouseExited(this::hoverLocationExit);
-                mainPane.getChildren().add(location);
-
-            }
-        } catch (Exception e) {
-            Log.error("Exception Found: " + e.toString());
-        }
-    }
-
-    private void hoverLocationEnter(MouseEvent mouseEvent) {
-        Circle source = (Circle) mouseEvent.getSource();
-        source.setStroke(Color.WHITE);
-    }
-
-    private void hoverLocationExit(MouseEvent mouseEvent) {
-        Circle source = (Circle) mouseEvent.getSource();
-        source.setStroke(Color.ORANGE);
-    }
-
-    private void soutCartInformation(MouseEvent mouseEvent) {
-        Rectangle source = (Rectangle) mouseEvent.getSource();
-        VBox parent = (VBox) source.getParent();
-        soutRouteInformation(parent);
-    }
-
-    private void soutRouteInformation(VBox source) {
+    private void printRouteInformation(MouseEvent mE) {
+        VBox source = (VBox) mE.getSource();
         String id = source.getId();
 
         try {
@@ -263,14 +73,13 @@ public class GameRoutesMapController {
                 if (nListRoutes.item(i).getAttributes().getNamedItem("id").getTextContent().equalsIgnoreCase(id)) {
                     Element eRoute = (Element) nListRoutes.item(i);
 
-                    String Location1 = eRoute.getElementsByTagName("location1").item(0).getTextContent();
-                    String Location2 = eRoute.getElementsByTagName("location2").item(0).getTextContent();
+                    String location1 = eRoute.getElementsByTagName("location1").item(0).getTextContent();
+                    String location2 = eRoute.getElementsByTagName("location2").item(0).getTextContent();
                     String length = eRoute.getElementsByTagName("length").item(0).getTextContent();
                     String locomotives = eRoute.getElementsByTagName("locomotive").item(0).getTextContent();
                     String cartType = eRoute.getElementsByTagName("cartType").item(0).getTextContent();
                     String type = eRoute.getElementsByTagName("type").item(0).getTextContent();
-                    Log.debug("This route is a " + type + " connects: " + Location1 + " to " + Location2 + " with " + length + cartType + " of which " + locomotives + " a locomotive");
-
+                    Log.debug("Route of type {} connects {} to {}, length of {} with {} locomotives and is of type {}", type, location1, location2, length, locomotives, cartType);
                     break;
                 }
             }
@@ -281,43 +90,27 @@ public class GameRoutesMapController {
 
     }
 
-    private void cartHoverEnter(MouseEvent mouseEvent) {
-        Rectangle source = (Rectangle) mouseEvent.getSource();
-        VBox parent = (VBox) source.getParent();
-        routeHoverEnter(parent);
-    }
 
-    private void cartHoverExit(MouseEvent mouseEvent) {
-        Rectangle source = (Rectangle) mouseEvent.getSource();
-        VBox parent = (VBox) source.getParent();
-        routeHoverExit(parent);
-    }
-
-    private void routeHoverEnter(VBox source) {
-        for (int i = 0; i < source.getChildren().size(); i++) {
-            Rectangle child = (Rectangle) source.getChildren().get(i);
-            child.setStroke(Color.WHITE);
+    private void onRouteHoverEnter(MouseEvent mE) {
+        VBox source = (VBox) mE.getSource();
+        for (Node child : source.getChildren()) {
+            if (!(child instanceof Rectangle)) {
+                Log.warn("Found child in route that is not a rectangle!");
+                continue;
+            }
+            ((Rectangle) child).setStroke(Color.WHITE);
         }
     }
 
-    private void routeHoverExit(VBox source) {
-        for (int i = 0; i < source.getChildren().size(); i++) {
-            Rectangle child = (Rectangle) source.getChildren().get(i);
-            child.setStroke(Color.BLACK);
+    private void onRouteHoverExit(MouseEvent mE) {
+        VBox source = (VBox) mE.getSource();
+        for (Node child : source.getChildren()) {
+            if (!(child instanceof Rectangle)) {
+                Log.warn("Found child in route that is not a rectangle!");
+                continue;
+            }
+            ((Rectangle) child).setStroke(Color.BLACK);
         }
-    }
-
-    private void showLocationInformation(MouseEvent mouseEvent) {
-        Circle source = (Circle) mouseEvent.getSource();
-        locationInformation.setText(source.getId());
-        int[] cords = getLocationPosition(source);
-        locationInformationStack.setLayoutX(Math.min(Math.max(cords[0] - (locationInformationBackground.getWidth() / 2) + 3, 0), (1000 - locationInformationBackground.getWidth() + 3)));
-        locationInformationStack.setLayoutY(cords[1] - locationInformationBackground.getHeight() - 10);
-        locationInformationStack.setOpacity(1);
-    }
-
-    public void hideLocationInformation() {
-        locationInformationStack.setOpacity(0);
     }
 
     private int[] getLocationPosition(Circle location) {
@@ -345,9 +138,23 @@ public class GameRoutesMapController {
         return position;
     }
 
-    private void onRouteClicked(MouseEvent mouseEvent) {
-        VBox source = (VBox) mouseEvent.getSource();
 
+    private void onLocationClick(MouseEvent mouseEvent) {
+//        Circle source = (Circle) mouseEvent.getSource();
+//        locationInformation.show(source.getId(), getLocationPosition(source));
     }
+
+    private void onLocationHoverEnter(MouseEvent mouseEvent) {
+        Circle source = (Circle) mouseEvent.getSource();
+        source.setStroke(Color.WHITE);
+        locationInformation.show(source.getId(), getLocationPosition(source));
+    }
+
+    private void onLocationHoverLeave(MouseEvent mouseEvent) {
+        Circle source = (Circle) mouseEvent.getSource();
+        source.setStroke(Color.ORANGE);
+        locationInformation.hide();
+    }
+
 
 }
