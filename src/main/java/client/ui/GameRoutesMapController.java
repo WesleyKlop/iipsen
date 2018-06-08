@@ -1,5 +1,7 @@
 package client.ui;
 
+import javafx.animation.Animation;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -9,7 +11,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
@@ -31,6 +35,7 @@ public class GameRoutesMapController {
     private Rectangle locationInformationBackground;
     private Label locationInformation;
     private StackPane locationInformationStack;
+    private Polygon locationInformationDecoration;
 
     private final int CART_LENGTH = 30;
     private final int CART_WIDTH = 13;
@@ -43,15 +48,36 @@ public class GameRoutesMapController {
         placeLocations();
         informationPane.setPickOnBounds(false);
         mainPane.setPickOnBounds(false);
+        createLocationInformation();
+        animateLocationInformation();
+    }
+
+    private void createLocationInformation() {
+        final double informationWidth = 100;
+        final double informationHeight = 30;
         locationInformation = new Label();
-        locationInformationBackground = new Rectangle(100, 30, Color.WHITE);
+        locationInformation.setStyle("-fx-background-color: #fff");
+        locationInformationBackground = new Rectangle(informationWidth, informationHeight, Color.WHITE);
         locationInformationBackground.setStroke(Color.BLACK);
         locationInformationBackground.setStrokeWidth(2);
         locationInformationBackground.setArcWidth(20);
         locationInformationBackground.setArcHeight(20);
-        locationInformationStack = new StackPane(locationInformationBackground, locationInformation);
+        locationInformationDecoration = new Polygon();
+        locationInformationDecoration.getPoints().addAll(-10.0, 0.0, 10.0, 0.0, 0.0, 10.0);
+        locationInformationDecoration.setLayoutX(informationWidth / 2);
+        locationInformationDecoration.setTranslateY(informationHeight - 10);
+        locationInformationStack = new StackPane(locationInformationBackground, locationInformation, locationInformationDecoration);
         locationInformationStack.setOpacity(0);
+        locationInformationStack.setMouseTransparent(true);
         informationPane.getChildren().add(locationInformationStack);
+    }
+
+    private void animateLocationInformation() {
+        TranslateTransition animation = new TranslateTransition(Duration.seconds(2), locationInformationStack);
+        animation.setToY(-10);
+        animation.setAutoReverse(true);
+        animation.setCycleCount(Animation.INDEFINITE);
+        animation.play();
     }
 
     /**
@@ -142,7 +168,9 @@ public class GameRoutesMapController {
     private Color typeToColor(String type) {
         String colorString = type.substring(5);
         if (colorString.equals("ANY")) {
-            return Color.GRAY;
+            return Color.gray(0.75);
+        } else if (colorString.equals("BLACK")) {
+            return Color.web("#444");
         } else {
             return Color.web(colorString);
         }
@@ -261,8 +289,8 @@ public class GameRoutesMapController {
         Circle source = (Circle) mouseEvent.getSource();
         locationInformation.setText(source.getId());
         int[] cords = getLocationPosition(source);
-        locationInformationStack.setLayoutX(Math.min(Math.max(cords[0] - (locationInformationBackground.getWidth() / 2), 0), (1000 - locationInformationBackground.getWidth())));
-        locationInformationStack.setLayoutY(cords[1] - locationInformationBackground.getHeight());
+        locationInformationStack.setLayoutX(Math.min(Math.max(cords[0] - (locationInformationBackground.getWidth() / 2) + 3, 0), (1000 - locationInformationBackground.getWidth() + 3)));
+        locationInformationStack.setLayoutY(cords[1] - locationInformationBackground.getHeight() - 10);
         locationInformationStack.setOpacity(1);
     }
 
@@ -294,4 +322,8 @@ public class GameRoutesMapController {
         }
         return position;
     }
+
+    private void onRouteClicked() {
+    }
+
 }
