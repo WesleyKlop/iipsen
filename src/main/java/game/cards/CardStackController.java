@@ -27,12 +27,19 @@ public class CardStackController implements Serializable {
      * Internal cardstack
      */
     private CardStack stack = new CardStack();
+    private Card[] openCards = new Card[5];
 
     /**
      * Creates a new CardStackController, pre-fills the cardstack with the default amount of locomotives and carts
      */
     public CardStackController() {
         generateTrainCards();
+    }
+
+    public void populateOpenCards() {
+        for (int i = 0; i < openCards.length; i++) {
+            openCards[i] = getRandomCard();
+        }
     }
 
     /**
@@ -83,5 +90,21 @@ public class CardStackController implements Serializable {
             stack.remove(randomCardType);
 
         return new Card(randomCardType);
+    }
+
+    /**
+     * Get an open card from the cardstack, and replace the old one with a random one
+     *
+     * @param index the position of the open card that was clicked [0..4]
+     * @return the open card
+     */
+    public Card getOpenCard(int index) {
+        Card card = openCards[index];
+        openCards[index] = getRandomCard();
+        return card;
+    }
+
+    public Card[] getOpenCards() {
+        return openCards;
     }
 }

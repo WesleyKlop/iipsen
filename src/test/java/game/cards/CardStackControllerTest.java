@@ -33,4 +33,13 @@ class CardStackControllerTest {
     void returnsFalseWhenRequestingMoreThanExists() {
         assertFalse(new CardStackController().getStack().containsCards(CardType.CART_BLUE, 1337));
     }
+
+    @Test
+    void getOpenCardReturnsNewCardAndReplacesInArray() {
+        var stack = new CardStackController();
+        stack.populateOpenCards();
+        Card[] openCards = stack.getOpenCards();
+        Card openCard = stack.getOpenCard(0);
+        assertNotEquals(openCards[0], openCard);
+    }
 }
