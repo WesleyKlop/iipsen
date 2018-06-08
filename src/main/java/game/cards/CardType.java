@@ -2,12 +2,19 @@ package game.cards;
 
 /**
  * Enum containing types of game.cards
+ *
+ * @author Wesley Klop
  */
 public enum CardType {
     /**
      * LOCOMOTIVE is a special type of card
      */
     LOCOMOTIVE,
+    /**
+     * CART_ANY is valid for any type of CART_
+     */
+    CART_ANY,
+
     CART_PURPLE,
     CART_GREEN,
     CART_RED,
@@ -16,5 +23,4 @@ public enum CardType {
     CART_WHITE,
     CART_YELLOW,
     CART_BLUE,
-    CART_ANY,
 }

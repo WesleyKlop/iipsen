@@ -5,6 +5,8 @@ import java.util.EnumMap;
 
 /**
  * CardStack contains a list of card types and how many there are left of it.
+ *
+ * @author Wesley Klop
  */
 public class CardStack extends EnumMap<CardType, Integer> implements Serializable {
 
