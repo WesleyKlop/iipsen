@@ -12,11 +12,11 @@ public class GameStoreProvider {
     private static final Observable<GameStore> instance = new Observable<>();
     private static GameStoreClient sender;
 
-    public static void setSender(GameStoreClient sender) {
-        GameStoreProvider.sender = sender;
+    private GameStoreProvider() {
     }
 
-    private GameStoreProvider() {
+    public static void setSender(GameStoreClient sender) {
+        GameStoreProvider.sender = sender;
     }
 
     public static Observable<GameStore> getInstance() {

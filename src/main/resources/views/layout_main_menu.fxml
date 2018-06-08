@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <Pane xmlns:fx="http://javafx.com/fxml/1" prefHeight="1080.0" prefWidth="3840.0"
       xmlns="http://javafx.com/javafx/8.0.121"
       fx:controller="client.ui.MainMenuController" fx:id="rootPane">
 
     <Pane fx:id="snowPane"/>
-
+    <HBox fx:id="behindLogoAnimation" spacing="-40" scaleX="0.9" scaleY="0.9" layoutX="-80" layoutY="-60">
+        <ImageView fx:id="gear1">
+            <Image url="/images/gear.png"/>
+        </ImageView>
+        <ImageView fx:id="gear2" translateY="-50">
+            <Image url="/images/gear.png"/>
+        </ImageView>
+        <ImageView fx:id="gear3">
+            <Image url="/images/gear.png"/>
+        </ImageView>
+    </HBox>
     <VBox spacing="20" fx:id="VBoxMain" alignment="BASELINE_CENTER" layoutY="20" layoutX="50">
         <ImageView fitWidth="550" preserveRatio="true">
-            <image>
-                <Image url="/images/logo.png"/>
-            </image>
+            <Image url="/images/logo.png"/>
         </ImageView>
         <Label text="Play" fx:id="playLabel" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
                onMouseClicked="#openMenuSequence"/>
@@ -29,15 +35,15 @@
                onMouseClicked="#quitGame"/>
     </VBox>
 
-    <fx:include source="layout_main_menu_play.fxml" fx:id="VBoxPlay" alignment="BASELINE_CENTER" layoutY="1500"
+    <fx:include source="layout_main_menu_play.fxml" fx:id="VBoxPlay" alignment="BASELINE_CENTER" layoutY="1080"
                 layoutX="850"/>
-    <fx:include source="layout_main_menu_load.fxml" fx:id="VBoxLoad" alignment="BASELINE_CENTER" layoutY="1500"
+    <fx:include source="layout_main_menu_load.fxml" fx:id="VBoxLoad" alignment="BASELINE_CENTER" layoutY="1080"
                 layoutX="850"/>
-    <fx:include source="layout_main_menu_rules.fxml" fx:id="VBoxRule" alignment="BASELINE_CENTER" layoutY="1500"
+    <fx:include source="layout_main_menu_rules.fxml" fx:id="VBoxRule" alignment="BASELINE_CENTER" layoutY="1080"
                 prefHeight="600" layoutX="850"/>
-    <fx:include source="layout_main_menu_options.fxml" fx:id="VBoxOption" alignment="BASELINE_CENTER" layoutY="1500"
+    <fx:include source="layout_main_menu_options.fxml" fx:id="VBoxOption" alignment="BASELINE_CENTER" layoutY="1080"
                 layoutX="850"/>
     <fx:include source="layout_main_menu_front_images.fxml" fx:id="images" translateY="540"/>
-    <Pane fx:id="snowPaneFront" translateY="600"/>
+    <Pane fx:id="snowPaneFront" translateY="600" prefHeight="480"/>
 
 </Pane>

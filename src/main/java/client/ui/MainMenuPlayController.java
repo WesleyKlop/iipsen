@@ -11,9 +11,7 @@ import java.util.ResourceBundle;
  */
 public class MainMenuPlayController implements Initializable {
 
-    public Label createLobby;
-    public Label joinLobby;
-
+    public Label createLobby, joinLobby;
     private MainMenuController mainMenuController = new MainMenuController();
 
     public void initialize(URL url, ResourceBundle bundle) {

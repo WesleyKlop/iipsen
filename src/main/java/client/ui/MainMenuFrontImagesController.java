@@ -4,6 +4,7 @@ import javafx.animation.TranslateTransition;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -13,34 +14,34 @@ import java.util.ResourceBundle;
  */
 public class MainMenuFrontImagesController implements Initializable {
 
-    public ImageView train1;
-    public ImageView train2;
-    public ImageView train3;
+    public ImageView train1, train2, train3;
+    public HBox trainsHBox;
 
     public void initialize(URL url, ResourceBundle bundle) {
-        ImageView[] trains = {train1, train2, train3};
-        trainAnimation(trains);
+        trainAnimation(trainsHBox);
     }
 
     /**
      * Animates a single train image
      *
-     * @param image train image
+     * @param trains HBox with the train images
      */
-    private void trainAnimation(ImageView image) {
-        image.setImage(new Image(getClass().getResource(generateTrainColorImage()).toString()));
-        TranslateTransition trainAni = new TranslateTransition(Duration.seconds(28), image);
+    private void trainAnimation(HBox trains) {
+        newImage(trains);
+        int seconds = (int) ((Math.random() * 20) + 10);
+        TranslateTransition trainAni = new TranslateTransition(Duration.seconds(seconds), trains);
         trainAni.setByX(8000);
         trainAni.play();
         trainAni.setOnFinished(e -> {
-            image.setLayoutX(image.getLayoutX() - 8000);
-            trainAnimation(image);
+            trains.setLayoutX(trains.getLayoutX() - 8000);
+            trainAnimation(trains);
         });
     }
 
-    private void trainAnimation(ImageView[] image) {
-        for (ImageView train : image) {
-            trainAnimation(train);
+    private void newImage(HBox trainBox) {
+        for (int i = 0; i < trainBox.getChildren().size(); i++) {
+            ImageView train = (ImageView) trainBox.getChildren().get(i);
+            train.setImage(new Image(getClass().getResource(generateTrainColorImage()).toString()));
         }
     }
 

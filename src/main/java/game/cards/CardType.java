@@ -1,6 +1,5 @@
 package game.cards;
 
-
 /**
  * Enum containing types of game.cards
  */

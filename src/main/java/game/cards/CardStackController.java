@@ -3,6 +3,7 @@ package game.cards;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -12,7 +13,7 @@ import java.util.Random;
  *
  * @author Wesley Klop
  */
-public class CardStackController {
+public class CardStackController implements Serializable {
     private static final Logger Log = LogManager.getLogger(CardStackController.class);
     /**
      * Default amount of locomotives in a traincardstack

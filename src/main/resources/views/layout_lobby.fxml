@@ -7,8 +7,8 @@
         xmlns:fx="http://javafx.com/fxml"
         xmlns="http://javafx.com/javafx"
         fx:controller="client.ui.LobbyController"
-        prefHeight="1080.0" prefWidth="1920.0" alignment="CENTER"
-        spacing="20">
+        prefHeight="1080.0" prefWidth="3020.0" alignment="CENTER"
+        spacing="20" style="-fx-background-color: #DDD">
     <VBox fx:id="container" alignment="BASELINE_CENTER"/>
     <HBox prefWidth="1080" alignment="CENTER" spacing="10">
         <Label fx:id="quitButtonLabel" text="Quit" onMouseEntered="#entered" onMouseExited="#exited"/>
