@@ -1,6 +1,7 @@
 client
 client.ui
 client.ui.components
+client.ui.factories
 game
 game.actions
 game.cards
