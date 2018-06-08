@@ -13,7 +13,7 @@ public class GameTestView extends Application {
     }
 
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/layout_full_game.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/layout_routes_map.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root, 1920, 1080);
         primaryStage.setScene(scene);

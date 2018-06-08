@@ -37,13 +37,9 @@ public class MainMenuOptionController {
             optionVolumeMusicSlider.setDisable(newValue);
         });
 
-        optionColorblind.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            prefs.setColorblind(newValue);
-        });
+        optionColorblind.selectedProperty().addListener((observable, oldValue, newValue) -> prefs.setColorblind(newValue));
 
-        optionVolumeFXSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            prefs.setFxVolume(newValue.doubleValue());
-        });
+        optionVolumeFXSlider.valueProperty().addListener((observable, oldValue, newValue) -> prefs.setFxVolume(newValue.doubleValue()));
 
         optionVolumeMusicSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             prefs.setMusicVolume(newValue.doubleValue());

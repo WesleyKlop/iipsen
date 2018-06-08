@@ -41,7 +41,7 @@ public class LocationFactory {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(getClass().getResourceAsStream("/string/gameLocations.xml"));
+            Document doc = builder.parse(locationStream);
             doc.getDocumentElement().normalize();
             return doc.getElementsByTagName("Location");
         } catch (ParserConfigurationException | IOException | SAXException e) {
