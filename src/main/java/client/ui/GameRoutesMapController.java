@@ -197,7 +197,7 @@ public class GameRoutesMapController {
                 location.setLayoutX(x);
                 location.setLayoutY(y);
                 location.setId(id);
-                location.setFill(Color.ORANGE);
+                location.setFill(Color.GOLD);
                 location.setStroke(Color.ORANGE);
                 location.setStrokeWidth(3);
                 location.setOnMouseEntered(this::hoverLocationEnter);
