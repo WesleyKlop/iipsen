@@ -17,6 +17,7 @@ public class GameTestView extends Application {
         Parent root = loader.load();
         Scene scene = new Scene(root, 1920, 1080);
         primaryStage.setScene(scene);
+        primaryStage.setFullScreen(true);
         primaryStage.setTitle("GameScreen");
         primaryStage.show();
     }
