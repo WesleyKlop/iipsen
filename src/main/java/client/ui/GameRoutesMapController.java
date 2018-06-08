@@ -80,6 +80,26 @@ public class GameRoutesMapController {
         animation.play();
     }
 
+    private void createRouteInformation() {
+        final double routeInformationWidth = 100;
+        final double routeInformationHeight = 30;
+        Rectangle routeInformationBackground = new Rectangle(routeInformationWidth, routeInformationHeight, Color.WHITE);
+        Label routeInformation = new Label();
+        Polygon routeInformationDecoration = new Polygon();
+        StackPane routeInformationStack = new StackPane(routeInformationBackground, routeInformation, routeInformationDecoration);
+        routeInformation.setStyle("-fx-background-color: #fff");
+        routeInformationBackground.setStroke(Color.BLACK);
+        routeInformationBackground.setStrokeWidth(2);
+        routeInformationBackground.setArcWidth(20);
+        routeInformationBackground.setArcHeight(20);
+        routeInformationStack.setOpacity(0);
+        routeInformationStack.setMouseTransparent(true);
+        routeInformationDecoration.getPoints().addAll(-10.0, 0.0, 10.0, 0.0, 0.0, 10.0);
+        routeInformationDecoration.setLayoutX(routeInformationWidth / 2);
+        routeInformationDecoration.setTranslateY(routeInformationHeight - 10);
+        informationPane.getChildren().add(routeInformationStack);
+    }
+
     /**
      * This method reads every single route node from "/string/gameRoutes.xml"
      * Currently manages the styling of the route as well.
@@ -200,9 +220,11 @@ public class GameRoutesMapController {
                 location.setFill(Color.GOLD);
                 location.setStroke(Color.ORANGE);
                 location.setStrokeWidth(3);
-                location.setOnMouseEntered(this::hoverLocationEnter);
+                location.setOnMouseEntered(e -> {
+                    hoverLocationEnter(e);
+                    showLocationInformation(e);
+                });
                 location.setOnMouseExited(this::hoverLocationExit);
-                location.setOnMouseClicked(this::locationOnClick);
                 mainPane.getChildren().add(location);
 
             }
@@ -285,7 +307,7 @@ public class GameRoutesMapController {
         }
     }
 
-    private void locationOnClick(MouseEvent mouseEvent) {
+    private void showLocationInformation(MouseEvent mouseEvent) {
         Circle source = (Circle) mouseEvent.getSource();
         locationInformation.setText(source.getId());
         int[] cords = getLocationPosition(source);
@@ -323,7 +345,9 @@ public class GameRoutesMapController {
         return position;
     }
 
-    private void onRouteClicked() {
+    private void onRouteClicked(MouseEvent mouseEvent) {
+        VBox source = (VBox) mouseEvent.getSource();
+
     }
 
 }
