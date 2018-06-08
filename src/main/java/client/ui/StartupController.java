@@ -88,6 +88,7 @@ public class StartupController implements Initializable {
     }
 
     private void moveMenuRight() {
+        preferencesPaneController.resetPrefs();
         preferencesPaneController.ipBox.getChildren().removeAll(preferencesPaneController.createButton, preferencesPaneController.joinButton);
         TranslateTransition menuAni = new TranslateTransition(Duration.seconds(1), allPanes);
         menuAni.setToX(0);
@@ -96,6 +97,7 @@ public class StartupController implements Initializable {
     }
 
     public void moveMenuDown() {
+        preferencesPaneController.resetPrefs();
         TranslateTransition menuAni = new TranslateTransition(Duration.seconds(1), rootPane);
         menuAni.setToY(-1080);
         menuAni.play();

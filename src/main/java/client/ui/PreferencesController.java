@@ -86,4 +86,10 @@ public class PreferencesController implements Initializable {
         return true;
     }
 
+    public void resetPrefs() {
+        nameLabel.setText("Name:");
+        nameField.setText("");
+        colorPreferenceController.reset();
+    }
+
 }

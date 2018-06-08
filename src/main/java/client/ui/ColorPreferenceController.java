@@ -43,4 +43,8 @@ public class ColorPreferenceController {
         return colorPreferencePicker.getValue();
     }
 
+    public void reset() {
+        colorPreferencePicker.setValue(Color.WHITE);
+        changeColor();
+    }
 }
