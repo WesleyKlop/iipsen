@@ -32,7 +32,7 @@ public class AddPlayerAction implements Action {
      */
     @Override
     public void executeAction(GameStore state) {
-        player.setId(state.getPlayers().size());
         state.getPlayers().add(player);
+        player.setId(state.getPlayers().size());
     }
 }

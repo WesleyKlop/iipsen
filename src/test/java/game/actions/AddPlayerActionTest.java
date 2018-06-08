@@ -32,12 +32,12 @@ class AddPlayerActionTest {
     void executingActionAddsPlayerToList() {
         var action = getPlayerAction();
         var store = new GameStore();
-        assertEquals(0, store.getPlayers().size());
-        assertDoesNotThrow(() -> action.executeAction(store));
+        assertEquals(0, store.getPlayers().size(), "Players in store should be 0");
+        assertDoesNotThrow(() -> action.executeAction(store), "Executing action threw an Exception");
         var addedPlayer = store.getPlayers().get(0);
-        assertEquals(1, store.getPlayers().size());
-        assertEquals(1, addedPlayer.getId());
-        assertEquals("Thierry Baudet", addedPlayer.getPlayerName());
-        assertEquals(Color.LAVENDER.toString(), addedPlayer.getColor());
+        assertEquals(1, store.getPlayers().size(), "Players in store should be 1");
+        assertEquals(1, addedPlayer.getId(), "Player id");
+        assertEquals("Thierry Baudet", addedPlayer.getPlayerName(), "Player name was wrong");
+        assertEquals(Color.LAVENDER.toString(), addedPlayer.getColor(), "Player color was wrong");
     }
 }
