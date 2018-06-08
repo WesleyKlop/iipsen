@@ -10,26 +10,18 @@
     <Pane fx:id="snowPane"/>
     <HBox fx:id="behindLogoAnimation" spacing="-40" scaleX="0.9" scaleY="0.9" layoutX="-80" layoutY="-60">
         <ImageView fx:id="gear1">
-            <image>
-                <Image url="/images/gear.png"/>
-            </image>
+            <Image url="/images/gear.png"/>
         </ImageView>
         <ImageView fx:id="gear2" translateY="-50">
-            <image>
-                <Image url="/images/gear.png"/>
-            </image>
+            <Image url="/images/gear.png"/>
         </ImageView>
         <ImageView fx:id="gear3">
-            <image>
-                <Image url="/images/gear.png"/>
-            </image>
+            <Image url="/images/gear.png"/>
         </ImageView>
     </HBox>
     <VBox spacing="20" fx:id="VBoxMain" alignment="BASELINE_CENTER" layoutY="20" layoutX="50">
         <ImageView fitWidth="550" preserveRatio="true">
-            <image>
-                <Image url="/images/logo.png"/>
-            </image>
+            <Image url="/images/logo.png"/>
         </ImageView>
         <Label text="Play" fx:id="playLabel" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
                onMouseClicked="#openMenuSequence"/>

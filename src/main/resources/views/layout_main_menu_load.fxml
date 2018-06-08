@@ -11,9 +11,7 @@
       spacing="20" fx:id="startMenu">
 
     <ImageView fitWidth="550" preserveRatio="true">
-        <image>
-            <Image url="/images/loadagame.png"/>
-        </image>
+        <Image url="/images/loadagame.png"/>
     </ImageView>
     <Label fx:id="loadLevelLabel" text="Load Level" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"/>
 </VBox>
