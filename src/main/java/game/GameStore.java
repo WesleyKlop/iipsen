@@ -29,6 +29,12 @@ public class GameStore implements Serializable {
         gameState = newState;
     }
 
+    public void addPlayer(Player player) {
+        players.add(player);
+        // Calling setId after adding makes the player id start at 1
+        player.setId(players.size());
+    }
+
     public CardStackController getCardStackController() {
         return cardStackController;
     }

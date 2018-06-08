@@ -38,5 +38,6 @@ public enum ELocation {
     ALBORG,
     ARHUS,
     KOBENHAVN,
-    KARLSKRONA
+    KARLSKRONA,
+    STOCKHOLM
 }

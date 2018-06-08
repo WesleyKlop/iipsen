@@ -25,8 +25,7 @@ public class LobbyController {
     private static final Logger Log = LogManager.getLogger(LobbyController.class);
     @FXML
     public VBox container;
-    public Label startButtonLabel;
-    public Label quitButtonLabel;
+    public Label startButtonLabel, quitButtonLabel;
 
     private MainMenuController mainMenuController = new MainMenuController();
 
@@ -55,7 +54,7 @@ public class LobbyController {
         });
     }
 
-    public void onStartButtonClicked(MouseEvent actionEvent) throws RemoteException {
+    public void onStartButtonClicked(MouseEvent mouseEvent) throws RemoteException {
         Log.debug("Starting game");
         var action = new ChangeStateAction(GameState.GAME);
         Log.debug("Changing to GameState.GAME");
@@ -70,11 +69,11 @@ public class LobbyController {
         mainMenuController.hoverExit(mouseEvent);
     }
 
-    public void style(Label label) {
+    private void style(Label label) {
         mainMenuController.style(label);
     }
 
-    public String contrastCalculator(Color color) {
+    private String contrastCalculator(Color color) {
         double brightness = color.getBrightness();
         double hue = color.getHue();
         double saturation = color.getSaturation();
@@ -84,8 +83,8 @@ public class LobbyController {
         color = Color.hsb(hue, saturation, brightness);
 
         return String.format("#%02X%02X%02X",
-                (int) (color.getRed() * 255),
-                (int) (color.getGreen() * 255),
-                (int) (color.getBlue() * 255));
+            (int) (color.getRed() * 255),
+            (int) (color.getGreen() * 255),
+            (int) (color.getBlue() * 255));
     }
 }

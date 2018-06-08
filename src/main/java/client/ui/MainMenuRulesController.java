@@ -20,9 +20,7 @@ import java.util.ResourceBundle;
 public class MainMenuRulesController implements Initializable {
 
     public Text ruleRules;
-    public HBox HBoxRule1;
-    public HBox HBoxRule2;
-    public HBox HBoxRule3;
+    public HBox HBoxRule1, HBoxRule2, HBoxRule3;
     public Slider optionFontSize;
     private MainMenuController mainMenuController = new MainMenuController();
 

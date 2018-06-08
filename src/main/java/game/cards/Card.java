@@ -3,6 +3,7 @@ package game.cards;
 /**
  * Card class
  * Contains CardType
+ * TODO: Path for graphic depending on #cardType
  * TODO: Custom card functionality
  */
 public class Card {

@@ -1,26 +1,20 @@
 package client.ui;
 
-import javafx.fxml.Initializable;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 /**
  */
-public class ColorPreferenceController implements Initializable {
+public class ColorPreferenceController {
 
     public ColorPicker colorPreferencePicker;
     public Label colorPreferenceLabel;
     public Rectangle colorPreferenceRectangle;
-    private MainMenuController mainMenuController = new MainMenuController();
 
-    public void initialize(URL url, ResourceBundle bundle) {
+    public void initialize() {
         colorPreferencePicker.getStyleClass().add("button");
         colorPreferenceLabel.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/MavenPro-Medium.ttf"), 25));
         colorPreferenceRectangle.setArcHeight(20);
@@ -41,12 +35,16 @@ public class ColorPreferenceController implements Initializable {
         source.setFill(newFill);
     }
 
-    public void exited(MouseEvent mouseEvent) {
+    public void exited() {
         changeColor();
     }
 
-    public Color getSelectedColor() {
+    Color getSelectedColor() {
         return colorPreferencePicker.getValue();
     }
 
+    public void reset() {
+        colorPreferencePicker.setValue(Color.WHITE);
+        changeColor();
+    }
 }
