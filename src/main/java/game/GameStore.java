@@ -53,5 +53,4 @@ public class GameStore implements Serializable {
     public RouteCardStackSelected getRouteCardStack() {
         return routeCardStack;
     }
-    //TODO
 }
