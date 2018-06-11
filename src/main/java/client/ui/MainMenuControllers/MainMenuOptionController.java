@@ -1,4 +1,4 @@
-package client.ui;
+package client.ui.MainMenuControllers;
 
 import client.MediaController;
 import client.UserPreferences;

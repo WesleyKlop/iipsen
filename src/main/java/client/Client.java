@@ -1,6 +1,6 @@
 package client;
 
-import client.ui.StartupController;
+import client.ui.MainMenuControllers.StartupController;
 import game.GameState;
 import javafx.application.Application;
 import javafx.application.Platform;

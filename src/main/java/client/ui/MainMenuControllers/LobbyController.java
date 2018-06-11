@@ -1,4 +1,4 @@
-package client.ui;
+package client.ui.MainMenuControllers;
 
 import game.GameState;
 import game.GameStoreProvider;

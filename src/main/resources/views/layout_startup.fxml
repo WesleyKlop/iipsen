@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!---->
+
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.Pane?>
 <Pane xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
-      fx:controller="client.ui.StartupController"
+      fx:controller="client.ui.MainMenuControllers.StartupController"
       prefHeight="1080" prefWidth="3840"
       fx:id="rootPane">
 

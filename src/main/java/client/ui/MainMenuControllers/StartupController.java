@@ -1,4 +1,4 @@
-package client.ui;
+package client.ui.MainMenuControllers;
 
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import util.TempException;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -55,6 +56,11 @@ public class StartupController implements Initializable {
     }
 
     public void quitGame() {
+        try {
+            throw new TempException();
+        } catch (TempException e) {
+            e.printStackTrace();
+        }
         System.exit(0);
     }
 
