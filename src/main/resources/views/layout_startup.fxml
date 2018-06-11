@@ -15,9 +15,7 @@
     </Pane>
     <ImageView fitWidth="50" preserveRatio="true" layoutX="1860" layoutY="10" onMouseEntered="#widthUpImageView"
                onMouseExited="#widthDownImageView" onMouseClicked="#quitGame">
-        <image>
-            <Image url="/images/exitButton.png"/>
-        </image>
+        <Image url="/images/exitButton.png"/>
     </ImageView>
 
     <fx:include source="layout_main_menu_options.fxml" fx:id="optionsLobby" layoutX="2000" layoutY="1080"
@@ -28,15 +26,11 @@
 
     <ImageView fitWidth="50" preserveRatio="true" layoutX="1860" layoutY="1090" onMouseEntered="#widthUpImageView"
                onMouseExited="#widthDownImageView" onMouseClicked="#openOptionsVertical">
-        <image>
-            <Image url="/images/OptionsButtonImage.png"/>
-        </image>
+        <Image url="/images/OptionsButtonImage.png"/>
     </ImageView>
 
     <ImageView fitWidth="50" preserveRatio="true" layoutX="1800" layoutY="1090" onMouseEntered="#widthUpImageView"
                onMouseExited="#widthDownImageView" onMouseClicked="#openRulesVertical">
-        <image>
-            <Image url="/images/RulesButtonImage.png"/>
-        </image>
+        <Image url="/images/RulesButtonImage.png"/>
     </ImageView>
 </Pane>
