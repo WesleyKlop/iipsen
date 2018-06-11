@@ -2,6 +2,7 @@ package game;
 
 import game.cards.CardStackController;
 import game.player.Player;
+import game.routecards.RouteCardStack;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,12 +14,22 @@ public class GameStore implements Serializable {
     private GameState gameState = GameState.INIT;
     private List<Player> players = new ArrayList<>();
     private CardStackController cardStackController = new CardStackController();
+    private RouteCardStack routeCardStack = new RouteCardStack();
 
     public GameStore() {
     }
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public Player getPlayerById(int id) {
+        for (Player player : players) {
+            if (player.getId() == id) {
+                return player;
+            }
+        }
+        return null;
     }
 
     public GameState getGameState() {
@@ -37,6 +48,10 @@ public class GameStore implements Serializable {
 
     public CardStackController getCardStackController() {
         return cardStackController;
+    }
+
+    public RouteCardStack getRouteCardStack() {
+        return routeCardStack;
     }
     //TODO
 }

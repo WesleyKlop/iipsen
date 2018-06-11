@@ -5,8 +5,8 @@ import game.routecards.RouteCard;
 import javafx.scene.paint.Color;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Player model contains all things that should be kept on the player
@@ -15,7 +15,7 @@ public class Player implements Serializable {
     private final String playerName;
     private final String color;
     private CardStack stack = new CardStack();
-    private Set<RouteCard> routeCards = new HashSet<>();
+    private List<RouteCard> routeCards = new ArrayList<>();
     private int id;
     private int score;
     private int traincarts = 40;
@@ -39,6 +39,10 @@ public class Player implements Serializable {
 
     public void addRouteCard(RouteCard card) {
         routeCards.add(card);
+    }
+
+    public List<RouteCard> getRouteCards() {
+        return routeCards;
     }
 
     public String getPlayerName() {

@@ -1,6 +1,7 @@
-package game.routecards;
+package game.location;
 
 import game.cards.CardType;
+import game.routecards.Route;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

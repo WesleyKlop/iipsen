@@ -1,5 +1,6 @@
-package game.routecards;
+package game.location;
 
+import game.routecards.RouteCard;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
