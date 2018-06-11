@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" prefHeight="800.0" prefWidth="1920.0" spacing="5" alignment="CENTER"
       xmlns="http://javafx.com/javafx/8.0.121"
-      fx:controller="client.ui.PreferencesController" fx:id="rootPane">
+      fx:controller="client.ui.MainMenuControllers.PreferencesController" fx:id="rootPane">
     <Label alignment="CENTER" prefHeight="25.0" prefWidth="335.0" text="Name" fx:id="nameLabel"/>
     <TextField fx:id="nameField" alignment="CENTER" maxWidth="200.0" minHeight="25.0" minWidth="200.0" prefHeight="30.0"
                prefWidth="200.0"/>

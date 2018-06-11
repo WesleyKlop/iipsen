@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.Pane?>
 <Pane xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
-      fx:controller="client.ui.MainMenuFrontImagesController"
+      fx:controller="client.ui.MainMenuControllers.MainMenuFrontImagesController"
       prefHeight="400.0" prefWidth="600.0">
 
     <ImageView fx:id="mountains" preserveRatio="true">
