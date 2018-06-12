@@ -17,9 +17,8 @@ import java.util.List;
 /**
  */
 public class Server extends UnicastRemoteObject implements GameStoreServer {
-    private static final Logger Log = LogManager.getLogger(Server.class);
-
     public static final String REGISTRY_NAME = "TTRGameService";
+    private static final Logger Log = LogManager.getLogger(Server.class);
     private static final int PORT = 1099;
 
     private List<GameStoreClient> clients = new ArrayList<>();
@@ -59,8 +58,7 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
             notifyListeners();
             Log.debug("Notified listeners");
         } catch (Exception ex) {
-            Log.debug("Server error while executing action");
-            ex.printStackTrace();
+            Log.error("Server error while executing action", ex);
         }
     }
 }

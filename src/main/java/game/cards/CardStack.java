@@ -1,55 +1,20 @@
 package game.cards;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.List;
-import java.util.Random;
 
 /**
  * CardStack contains a list of card types and how many there are left of it.
+ *
+ * @author Wesley Klop
  */
 public class CardStack extends EnumMap<CardType, Integer> implements Serializable {
-    /**
-     * Default amount of locomotives in a traincardstack
-     */
-    public static final int DEFAULT_LOCOMOTIVE_COUNT = 14;
-    /**
-     * Default amount of carts in a traincardstack
-     */
-    public static final int DEFAULT_CART_COUNT = 12;
 
     /**
      * Creates an empty CardStack
      */
     public CardStack() {
         super(CardType.class);
-    }
-
-    /**
-     * Creates a stack of train cards
-     *
-     * @return a CardStack instance containing locomotives and all cart types
-     */
-    static CardStack CreateTrainCardStack() {
-        CardStack stack = new CardStack();
-        stack.generateTrainCards();
-
-        return stack;
-    }
-
-    /**
-     * Fills the map with the correct values for train cards
-     */
-    public void generateTrainCards() {
-        // Feels kind of hacky tbh
-        for (CardType type : CardType.values()) {
-            if (type == CardType.LOCOMOTIVE) {
-                this.put(type, DEFAULT_LOCOMOTIVE_COUNT);
-            } else if (type != CardType.CART_ANY) {
-                this.put(type, DEFAULT_CART_COUNT);
-            }
-        }
     }
 
     /**
@@ -72,34 +37,6 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
         }
 
         return new Card(type);
-    }
-
-    /**
-     * Get a random card from the stack
-     * Side effects: Generates new stack when there are no game.cards left
-     *
-     * @return a random Card
-     */
-    Card getRandomCard() {
-        // I think we should generate a new stack when we are out of game.cards...
-        if (this.isEmpty()) {
-            return null;
-        }
-
-        // Get a random game.cards.CardType from the stack
-        Random random = new Random();
-        List<CardType> keys = new ArrayList<>(this.keySet());
-
-        CardType randomCardType = keys.get(random.nextInt(keys.size()));
-
-        // Decrement the amount of that type in the map
-        this.put(randomCardType, this.get(randomCardType) - 1);
-
-        // Remove from map when game.cards are out
-        if (this.get(randomCardType) == 0)
-            this.remove(randomCardType);
-
-        return new Card(randomCardType);
     }
 
     /**
@@ -199,6 +136,6 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
 
     @Override
     public String toString() {
-        return "game.cards.CardStack" + super.toString();
+        return "CardStack" + super.toString();
     }
 }

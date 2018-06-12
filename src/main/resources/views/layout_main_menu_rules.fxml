@@ -9,13 +9,11 @@
 <?import javafx.scene.text.Text?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
-      fx:controller="client.ui.MainMenuRulesController"
+      fx:controller="client.ui.MainMenuControllers.MainMenuRulesController"
       prefHeight="400.0" prefWidth="600.0" spacing="5">
 
     <ImageView fitWidth="550" preserveRatio="true">
-        <image>
-            <Image url="/images/rules.png"/>
-        </image>
+        <Image url="/images/rules.png"/>
     </ImageView>
     <HBox spacing="5" fx:id="HBoxRule1">
         <Label fx:id="ruleObjective" text="Object of the game" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
@@ -42,9 +40,9 @@
                onMouseClicked="#manageRules"/>
     </HBox>
     <Label text="Size:" scaleX="2.0" scaleY="2.0"/>
-    <Slider fx:id="optionFontSize" orientation="HORIZONTAL" max="30.0" min="16" value="20" showTickLabels="true"
+    <Slider fx:id="optionFontSize" max="30.0" min="16" value="20" showTickLabels="true"
             showTickMarks="true" majorTickUnit="1" blockIncrement="1"/>
-    <ScrollPane hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" maxHeight="500" minWidth="760"
+    <ScrollPane hbarPolicy="NEVER" maxHeight="500" minWidth="760"
                 onMouseDragEntered="#changeFont">
         <padding>
             <Insets left="15" top="10" right="15" bottom="10"/>

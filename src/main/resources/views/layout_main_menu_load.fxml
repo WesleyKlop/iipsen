@@ -6,14 +6,12 @@
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
-      fx:controller="client.ui.MainMenuLoadController"
+      fx:controller="client.ui.MainMenuControllers.MainMenuLoadController"
       prefHeight="400.0" prefWidth="600.0"
       spacing="20" fx:id="startMenu">
 
     <ImageView fitWidth="550" preserveRatio="true">
-        <image>
-            <Image url="/images/loadagame.png"/>
-        </image>
+        <Image url="/images/loadagame.png"/>
     </ImageView>
     <Label fx:id="loadLevelLabel" text="Load Level" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"/>
 </VBox>

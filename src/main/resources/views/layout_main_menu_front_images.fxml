@@ -1,30 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.image.*?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <Pane xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
-      fx:controller="client.ui.MainMenuFrontImagesController"
+      fx:controller="client.ui.MainMenuControllers.MainMenuFrontImagesController"
       prefHeight="400.0" prefWidth="600.0">
 
-    <ImageView fx:id="mountains" preserveRatio="true" layoutX="0" layoutY="0">
-        <image>
-            <Image url="/images/mountains.png"/>
-        </image>
+    <ImageView fx:id="mountains" preserveRatio="true">
+        <Image url="/images/mountains.png"/>
     </ImageView>
-    <ImageView fx:id="train1" preserveRatio="true" layoutX="-1500" layoutY="370" fitWidth="300">
-        <image>
+    <HBox fx:id="trainsHBox" layoutX="-1000" layoutY="365">
+        <ImageView fx:id="train1" preserveRatio="true" fitWidth="300">
             <Image url="/images/train_blue.png"/>
-        </image>
-    </ImageView>
-    <ImageView fx:id="train2" preserveRatio="true" layoutX="-1200" layoutY="370" fitWidth="300">
-        <image>
+        </ImageView>
+        <ImageView fx:id="train2" preserveRatio="true" fitWidth="300">
             <Image url="/images/train_blue.png"/>
-        </image>
-    </ImageView>
-    <ImageView fx:id="train3" preserveRatio="true" layoutX="-900" layoutY="370" fitWidth="300">
-        <image>
+        </ImageView>
+        <ImageView fx:id="train3" preserveRatio="true" fitWidth="300">
             <Image url="/images/train_blue.png"/>
-        </image>
-    </ImageView>
+        </ImageView>
+    </HBox>
 </Pane>

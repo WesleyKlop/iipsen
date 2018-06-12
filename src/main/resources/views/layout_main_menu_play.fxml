@@ -6,13 +6,11 @@
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
-      fx:controller="client.ui.MainMenuPlayController"
+      fx:controller="client.ui.MainMenuControllers.MainMenuPlayController"
       prefHeight="400.0" prefWidth="600.0"
       spacing="20" fx:id="startMenu">
     <ImageView fitWidth="550" preserveRatio="true">
-        <image>
-            <Image url="/images/makeagame.png"/>
-        </image>
+        <Image url="/images/makeagame.png"/>
     </ImageView>
     <Label fx:id="createLobby" text="Create Lobby" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"/>
     <Label fx:id="joinLobby" text="Join Lobby" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"/>

@@ -35,11 +35,12 @@ public class Route {
                 this.owner = builder.getId();
                 Log.debug("Route build! by " + builder.getPlayerName());
                 return true;
+
             } catch (Exception e) {
                 return false;
             }
         } else {
-            Log.debug("player doesnt have the needed cards!!");
+            Log.debug("player doesn't have the needed cards!!");
             Log.debug(builder.getCardStack());
         }
         return false;
@@ -55,5 +56,17 @@ public class Route {
 
     public int getLocomotiveCost() {
         return locomotiveCost;
+    }
+
+    public CardType getType() {
+        return color;
+    }
+
+    public int getOwner() {
+        return this.owner;
+    }
+
+    public void setOwner(int newOwner) {
+        owner = newOwner;
     }
 }
