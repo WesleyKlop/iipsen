@@ -12,7 +12,6 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import util.TempException;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,7 +20,7 @@ import java.util.ResourceBundle;
  */
 public class StartupController implements Initializable {
 
-    private static final Logger logger = LogManager.getLogger(StartupController.class);
+    private static final Logger Log = LogManager.getLogger(StartupController.class);
 
     public Pane rootPane, MainMenuPane, allPanes;
     public VBox optionsLobby, rulesLobby;
@@ -57,11 +56,6 @@ public class StartupController implements Initializable {
     }
 
     public void quitGame() {
-        try {
-            throw new TempException();
-        } catch (TempException e) {
-            e.printStackTrace();
-        }
         System.exit(0);
     }
 
@@ -69,9 +63,9 @@ public class StartupController implements Initializable {
         try {
             preferencesPaneController.buttons.getChildren().add(preferencesPaneController.createButton);
         } catch (Exception e) {
-            logger.error("Exception found: " + e.toString());
+            Log.error("Exception found: ", e);
         }
-        preferencesPaneController.ipBox.getChildren().removeAll(preferencesPaneController.ipLabel, preferencesPaneController.IPinput);
+        preferencesPaneController.ipBox.getChildren().removeAll(preferencesPaneController.ipLabel, preferencesPaneController.ipInput);
         preferencesPaneController.buttons.getChildren().remove(preferencesPaneController.joinButton);
         moveMenuLeft();
     }
@@ -79,9 +73,9 @@ public class StartupController implements Initializable {
     private void switchMenuJoin() {
         try {
             preferencesPaneController.buttons.getChildren().add(preferencesPaneController.joinButton);
-            preferencesPaneController.ipBox.getChildren().addAll(preferencesPaneController.ipLabel, preferencesPaneController.IPinput);
+            preferencesPaneController.ipBox.getChildren().addAll(preferencesPaneController.ipLabel, preferencesPaneController.ipInput);
         } catch (Exception e) {
-            System.out.println("Exception found: " + e.toString());
+            Log.error("Exception found: ", e);
         }
         preferencesPaneController.buttons.getChildren().remove(preferencesPaneController.createButton);
         moveMenuLeft();

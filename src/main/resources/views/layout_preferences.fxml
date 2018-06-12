@@ -12,7 +12,7 @@
     <fx:include source="layout_color_preference.fxml" fx:id="colorPreference"/>
     <VBox fx:id="ipBox" alignment="CENTER" prefWidth="1080">
         <Label alignment="CENTER" prefHeight="25.0" prefWidth="335.0" text="IP-address" fx:id="ipLabel"/>
-        <TextField fx:id="IPinput" alignment="CENTER" maxWidth="200.0" minHeight="25.0" minWidth="200.0"
+        <TextField fx:id="ipInput" alignment="CENTER" maxWidth="200.0" minHeight="25.0" minWidth="200.0"
                    prefHeight="30.0"
                    prefWidth="200.0"/>
     </VBox>

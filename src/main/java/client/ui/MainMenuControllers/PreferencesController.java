@@ -1,5 +1,6 @@
 package client.ui.MainMenuControllers;
 
+import client.ui.views.ColorPreferenceView;
 import game.GameStoreProvider;
 import game.actions.AddPlayerAction;
 import game.player.Player;
@@ -23,12 +24,12 @@ public class PreferencesController implements Initializable {
     private static final Logger Log = LogManager.getLogger(PreferencesController.class);
 
     public Pane rootPane;
-    public TextField nameField, IPinput;
+    public TextField nameField, ipInput;
     public Label createButton, joinButton, backButton, nameLabel, ipLabel;
     public HBox buttons;
     public VBox ipBox;
     @FXML
-    private ColorPreferenceController colorPreferenceController;
+    private ColorPreferenceView colorPreferenceController;
     private MainMenuController mainMenuController = new MainMenuController();
 
     public void initialize(URL url, ResourceBundle bundle) {
