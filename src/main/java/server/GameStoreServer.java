@@ -7,6 +7,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 /**
+ * Server skeleton
  */
 public interface GameStoreServer extends Remote {
     void registerObserver(GameStoreClient listener) throws RemoteException;

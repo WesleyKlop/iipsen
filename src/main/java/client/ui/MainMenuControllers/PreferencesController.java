@@ -60,7 +60,7 @@ public class PreferencesController implements Initializable {
     }
 
     public boolean checkName() {
-        String name = nameField.getText();
+        String name = nameField.getText().toLowerCase();
         String permitted = "abcdefghijklmnopqrstuvwxyz0123456789";
         for (int i = 0; i < name.length(); i++) {
             for (int j = 0; j < permitted.length(); j++) {
@@ -77,7 +77,7 @@ public class PreferencesController implements Initializable {
 
     public boolean checkNameDouble() {
         String name = nameField.getText();
-        for (Player player : GameStoreProvider.getStore().getPlayers()) {
+        for (Player player : GameStoreProvider.getStore().getPlayers()) { // <--- dit werkt niet
             if (name.equalsIgnoreCase(player.getPlayerName())) {
                 nameLabel.setText("Name is already taken, please choose another name");
                 return false;

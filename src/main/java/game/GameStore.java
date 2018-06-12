@@ -11,7 +11,7 @@ import java.util.List;
 /**
  */
 public class GameStore implements Serializable {
-    private GameState gameState = GameState.INIT;
+    private GameState gameState = GameState.LOBBY;
     private List<Player> players = new ArrayList<>();
     private CardStackController cardStackController = new CardStackController();
     private RouteCardStackSelected routeCardStack = new RouteCardStackSelected();

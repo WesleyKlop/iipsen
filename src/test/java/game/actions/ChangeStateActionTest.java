@@ -15,7 +15,7 @@ class ChangeStateActionTest {
 
     @BeforeEach
     void setUp() {
-        testAction = new ChangeStateAction(GameState.LOBBY);
+        testAction = new ChangeStateAction(GameState.GAME);
     }
 
     @Test
@@ -27,9 +27,9 @@ class ChangeStateActionTest {
     @Test
     void executingActionChangesState() {
         var store = new GameStore();
-        assertEquals(store.getGameState(), GameState.INIT);
-        assertDoesNotThrow(() -> testAction.executeAction(store));
         assertEquals(store.getGameState(), GameState.LOBBY);
+        assertDoesNotThrow(() -> testAction.executeAction(store));
+        assertEquals(store.getGameState(), GameState.GAME);
     }
 
     @Test

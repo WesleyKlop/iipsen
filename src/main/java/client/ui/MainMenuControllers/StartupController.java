@@ -1,5 +1,6 @@
 package client.ui.MainMenuControllers;
 
+import client.ui.views.LobbyView;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,7 +31,7 @@ public class StartupController implements Initializable {
     @FXML
     private PreferencesController preferencesPaneController;
     @FXML
-    private LobbyController lobbyPaneController;
+    private LobbyView lobbyPaneController;
 
     public void initialize(URL url, ResourceBundle bundle) {
         MainMenuPaneController.getPlayController().createLobby.setOnMouseClicked(e -> switchMenuCreate());
