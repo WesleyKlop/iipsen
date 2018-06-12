@@ -1,6 +1,7 @@
 package client.ui.MainMenuControllers;
 
 import client.MediaController;
+import client.ui.views.MainMenuOptionView;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
@@ -43,7 +44,7 @@ public class MainMenuController implements Initializable {
     @FXML
     private MainMenuLoadController VBoxLoadController;
     @FXML
-    private MainMenuOptionController VBoxOptionController;
+    private MainMenuOptionView VBoxOptionController;
 
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
@@ -74,7 +75,7 @@ public class MainMenuController implements Initializable {
         rotAni.play();
     }
 
-    void style(Label label) {
+    public void style(Label label) {
         Font font = Font.loadFont(getClass().getResourceAsStream("/fonts/MavenPro-Medium.ttf"), 25);
         label.setFont(font);
         label.setStyle("-fx-background-color: white;" + "-fx-background-radius: 10;");

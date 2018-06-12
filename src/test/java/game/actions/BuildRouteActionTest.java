@@ -3,6 +3,7 @@ package game.actions;
 import game.GameStore;
 import game.cards.CardType;
 import game.location.ELocation;
+import game.location.LocationStore;
 import game.player.Player;
 import game.routecards.Route;
 import javafx.scene.paint.Color;
@@ -18,14 +19,15 @@ class BuildRouteActionTest {
     private Route testRoute1;
     private BuildRouteAction action;
     private GameStore store;
+    private LocationStore locStore;
 
     @BeforeEach
     void setUp() {
         player = new Player("Vitas", Color.BLUEVIOLET);
-        testRoute1 = new Route(2, 1, ELocation.ALBORG, ELocation.ANDALSNES, CardType.CART_YELLOW);
         store = new GameStore();
         player.setId(1);
-        action = new BuildRouteAction(player, testRoute1);
+        locStore = LocationStore.Generate();
+        action = new BuildRouteAction(player, locStore.getLocation(ELocation.HONNINGSVAG), locStore.getLocation(ELocation.KIRKENES));
     }
 
     @AfterEach
@@ -34,30 +36,39 @@ class BuildRouteActionTest {
         testRoute1 = null;
         store = null;
         action = null;
+        locStore = null;
     }
 
     @Test
     void buildRouteNotEnoughCards() {
         player.getCardStack().addCard(CardType.LOCOMOTIVE);
         action.executeAction(store);
-        assertFalse(testRoute1.hasOwner());
+        assertFalse(locStore.getLocation(ELocation.HONNINGSVAG).getRouteToLocation(ELocation.KIRKENES).hasOwner());
     }
 
     @Test
     void buildRouteEnoughCards() {
-        player.getCardStack().addCard(CardType.CART_YELLOW);
+        player.getCardStack().addCard(CardType.CART_GREEN);
         player.getCardStack().addCard(CardType.LOCOMOTIVE);
         action.executeAction(store);
-        assertTrue(testRoute1.hasOwner());
+        assertTrue(locStore.getLocation(ELocation.HONNINGSVAG).getRouteToLocation(ELocation.KIRKENES).hasOwner());
     }
 
     @Test
     void overWriteOwnership() {
-        testRoute1.setOwner(2);
-        player.getCardStack().addCard(CardType.CART_YELLOW);
+        locStore.getLocation(ELocation.HONNINGSVAG).getRouteToLocation(ELocation.KIRKENES).setOwner(2);
+        player.getCardStack().addCard(CardType.CART_GREEN);
         player.getCardStack().addCard(CardType.LOCOMOTIVE);
         action.executeAction(store);
-        assertEquals(2, testRoute1.getOwner());
+        assertEquals(2, locStore.getLocation(ELocation.HONNINGSVAG).getRouteToLocation(ELocation.KIRKENES).getOwner());
+    }
+
+    @Test
+    void checkRouteConnection() {
+        player.getCardStack().addCard(CardType.CART_GREEN);
+        player.getCardStack().addCard(CardType.LOCOMOTIVE);
+        action.executeAction(store);
+        assertTrue(player.getConnectionKeeper().checkForRouteCompleted(ELocation.HONNINGSVAG, ELocation.KIRKENES));
     }
 
 }

@@ -7,6 +7,7 @@ import game.actions.Action;
 import game.actions.AddPlayerAction;
 import game.actions.ChangeStateAction;
 import game.player.Player;
+import javafx.application.Platform;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import server.GameStoreServer;
@@ -65,8 +66,10 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
 
         // Process previous actions' response
         if (lastAction != null) {
-            processLastActionResponse();
-            lastAction = null;
+            Platform.runLater(() -> {
+                processLastActionResponse();
+                lastAction = null;
+            });
         }
 
         // finally
@@ -95,6 +98,5 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
     public void onConnect(GameStore initialStore) {
         storeObservable.setValue(initialStore);
         Log.debug("Connected to server");
-        sceneListener.onSceneChange(GameState.INIT);
     }
 }
