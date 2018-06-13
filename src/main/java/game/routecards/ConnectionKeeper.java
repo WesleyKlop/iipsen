@@ -6,6 +6,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author Thom
@@ -13,7 +15,7 @@ import java.util.HashSet;
 public class ConnectionKeeper {
 
     private static final Logger Log = LogManager.getLogger(ConnectionKeeper.class);
-    private ArrayList<HashSet<ELocation>> connections = new ArrayList();
+    private List<Set<ELocation>> connections = new ArrayList<>();
 
     /**
      * This method adds a route to the keeper by giving the 2 locations that the route connects
@@ -65,7 +67,7 @@ public class ConnectionKeeper {
 
     private void createNewSet(ELocation ELocation1, ELocation ELocation2) {
         Log.debug("Creating new set for locations: " + ELocation1 + " and " + ELocation2);
-        HashSet<ELocation> newSet = new HashSet<>();
+        Set<ELocation> newSet = new HashSet<>();
         newSet.add(ELocation1);
         newSet.add(ELocation2);
         connections.add(newSet);
