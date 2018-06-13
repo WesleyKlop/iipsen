@@ -19,6 +19,6 @@
     <Label fx:id="score" onMouseEntered="#ScoreEntered" onMouseExited="#ScoreExited" layoutX="870" layoutY="10"
            textFill="white"
            style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
-        Points per route
+        Points per Route
     </Label>
 </Pane>

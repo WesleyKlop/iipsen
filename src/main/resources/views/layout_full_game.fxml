@@ -7,6 +7,9 @@
       prefHeight="720" prefWidth="1280"
       fx:id="rootPane" style="-fx-background-color: linear-gradient(to bottom, #bfe8f9 0%,#0082ED 70%);">
 
+    <fx:include source="layout_game_playerbox.fxml" fx:id="playerBox"/>
     <fx:include source="layout_game_cards.fxml" fx:id="rootCards"/>
     <fx:include source="layout_routes_map.fxml" fx:id="routesMap"/>
+
+
 </Pane>

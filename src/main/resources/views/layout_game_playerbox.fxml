@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx"
+            fx:controller="client.ui.views.LayoutGamePlayerbox"
+            prefHeight="720" prefWidth="1280"
+            fx:id="playerBox">
+    <right>
+        <VBox fx:id="vbox" prefWidth="192">
+            <VBox alignment="CENTER" spacing="5" style="-fx-border-color: black; -fx-padding: 20 20 20 20;">
+                <Label style="-fx-font-size: 14;">Player 1:</Label>
+                <Label fx:id="playerNameLabel" style="-fx-font-size: 14;">Name</Label>
+                <Label style="-fx-font-size: 14;">Score:</Label>
+                <HBox spacing="10" style="-fx-padding:0 0 0 20">
+                    <ImageView fitHeight="65" fitWidth="70">
+                        <Image url="/images/train.png"/>
+                    </ImageView>
+                    <Label style="-fx-font-size: 14; -fx-padding: 25 0 0 0;">40x</Label>
+                </HBox>
+
+            </VBox>
+            <VBox alignment="CENTER" spacing="5" style="-fx-border-color: black; -fx-padding: 20 20 20 20;">
+                <Label style="-fx-font-size: 14;">Player 2:</Label>
+                <Label style="-fx-font-size: 14;">Name</Label>
+                <Label style="-fx-font-size: 14;">Score:</Label>
+                <HBox spacing="10" style="-fx-padding:0 0 0 20">
+                    <ImageView fitHeight="65" fitWidth="70">
+                        <Image url="/images/train.png"/>
+                    </ImageView>
+                    <Label style="-fx-font-size: 14; -fx-padding: 25 0 0 0;">40x</Label>
+                </HBox>
+            </VBox>
+            <VBox alignment="CENTER" spacing="5" style="-fx-border-color: black; -fx-padding: 20 20 20 20;">
+                <Label style="-fx-font-size: 14;">Player 3:</Label>
+                <Label style="-fx-font-size: 14;">Name</Label>
+                <Label style="-fx-font-size: 14;">Score:</Label>
+                <HBox spacing="10" style="-fx-padding:0 0 0 20">
+                    <ImageView fitHeight="65" fitWidth="70">
+                        <Image url="/images/train.png"/>
+                    </ImageView>
+                    <Label style="-fx-font-size: 14; -fx-padding: 25 0 0 0;">40x</Label>
+                </HBox>
+            </VBox>
+        </VBox>
+    </right>
+</BorderPane>
