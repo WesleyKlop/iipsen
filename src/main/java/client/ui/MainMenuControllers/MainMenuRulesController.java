@@ -1,4 +1,4 @@
-package client.ui;
+package client.ui.MainMenuControllers;
 
 import javafx.beans.binding.Bindings;
 import javafx.fxml.Initializable;

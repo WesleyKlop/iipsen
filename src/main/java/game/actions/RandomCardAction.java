@@ -7,7 +7,6 @@ import game.player.Player;
 public class RandomCardAction implements Action {
 
     private Player player;
-    private Card randomCard;
 
     public RandomCardAction(Player player) {
         this.player = player;
@@ -15,7 +14,7 @@ public class RandomCardAction implements Action {
 
     @Override
     public void executeAction(GameStore store) {
-        //randomCard = store.getCardStack().getRandomCard(); TODO: add cardStack and getter to GameStore
+        Card randomCard = store.getCardStackController().getRandomCard();
         player.getCardStack().addCard(randomCard);
     }
 }

@@ -1,4 +1,4 @@
-package client.ui;
+package client.ui.MainMenuControllers;
 
 import game.GameStoreProvider;
 import game.actions.AddPlayerAction;

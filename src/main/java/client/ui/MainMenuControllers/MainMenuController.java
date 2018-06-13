@@ -1,4 +1,4 @@
-package client.ui;
+package client.ui.MainMenuControllers;
 
 import client.MediaController;
 import javafx.animation.Animation;
@@ -20,6 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
+import util.TempException;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -218,6 +219,11 @@ public class MainMenuController implements Initializable {
     }
 
     public void quitGame() {
+        try {
+            throw new TempException();
+        } catch (TempException e) {
+            e.printStackTrace();
+        }
         System.exit(0);
     }
 

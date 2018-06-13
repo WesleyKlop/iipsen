@@ -1,6 +1,7 @@
 package game.routecards;
 
 import game.cards.CardType;
+import game.location.ELocation;
 import game.player.Player;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,11 +14,14 @@ public class Route {
     private int length;
     private int locomotiveCost;
     private int owner;
+    private ELocation location1, location2;
     private CardType color;
 
-    public Route(int length, int locomotiveCost, CardType color) {
+    public Route(int length, int locomotiveCost, ELocation location1, ELocation location2, CardType color) {
         this.length = length;
         this.locomotiveCost = locomotiveCost;
+        this.location1 = location1;
+        this.location2 = location2;
         this.color = color;
     }
 
@@ -68,5 +72,10 @@ public class Route {
 
     public void setOwner(int newOwner) {
         owner = newOwner;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Route connects %s to %s with length %d and color %s", location1, location2, length, color);
     }
 }

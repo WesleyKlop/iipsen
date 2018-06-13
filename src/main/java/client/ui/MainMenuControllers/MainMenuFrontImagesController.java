@@ -1,4 +1,4 @@
-package client.ui;
+package client.ui.MainMenuControllers;
 
 import javafx.animation.TranslateTransition;
 import javafx.fxml.Initializable;
