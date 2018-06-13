@@ -1,19 +1,12 @@
 package client.ui.views;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.HBox;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class GameCardView extends Application {
-    @FXML
-    HBox HBox;
-    @FXML
-    Rectangle rectangle;
 
     public static void main(String[] args) {
         launch(args);

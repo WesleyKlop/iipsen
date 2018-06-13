@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.HBox?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx"
-            fx:controller="client.ui.views.GameCardView"
+            fx:controller="client.ui.controllers.LayoutCardController"
             prefHeight="720" prefWidth="1280"
             fx:id="rootCards">
 
