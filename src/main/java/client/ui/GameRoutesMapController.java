@@ -5,6 +5,9 @@ import client.ui.factories.LocationFactory;
 import client.ui.factories.RouteViewFactory;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -26,17 +29,21 @@ import javax.xml.parsers.DocumentBuilderFactory;
 public class GameRoutesMapController {
 
     private static final Logger Log = LogManager.getLogger(GameRoutesMapController.class);
-
+    @FXML
+    Label Score;
     @FXML
     private Pane mainPane, informationPane;
     private LocationInformation locationInformation;
     @FXML
     private GameCostsController route_costsController;
 
+    Image image = new Image("/images/points.png");
+    ImageView iv1 = new ImageView();
+
     public void initialize() {
         informationPane.setPickOnBounds(false);
         mainPane.setPickOnBounds(false);
-
+        iv1.setImage(image);
         RouteViewFactory routeViewFactory = new RouteViewFactory(
             getClass().getResourceAsStream("/string/gameRoutes.xml"),
                 this::routeOnMouseClicked,
@@ -157,6 +164,18 @@ public class GameRoutesMapController {
         Circle source = (Circle) mouseEvent.getSource();
         source.setStroke(Color.ORANGE);
         locationInformation.hide();
+    }
+
+    public void ScoreEntered(MouseEvent mouseEvent) {
+        iv1.setFitHeight(170);
+        iv1.setFitWidth(300);
+        iv1.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.7), 2, 2, 2, 2);");
+        mainPane.getChildren().addAll(iv1);
+    }
+
+
+    public void ScoreExited(MouseEvent mouseEvent) {
+        mainPane.getChildren().removeAll(iv1);
     }
 
     private void routeOnMouseClicked(MouseEvent mouseEvent) {

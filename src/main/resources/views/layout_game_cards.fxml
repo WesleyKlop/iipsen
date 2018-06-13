@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx"
+            fx:controller="client.ui.views.GameCardView"
+            prefHeight="720" prefWidth="1280"
+            fx:id="rootCards">
+
+    <bottom>
+        <HBox fx:id="HBox" spacing="-60" style="-fx-padding:0 0 0 -35">
+            <ImageView fx:id="black" rotate="90" fitHeight="127">
+                <Image url="/cards/CART_BLACK.png"/>
+            </ImageView>
+            <ImageView fx:id="blue" rotate="90">
+                <Image url="/cards/CART_BLUE.png"/>
+            </ImageView>
+            <ImageView fx:id="green" rotate="90">
+                <Image url="/cards/CART_GREEN.png"/>
+            </ImageView>
+            <ImageView fx:id="orange" rotate="90">
+                <Image url="/cards/CART_ORANGE.png"/>
+            </ImageView>
+            <ImageView fx:id="purple" rotate="90">
+                <Image url="/cards/CART_PURPLE.png"/>
+            </ImageView>
+            <ImageView fx:id="red" rotate="90">
+                <Image url="/cards/CART_RED.png"/>
+            </ImageView>
+            <ImageView fx:id="white" rotate="90">
+                <Image url="/cards/CART_WHITE.png"/>
+            </ImageView>
+            <ImageView fx:id="yellow" rotate="90">
+                <Image url="/cards/CART_YELLOW.png"/>
+            </ImageView>
+            <ImageView fx:id="locomotive" rotate="90">
+                <Image url="/cards/LOCOMOTIVE.png"/>
+            </ImageView>
+        </HBox>
+    </bottom>
+
+</BorderPane>
