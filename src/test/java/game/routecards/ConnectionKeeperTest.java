@@ -83,6 +83,15 @@ class ConnectionKeeperTest {
     }
 
     @Test
+    void doubleRouteAdded() {
+        ELocation loc1 = ELocation.ALBORG;
+        ELocation loc2 = ELocation.ANDALSNES;
+        testKeeper.addLocations(loc1, loc2);
+        testKeeper.addLocations(loc1, loc2);
+        assertTrue(testKeeper.checkForRouteCompleted(loc1, loc2));
+    }
+
+    @Test
     void speed() {
         ELocation[] loc = new ELocation[19];
         loc[1] = ELocation.ALBORG;
@@ -116,7 +125,6 @@ class ConnectionKeeperTest {
         testKeeper.addLocations(loc[13], loc[1]);       // Merging set0, set4
         testKeeper.addLocations(loc[16], loc[17]);      // New Set4
         testKeeper.addLocations(loc[17], loc[18]);      // Adding set4
-        testKeeper.addLocations(loc[17], loc[18]);      // Nothing
         testKeeper.addLocations(loc[16], loc[7]);       // Merging set2, set4
         //Set0: 1, 2, 5, 6, 13, 14, 15
         //Set1: 3, 4, 10
