@@ -1,4 +1,4 @@
-package client.ui;
+package client.ui.MainMenuControllers;
 
 import javafx.beans.binding.Bindings;
 import javafx.fxml.Initializable;
@@ -22,28 +22,11 @@ public class MainMenuRulesController implements Initializable {
     public Text ruleRules;
     public HBox HBoxRule1, HBoxRule2, HBoxRule3;
     public Slider optionFontSize;
-    private MainMenuController mainMenuController = new MainMenuController();
 
     public void initialize(URL url, ResourceBundle bundle) {
         ruleRules.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/MavenPro-Regular.ttf"), optionFontSize.getValue()));
         ruleRules.styleProperty().bind(Bindings.format("-fx-font-size: %2fpt;", optionFontSize.valueProperty()));
-        style(HBoxRule1);
-        style(HBoxRule2);
-        style(HBoxRule3);
     }
-
-    public void hoverEnter(MouseEvent mouseEvent) {
-        mainMenuController.hoverEnter(mouseEvent);
-    }
-
-    public void hoverExit(MouseEvent mouseEvent) {
-        mainMenuController.hoverExit(mouseEvent);
-    }
-
-    private void style(HBox Hbox) {
-        mainMenuController.style(Hbox);
-    }
-
 
     public void changeFont() {
         ruleRules.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/MavenPro-Regular.ttf"), optionFontSize.getValue()));

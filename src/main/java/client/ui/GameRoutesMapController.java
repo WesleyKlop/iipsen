@@ -22,7 +22,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 /**
  * @author Thom
- * @since 6-6-2018
  */
 public class GameRoutesMapController {
 
@@ -31,6 +30,8 @@ public class GameRoutesMapController {
     @FXML
     private Pane mainPane, informationPane;
     private LocationInformation locationInformation;
+    @FXML
+    private GameCostsController route_costsController;
 
     public void initialize() {
         informationPane.setPickOnBounds(false);
@@ -38,7 +39,7 @@ public class GameRoutesMapController {
 
         RouteViewFactory routeViewFactory = new RouteViewFactory(
             getClass().getResourceAsStream("/string/gameRoutes.xml"),
-            this::printRouteInformation,
+                this::routeOnMouseClicked,
             this::onRouteHoverEnter,
             this::onRouteHoverExit
         );
@@ -57,6 +58,9 @@ public class GameRoutesMapController {
         informationPane.getChildren().add(locationInformation);
     }
 
+    public Pane getMainPane() {
+        return mainPane;
+    }
 
     private void printRouteInformation(MouseEvent mE) {
         VBox source = (VBox) mE.getSource();
@@ -89,7 +93,6 @@ public class GameRoutesMapController {
         }
 
     }
-
 
     private void onRouteHoverEnter(MouseEvent mE) {
         VBox source = (VBox) mE.getSource();
@@ -156,5 +159,8 @@ public class GameRoutesMapController {
         locationInformation.hide();
     }
 
+    private void routeOnMouseClicked(MouseEvent mouseEvent) {
+        route_costsController.ActivationAction(mouseEvent);
+    }
 
 }

@@ -136,6 +136,6 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
 
     @Override
     public String toString() {
-        return "game.cards.CardStack" + super.toString();
+        return "CardStack" + super.toString();
     }
 }

@@ -1,4 +1,4 @@
-package game.routecards;
+package game.location;
 
 public enum ELocation {
     HONNINGSVAG,

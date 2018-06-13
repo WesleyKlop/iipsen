@@ -32,7 +32,7 @@ class GameStoreTest {
     @Test
     void testGameState() {
         var store = new GameStore();
-        var initialGameState = GameState.INIT;
+        var initialGameState = GameState.LOBBY;
         var finishedGameState = GameState.FINISHED;
 
         assertEquals(initialGameState, store.getGameState());
