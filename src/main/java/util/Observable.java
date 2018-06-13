@@ -54,13 +54,13 @@ public class Observable<T> {
      */
     public void setValue(T value) {
         currentValue = value;
-        notifySubscribers();
+        notifyObservers();
     }
 
     /**
      * Notify all observers
      */
-    public void notifySubscribers() {
+    public void notifyObservers() {
         for (Observer<T> observer : observers) {
             observer.onUpdate(currentValue);
         }

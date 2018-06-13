@@ -1,4 +1,6 @@
-package game.routecards;
+package game.location;
+
+import game.routecards.Route;
 
 import java.util.HashMap;
 import java.util.Map;
