@@ -30,12 +30,13 @@ public class GameRoutesMapController {
 
     private static final Logger Log = LogManager.getLogger(GameRoutesMapController.class);
     @FXML
-    Label Score;
+    Label score;
     @FXML
     private Pane mainPane, informationPane;
     private LocationInformation locationInformation;
     @FXML
     private GameCostsController route_costsController;
+
 
     Image image = new Image("/images/points.png");
     ImageView iv1 = new ImageView();
@@ -170,12 +171,14 @@ public class GameRoutesMapController {
         iv1.setFitHeight(170);
         iv1.setFitWidth(300);
         iv1.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.7), 2, 2, 2, 2);");
+        score.setStyle("-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: white; -fx-padding: 10 10 10 10");
         mainPane.getChildren().addAll(iv1);
     }
 
 
     public void ScoreExited(MouseEvent mouseEvent) {
         mainPane.getChildren().removeAll(iv1);
+        score.setStyle("-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10");
     }
 
     private void routeOnMouseClicked(MouseEvent mouseEvent) {
