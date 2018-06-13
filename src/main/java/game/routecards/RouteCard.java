@@ -5,9 +5,9 @@ import game.location.ELocation;
 import java.io.Serializable;
 
 public class RouteCard implements Serializable {
-    private ELocation start;
-    private ELocation end;
-    private int value;
+    private final ELocation start;
+    private final ELocation end;
+    private final int value;
     private boolean completed = false;
 
     public RouteCard(ELocation start, ELocation end, int value) {
@@ -22,5 +22,13 @@ public class RouteCard implements Serializable {
 
     public boolean isCompleted() {
         return completed;
+    }
+
+    public ELocation getStart() {
+        return start;
+    }
+
+    public ELocation getEnd() {
+        return end;
     }
 }

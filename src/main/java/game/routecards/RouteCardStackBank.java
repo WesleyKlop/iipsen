@@ -12,8 +12,6 @@ import static game.location.ELocation.*;
  *
  * @author Wesley Klop
  */
-
-
 public class RouteCardStackBank implements Serializable {
     private final Random generator = new Random();
     private List<RouteCard> routeCards = new ArrayList<>();

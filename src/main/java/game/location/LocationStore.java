@@ -70,7 +70,7 @@ public class LocationStore {
     }
 
     private void addRoute(ELocation loc1, ELocation loc2, CardType routeColor, int length, int locCost) {
-        Route route = new Route(length, locCost, routeColor);
+        Route route = new Route(length, locCost, loc1, loc2, routeColor);
         map.get(loc1).addRoute(loc2, route);
         map.get(loc2).addRoute(loc1, route);
     }

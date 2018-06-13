@@ -2,6 +2,7 @@ package game.actions;
 
 import game.GameStore;
 import game.cards.CardType;
+import game.location.ELocation;
 import game.player.Player;
 import game.routecards.Route;
 import javafx.scene.paint.Color;
@@ -21,7 +22,7 @@ class BuildRouteActionTest {
     @BeforeEach
     void setUp() {
         player = new Player("Vitas", Color.BLUEVIOLET);
-        testRoute1 = new Route(2, 1, CardType.CART_YELLOW);
+        testRoute1 = new Route(2, 1, ELocation.ALBORG, ELocation.ANDALSNES, CardType.CART_YELLOW);
         store = new GameStore();
         player.setId(1);
         action = new BuildRouteAction(player, testRoute1);

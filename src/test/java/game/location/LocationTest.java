@@ -15,7 +15,7 @@ class LocationTest {
 
     private static final ELocation eloc = ELocation.BERGEN;
     private final ELocation destinationLoc = ELocation.ALBORG;
-    private final Route destinationRoute = new Route(1, 1, CardType.CART_BLACK);
+    private final Route destinationRoute = new Route(1, 1, eloc, destinationLoc, CardType.CART_BLACK);
     private Location loc;
 
     @AfterEach

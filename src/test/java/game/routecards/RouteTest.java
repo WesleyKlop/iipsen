@@ -1,6 +1,7 @@
 package game.routecards;
 
 import game.cards.CardType;
+import game.location.ELocation;
 import game.player.Player;
 import javafx.scene.paint.Color;
 import org.junit.jupiter.api.AfterEach;
@@ -22,7 +23,7 @@ class RouteTest {
 
     @BeforeEach
     void setUp() {
-        testRoute = new Route(3, 1, CardType.CART_BLACK);
+        testRoute = new Route(3, 1, ELocation.ALBORG, ELocation.ANDALSNES, CardType.CART_BLACK);
     }
 
     @Test
