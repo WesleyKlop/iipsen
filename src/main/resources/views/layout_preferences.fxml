@@ -17,8 +17,8 @@
                    prefWidth="200.0"/>
     </VBox>
     <HBox fx:id="buttons" prefWidth="1920" alignment="CENTER" spacing="20">
-        <Label fx:id="backButton" text="Back" onMouseEntered="#entered" onMouseExited="#exited"/>
-        <Label fx:id="createButton" text="Create lobby" onMouseEntered="#entered" onMouseExited="#exited"/>
-        <Label fx:id="joinButton" text="Join lobby" onMouseEntered="#entered" onMouseExited="#exited"/>
+        <Label styleClass="fancy-label" fx:id="backButton" text="Back"/>
+        <Label styleClass="fancy-label" fx:id="createButton" text="Create lobby"/>
+        <Label styleClass="fancy-label" fx:id="joinButton" text="Join lobby"/>
     </HBox>
 </VBox>

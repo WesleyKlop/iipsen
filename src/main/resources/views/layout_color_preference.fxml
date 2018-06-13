@@ -9,7 +9,8 @@
            fx:controller="client.ui.MainMenuControllers.ColorPreferenceController"
            onMouseEntered="#entered" onMouseExited="#exited">
     <Rectangle fx:id="colorPreferenceRectangle" height="80" width="300"/>
-    <Label fx:id="colorPreferenceLabel" text="Pick a Color!" alignment="BASELINE_CENTER" prefHeight="80"
+    <Label fx:id="colorPreferenceLabel" styleClass="colorPickerLabel" text="Pick a Color!" alignment="BASELINE_CENTER"
+           prefHeight="80"
            prefWidth="300"/>
     <ColorPicker fx:id="colorPreferencePicker" minHeight="80" minWidth="300" opacity="0" onHiding="#changeColor"/>
 </StackPane>

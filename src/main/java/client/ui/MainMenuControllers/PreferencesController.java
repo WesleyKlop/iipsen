@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -29,27 +28,10 @@ public class PreferencesController implements Initializable {
     public VBox ipBox;
     @FXML
     private ColorPreferenceController colorPreferenceController;
-    private MainMenuController mainMenuController = new MainMenuController();
 
     public void initialize(URL url, ResourceBundle bundle) {
-        style(buttons);
     }
 
-    private void style(Label label) {
-        mainMenuController.style(label);
-    }
-
-    private void style(HBox hbox) {
-        mainMenuController.style(hbox);
-    }
-
-    public void entered(MouseEvent mouseEvent) {
-        mainMenuController.hoverEnter(mouseEvent);
-    }
-
-    public void exited(MouseEvent mouseEvent) {
-        mainMenuController.hoverExit(mouseEvent);
-    }
 
     public void submitPreferences() throws RemoteException {
         Log.debug("Got prefs");

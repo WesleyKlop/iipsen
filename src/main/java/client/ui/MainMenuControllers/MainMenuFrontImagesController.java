@@ -1,5 +1,6 @@
 package client.ui.MainMenuControllers;
 
+import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -31,6 +32,7 @@ public class MainMenuFrontImagesController implements Initializable {
         int seconds = (int) ((Math.random() * 20) + 10);
         TranslateTransition trainAni = new TranslateTransition(Duration.seconds(seconds), trains);
         trainAni.setByX(8000);
+        trainAni.setInterpolator(Interpolator.LINEAR);
         trainAni.play();
         trainAni.setOnFinished(e -> {
             trains.setLayoutX(trains.getLayoutX() - 8000);
