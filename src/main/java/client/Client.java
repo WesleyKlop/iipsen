@@ -103,7 +103,7 @@ public class Client extends Application implements SceneListener {
                 break;
             case GAME:
                 newTitle = "Ticket To Ride";
-                newRoot = getParent("layout_game");
+                newRoot = getParent("layout_full_game");
                 // Switch to game view
                 break;
             case PAUSED:
