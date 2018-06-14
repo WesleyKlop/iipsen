@@ -20,6 +20,7 @@ public class UserPreferences {
     private static final String MUSIC_VOLUME = "MUSIC_VOLUME";
     private static final String FX_VOLUME = "FX_VOLUME";
 
+
     /**
      * Store where we R/W our preferences
      */

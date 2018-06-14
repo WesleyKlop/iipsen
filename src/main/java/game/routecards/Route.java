@@ -2,7 +2,6 @@ package game.routecards;
 
 import game.cards.CardType;
 import game.location.ELocation;
-import game.player.Player;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,6 +17,7 @@ public class Route {
     private ELocation location1, location2;
     private CardType color;
     private RouteType routeType;
+    private int points;
 
     public Route(int id, int length, int locomotiveCost, ELocation location1, ELocation location2, CardType color, RouteType routeType) {
         this.id = id;
@@ -27,31 +27,7 @@ public class Route {
         this.location2 = location2;
         this.color = color;
         this.routeType = routeType;
-    }
-
-    public boolean build(Player builder) {
-        Log.debug(color + " " + getCartCost() + " " + getLocomotiveCost());
-        if (
-            builder.getCardStack().containsCards(color, getCartCost()) &&
-                builder.getCardStack().containsCards(CardType.LOCOMOTIVE, locomotiveCost)
-            ) {
-            try {
-                builder.getCardStack().takeCards(color, getCartCost());
-                builder.getCardStack().takeCards(CardType.LOCOMOTIVE, locomotiveCost);
-
-                builder.removeTrainCarts(length);
-                this.owner = builder.getId();
-                Log.debug("Route build! by " + builder.getPlayerName());
-                return true;
-
-            } catch (Exception e) {
-                return false;
-            }
-        } else {
-            Log.debug("player doesn't have the needed cards!!");
-            Log.debug(builder.getCardStack());
-        }
-        return false;
+        this.points = calculatePoints();
     }
 
     public boolean hasOwner() {
@@ -88,6 +64,28 @@ public class Route {
 
     public RouteType getRouteType() {
         return routeType;
+    }
+
+    private int calculatePoints() {
+        switch (length) {
+            case 1:
+                return 1;
+            case 2:
+                return 2;
+            case 3:
+                return 4;
+            case 4:
+                return 7;
+            case 5:
+                return 10;
+            case 6:
+                return 15;
+            case 9:
+                return 27;
+            default:
+                return 0;
+
+        }
     }
 
     @Override

@@ -22,7 +22,7 @@
         <Label fx:id="locations" textFill="#FFF"/>
         <HBox alignment="CENTER" spacing="10">
             <Button text="Cancel" onMouseClicked="#closeAnimation"/>
-            <Button text="Build"/>
+            <Button text="Build" onMouseClicked="#buildRoute"/>
         </HBox>
 
     </VBox>

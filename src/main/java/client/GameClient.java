@@ -99,4 +99,8 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
         storeObservable.setValue(initialStore);
         Log.debug("Connected to server");
     }
+
+    public Observable<GameStore> getStoreObservable() {
+        return storeObservable;
+    }
 }

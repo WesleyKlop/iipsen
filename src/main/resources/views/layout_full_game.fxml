@@ -10,6 +10,6 @@
     <fx:include source="layout_game_playerbox.fxml" fx:id="playerBox"/>
     <fx:include source="layout_game_cards.fxml" fx:id="rootCards"/>
     <fx:include source="layout_routes_map.fxml" fx:id="routesMap"/>
-
+    <fx:include source="layout_game_bank.fxml"/>
 
 </Pane>

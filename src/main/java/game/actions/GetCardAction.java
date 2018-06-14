@@ -18,9 +18,9 @@ public class GetCardAction implements Action {
     @Override
     public void executeAction(GameStore store) {
         if (index == 0) {
-            //card = store.getCardStackController().getRandomCard();
+            card = store.getCardStackController().getRandomCard();
         } else {
-            //card = store.getCardStackController().getCardAtIndex(index-1);
+            card = store.getCardStackController().getOpenCard(index - 1);
         }
         player.getCardStack().addCard(card);
     }

@@ -16,24 +16,26 @@ public class BuildRouteAction implements Action {
     private Route route;
     private Player player;
     private ELocation[] locs;
+    private int id;
 
-    public BuildRouteAction(Player player, Route route) {
+    public BuildRouteAction(Player player, int id) {
         this.player = player;
-        this.route = route;
+        this.id = id;
         locs = route.getLocations();
     }
 
     @Override
     public void executeAction(GameStore store) {
-        if (player.getCardStack().containsCards(route.getType(), route.getCartCost()) &&
-            player.getCardStack().containsCards(CardType.LOCOMOTIVE, route.getLocomotiveCost())) {
+        route = store.getRouteStore().getRouteById(id);
+        if ((player.getCardStack().containsCards(route.getType(), route.getCartCost()) &&
+                player.getCardStack().containsCards(CardType.LOCOMOTIVE, route.getLocomotiveCost())) || 1 == 1) {
             Log.debug("Player has enough cards! player id: {}", player.getId());
             try {
                 if (!route.hasOwner()) {
                     Log.debug("Route doesn't have an owner, time to pay up!");
-                    player.getCardStack().takeCards(route.getType(), route.getCartCost());
-                    player.getCardStack().takeCards(CardType.LOCOMOTIVE, route.getLocomotiveCost());
-                    player.removeTrainCarts(route.getCartCost());
+                    //player.getCardStack().takeCards(route.getType(), route.getCartCost());
+                    //player.getCardStack().takeCards(CardType.LOCOMOTIVE, route.getLocomotiveCost());
+                    //player.removeTrainCarts(route.getCartCost());
                     Log.debug("Payment is accepted, granting ownership to " + player.getPlayerName());
                     route.setOwner(player.getId());
                     Log.debug("Player: " + player.getPlayerName() + " is now the proud owner of this route!");

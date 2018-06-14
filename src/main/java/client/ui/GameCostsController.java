@@ -1,6 +1,8 @@
 package client.ui;
 
-import client.UserPreferences;
+import game.GameStoreProvider;
+import game.actions.Action;
+import game.actions.BuildRouteAction;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -19,6 +21,9 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import java.rmi.RemoteException;
+
+import static client.UserPreferences.isColorBlind;
 
 public class GameCostsController {
     @FXML
@@ -28,7 +33,8 @@ public class GameCostsController {
     @FXML
     private Label locations;
     private Image image;
-    private UserPreferences preferences = new UserPreferences();
+
+    private int currentId;
 
     public void initialize() {
         rootPane.setDisable(true);
@@ -49,7 +55,12 @@ public class GameCostsController {
         location1 = upperCaseFirstLetter(location1);
         location2 = upperCaseFirstLetter(location2);
         locations.setText("This " + routeType + " route connects " + location1 + " to " + location2);
+        updateCurrentId(Integer.parseInt(information[6]));
         openAnimation();
+    }
+
+    private void updateCurrentId(int newId) {
+        this.currentId = (newId);
     }
 
     private void addParts(String[] information) {
@@ -61,9 +72,9 @@ public class GameCostsController {
 
         for (int i = 0; i < length; i++) {
             if (i < locomotives) {
-                image = new Image(getClass().getResourceAsStream("/cards/" + preferences.isColorBlind() + "/LOCOMOTIVE.png"));
+                image = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/LOCOMOTIVE.png"));
             } else {
-                image = new Image(getClass().getResourceAsStream("/cards/" + preferences.isColorBlind() + "/" + cartType + ".png"));
+                image = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/" + cartType + ".png"));
             }
             ImageView train = new ImageView(image);
             train.setPreserveRatio(true);
@@ -79,7 +90,7 @@ public class GameCostsController {
     }
 
     private String[] getRouteInformation(VBox source) {
-        String[] information = new String[6]; //0 = Length, 1 = Locomotives, 2 = CartType, 3=RouteType, 4 = Location1, 5 = Location2;
+        String[] information = new String[7]; //0 = Length, 1 = Locomotives, 2 = CartType, 3=RouteType, 4 = Location1, 5 = Location2, 6 = Id;
         try {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -98,6 +109,7 @@ public class GameCostsController {
                     information[3] = eRoute.getElementsByTagName("type").item(0).getTextContent();
                     information[4] = eRoute.getElementsByTagName("location1").item(0).getTextContent();
                     information[5] = eRoute.getElementsByTagName("location2").item(0).getTextContent();
+                    information[6] = eRoute.getAttribute("id");
 
                     return information;
                 }
@@ -150,6 +162,12 @@ public class GameCostsController {
         while (box.getChildren().size() > 0) {
             box.getChildren().remove(0);
         }
+    }
+
+    @FXML
+    private void buildRoute() throws RemoteException {
+        Action buildAction = new BuildRouteAction(GameStoreProvider.getStore().getPlayerById(GameStoreProvider.getStore().getPLayersTurn()), currentId);
+        GameStoreProvider.sendAction(buildAction);
     }
 
     private String upperCaseFirstLetter(String word) {

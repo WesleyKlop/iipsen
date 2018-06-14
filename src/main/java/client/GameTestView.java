@@ -1,5 +1,7 @@
 package client;
 
+import game.GameStore;
+import game.GameStoreProvider;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,17 +10,27 @@ import javafx.stage.Stage;
 
 public class GameTestView extends Application {
 
+    private FXMLLoader loader;
+
     public static void main(String[] args) {
         launch(args);
     }
 
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/layout_full_game.fxml"));
+        GameStoreProvider.getInstance().setValue(new GameStore());
+        loader = new FXMLLoader(getClass().getResource("/views/layout_full_game.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root, 1920, 1080);
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
         primaryStage.setTitle("GameScreen");
         primaryStage.show();
+
+        GameStore store = new GameStore();
+
+        for (int i = 0; i < 100; i++) {
+            System.out.println(store.getPLayersTurn());
+            store.cyclePlayerTurn();
+        }
     }
 }

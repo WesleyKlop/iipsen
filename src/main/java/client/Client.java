@@ -49,6 +49,7 @@ public class Client extends Application implements SceneListener {
                 Log.error(e1.toString());
             }
         });
+
         rootPaneController.getPreferenceController().createButton.setOnMouseClicked(e -> {
             try {
                 if (rootPaneController.getPreferenceController().checkName()) {
