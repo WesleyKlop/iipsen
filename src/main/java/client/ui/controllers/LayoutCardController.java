@@ -7,7 +7,7 @@ import game.actions.RandomCardAction;
 import game.player.Player;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import util.Observable;
 
 import java.rmi.RemoteException;
@@ -36,23 +36,23 @@ public class LayoutCardController {
     Label locomotiveammount;
 
     @FXML
-    ImageView black;
+    VBox black;
     @FXML
-    ImageView blue;
+    VBox blue;
     @FXML
-    ImageView green;
+    VBox green;
     @FXML
-    ImageView orange;
+    VBox orange;
     @FXML
-    ImageView purple;
+    VBox purple;
     @FXML
-    ImageView red;
+    VBox red;
     @FXML
-    ImageView white;
+    VBox white;
     @FXML
-    ImageView yellow;
+    VBox yellow;
     @FXML
-    ImageView locomotive;
+    VBox locomotive;
 
     private Observable<GameStore> storeObervable = GameStoreProvider.getInstance();
     private GameStore store = GameStoreProvider.getStore();
@@ -86,13 +86,37 @@ public class LayoutCardController {
                 e.printStackTrace();
             }
         }
+        updateScreenCards(player);
 
-        /**
-         * When you got a certain card in your hand it becomes visable on screen.
-         * The ammount is how much you got.
-         *
-         * @author Ewout
-         */
+    }
+
+    /**
+     * Here you put all the visable cards off, because at the start your hand is empty
+     *
+     * @author Ewout
+     */
+    private void CardsOff() {
+        black.setVisible(false);
+        blue.setVisible(false);
+        green.setVisible(false);
+        orange.setVisible(false);
+        purple.setVisible(false);
+        red.setVisible(false);
+        white.setVisible(false);
+        yellow.setVisible(false);
+        locomotive.setVisible(false);
+        blackammount.setVisible(false);
+        blueammount.setVisible(false);
+        greenammount.setVisible(false);
+        orangeammount.setVisible(false);
+        purpleammount.setVisible(false);
+        redammount.setVisible(false);
+        whiteammount.setVisible(false);
+        yellowammount.setVisible(false);
+        locomotiveammount.setVisible(false);
+    }
+
+    public void updateScreenCards(Player player) {
         if (player.getCardStack().get(CART_BLACK) != null && player.getCardStack().get(CART_BLACK) > 0) {
             blackammount.setText(Integer.toString(player.getCardStack().get(CART_BLACK)));
             black.setVisible(true);
@@ -147,36 +171,5 @@ public class LayoutCardController {
             locomotive.setVisible(true);
             locomotiveammount.setVisible(true);
         }
-
-
-    }
-
-    /**
-     * Here you put all the visable cards off, because at the start your hand is empty
-     *
-     * @author Ewout
-     */
-    private void CardsOff() {
-        black.setVisible(false);
-        blue.setVisible(false);
-        green.setVisible(false);
-        orange.setVisible(false);
-        purple.setVisible(false);
-        red.setVisible(false);
-        white.setVisible(false);
-        yellow.setVisible(false);
-        locomotive.setVisible(false);
-        blackammount.setVisible(false);
-        blueammount.setVisible(false);
-        greenammount.setVisible(false);
-        orangeammount.setVisible(false);
-        purpleammount.setVisible(false);
-        redammount.setVisible(false);
-        whiteammount.setVisible(false);
-        yellowammount.setVisible(false);
-        locomotiveammount.setVisible(false);
-    }
-
-    public void updateScreenCards(Player player) {
     }
 }

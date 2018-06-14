@@ -2,81 +2,101 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <Pane xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
       fx:controller="client.ui.controllers.LayoutCardController"
       prefHeight="720" prefWidth="1280"
       fx:id="rootCards">
-    <VBox layoutY="560">
-        <HBox translateX="95" spacing="100">
+    <HBox layoutY="560" spacing="-30">
+        <VBox fx:id="black">
             <Label fx:id="blackammount" minWidth="30" textFill="white"
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
+            <ImageView rotate="90" fitHeight="127">
+                <Image url="/cards/FALSE/CART_BLACK.png"/>
+            </ImageView>
+        </VBox>
+
+        <VBox fx:id="blue">
             <Label fx:id="blueammount" minWidth="30" textFill="white"
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
+            <ImageView rotate="90">
+                <Image url="/cards/FALSE/CART_BLUE.png"/>
+            </ImageView>
+        </VBox>
+
+        <VBox fx:id="green">
             <Label fx:id="greenammount" minWidth="30" textFill="white"
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
+            <ImageView rotate="90">
+                <Image url="/cards/FALSE/CART_GREEN.png"/>
+            </ImageView>
+        </VBox>
+
+        <VBox fx:id="orange">
             <Label fx:id="orangeammount" minWidth="30" textFill="white"
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
+            <ImageView rotate="90">
+                <Image url="/cards/FALSE/CART_ORANGE.png"/>
+            </ImageView>
+        </VBox>
+
+        <VBox fx:id="purple">
             <Label fx:id="purpleammount" minWidth="30" textFill="white"
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
+            <ImageView rotate="90">
+                <Image url="/cards/FALSE/CART_PURPLE.png"/>
+            </ImageView>
+        </VBox>
+
+        <VBox fx:id="red">
             <Label fx:id="redammount" minWidth="30" textFill="white"
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
+            <ImageView rotate="90">
+                <Image url="/cards/FALSE/CART_RED.png"/>
+            </ImageView>
+        </VBox>
+
+        <VBox fx:id="white">
             <Label fx:id="whiteammount" minWidth="30" textFill="white"
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
+            <ImageView rotate="90">
+                <Image url="/cards/FALSE/CART_WHITE.png"/>
+            </ImageView>
+        </VBox>
+
+        <VBox fx:id="yellow">
             <Label fx:id="yellowammount" minWidth="30" textFill="white"
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
+            <ImageView rotate="90">
+                <Image url="/cards/FALSE/CART_YELLOW.png"/>
+            </ImageView>
+        </VBox>
+
+        <VBox fx:id="locomotive">
             <Label fx:id="locomotiveammount" minWidth="30" textFill="white"
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
-        </HBox>
-        <HBox translateY="32" spacing="-60">
-            <ImageView fx:id="black" rotate="90" fitHeight="127">
-                <Image url="/cards/FALSE/CART_BLACK.png"/>
-            </ImageView>
-            <ImageView fx:id="blue" rotate="90">
-                <Image url="/cards/FALSE/CART_BLUE.png"/>
-            </ImageView>
-            <ImageView fx:id="green" rotate="90">
-                <Image url="/cards/FALSE/CART_GREEN.png"/>
-            </ImageView>
-            <ImageView fx:id="orange" rotate="90">
-                <Image url="/cards/FALSE/CART_ORANGE.png"/>
-            </ImageView>
-            <ImageView fx:id="purple" rotate="90">
-                <Image url="/cards/FALSE/CART_PURPLE.png"/>
-            </ImageView>
-            <ImageView fx:id="red" rotate="90">
-                <Image url="/cards/FALSE/CART_RED.png"/>
-            </ImageView>
-            <ImageView fx:id="white" rotate="90">
-                <Image url="/cards/FALSE/CART_WHITE.png"/>
-            </ImageView>
-            <ImageView fx:id="yellow" rotate="90">
-                <Image url="/cards/FALSE/CART_YELLOW.png"/>
-            </ImageView>
-            <ImageView fx:id="locomotive" rotate="90">
+            <ImageView rotate="90">
                 <Image url="/cards/FALSE/LOCOMOTIVE.png"/>
             </ImageView>
-        </HBox>
-    </VBox>
+        </VBox>
+    </HBox>
 </Pane>
