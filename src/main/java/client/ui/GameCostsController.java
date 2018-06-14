@@ -1,7 +1,5 @@
 package client.ui;
 
-//import client.UserPreferences;
-
 import client.UserPreferences;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -117,14 +115,14 @@ public class GameCostsController {
     private void openAnimation() {
         rootPane.setDisable(false);
         TranslateTransition transAni = new TranslateTransition(Duration.seconds(0.5), rootPane);
-        transAni.setToY(-1080);
+        transAni.setToX(-1080);
         transAni.play();
         transAni.setOnFinished(e -> rootPane.setDisable(false));
     }
 
     public void closeAnimation() {
         TranslateTransition transAni = new TranslateTransition(Duration.seconds(0.5), rootPane);
-        transAni.setToY(0);
+        transAni.setToX(0);
         transAni.play();
         transAni.setOnFinished(e -> {
             emptyBox(trainBox1);
@@ -137,7 +135,7 @@ public class GameCostsController {
     private void closeAndOpenAnimation(MouseEvent mouseEvent) {
         double duration = (rootPane.isDisable()) ? 0.001 : 0.5;
         TranslateTransition transAni = new TranslateTransition(Duration.seconds(duration), rootPane);
-        transAni.setToY(0);
+        transAni.setToX(0);
         transAni.play();
         transAni.setOnFinished(e -> {
             emptyBox(trainBox1);

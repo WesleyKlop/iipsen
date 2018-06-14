@@ -11,18 +11,22 @@ import org.apache.logging.log4j.Logger;
 public class Route {
     private static final Logger Log = LogManager.getLogger(Route.class);
 
+    private int id;
     private int length;
     private int locomotiveCost;
     private int owner;
     private ELocation location1, location2;
     private CardType color;
+    private RouteType routeType;
 
-    public Route(int length, int locomotiveCost, ELocation location1, ELocation location2, CardType color) {
+    public Route(int id, int length, int locomotiveCost, ELocation location1, ELocation location2, CardType color, RouteType routeType) {
+        this.id = id;
         this.length = length;
         this.locomotiveCost = locomotiveCost;
         this.location1 = location1;
         this.location2 = location2;
         this.color = color;
+        this.routeType = routeType;
     }
 
     public boolean build(Player builder) {
@@ -72,6 +76,18 @@ public class Route {
 
     public void setOwner(int newOwner) {
         owner = newOwner;
+    }
+
+    public ELocation[] getLocations() {
+        return new ELocation[]{location1, location2};
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public RouteType getRouteType() {
+        return routeType;
     }
 
     @Override

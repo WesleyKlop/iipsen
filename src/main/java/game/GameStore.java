@@ -1,9 +1,9 @@
 package game;
 
 import game.cards.CardStackController;
-import game.location.LocationStore;
 import game.player.Player;
 import game.routecards.RouteCardStackBank;
+import game.routecards.RouteStore;
 import game.routecards.SelectableRouteCards;
 
 import java.io.Serializable;
@@ -22,7 +22,7 @@ public class GameStore implements Serializable {
     private List<Player> players = new ArrayList<>();
     private CardStackController cardStackController = new CardStackController();
     private SelectableRouteCards selectableRouteCards = new SelectableRouteCards(new RouteCardStackBank());
-    private LocationStore locationStore = LocationStore.Generate();
+    private RouteStore routeStore = new RouteStore();
 
     public GameStore() {
     }
@@ -61,5 +61,10 @@ public class GameStore implements Serializable {
     public CardStackController getCardStackController() {
         return cardStackController;
     }
+
+    public RouteStore getRouteStore() {
+        return routeStore;
+    }
+
     //TODO
 }

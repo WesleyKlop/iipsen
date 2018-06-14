@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -12,7 +13,12 @@
     <ImageView>
         <Image url="/images/Background.png"/>
     </ImageView>
-    <!--<Pane onMouseMoved="#onLocationHoverLeave" prefWidth="1920" prefHeight="1080"/>-->
     <Pane fx:id="mainPane" prefWidth="1920" prefHeight="1080"/>
     <Pane fx:id="informationPane" prefWidth="1920" prefHeight="1080"/>
+    <fx:include source="overlay_build_message.fxml" fx:id="route_costs" layoutY="100" layoutX="1180"/>
+    <Label fx:id="score" layoutX="870" layoutY="10"
+           textFill="white"
+           style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
+        Points per route
+    </Label>
 </Pane>

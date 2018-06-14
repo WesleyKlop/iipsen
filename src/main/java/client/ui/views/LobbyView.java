@@ -1,6 +1,5 @@
 package client.ui.views;
 
-import client.ui.MainMenuControllers.MainMenuController;
 import client.ui.controllers.LobbyController;
 import game.player.Player;
 import javafx.application.Platform;
@@ -24,13 +23,10 @@ public class LobbyView {
     public VBox container;
     public Label startButtonLabel, quitButtonLabel;
 
-    private MainMenuController mainMenuController = new MainMenuController();
     private LobbyController controller = new LobbyController(this);
 
     @FXML
     public void initialize() {
-        style(startButtonLabel);
-        style(quitButtonLabel);
     }
 
     public void updateView(List<Player> players) {
@@ -52,18 +48,6 @@ public class LobbyView {
 
     public void onStartButtonClicked(MouseEvent mouseEvent) throws RemoteException {
         controller.onStartButtonClicked();
-    }
-
-    public void entered(MouseEvent mouseEvent) {
-        mainMenuController.hoverEnter(mouseEvent);
-    }
-
-    public void exited(MouseEvent mouseEvent) {
-        mainMenuController.hoverExit(mouseEvent);
-    }
-
-    private void style(Label label) {
-        mainMenuController.style(label);
     }
 
 
