@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -20,7 +19,7 @@ import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
-public class PreferencesController implements Initializable {
+public class PreferencesController {
     private static final Logger Log = LogManager.getLogger(PreferencesController.class);
 
     public Pane rootPane;
@@ -30,27 +29,11 @@ public class PreferencesController implements Initializable {
     public VBox ipBox;
     @FXML
     private ColorPreferenceView colorPreferenceController;
-    private MainMenuController mainMenuController = new MainMenuController();
 
-    public void initialize(URL url, ResourceBundle bundle) {
-        style(buttons);
+    @FXML
+    public void initialize() {
     }
 
-    private void style(Label label) {
-        mainMenuController.style(label);
-    }
-
-    private void style(HBox hbox) {
-        mainMenuController.style(hbox);
-    }
-
-    public void entered(MouseEvent mouseEvent) {
-        mainMenuController.hoverEnter(mouseEvent);
-    }
-
-    public void exited(MouseEvent mouseEvent) {
-        mainMenuController.hoverExit(mouseEvent);
-    }
 
     public void submitPreferences() throws RemoteException {
         Log.debug("Got prefs");
@@ -78,7 +61,7 @@ public class PreferencesController implements Initializable {
 
     public boolean checkNameDouble() {
         String name = nameField.getText();
-        for (Player player : GameStoreProvider.getStore().getPlayers()) { // <--- dit werkt niet
+        for (Player player : GameStoreProvider.getStore().getPlayers()) { // <--- FIXME dit werkt niet
             if (name.equalsIgnoreCase(player.getPlayerName())) {
                 nameLabel.setText("Name is already taken, please choose another name");
                 return false;

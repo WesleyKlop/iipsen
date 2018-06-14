@@ -25,6 +25,6 @@ public class SelectRouteCardsAction implements Action {
         for (RouteCard card : cards) {
             player.addRouteCard(card);
         }
-        //store.getSelectableRouteCards().populatePickableCards();
+        store.getSelectableRouteCards().populatePickableCards();
     }
 }

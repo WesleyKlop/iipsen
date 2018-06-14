@@ -4,14 +4,12 @@ import client.ui.views.LobbyView;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import util.TempException;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,22 +38,12 @@ public class StartupController implements Initializable {
         lobbyPaneController.quitButtonLabel.setOnMouseClicked(e -> moveMenuUp());
     }
 
-    public void widthUpImageView(MouseEvent mouseEvent) {
-        ImageView source = (ImageView) mouseEvent.getSource();
-        source.setFitWidth(source.getFitWidth() + 14);
-        source.setLayoutX(source.getLayoutX() - 7);
-        source.setLayoutY(source.getLayoutY() - 7);
-        source.setCursor(Cursor.HAND);
-    }
-
-    public void widthDownImageView(MouseEvent mouseEvent) {
-        ImageView source = (ImageView) mouseEvent.getSource();
-        source.setFitWidth(source.getFitWidth() - 14);
-        source.setLayoutX(source.getLayoutX() + 7);
-        source.setLayoutY(source.getLayoutY() + 7);
-    }
-
     public void quitGame() {
+        try {
+            throw new TempException();
+        } catch (TempException e) {
+            e.printStackTrace();
+        }
         System.exit(0);
     }
 
@@ -119,7 +107,6 @@ public class StartupController implements Initializable {
     public PreferencesController getPreferenceController() {
         return preferencesPaneController;
     }
-
 
     public void openRulesVertical() {
         if (rulesLobby.isDisable()) {

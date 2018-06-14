@@ -2,6 +2,7 @@ package game.actions;
 
 import game.GameStore;
 import game.cards.CardType;
+import game.location.ELocation;
 import game.player.Player;
 import game.routecards.Route;
 import org.apache.logging.log4j.LogManager;
@@ -14,10 +15,12 @@ public class BuildRouteAction implements Action {
 
     private Route route;
     private Player player;
+    private ELocation[] locs;
 
     public BuildRouteAction(Player player, Route route) {
         this.player = player;
         this.route = route;
+        locs = route.getLocations();
     }
 
     @Override
@@ -34,6 +37,7 @@ public class BuildRouteAction implements Action {
                     Log.debug("Payment is accepted, granting ownership to " + player.getPlayerName());
                     route.setOwner(player.getId());
                     Log.debug("Player: " + player.getPlayerName() + " is now the proud owner of this route!");
+                    player.getConnectionKeeper().addLocations(locs[0], locs[1]);
                 }
             } catch (Exception e) {
                 Log.debug("Whoops, looks like something went wrong!");

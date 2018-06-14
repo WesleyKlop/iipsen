@@ -1,14 +1,15 @@
 package client.ui;
 
+import client.UserPreferences;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 import org.w3c.dom.Document;
@@ -26,7 +27,8 @@ public class GameCostsController {
     private HBox trainBox1, trainBox2, trainBox3;
     @FXML
     private Label locations;
-
+    private Image image;
+    private UserPreferences preferences = new UserPreferences();
 
     public void initialize() {
         rootPane.setDisable(true);
@@ -37,7 +39,7 @@ public class GameCostsController {
         closeAndOpenAnimation(mouseEvent);
     }
 
-    public void fillCostCard(MouseEvent mouseEvent) {
+    private void fillCostCard(MouseEvent mouseEvent) {
         VBox source = (VBox) mouseEvent.getSource();
         String[] information = getRouteInformation(source);
         addParts(information);
@@ -46,7 +48,7 @@ public class GameCostsController {
         String location2 = information[5].toLowerCase();
         location1 = upperCaseFirstLetter(location1);
         location2 = upperCaseFirstLetter(location2);
-        locations.setText("This " + routeType + " connects " + location1 + " to " + location2);
+        locations.setText("This " + routeType + " route connects " + location1 + " to " + location2);
         openAnimation();
     }
 
@@ -54,17 +56,18 @@ public class GameCostsController {
         int length = Integer.parseInt(information[0]);
         int locomotives = Integer.parseInt(information[1]);
         String cartType = information[2];
-        Color color = (cartType.equalsIgnoreCase("CART_ANY")) ? Color.GRAY : Color.web(cartType.substring(5));
 
         int trainWidth = (int) Math.min((trainBox1.getMaxWidth() / Math.min(length, 4)) - ((Math.min(length, 4) - 1) * 10), 250);
-        int trainHeight = trainWidth / 2;
 
         for (int i = 0; i < length; i++) {
-            Rectangle train = new Rectangle();
-            train.setWidth(trainWidth);
-            train.setHeight(trainHeight);
-            train.setFill(color);
-            train.setStroke(Color.BLACK);
+            if (i < locomotives) {
+                image = new Image(getClass().getResourceAsStream("/cards/" + preferences.isColorBlind() + "/LOCOMOTIVE.png"));
+            } else {
+                image = new Image(getClass().getResourceAsStream("/cards/" + preferences.isColorBlind() + "/" + cartType + ".png"));
+            }
+            ImageView train = new ImageView(image);
+            train.setPreserveRatio(true);
+            train.setFitWidth(trainWidth);
             if (i < 3) {
                 trainBox1.getChildren().add(train);
             } else if (i < 6) {
@@ -111,15 +114,15 @@ public class GameCostsController {
 
     private void openAnimation() {
         rootPane.setDisable(false);
-        TranslateTransition transAni = new TranslateTransition(Duration.seconds(1), rootPane);
-        transAni.setToY(-1080);
+        TranslateTransition transAni = new TranslateTransition(Duration.seconds(0.5), rootPane);
+        transAni.setToX(-1080);
         transAni.play();
         transAni.setOnFinished(e -> rootPane.setDisable(false));
     }
 
     public void closeAnimation() {
-        TranslateTransition transAni = new TranslateTransition(Duration.seconds(1), rootPane);
-        transAni.setToY(0);
+        TranslateTransition transAni = new TranslateTransition(Duration.seconds(0.5), rootPane);
+        transAni.setToX(0);
         transAni.play();
         transAni.setOnFinished(e -> {
             emptyBox(trainBox1);
@@ -129,10 +132,10 @@ public class GameCostsController {
         });
     }
 
-    public void closeAndOpenAnimation(MouseEvent mouseEvent) {
-        double duration = (rootPane.isDisable()) ? 0.1 : 1;
+    private void closeAndOpenAnimation(MouseEvent mouseEvent) {
+        double duration = (rootPane.isDisable()) ? 0.001 : 0.5;
         TranslateTransition transAni = new TranslateTransition(Duration.seconds(duration), rootPane);
-        transAni.setToY(0);
+        transAni.setToX(0);
         transAni.play();
         transAni.setOnFinished(e -> {
             emptyBox(trainBox1);
@@ -143,7 +146,7 @@ public class GameCostsController {
         });
     }
 
-    public void emptyBox(HBox box) {
+    private void emptyBox(HBox box) {
         while (box.getChildren().size() > 0) {
             box.getChildren().remove(0);
         }

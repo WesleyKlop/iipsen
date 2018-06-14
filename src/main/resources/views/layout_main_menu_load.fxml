@@ -13,5 +13,5 @@
     <ImageView fitWidth="550" preserveRatio="true">
         <Image url="/images/loadagame.png"/>
     </ImageView>
-    <Label fx:id="loadLevelLabel" text="Load Level" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"/>
+    <Label styleClass="fancy-label" fx:id="loadLevelLabel" text="Load Level"/>
 </VBox>

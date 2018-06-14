@@ -1,6 +1,7 @@
 package game.player;
 
 import game.cards.CardStack;
+import game.routecards.ConnectionKeeper;
 import game.routecards.RouteCard;
 import javafx.scene.paint.Color;
 
@@ -16,6 +17,7 @@ public class Player implements Serializable {
     private final String color;
     private CardStack stack = new CardStack();
     private List<RouteCard> routeCards = new ArrayList<>();
+    private ConnectionKeeper connectionKeeper = new ConnectionKeeper();
     private int id;
     private int score;
     private int traincarts = 40;
@@ -63,5 +65,9 @@ public class Player implements Serializable {
 
     public Color getColorAsColor() {
         return Color.web(this.color);
+    }
+
+    public ConnectionKeeper getConnectionKeeper() {
+        return connectionKeeper;
     }
 }
