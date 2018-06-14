@@ -1,16 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            xmlns="http://javafx.com/javafx"
-            fx:controller="client.ui.controllers.LayoutCardController"
-            prefHeight="720" prefWidth="1280"
-            fx:id="rootCards">
-
-    <bottom>
-        <HBox fx:id="HBox" spacing="-60" style="-fx-padding:0 0 0 -35">
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<Pane xmlns:fx="http://javafx.com/fxml"
+      xmlns="http://javafx.com/javafx"
+      fx:controller="client.ui.controllers.LayoutCardController"
+      prefHeight="720" prefWidth="1280"
+      fx:id="rootCards">
+    <VBox layoutY="560">
+        <HBox translateX="95" spacing="100">
+            <Label fx:id="blackammount" minWidth="30" textFill="white"
+                   style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
+                test
+            </Label>
+            <Label fx:id="blueammount" minWidth="30" textFill="white"
+                   style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
+                test
+            </Label>
+            <Label fx:id="greenammount" minWidth="30" textFill="white"
+                   style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
+                test
+            </Label>
+            <Label fx:id="orangeammount" minWidth="30" textFill="white"
+                   style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
+                test
+            </Label>
+            <Label fx:id="purpleammount" minWidth="30" textFill="white"
+                   style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
+                test
+            </Label>
+            <Label fx:id="redammount" minWidth="30" textFill="white"
+                   style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
+                test
+            </Label>
+            <Label fx:id="whiteammount" minWidth="30" textFill="white"
+                   style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
+                test
+            </Label>
+            <Label fx:id="yellowammount" minWidth="30" textFill="white"
+                   style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
+                test
+            </Label>
+            <Label fx:id="locomotiveammount" minWidth="30" textFill="white"
+                   style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
+                test
+            </Label>
+        </HBox>
+        <HBox translateY="32" spacing="-60">
             <ImageView fx:id="black" rotate="90" fitHeight="127">
                 <Image url="/cards/FALSE/CART_BLACK.png"/>
             </ImageView>
@@ -39,6 +78,5 @@
                 <Image url="/cards/FALSE/LOCOMOTIVE.png"/>
             </ImageView>
         </HBox>
-    </bottom>
-
-</BorderPane>
+    </VBox>
+</Pane>
