@@ -37,7 +37,7 @@ public class RouteCardStackBank implements Serializable {
         routeCards.add(new RouteCard(BERGEN, NARVIK, 16));
         routeCards.add(new RouteCard(KOBENHAVN, OULU, 14));
         routeCards.add(new RouteCard(HELSINKI, KIRKENES, 13));
-        routeCards.add(new RouteCard(NARVIK, TALINN, 13));
+        routeCards.add(new RouteCard(NARVIK, TALLINN, 13));
         routeCards.add(new RouteCard(GOTEBORG, OULU, 12));
         routeCards.add(new RouteCard(HELSINKI, BERGEN, 12));
         routeCards.add(new RouteCard(KRISTIANSAND, MO_I_RANA, 12));
@@ -73,6 +73,6 @@ public class RouteCardStackBank implements Serializable {
         routeCards.add(new RouteCard(OSLO, KOBENHAVN, 4));
         routeCards.add(new RouteCard(OSLO, STAVANGER, 4));
         routeCards.add(new RouteCard(OSLO, STOCKHOLM, 4));
-        routeCards.add(new RouteCard(TAMPERE, TALINN, 3));
+        routeCards.add(new RouteCard(TAMPERE, TALLINN, 3));
     }
 }

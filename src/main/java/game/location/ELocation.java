@@ -21,7 +21,7 @@ public enum ELocation {
     TAMPERE,
     LAHTI,
     HELSINKI,
-    TALINN,
+    TALLINN,
     TURKU,
     SUNDSVALL,
     OSTERSUND,

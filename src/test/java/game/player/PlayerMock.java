@@ -10,8 +10,11 @@ import javafx.scene.paint.Color;
  * @author Wesley Klop
  */
 public class PlayerMock extends Player {
-    public PlayerMock() {
+    private final boolean richBoi;
+
+    public PlayerMock(boolean isRichBoi) {
         super("Thierry Baudet", Color.LAVENDER);
+        richBoi = isRichBoi;
     }
 
     @Override
@@ -21,7 +24,7 @@ public class PlayerMock extends Player {
 
     @Override
     public CardStack getCardStack() {
-        return new InfiniteCardStack();
+        return richBoi ? new InfiniteCardStack() : super.getCardStack();
     }
 
 
