@@ -8,7 +8,7 @@
 <Pane xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
       fx:controller="client.ui.GameRoutesMapController"
-      prefHeight="600.0" prefWidth="1000.0">
+      prefHeight="1920" prefWidth="1000.0">
 
     <ImageView>
         <Image url="/images/Background.png"/>
