@@ -7,6 +7,7 @@ import game.actions.RandomCardAction;
 import game.player.Player;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import util.Observable;
 
@@ -54,6 +55,9 @@ public class LayoutCardController {
     @FXML
     VBox locomotive;
 
+    @FXML
+    HBox cards;
+
     private Observable<GameStore> storeObervable = GameStoreProvider.getInstance();
     private GameStore store = GameStoreProvider.getStore();
 
@@ -66,6 +70,7 @@ public class LayoutCardController {
     public void initialize() {
         CardsOff();
         List<Player> players = store.getPlayers();
+
         Player player = players.get(0);
 
         //todo Only gets the first player connected
@@ -87,7 +92,6 @@ public class LayoutCardController {
             }
         }
         updateScreenCards(player);
-
     }
 
     /**
@@ -96,80 +100,61 @@ public class LayoutCardController {
      * @author Ewout
      */
     private void CardsOff() {
-        black.setVisible(false);
-        blue.setVisible(false);
-        green.setVisible(false);
-        orange.setVisible(false);
-        purple.setVisible(false);
-        red.setVisible(false);
-        white.setVisible(false);
-        yellow.setVisible(false);
-        locomotive.setVisible(false);
-        blackammount.setVisible(false);
-        blueammount.setVisible(false);
-        greenammount.setVisible(false);
-        orangeammount.setVisible(false);
-        purpleammount.setVisible(false);
-        redammount.setVisible(false);
-        whiteammount.setVisible(false);
-        yellowammount.setVisible(false);
-        locomotiveammount.setVisible(false);
+        cards.getChildren().removeAll(black);
+        cards.getChildren().removeAll(blue);
+        cards.getChildren().removeAll(green);
+        cards.getChildren().removeAll(orange);
+        cards.getChildren().removeAll(purple);
+        cards.getChildren().removeAll(red);
+        cards.getChildren().removeAll(white);
+        cards.getChildren().removeAll(yellow);
+        cards.getChildren().removeAll(locomotive);
     }
 
     public void updateScreenCards(Player player) {
         if (player.getCardStack().get(CART_BLACK) != null && player.getCardStack().get(CART_BLACK) > 0) {
             blackammount.setText(Integer.toString(player.getCardStack().get(CART_BLACK)));
-            black.setVisible(true);
-            blackammount.setVisible(true);
+            cards.getChildren().addAll(black);
         }
 
         if (player.getCardStack().get(CART_BLUE) != null && player.getCardStack().get(CART_BLUE) > 0) {
             blueammount.setText(Integer.toString(player.getCardStack().get(CART_BLUE)));
-            blue.setVisible(true);
-            blueammount.setVisible(true);
+            cards.getChildren().addAll(blue);
         }
 
         if (player.getCardStack().get(CART_GREEN) != null && player.getCardStack().get(CART_GREEN) > 0) {
             greenammount.setText(Integer.toString(player.getCardStack().get(CART_GREEN)));
-            green.setVisible(true);
-            greenammount.setVisible(true);
+            cards.getChildren().addAll(green);
         }
 
         if (player.getCardStack().get(CART_ORANGE) != null && player.getCardStack().get(CART_ORANGE) > 0) {
             orangeammount.setText(Integer.toString(player.getCardStack().get(CART_ORANGE)));
-            orange.setVisible(true);
-            orangeammount.setVisible(true);
+            cards.getChildren().addAll(orange);
         }
 
         if (player.getCardStack().get(CART_PURPLE) != null && player.getCardStack().get(CART_PURPLE) > 0) {
             purpleammount.setText(Integer.toString(player.getCardStack().get(CART_PURPLE)));
-            purple.setVisible(true);
-            purpleammount.setVisible(true);
+            cards.getChildren().addAll(purple);
         }
 
         if (player.getCardStack().get(CART_RED) != null && player.getCardStack().get(CART_RED) > 0) {
             redammount.setText(Integer.toString(player.getCardStack().get(CART_RED)));
-            red.setVisible(true);
-            redammount.setVisible(true);
+            cards.getChildren().addAll(red);
         }
 
         if (player.getCardStack().get(CART_WHITE) != null && player.getCardStack().get(CART_WHITE) > 0) {
             whiteammount.setText(Integer.toString(player.getCardStack().get(CART_WHITE)));
-            white.setVisible(true);
-            whiteammount.setVisible(true);
+            cards.getChildren().addAll(white);
         }
 
         if (player.getCardStack().get(CART_YELLOW) != null && player.getCardStack().get(CART_YELLOW) > 0) {
             yellowammount.setText(Integer.toString(player.getCardStack().get(CART_YELLOW)));
-            yellow.setVisible(true);
-            yellowammount.setVisible(true);
+            cards.getChildren().addAll(yellow);
         }
-
 
         if (player.getCardStack().get(LOCOMOTIVE) != null && player.getCardStack().get(LOCOMOTIVE) > 0) {
             locomotiveammount.setText(Integer.toString(player.getCardStack().get(LOCOMOTIVE)));
-            locomotive.setVisible(true);
-            locomotiveammount.setVisible(true);
+            cards.getChildren().addAll(locomotive);
         }
     }
 }

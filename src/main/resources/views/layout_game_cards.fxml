@@ -8,7 +8,7 @@
       fx:controller="client.ui.controllers.LayoutCardController"
       prefHeight="720" prefWidth="1280"
       fx:id="rootCards">
-    <HBox layoutY="560" spacing="-30">
+    <HBox fx:id="cards" layoutY="560" spacing="-30">
         <VBox fx:id="black">
             <Label fx:id="blackammount" minWidth="30" textFill="white"
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
