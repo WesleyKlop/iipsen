@@ -1,5 +1,6 @@
 package game.routecards;
 
+import game.cards.CardStack;
 import game.cards.CardType;
 import game.location.ELocation;
 import org.apache.logging.log4j.LogManager;
@@ -86,6 +87,19 @@ public class Route {
                 return 0;
 
         }
+    }
+
+    public CardStack getCostsAsCardStack() {
+        var stack = new CardStack();
+        for (int i = 0; i < getLocomotiveCost(); i++) {
+            stack.addCard(CardType.LOCOMOTIVE);
+        }
+
+        for (int i = 0; i < getCartCost(); i++) {
+            stack.addCard(color);
+        }
+
+        return stack;
     }
 
     @Override
