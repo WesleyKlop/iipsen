@@ -4,11 +4,11 @@ import game.player.Player;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,25 +28,25 @@ public class LayoutGamePlayerbox implements Initializable {
     @FXML
     VBox background3;
     @FXML
-    Label playerNameLabel1;
+    Text playerNameText1;
     @FXML
-    Label playerNameLabel2;
+    Text playerNameText2;
     @FXML
-    Label playerNameLabel3;
+    Text playerNameText3;
 
-    Label[] labels;
+    Text[] texts;
     VBox[] backgrounds;
 
 
     public void initialize(URL location, ResourceBundle resources) {
-        labels = new Label[]{playerNameLabel1, playerNameLabel2, playerNameLabel3};
+        texts = new Text[]{playerNameText1, playerNameText2, playerNameText3};
         backgrounds = new VBox[]{background1, background2, background3};
     }
 
 
     public void setPlayers(List<Player> players) {
         for (int i = 0; i < players.size(); i++) {
-            labels[i].setText(players.get(i).getPlayerName());
+            texts[i].setText(players.get(i).getPlayerName());
             backgrounds[i].setBackground(new Background(new BackgroundFill(players.get(i).getColorAsColor(), CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
