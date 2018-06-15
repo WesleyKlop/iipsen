@@ -28,9 +28,5 @@ public class GameTestView extends Application {
 
         GameStore store = new GameStore();
 
-        for (int i = 0; i < 100; i++) {
-            System.out.println(store.getPLayersTurn());
-            store.cyclePlayerTurn();
-        }
     }
 }

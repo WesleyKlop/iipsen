@@ -89,8 +89,8 @@ public class RouteViewFactory {
             routes[i] = route;
 
             String type = routeElement.getElementsByTagName("type").item(0).getTextContent();
-            double strokeWidth = (type.equals("tunnel")) ? 3 : 1;
-            double arc = (type.equals("ferry")) ? 10 : 0;
+            double strokeWidth = (type.equals("TUNNEL")) ? 3 : 1;
+            double arc = (type.equals("FERRY")) ? 10 : 0;
 
             int locomotiveAmount = Integer.parseInt(routeElement.getElementsByTagName("locomotive").item(0).getTextContent());
 

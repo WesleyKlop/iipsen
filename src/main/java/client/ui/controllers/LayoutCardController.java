@@ -3,7 +3,7 @@ package client.ui.controllers;
 
 import game.GameStore;
 import game.GameStoreProvider;
-import game.actions.RandomCardAction;
+import game.actions.GetCardAction;
 import game.player.Player;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -84,7 +84,7 @@ public class LayoutCardController {
          */
 
         for (int i = 0; i < 4; i++) {
-            var action = new RandomCardAction(player);
+            var action = new GetCardAction(player, 0);
             try {
                 GameStoreProvider.sendAction(action);
             } catch (RemoteException e) {

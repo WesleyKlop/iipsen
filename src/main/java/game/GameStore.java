@@ -23,7 +23,7 @@ public class GameStore implements Serializable {
     private CardStackController cardStackController = new CardStackController();
     private SelectableRouteCards selectableRouteCards = new SelectableRouteCards(new RouteCardStackBank());
     private RouteStore routeStore = new RouteStore();
-    private int playersTurn = 1;
+    private int playersTurn = 0;
 
     public GameStore() {
     }
@@ -68,7 +68,7 @@ public class GameStore implements Serializable {
     }
 
     public void cyclePlayerTurn() {
-        playersTurn = (playersTurn + 1) % 4;
+        playersTurn = (playersTurn + 1) % 3;
     }
 
     public int getPLayersTurn() {
