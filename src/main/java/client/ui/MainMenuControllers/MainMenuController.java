@@ -1,7 +1,6 @@
 package client.ui.MainMenuControllers;
 
 import client.MediaController;
-import client.ui.views.MainMenuOptionView;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
@@ -44,7 +43,7 @@ public class MainMenuController implements Initializable {
     @FXML
     private MainMenuLoadController VBoxLoadController;
     @FXML
-    private MainMenuOptionView VBoxOptionController;
+    private MainMenuOptionController VBoxOptionController;
 
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
