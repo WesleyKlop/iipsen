@@ -14,13 +14,13 @@ public class BuildRouteAction implements Action {
 
     private static final Logger Log = LogManager.getLogger(BuildRouteAction.class);
 
-    private Player player;
+    private int playerId;
     private Route route;
     private CardType cType;
     private CardStack costs;
 
-    public BuildRouteAction(Player player, Route route) {
-        this.player = player;
+    public BuildRouteAction(int playerId, Route route) {
+        this.playerId = playerId;
         this.route = route;
         cType = route.getType();
         costs = route.getCostsAsCardStack();
@@ -28,6 +28,7 @@ public class BuildRouteAction implements Action {
 
     @Override
     public void executeAction(GameStore store) {
+        Player player = store.getPlayerById(playerId);
         RouteType type = route.getRouteType();
         if (type.toString().equalsIgnoreCase("tunnel")) {
             for (int i = 0; i < 3; i++) {
@@ -38,16 +39,16 @@ public class BuildRouteAction implements Action {
             if (player.getCardStack().containsCards(costs)) {
                 //TODO Message player system
                 //MESSAGE PLAYER EXTRA COSTS
-                build(route);
+                build(route, player);
             } else {
                 //MESSAGE PLAYER EXTRA COSTS
             }
         } else {
-            build(route);
+            build(route, player);
         }
     }
 
-    private void build(Route route) {
+    private void build(Route route, Player player) {
         try {
             player.getCardStack().takeCards(costs);
             route.setOwner(player.getId());
