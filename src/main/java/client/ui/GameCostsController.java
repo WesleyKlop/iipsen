@@ -1,8 +1,13 @@
 package client.ui;
 
+import game.GameStore;
 import game.GameStoreProvider;
 import game.actions.Action;
 import game.actions.BuildRouteAction;
+import game.location.ELocation;
+import game.player.Player;
+import game.routecards.Route;
+import game.routecards.RouteType;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -49,12 +54,13 @@ public class GameCostsController {
         VBox source = (VBox) mouseEvent.getSource();
         String[] information = getRouteInformation(source);
         addParts(information);
-        String routeType = information[3];
-        String location1 = information[4].toLowerCase();
-        String location2 = information[5].toLowerCase();
-        location1 = upperCaseFirstLetter(location1);
-        location2 = upperCaseFirstLetter(location2);
-        locations.setText("This " + routeType + " route connects " + location1 + " to " + location2);
+        RouteType routeType = RouteType.valueOf(information[3]);
+        String type = upperCaseFirstLetter(routeType.toString());
+        ELocation location1 = ELocation.valueOf(information[4]);
+        ELocation location2 = ELocation.valueOf(information[5]);
+        String loc1 = upperCaseFirstLetter(location1.toString());
+        String loc2 = upperCaseFirstLetter(location2.toString());
+        locations.setText("This " + type + " route connects " + loc1 + " to " + loc2);
         updateCurrentId(Integer.parseInt(information[6]));
         openAnimation();
     }
@@ -166,12 +172,22 @@ public class GameCostsController {
 
     @FXML
     private void buildRoute() throws RemoteException {
-        Action buildAction = new BuildRouteAction(GameStoreProvider.getStore().getPlayerById(GameStoreProvider.getStore().getPLayersTurn()), currentId);
-        GameStoreProvider.sendAction(buildAction);
+        GameStore store = GameStoreProvider.getStore();
+        Player player = store.getPlayerById(store.getPLayersTurn());
+        Route route = store.getRouteStore().getRouteById(currentId);
+        if (BuildRouteControle(route, player)) {
+            Action buildAction = new BuildRouteAction(player, route);
+            GameStoreProvider.sendAction(buildAction);
+        }
     }
 
     private String upperCaseFirstLetter(String word) {
+        word = word.toLowerCase();
         String firstLetter = word.substring(0, 1).toUpperCase();
         return firstLetter + word.substring(1);
+    }
+
+    private boolean BuildRouteControle(Route route, Player player) {
+        return player.getCardStack().containsCards(route.getCostsAsCardStack()) && !route.hasOwner();
     }
 }

@@ -27,7 +27,7 @@ public class Card {
      *
      * @return the CardType
      */
-    CardType getCardType() {
+    public CardType getCardType() {
         return cardType;
     }
 
