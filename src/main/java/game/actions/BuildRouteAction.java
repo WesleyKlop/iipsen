@@ -29,6 +29,12 @@ public class BuildRouteAction implements Action {
 
         if (!player.getCardStack().containsCards(costs)) {
             Log.debug("Player doesn't have enough cards");
+            return;
+        }
+
+        if (route.hasOwner()) {
+            Log.warn("Trying to build route that has owner.. cancelling");
+            return;
         }
 
         Log.debug("Player has enough cards! player id: {}", player.getId());
