@@ -23,6 +23,7 @@ public class LayoutBankController {
     private Observable<GameStore> storeObservable = GameStoreProvider.getInstance();
     private GameStore store = GameStoreProvider.getStore();
 
+    @FXML
     public void initialize() {
         store.getCardStackController().populateOpenCards();
         setCardImages();
@@ -47,13 +48,13 @@ public class LayoutBankController {
     private void pickUpOpenCard(MouseEvent mE) throws RemoteException {
         ImageView imageView = (ImageView) mE.getSource();
         int index = Integer.parseInt(imageView.getId());
-        Action randomCardAction = new GetCardAction(store.getPlayerById(store.getPLayersTurn()), index);
+        Action randomCardAction = new GetCardAction(store.getPlayersTurn(), index);
         GameStoreProvider.sendAction(randomCardAction);
     }
 
     @FXML
     private void pickUpClosedCard() throws RemoteException {
-        Action randomCardAction = new GetCardAction(store.getPlayerById(store.getPLayersTurn()), 0);
+        Action randomCardAction = new GetCardAction(store.getPlayersTurn(), 0);
         GameStoreProvider.sendAction(randomCardAction);
     }
 }

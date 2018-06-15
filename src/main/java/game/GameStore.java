@@ -49,12 +49,6 @@ public class GameStore implements Serializable {
         gameState = newState;
     }
 
-    public void addPlayer(Player player) {
-        players.add(player);
-        // Calling setId after adding makes the player id start at 1
-        player.setId(players.size());
-    }
-
     public SelectableRouteCards getSelectableRouteCards() {
         return selectableRouteCards;
     }
@@ -71,7 +65,7 @@ public class GameStore implements Serializable {
         playersTurn = (playersTurn + 1) % 3;
     }
 
-    public int getPLayersTurn() {
+    public int getPlayersTurn() {
         return playersTurn + 1;
     }
 

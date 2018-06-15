@@ -1,6 +1,5 @@
 package util;
 
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -9,7 +8,7 @@ import java.util.Set;
  * @author Wesley Klop
  */
 public class Observable<T> {
-    private Set<Observer<T>> observers = new HashSet<>();
+    private Set<Observer<T>> observers = new WeakSet<>();
 
     private T currentValue;
 
@@ -50,6 +49,7 @@ public class Observable<T> {
 
     /**
      * Save the value, and notify all observers
+     *
      * @param value the new value
      */
     public void setValue(T value) {
@@ -62,7 +62,8 @@ public class Observable<T> {
      */
     public void notifyObservers() {
         for (Observer<T> observer : observers) {
-            observer.onUpdate(currentValue);
+            if (observer != null)
+                observer.onUpdate(currentValue);
         }
     }
 
