@@ -43,7 +43,7 @@ public class Route {
         return locomotiveCost;
     }
 
-    public CardType getType() {
+    public CardType getCardType() {
         return color;
     }
 

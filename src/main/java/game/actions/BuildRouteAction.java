@@ -22,7 +22,7 @@ public class BuildRouteAction implements Action {
     public BuildRouteAction(int playerId, Route route) {
         this.playerId = playerId;
         this.route = route;
-        cType = route.getType();
+        cType = route.getCardType();
         costs = route.getCostsAsCardStack();
     }
 

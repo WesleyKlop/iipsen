@@ -86,7 +86,6 @@ public class StartupController implements Initializable {
     }
 
     public void moveMenuDown() {
-        preferencesPaneController.resetPrefs();
         TranslateTransition menuAni = new TranslateTransition(Duration.seconds(1), rootPane);
         menuAni.setToY(-1080);
         menuAni.play();
