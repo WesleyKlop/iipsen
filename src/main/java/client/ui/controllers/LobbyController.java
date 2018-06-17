@@ -2,26 +2,29 @@ package client.ui.controllers;
 
 import client.ui.views.LobbyView;
 import game.GameState;
+import game.GameStore;
 import game.GameStoreProvider;
 import game.actions.ChangeStateAction;
 import javafx.scene.paint.Color;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import util.Observable;
 
 import java.rmi.RemoteException;
 
 /**
  * @author Wesley Klop
  */
-public class LobbyController {
+public class LobbyController implements Observable.Observer<GameStore> {
     private static final Logger Log = LogManager.getLogger(LobbyController.class);
 
+    private final LobbyView view;
+
     public LobbyController(LobbyView view) {
-        GameStoreProvider.getInstance().addObserver(gameState -> {
-            Log.debug("List changed, new size: {}", gameState.getPlayers().size());
-            // TODO: This could be optimized
-            // Maybe compare array size and add/remove based on that
-            view.updateView(gameState.getPlayers());
+        this.view = view;
+        GameStoreProvider.getInstance().addObserver(this);
+        GameStoreProvider.getInstance().addObserver(store -> {
+            System.out.println(store.getPlayers().size());
         });
     }
 
@@ -45,5 +48,13 @@ public class LobbyController {
         var action = new ChangeStateAction(GameState.GAME);
         Log.debug("Changing to GameState.GAME");
         GameStoreProvider.sendAction(action);
+    }
+
+    @Override
+    public void onUpdate(GameStore gameStore) {
+        Log.debug("List changed, new size: {}", gameStore.getPlayers().size());
+        // TODO: This could be optimized
+        // Maybe compare array size and add/remove based on that
+        view.updateView(gameStore.getPlayers());
     }
 }
