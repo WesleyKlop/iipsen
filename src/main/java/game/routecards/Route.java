@@ -84,8 +84,8 @@ public class Route {
             case 9:
                 return 27;
             default:
+                Log.warn("Route from {} to {} has 0 length?", location1, location2);
                 return 0;
-
         }
     }
 
