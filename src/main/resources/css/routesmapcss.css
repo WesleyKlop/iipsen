@@ -6,3 +6,15 @@
     -fx-padding: 10 10 10 10;
     -fx-text-fill: #FFF;
 }
+
+.routePointsButton:hover {
+    -fx-border-color: #FFF;
+}
+
+.routePointsButton .pointsImage {
+    -fx-opacity: 1;
+}
+
+.routePointsButton:hover .pointsImage {
+    -fx-opacity: 1;
+}

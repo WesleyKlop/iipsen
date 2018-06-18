@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -74,22 +75,26 @@ public class GameRoutesMapController {
     private void onRouteHoverEnter(MouseEvent mE) {
         VBox source = (VBox) mE.getSource();
         for (Node child : source.getChildren()) {
-            if (!(child instanceof Rectangle)) {
-                Log.warn("Found child in route that is not a rectangle!");
+            if (!(child instanceof StackPane)) {
+                Log.warn("Found child in route that is not a stackPane!");
                 continue;
             }
-            ((Rectangle) child).setStroke(Color.WHITE);
+            StackPane cartStack = (StackPane) child;
+            Rectangle cart = (Rectangle) cartStack.getChildren().get(0);
+            cart.setStroke(Color.WHITE);
         }
     }
 
     private void onRouteHoverExit(MouseEvent mE) {
         VBox source = (VBox) mE.getSource();
         for (Node child : source.getChildren()) {
-            if (!(child instanceof Rectangle)) {
-                Log.warn("Found child in route that is not a rectangle!");
+            if (!(child instanceof StackPane)) {
+                Log.warn("Found child in route that is not a stackPane!");
                 continue;
             }
-            ((Rectangle) child).setStroke(Color.BLACK);
+            StackPane cartStack = (StackPane) child;
+            Rectangle cart = (Rectangle) cartStack.getChildren().get(0);
+            cart.setStroke(Color.BLACK);
         }
     }
 
@@ -136,18 +141,15 @@ public class GameRoutesMapController {
         locationInformation.hide();
     }
 
-    public void ScoreEntered(MouseEvent mouseEvent) {
+    public void ScoreEntered() {
         iv1.setFitHeight(170);
         iv1.setFitWidth(300);
-        iv1.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.7), 2, 2, 2, 2);");
-        score.setStyle("-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: white; -fx-padding: 10 10 10 10");
         mainPane.getChildren().addAll(iv1);
     }
 
 
-    public void ScoreExited(MouseEvent mouseEvent) {
+    public void ScoreExited() {
         mainPane.getChildren().removeAll(iv1);
-        score.setStyle("-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10");
     }
 
     private void routeOnMouseClicked(MouseEvent mouseEvent) {
