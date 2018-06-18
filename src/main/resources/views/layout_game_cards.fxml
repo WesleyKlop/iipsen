@@ -14,8 +14,7 @@
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
-            <ImageView rotate="90" fitHeight="127">
-                <Image url="/cards/FALSE/CART_BLACK.png"/>
+            <ImageView fx:id="blackimgv" rotate="90" fitHeight="127">
             </ImageView>
         </VBox>
 
@@ -24,8 +23,7 @@
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
-            <ImageView rotate="90">
-                <Image url="/cards/FALSE/CART_BLUE.png"/>
+            <ImageView fx:id="blueimgv" rotate="90">
             </ImageView>
         </VBox>
 
@@ -34,8 +32,7 @@
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
-            <ImageView rotate="90">
-                <Image url="/cards/FALSE/CART_GREEN.png"/>
+            <ImageView fx:id="greenimgv" rotate="90">
             </ImageView>
         </VBox>
 
@@ -44,8 +41,7 @@
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
-            <ImageView rotate="90">
-                <Image url="/cards/FALSE/CART_ORANGE.png"/>
+            <ImageView fx:id="orangeimgv" rotate="90">
             </ImageView>
         </VBox>
 
@@ -54,8 +50,7 @@
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
-            <ImageView rotate="90">
-                <Image url="/cards/FALSE/CART_PURPLE.png"/>
+            <ImageView fx:id="purpleimgv" rotate="90">
             </ImageView>
         </VBox>
 
@@ -64,8 +59,7 @@
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
-            <ImageView rotate="90">
-                <Image url="/cards/FALSE/CART_RED.png"/>
+            <ImageView fx:id="redimgv" rotate="90">
             </ImageView>
         </VBox>
 
@@ -74,8 +68,7 @@
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
-            <ImageView rotate="90">
-                <Image url="/cards/FALSE/CART_WHITE.png"/>
+            <ImageView fx:id="whiteimgv" rotate="90">
             </ImageView>
         </VBox>
 
@@ -84,8 +77,7 @@
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
-            <ImageView rotate="90">
-                <Image url="/cards/FALSE/CART_YELLOW.png"/>
+            <ImageView fx:id="yellowimgv" rotate="90">
             </ImageView>
         </VBox>
 
@@ -94,8 +86,7 @@
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
-            <ImageView rotate="90">
-                <Image url="/cards/FALSE/LOCOMOTIVE.png"/>
+            <ImageView fx:id="locomotiveimgv" rotate="90">
             </ImageView>
         </VBox>
     </HBox>
