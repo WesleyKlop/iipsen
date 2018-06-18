@@ -1,10 +1,15 @@
 client
 client.ui
 client.ui.components
+client.ui.controllers
+client.ui.dialogs
 client.ui.factories
+client.ui.MainMenuControllers
+client.ui.views
 game
 game.actions
 game.cards
+game.location
 game.player
 game.routecards
 server
