@@ -10,6 +10,7 @@ import java.util.function.Consumer;
  * don't get updated after removal
  *
  * @author Wesley Klop
+ * @deprecated
  */
 public class WeakSet<T> extends AbstractSet<T> implements Set<T> {
 

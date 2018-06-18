@@ -1,6 +1,8 @@
 package util;
 
+import java.util.Collections;
 import java.util.Set;
+import java.util.WeakHashMap;
 
 /**
  * Observable is a utility class for Tracking changes of an Object
@@ -8,7 +10,7 @@ import java.util.Set;
  * @author Wesley Klop
  */
 public class Observable<T> {
-    private Set<Observer<T>> observers = new WeakSet<>();
+    private Set<Observer<T>> observers = Collections.newSetFromMap(new WeakHashMap<>());
 
     private T currentValue;
 
