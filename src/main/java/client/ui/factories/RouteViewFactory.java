@@ -41,7 +41,7 @@ public class RouteViewFactory {
         this.onHoverExit = onHoverExit;
     }
 
-    private NodeList getRouteNodes() {
+    public NodeList getRouteNodes() {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();

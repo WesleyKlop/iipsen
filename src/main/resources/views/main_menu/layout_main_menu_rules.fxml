@@ -16,20 +16,20 @@
         <Image url="/images/rules.png"/>
     </ImageView>
     <HBox spacing="5" fx:id="HBoxRule1">
-        <Label styleClass="fancy-label" fx:id="ruleObjective" text="Object of the game" onMouseClicked="#manageRules"/>
-        <Label styleClass="fancy-label" fx:id="ruleTurn" text="Game turn" onMouseClicked="#manageRules"/>
-        <Label styleClass="fancy-label" fx:id="ruleTrainCards" text="Train cards" onMouseClicked="#manageRules"/>
+        <Label styleClass="fancy-label" text="Object of the game" onMouseClicked="#manageRules"/>
+        <Label styleClass="fancy-label" text="Game turn" onMouseClicked="#manageRules"/>
+        <Label styleClass="fancy-label" text="Train cards" onMouseClicked="#manageRules"/>
     </HBox>
     <HBox spacing="5" fx:id="HBoxRule2">
-        <Label styleClass="fancy-label" fx:id="ruleRoutes" text="Routes" onMouseClicked="#manageRules"/>
-        <Label styleClass="fancy-label" fx:id="ruleTunnels" text="Tunnels" onMouseClicked="#manageRules"/>
-        <Label styleClass="fancy-label" fx:id="ruleFerries" text="Ferries" onMouseClicked="#manageRules"/>
+        <Label styleClass="fancy-label" text="Routes" onMouseClicked="#manageRules"/>
+        <Label styleClass="fancy-label" text="Tunnels" onMouseClicked="#manageRules"/>
+        <Label styleClass="fancy-label" text="Ferries" onMouseClicked="#manageRules"/>
     </HBox>
     <HBox spacing="5" fx:id="HBoxRule3">
-        <Label styleClass="fancy-label" fx:id="ruleDestinationCards" text="Destination Cards"
+        <Label styleClass="fancy-label" text="Destination Cards"
                onMouseClicked="#manageRules"/>
-        <Label styleClass="fancy-label" fx:id="ruleEnd" text="End of the game" onMouseClicked="#manageRules"/>
-        <Label styleClass="fancy-label" fx:id="ruleScore" text="Score Calculation" onMouseClicked="#manageRules"/>
+        <Label styleClass="fancy-label" text="End of the game" onMouseClicked="#manageRules"/>
+        <Label styleClass="fancy-label" text="Score Calculation" onMouseClicked="#manageRules"/>
     </HBox>
     <Label text="Size:" scaleX="2.0" scaleY="2.0"/>
     <Slider fx:id="optionFontSize" max="30.0" min="16" value="20" showTickLabels="true"

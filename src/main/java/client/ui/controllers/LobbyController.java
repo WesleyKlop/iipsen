@@ -41,6 +41,7 @@ public class LobbyController implements Observable.Observer<GameStore> {
     }
 
     public void onStartButtonClicked() throws RemoteException {
+        GameStoreProvider.getInstance().removeObserver(this);
         Log.debug("Starting game");
         var action = new ChangeStateAction(GameState.GAME);
         Log.debug("Changing to GameState.GAME");

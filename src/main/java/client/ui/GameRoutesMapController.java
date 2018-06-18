@@ -1,9 +1,12 @@
 package client.ui;
 
 import client.ui.components.LocationInformation;
+import client.ui.dialogs.DialogContainer;
+import client.ui.dialogs.GameCostsDialogController;
 import client.ui.factories.LocationFactory;
 import client.ui.factories.RouteViewFactory;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -22,6 +25,7 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.IOException;
 
 /**
  * @author Thom
@@ -34,12 +38,10 @@ public class GameRoutesMapController {
     @FXML
     private Pane mainPane, informationPane;
     private LocationInformation locationInformation;
-    @FXML
-    private GameCostsController route_costsController;
 
-
-    Image image = new Image("/images/points.png");
-    ImageView iv1 = new ImageView();
+    private Image image = new Image("/images/points.png");
+    private ImageView iv1 = new ImageView();
+    private DialogContainer dialogContainer;
 
     public void initialize() {
         informationPane.setPickOnBounds(false);
@@ -151,7 +153,16 @@ public class GameRoutesMapController {
     }
 
     private void routeOnMouseClicked(MouseEvent mouseEvent) {
-        route_costsController.ActivationAction(mouseEvent);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/overlay_build_message.fxml"));
+        try {
+            dialogContainer.showDialog(loader.load());
+            ((GameCostsDialogController) loader.getController()).onActivate(mouseEvent);
+        } catch (IOException e) {
+            Log.error("Couldn't load dialog..");
+        }
     }
 
+    public void setDialogContainer(DialogContainer dialogContainer) {
+        this.dialogContainer = dialogContainer;
+    }
 }
