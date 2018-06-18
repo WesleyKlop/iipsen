@@ -6,7 +6,7 @@
 <Pane xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
       fx:controller="client.ui.controllers.LayoutCardController"
-      prefHeight="720" prefWidth="1280"
+      prefHeight="200" prefWidth="1080"
       fx:id="rootCards">
     <HBox fx:id="cards" layoutY="560" spacing="-30">
         <VBox fx:id="black">

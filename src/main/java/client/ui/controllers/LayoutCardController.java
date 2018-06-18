@@ -18,42 +18,10 @@ import static game.cards.CardType.*;
 
 public class LayoutCardController {
     @FXML
-    Label blackammount;
-    @FXML
-    Label blueammount;
-    @FXML
-    Label greenammount;
-    @FXML
-    Label orangeammount;
-    @FXML
-    Label purpleammount;
-    @FXML
-    Label redammount;
-    @FXML
-    Label whiteammount;
-    @FXML
-    Label yellowammount;
-    @FXML
-    Label locomotiveammount;
+    Label blackammount, blueammount, greenammount, orangeammount, purpleammount, redammount, whiteammount, yellowammount, locomotiveammount;
 
     @FXML
-    VBox black;
-    @FXML
-    VBox blue;
-    @FXML
-    VBox green;
-    @FXML
-    VBox orange;
-    @FXML
-    VBox purple;
-    @FXML
-    VBox red;
-    @FXML
-    VBox white;
-    @FXML
-    VBox yellow;
-    @FXML
-    VBox locomotive;
+    VBox black, blue, green, orange, purple, red, white, yellow, locomotive;
 
     @FXML
     HBox cards;
@@ -73,7 +41,7 @@ public class LayoutCardController {
 
         Player player = players.get(0);
 
-        //todo Only gets the first player connected
+        //TODO Only gets the first player connected
 
         /**
          *

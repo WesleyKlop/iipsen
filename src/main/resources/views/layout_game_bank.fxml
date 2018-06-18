@@ -6,17 +6,15 @@
       xmlns="http://javafx.com/javafx"
       fx:controller="client.ui.LayoutBankController"
       prefHeight="400.0" prefWidth="600.0"
-      spacing="10">
+      spacing="10" fx:id="rootBox">
 
-    <ImageView fx:id="stack" onMouseClicked="#pickUpClosedCard">
+    <ImageView fx:id="0" onMouseClicked="#onMouseAction">
         <Image url="/cards/FALSE/BACK.png"/>
     </ImageView>
-    <VBox fx:id="openCards" spacing="5">
-        <ImageView fx:id="1" onMouseClicked="#pickUpOpenCard"/>
-        <ImageView fx:id="2" onMouseClicked="#pickUpOpenCard"/>
-        <ImageView fx:id="3" onMouseClicked="#pickUpOpenCard"/>
-        <ImageView fx:id="4" onMouseClicked="#pickUpOpenCard"/>
-        <ImageView fx:id="5" onMouseClicked="#pickUpOpenCard"/>
-    </VBox>
+    <ImageView fx:id="1" onMouseClicked="#onMouseAction"/>
+    <ImageView fx:id="2" onMouseClicked="#onMouseAction"/>
+    <ImageView fx:id="3" onMouseClicked="#onMouseAction"/>
+    <ImageView fx:id="4" onMouseClicked="#onMouseAction"/>
+    <ImageView fx:id="5" onMouseClicked="#onMouseAction"/>
 
 </VBox>

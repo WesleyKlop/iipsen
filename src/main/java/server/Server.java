@@ -54,7 +54,9 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
     public synchronized void onActionReceived(Action action) {
         try {
             action.executeAction(gameStore);
-            gameStore.cyclePlayerTurn();
+//            if (gameStore.gameStateIsGame()) {
+//                gameStore.cyclePlayerTurn();
+//            }
             Log.debug("Executed action");
             notifyListeners();
             Log.debug("Notified listeners");
@@ -62,4 +64,6 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
             Log.error("Server error while executing action", ex);
         }
     }
+
+
 }

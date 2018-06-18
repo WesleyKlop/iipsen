@@ -70,37 +70,6 @@ public class GameRoutesMapController {
         return mainPane;
     }
 
-    private void printRouteInformation(MouseEvent mE) {
-        VBox source = (VBox) mE.getSource();
-        String id = source.getId();
-
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document routesDoc = builder.parse(getClass().getResourceAsStream("/string/gameRoutes.xml"));
-            routesDoc.getDocumentElement().normalize();
-
-            NodeList nListRoutes = routesDoc.getElementsByTagName("route");
-            for (int i = 0; i < nListRoutes.getLength(); i++) {
-                if (nListRoutes.item(i).getAttributes().getNamedItem("id").getTextContent().equalsIgnoreCase(id)) {
-                    Element eRoute = (Element) nListRoutes.item(i);
-
-                    String location1 = eRoute.getElementsByTagName("location1").item(0).getTextContent();
-                    String location2 = eRoute.getElementsByTagName("location2").item(0).getTextContent();
-                    String length = eRoute.getElementsByTagName("length").item(0).getTextContent();
-                    String locomotives = eRoute.getElementsByTagName("locomotive").item(0).getTextContent();
-                    String cartType = eRoute.getElementsByTagName("cartType").item(0).getTextContent();
-                    String type = eRoute.getElementsByTagName("type").item(0).getTextContent();
-                    Log.debug("Route of type {} connects {} to {}, length of {} with {} locomotives and is of type {}", type, location1, location2, length, locomotives, cartType);
-                    break;
-                }
-            }
-
-        } catch (Exception e) {
-            Log.debug(e.toString());
-        }
-
-    }
 
     private void onRouteHoverEnter(MouseEvent mE) {
         VBox source = (VBox) mE.getSource();

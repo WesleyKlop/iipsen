@@ -17,9 +17,15 @@ public class FullGameController {
     @FXML
     private LayoutGamePlayerbox playerBoxController;
     private List<Player> players;
+    @FXML
+    private GameCostsController route_costsController;
 
     public void initialize() {
         players = GameStoreProvider.getStore().getPlayers();
         playerBoxController.setPlayers(players);
+    }
+
+    public void resetMessages() {
+        route_costsController.closeAnimation();
     }
 }

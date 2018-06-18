@@ -69,5 +69,9 @@ public class GameStore implements Serializable {
         return playersTurn + 1;
     }
 
+    public boolean gameStateIsGame() {
+        return getGameState() == GameState.GAME;
+    }
+
     //TODO
 }
