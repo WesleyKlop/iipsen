@@ -14,7 +14,7 @@ public enum ELocation {
     OULU,
     BODEN,
     KUOPIO,
-    MO_I_RANA,
+    MOIRANA,
     UMEA,
     VAASA,
     IMATRA,

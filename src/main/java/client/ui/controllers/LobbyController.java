@@ -23,9 +23,6 @@ public class LobbyController implements Observable.Observer<GameStore> {
     public LobbyController(LobbyView view) {
         this.view = view;
         GameStoreProvider.getInstance().addObserver(this);
-        GameStoreProvider.getInstance().addObserver(store -> {
-            System.out.println(store.getPlayers().size());
-        });
     }
 
     public String contrastCalculator(Color color) {

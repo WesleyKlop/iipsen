@@ -593,7 +593,7 @@
     </route>
     <route id="44">
         <location1>TRONDHEIM</location1>
-        <location2>MO_I_RANA</location2>
+        <location2>MOIRANA</location2>
         <length>6</length>
         <locomotive>2</locomotive>
         <cartType>CART_RED</cartType>
@@ -610,7 +610,7 @@
     </route>
     <route id="45">
         <location1>NARVIK</location1>
-        <location2>MO_I_RANA</location2>
+        <location2>MOIRANA</location2>
         <length>4</length>
         <locomotive>2</locomotive>
         <cartType>CART_ORANGE</cartType>
@@ -625,7 +625,7 @@
     </route>
     <route id="46">
         <location1>TRONDHEIM</location1>
-        <location2>MO_I_RANA</location2>
+        <location2>MOIRANA</location2>
         <length>5</length>
         <locomotive>0</locomotive>
         <cartType>CART_GREEN</cartType>

@@ -31,4 +31,11 @@ public class RouteCard implements Serializable {
     public ELocation getEnd() {
         return end;
     }
+
+    public String getImagePath() {
+        return String.format("/routecards/nc-%s-%s.png",
+            start.toString().toLowerCase(),
+            end.toString().toLowerCase()
+        );
+    }
 }
