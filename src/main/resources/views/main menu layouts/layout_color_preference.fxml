@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+<StackPane xmlns:fx="http://javafx.com/fxml/1" alignment="TOP_CENTER" maxHeight="80" maxWidth="300"
+           xmlns="http://javafx.com/javafx/8.0.121"
+           fx:controller="client.ui.views.ColorPreferenceView"
+           onMouseEntered="#onMouseEnter" onMouseExited="#onMouseExit">
+    <Rectangle fx:id="colorPreferenceRectangle" height="80" width="300"/>
+    <Label fx:id="colorPreferenceLabel" text="Pick a Color!" alignment="BASELINE_CENTER" prefHeight="80"
+           prefWidth="300"/>
+    <ColorPicker fx:id="colorPreferencePicker" minHeight="80" minWidth="300" opacity="0" onHiding="#onColorPickerHide"/>
+</StackPane>

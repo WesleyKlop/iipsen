@@ -1,5 +1,7 @@
 package game.cards;
 
+import client.UserPreferences;
+
 /**
  * Card class
  * Contains CardType
@@ -17,7 +19,7 @@ public class Card {
      */
     Card(CardType cardType) {
         this.cardType = cardType;
-        this.path = "/cards/" + cardType + ".png";
+        this.path = "/cards/" + UserPreferences.isColorBlind() + "/" + cardType + ".png";
     }
 
     /**
@@ -25,7 +27,7 @@ public class Card {
      *
      * @return the CardType
      */
-    CardType getCardType() {
+    public CardType getCardType() {
         return cardType;
     }
 

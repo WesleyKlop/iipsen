@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<VBox
+        xmlns:fx="http://javafx.com/fxml"
+        xmlns="http://javafx.com/javafx"
+        fx:controller="client.ui.views.LobbyView"
+        prefHeight="1080.0" prefWidth="3020.0" alignment="CENTER"
+        spacing="20" style="-fx-background-color: #DDD">
+    <VBox fx:id="container" alignment="BASELINE_CENTER"/>
+    <HBox prefWidth="1080" alignment="CENTER" spacing="10">
+        <Label styleClass="fancy-label" fx:id="quitButtonLabel" text="Quit"/>
+        <Label styleClass="fancy-label" fx:id="startButtonLabel" text="Start" onMouseClicked="#onStartButtonClicked"/>
+    </HBox>
+</VBox>

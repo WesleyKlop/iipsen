@@ -1,6 +1,6 @@
 package client;
 
-import client.ui.StartupController;
+import client.ui.MainMenuControllers.StartupController;
 import game.GameState;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -34,21 +34,22 @@ public class Client extends Application implements SceneListener {
     }
 
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/layout_startup.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/main menu layouts/layout_startup.fxml"));
         Pane rootPane = loader.load();
         rootPaneController = loader.getController();
         rootPaneController.getPreferenceController().joinButton.setOnMouseClicked(e -> {
             try {
                 if (rootPaneController.getPreferenceController().checkName()) {
-                    if (rootPaneController.getPreferenceController().checkNameDouble()) {
-                        connectServer(rootPaneController.getPreferenceController().IPinput.getText());
+//                    if (rootPaneController.getPreferenceController().checkNameDouble()) {
+                    connectServer(rootPaneController.getPreferenceController().ipInput.getText());
                         rootPaneController.getPreferenceController().submitPreferences();
-                    }
+//                    }
                 }
             } catch (RemoteException e1) {
                 Log.error(e1.toString());
             }
         });
+
         rootPaneController.getPreferenceController().createButton.setOnMouseClicked(e -> {
             try {
                 if (rootPaneController.getPreferenceController().checkName()) {
@@ -98,14 +99,12 @@ public class Client extends Application implements SceneListener {
         Parent newRoot = null;
         String newTitle = null;
         switch (state) {
-            case INIT:
-                break;
             case LOBBY:
                 rootPaneController.moveMenuDown();
                 break;
             case GAME:
                 newTitle = "Ticket To Ride";
-                newRoot = getParent("layout_game");
+                newRoot = getParent("layout_full_game");
                 // Switch to game view
                 break;
             case PAUSED:

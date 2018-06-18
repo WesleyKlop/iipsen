@@ -4,8 +4,17 @@
 <Pane xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
       fx:controller="client.ui.FullGameController"
-      prefHeight="1080.0" prefWidth="1920.0"
+      prefHeight="1080" prefWidth="1920"
       fx:id="rootPane">
 
-    <fx:include source="layout_routes_map.fxml" fx:id="routesMap"/>
+    <fx:include source="layout_game_playerbox.fxml" fx:id="playerBox"/>
+    <fx:include source="layout_game_cards.fxml" fx:id="rootCards" layoutX="200" layoutY="0"/>
+    <fx:include source="layout_routes_map.fxml" fx:id="routesMap" scaleX="1.3" scaleY="1.3" layoutX="913"
+                layoutY="162"/>
+    <fx:include source="layout_game_bank.fxml"/>
+    <fx:include source="overlay_pause_menu.fxml" layoutX="1920"/>
+
+    <!--Overlay messages:-->
+    <fx:include source="overlay_build_message.fxml" fx:id="route_costs" layoutY="100" layoutX="2020"/>
+
 </Pane>

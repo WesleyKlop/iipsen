@@ -1,8 +1,12 @@
 package client.ui.factories;
 
+import game.cards.CardType;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -19,6 +23,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
+
+import static client.UserPreferences.isColorBlind;
 
 /**
  * @author Wesley Klop
@@ -89,12 +95,13 @@ public class RouteViewFactory {
             routes[i] = route;
 
             String type = routeElement.getElementsByTagName("type").item(0).getTextContent();
-            double strokeWidth = (type.equals("tunnel")) ? 3 : 1;
-            double arc = (type.equals("ferry")) ? 10 : 0;
+            double strokeWidth = (type.equals("TUNNEL")) ? 3 : 1;
+            double arc = (type.equals("FERRY")) ? 10 : 0;
 
             int locomotiveAmount = Integer.parseInt(routeElement.getElementsByTagName("locomotive").item(0).getTextContent());
 
-            Color routeColor = typeToColor(routeElement.getElementsByTagName("cartType").item(0).getTextContent());
+            CardType cardType = CardType.valueOf(routeElement.getElementsByTagName("cartType").item(0).getTextContent());
+            Color routeColor = typeToColor(cardType.toString());
 
             for (int j = 0, cartLength = nCartList.getLength(); j < cartLength; j++) {
                 Element eElement = (Element) nCartList.item(j);
@@ -102,26 +109,35 @@ public class RouteViewFactory {
                 int y = Integer.parseInt(eElement.getAttribute("y"));
                 int rot = Integer.parseInt(eElement.getAttribute("rot"));
 
+                Image icon = new Image(getClass().getResourceAsStream("/colorblind_icons/" + cardType + ".png"));
+                ImageView cartIcon = new ImageView();
                 Rectangle cart = new Rectangle();
+                StackPane cartStack = new StackPane(cart, cartIcon);
                 if (j < locomotiveAmount) {
                     cart.setWidth(CART_WIDTH + 5);
                     cart.setArcWidth(arc + 5);
                     cart.setArcHeight(arc + 5);
+                    cartIcon.setFitWidth(CART_WIDTH + 3);
+                    icon = new Image(getClass().getResourceAsStream("/colorblind_icons/LOCOMOTIVE.png"));
                 } else {
                     cart.setWidth(CART_WIDTH);
                     cart.setArcWidth(arc);
                     cart.setArcHeight(arc);
+                    cartIcon.setFitWidth(CART_WIDTH - 2);
                 }
-
+                cartIcon.setImage(icon);
+                int opacity = (isColorBlind()) ? 1 : 0;
+                cartIcon.setOpacity(opacity);
+                cartIcon.setFitHeight(CART_LENGTH - 2);
                 cart.setHeight(CART_LENGTH);
-                cart.setTranslateX(x);
-                cart.setTranslateY(y);
-                cart.setRotate(rot);
+                cartStack.setTranslateX(x);
+                cartStack.setTranslateY(y);
+                cartStack.setRotate(rot);
                 cart.setFill(routeColor);
                 cart.setStroke(Color.BLACK);
                 cart.setStrokeWidth(strokeWidth);
 
-                route.getChildren().add(cart);
+                route.getChildren().add(cartStack);
             }
         }
 

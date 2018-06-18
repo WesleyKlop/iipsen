@@ -1,9 +1,11 @@
 package game.actions;
 
 import game.GameStore;
+import game.cards.CardStack;
 import game.cards.CardType;
 import game.player.Player;
 import game.routecards.Route;
+import game.routecards.RouteType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,35 +14,46 @@ public class BuildRouteAction implements Action {
 
     private static final Logger Log = LogManager.getLogger(BuildRouteAction.class);
 
+    private int playerId;
     private Route route;
-    private Player player;
+    private CardType cType;
+    private CardStack costs;
 
-    public BuildRouteAction(Player player, Route route) {
-        this.player = player;
+    public BuildRouteAction(int playerId, Route route) {
+        this.playerId = playerId;
         this.route = route;
+        cType = route.getCardType();
+        costs = route.getCostsAsCardStack();
     }
 
     @Override
     public void executeAction(GameStore store) {
-        if (player.getCardStack().containsCards(route.getType(), route.getCartCost()) &&
-            player.getCardStack().containsCards(CardType.LOCOMOTIVE, route.getLocomotiveCost())) {
-            Log.debug("Player has enough cards! player id: {}", player.getId());
-            try {
-                if (!route.hasOwner()) {
-                    Log.debug("Route doesn't have an owner, time to pay up!");
-                    player.getCardStack().takeCards(route.getType(), route.getCartCost());
-                    player.getCardStack().takeCards(CardType.LOCOMOTIVE, route.getLocomotiveCost());
-                    player.removeTrainCarts(route.getCartCost());
-                    Log.debug("Payment is accepted, granting ownership to " + player.getPlayerName());
-                    route.setOwner(player.getId());
-                    Log.debug("Player: " + player.getPlayerName() + " is now the proud owner of this route!");
+        Player player = store.getPlayerById(playerId);
+        RouteType type = route.getRouteType();
+        if (type.toString().equalsIgnoreCase("tunnel")) {
+            for (int i = 0; i < 3; i++) {
+                if (store.getCardStackController().getRandomCard().getCardType() == cType) {
+                    costs.addCard(cType);
                 }
-            } catch (Exception e) {
-                Log.debug("Whoops, looks like something went wrong!");
-                Log.error("Exception found: " + e.toString());
+            }
+            if (player.getCardStack().containsCards(costs)) {
+                //TODO Message player system
+                //MESSAGE PLAYER EXTRA COSTS
+                build(route, player);
+            } else {
+                //MESSAGE PLAYER EXTRA COSTS
             }
         } else {
-            Log.debug("Player doesn't have enough cards");
+            build(route, player);
+        }
+    }
+
+    private void build(Route route, Player player) {
+        try {
+            player.getCardStack().takeCards(costs);
+            route.setOwner(player.getId());
+        } catch (Exception e) {
+            Log.error("Couldn't build route", e);
         }
     }
 }

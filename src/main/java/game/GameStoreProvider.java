@@ -7,6 +7,9 @@ import util.Observable;
 import java.rmi.RemoteException;
 
 /**
+ * Singleton to give all views access tot the current GameStore so they can subscribe to changes
+ *
+ * @author Wesley Klop
  */
 public class GameStoreProvider {
     private static final Observable<GameStore> instance = new Observable<>();

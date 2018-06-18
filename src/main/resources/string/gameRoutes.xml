@@ -1,13 +1,27 @@
 <?xml version="1.0" ?>
 
 <Routes>
+    <route id="0">
+        <location1>MURMANSK</location1>
+        <location2>KIRKENES</location2>
+        <length>3</length>
+        <locomotive>1</locomotive>
+        <cartType>CART_WHITE</cartType>
+        <type>FERRY</type>
+        <baseX>972</baseX>
+        <baseY>315</baseY>
+        <baseRot>-195</baseRot>
+        <cart x="10" y="0" rot="45"/>
+        <cart x="0" y="0" rot="0"/>
+        <cart x="10" y="0" rot="-45"/>
+    </route>
     <route id="1">
         <location1>STAVANGER</location1>
         <location2>KRISTIANSAND</location2>
         <length>2</length>
         <locomotive>0</locomotive>
         <cartType>CART_GREEN</cartType>
-        <type>tunnel</type>
+        <type>TUNNEL</type>
         <baseX>130</baseX>
         <baseY>82</baseY>
         <baseRot>3</baseRot>
@@ -20,7 +34,7 @@
         <length>3</length>
         <locomotive>1</locomotive>
         <cartType>CART_ORANGE</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>85</baseX>
         <baseY>60</baseY>
         <baseRot>3</baseRot>
@@ -34,7 +48,7 @@
         <length>2</length>
         <locomotive>1</locomotive>
         <cartType>CART_PURPLE</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>157</baseX>
         <baseY>10</baseY>
         <baseRot>55</baseRot>
@@ -47,7 +61,7 @@
         <length>4</length>
         <locomotive>0</locomotive>
         <cartType>CART_RED</cartType>
-        <type>tunnel</type>
+        <type>TUNNEL</type>
         <baseX>237</baseX>
         <baseY>45</baseY>
         <baseRot>0</baseRot>
@@ -62,7 +76,7 @@
         <length>4</length>
         <locomotive>0</locomotive>
         <cartType>CART_BLUE</cartType>
-        <type>tunnel</type>
+        <type>TUNNEL</type>
         <baseX>253</baseX>
         <baseY>45</baseY>
         <baseRot>0</baseRot>
@@ -77,7 +91,7 @@
         <length>2</length>
         <locomotive>0</locomotive>
         <cartType>CART_BLACK</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>167</baseX>
         <baseY>125</baseY>
         <baseRot>98</baseRot>
@@ -90,7 +104,7 @@
         <length>2</length>
         <locomotive>1</locomotive>
         <cartType>CART_RED</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>75</baseX>
         <baseY>145</baseY>
         <baseRot>40</baseRot>
@@ -103,7 +117,7 @@
         <length>3</length>
         <locomotive>1</locomotive>
         <cartType>CART_WHITE</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>131</baseX>
         <baseY>150</baseY>
         <baseRot>-99</baseRot>
@@ -117,7 +131,7 @@
         <length>2</length>
         <locomotive>0</locomotive>
         <cartType>CART_ORANGE</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>168</baseX>
         <baseY>190</baseY>
         <baseRot>-127</baseRot>
@@ -130,7 +144,7 @@
         <length>4</length>
         <locomotive>0</locomotive>
         <cartType>CART_ORANGE</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>348</baseX>
         <baseY>207</baseY>
         <baseRot>90</baseRot>
@@ -145,7 +159,7 @@
         <length>3</length>
         <locomotive>0</locomotive>
         <cartType>CART_WHITE</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>635</baseX>
         <baseY>240</baseY>
         <baseRot>83</baseRot>
@@ -159,7 +173,7 @@
         <length>3</length>
         <locomotive>0</locomotive>
         <cartType>CART_RED</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>637</baseX>
         <baseY>255</baseY>
         <baseRot>83</baseRot>
@@ -173,7 +187,7 @@
         <length>1</length>
         <locomotive>0</locomotive>
         <cartType>CART_GREEN</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>704</baseX>
         <baseY>297</baseY>
         <baseRot>173</baseRot>
@@ -185,7 +199,7 @@
         <length>2</length>
         <locomotive>0</locomotive>
         <cartType>CART_YELLOW</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>680</baseX>
         <baseY>380</baseY>
         <baseRot>173</baseRot>
@@ -198,7 +212,7 @@
         <length>1</length>
         <locomotive>0</locomotive>
         <cartType>CART_RED</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>432</baseX>
         <baseY>410</baseY>
         <baseRot>90</baseRot>
@@ -210,7 +224,7 @@
         <length>1</length>
         <locomotive>0</locomotive>
         <cartType>CART_RED</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>738</baseX>
         <baseY>320</baseY>
         <baseRot>90</baseRot>
@@ -222,7 +236,7 @@
         <length>1</length>
         <locomotive>0</locomotive>
         <cartType>CART_WHITE</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>690</baseX>
         <baseY>340</baseY>
         <baseRot>50</baseRot>
@@ -234,7 +248,7 @@
         <length>2</length>
         <locomotive>0</locomotive>
         <cartType>CART_ORANGE</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>720</baseX>
         <baseY>334</baseY>
         <baseRot>68</baseRot>
@@ -247,7 +261,7 @@
         <length>5</length>
         <locomotive>0</locomotive>
         <cartType>CART_BLUE</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>850</baseX>
         <baseY>280</baseY>
         <baseRot>90</baseRot>
@@ -263,7 +277,7 @@
         <length>3</length>
         <locomotive>0</locomotive>
         <cartType>CART_ORANGE</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>723</baseX>
         <baseY>190</baseY>
         <baseRot>40</baseRot>
@@ -277,7 +291,7 @@
         <length>3</length>
         <locomotive>0</locomotive>
         <cartType>CART_BLACK</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>738</baseX>
         <baseY>200</baseY>
         <baseRot>40</baseRot>
@@ -291,7 +305,7 @@
         <length>1</length>
         <locomotive>0</locomotive>
         <cartType>CART_WHITE</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>405</baseX>
         <baseY>435</baseY>
         <baseRot>0</baseRot>
@@ -303,7 +317,7 @@
         <length>1</length>
         <locomotive>0</locomotive>
         <cartType>CART_ORANGE</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>435</baseX>
         <baseY>435</baseY>
         <baseRot>45</baseRot>
@@ -315,7 +329,7 @@
         <length>1</length>
         <locomotive>0</locomotive>
         <cartType>CART_BLUE</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>467</baseX>
         <baseY>435</baseY>
         <baseRot>0</baseRot>
@@ -327,7 +341,7 @@
         <length>1</length>
         <locomotive>0</locomotive>
         <cartType>CART_BLACK</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>435</baseX>
         <baseY>465</baseY>
         <baseRot>90</baseRot>
@@ -339,7 +353,7 @@
         <length>2</length>
         <locomotive>1</locomotive>
         <cartType>CART_PURPLE</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>373</baseX>
         <baseY>483</baseY>
         <baseRot>43</baseRot>
@@ -352,7 +366,7 @@
         <length>4</length>
         <locomotive>2</locomotive>
         <cartType>CART_GREEN</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>310</baseX>
         <baseY>383</baseY>
         <baseRot>-43</baseRot>
@@ -367,7 +381,7 @@
         <length>4</length>
         <locomotive>2</locomotive>
         <cartType>CART_ANY</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>330</baseX>
         <baseY>360</baseY>
         <baseRot>-43</baseRot>
@@ -382,7 +396,7 @@
         <length>4</length>
         <locomotive>1</locomotive>
         <cartType>CART_YELLOW</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>340</baseX>
         <baseY>350</baseY>
         <baseRot>-43</baseRot>
@@ -397,7 +411,7 @@
         <length>1</length>
         <locomotive>0</locomotive>
         <cartType>CART_PURPLE</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>41</baseX>
         <baseY>209</baseY>
         <baseRot>63</baseRot>
@@ -409,7 +423,7 @@
         <length>1</length>
         <locomotive>1</locomotive>
         <cartType>CART_ANY</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>15</baseX>
         <baseY>245</baseY>
         <baseRot>0</baseRot>
@@ -421,7 +435,7 @@
         <length>2</length>
         <locomotive>1</locomotive>
         <cartType>CART_BLUE</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>37</baseX>
         <baseY>307</baseY>
         <baseRot>-28</baseRot>
@@ -434,7 +448,7 @@
         <length>2</length>
         <locomotive>1</locomotive>
         <cartType>CART_GREEN</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>50</baseX>
         <baseY>300</baseY>
         <baseRot>-28</baseRot>
@@ -447,7 +461,7 @@
         <length>2</length>
         <locomotive>1</locomotive>
         <cartType>CART_ANY</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>68</baseX>
         <baseY>220</baseY>
         <baseRot>0</baseRot>
@@ -460,7 +474,7 @@
         <length>2</length>
         <locomotive>1</locomotive>
         <cartType>CART_BLACK</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>75</baseX>
         <baseY>243</baseY>
         <baseRot>73</baseRot>
@@ -473,7 +487,7 @@
         <length>2</length>
         <locomotive>0</locomotive>
         <cartType>CART_PURPLE</cartType>
-        <type>tunnel</type>
+        <type>TUNNEL</type>
         <baseX>265</baseX>
         <baseY>150</baseY>
         <baseRot>80</baseRot>
@@ -486,7 +500,7 @@
         <length>2</length>
         <locomotive>0</locomotive>
         <cartType>CART_YELLOW</cartType>
-        <type>tunnel</type>
+        <type>TUNNEL</type>
         <baseX>338</baseX>
         <baseY>82</baseY>
         <baseRot>50</baseRot>
@@ -499,7 +513,7 @@
         <length>5</length>
         <locomotive>2</locomotive>
         <cartType>CART_ANY</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>315</baseX>
         <baseY>-65</baseY>
         <baseRot>90</baseRot>
@@ -515,7 +529,7 @@
         <length>3</length>
         <locomotive>0</locomotive>
         <cartType>CART_WHITE</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>138</baseX>
         <baseY>310</baseY>
         <baseRot>83</baseRot>
@@ -529,7 +543,7 @@
         <length>3</length>
         <locomotive>0</locomotive>
         <cartType>CART_YELLOW</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>140</baseX>
         <baseY>325</baseY>
         <baseRot>83</baseRot>
@@ -543,7 +557,7 @@
         <length>2</length>
         <locomotive>0</locomotive>
         <cartType>CART_BLUE</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>185</baseX>
         <baseY>232</baseY>
         <baseRot>100</baseRot>
@@ -556,7 +570,7 @@
         <length>3</length>
         <locomotive>0</locomotive>
         <cartType>CART_ANY</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>165</baseX>
         <baseY>255</baseY>
         <baseRot>140</baseRot>
@@ -570,7 +584,7 @@
         <length>2</length>
         <locomotive>1</locomotive>
         <cartType>CART_WHITE</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>413</baseX>
         <baseY>50</baseY>
         <baseRot>90</baseRot>
@@ -579,11 +593,11 @@
     </route>
     <route id="44">
         <location1>TRONDHEIM</location1>
-        <location2>MO_I_RANA</location2>
+        <location2>MOIRANA</location2>
         <length>6</length>
         <locomotive>2</locomotive>
         <cartType>CART_RED</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>530</baseX>
         <baseY>-20</baseY>
         <baseRot>90</baseRot>
@@ -596,11 +610,11 @@
     </route>
     <route id="45">
         <location1>NARVIK</location1>
-        <location2>MO_I_RANA</location2>
+        <location2>MOIRANA</location2>
         <length>4</length>
         <locomotive>2</locomotive>
         <cartType>CART_ORANGE</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>700</baseX>
         <baseY>30</baseY>
         <baseRot>80</baseRot>
@@ -611,11 +625,11 @@
     </route>
     <route id="46">
         <location1>TRONDHEIM</location1>
-        <location2>MO_I_RANA</location2>
+        <location2>MOIRANA</location2>
         <length>5</length>
         <locomotive>0</locomotive>
         <cartType>CART_GREEN</cartType>
-        <type>tunnel</type>
+        <type>TUNNEL</type>
         <baseX>530</baseX>
         <baseY>48</baseY>
         <baseRot>90</baseRot>
@@ -631,7 +645,7 @@
         <length>3</length>
         <locomotive>1</locomotive>
         <cartType>CART_YELLOW</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>840</baseX>
         <baseY>65</baseY>
         <baseRot>150</baseRot>
@@ -645,7 +659,7 @@
         <length>1</length>
         <locomotive>0</locomotive>
         <cartType>CART_WHITE</cartType>
-        <type>tunnel</type>
+        <type>TUNNEL</type>
         <baseX>760</baseX>
         <baseY>150</baseY>
         <baseRot>20</baseRot>
@@ -657,7 +671,7 @@
         <length>1</length>
         <locomotive>0</locomotive>
         <cartType>CART_PURPLE</cartType>
-        <type>tunnel</type>
+        <type>TUNNEL</type>
         <baseX>775</baseX>
         <baseY>155</baseY>
         <baseRot>20</baseRot>
@@ -669,7 +683,7 @@
         <length>4</length>
         <locomotive>2</locomotive>
         <cartType>CART_PURPLE</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>930</baseX>
         <baseY>140</baseY>
         <baseRot>130</baseRot>
@@ -684,7 +698,7 @@
         <length>9</length>
         <locomotive>0</locomotive>
         <cartType>CART_ANY</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>850</baseX>
         <baseY>390</baseY>
         <baseRot>45</baseRot>
@@ -704,7 +718,7 @@
         <length>3</length>
         <locomotive>0</locomotive>
         <cartType>CART_ORANGE</cartType>
-        <type>tunnel</type>
+        <type>TUNNEL</type>
         <baseX>360</baseX>
         <baseY>115</baseY>
         <baseRot>100</baseRot>
@@ -718,7 +732,7 @@
         <length>2</length>
         <locomotive>0</locomotive>
         <cartType>CART_BLACK</cartType>
-        <type>tunnel</type>
+        <type>TUNNEL</type>
         <baseX>425</baseX>
         <baseY>135</baseY>
         <baseRot>165</baseRot>
@@ -731,7 +745,7 @@
         <length>3</length>
         <locomotive>0</locomotive>
         <cartType>CART_PURPLE</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>508</baseX>
         <baseY>235</baseY>
         <baseRot>101</baseRot>
@@ -745,7 +759,7 @@
         <length>3</length>
         <locomotive>0</locomotive>
         <cartType>CART_YELLOW</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>505</baseX>
         <baseY>250</baseY>
         <baseRot>101</baseRot>
@@ -759,7 +773,7 @@
         <length>2</length>
         <locomotive>0</locomotive>
         <cartType>CART_YELLOW</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>500</baseX>
         <baseY>475</baseY>
         <baseRot>133</baseRot>
@@ -772,7 +786,7 @@
         <length>3</length>
         <locomotive>0</locomotive>
         <cartType>CART_RED</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>460</baseX>
         <baseY>455</baseY>
         <baseRot>90</baseRot>
@@ -786,7 +800,7 @@
         <length>3</length>
         <locomotive>0</locomotive>
         <cartType>CART_WHITE</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>530</baseX>
         <baseY>410</baseY>
         <baseRot>90</baseRot>
@@ -800,7 +814,7 @@
         <length>2</length>
         <locomotive>0</locomotive>
         <cartType>CART_PURPLE</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>555</baseX>
         <baseY>470</baseY>
         <baseRot>40</baseRot>
@@ -813,7 +827,7 @@
         <length>3</length>
         <locomotive>1</locomotive>
         <cartType>CART_BLUE</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>355</baseX>
         <baseY>335</baseY>
         <baseRot>-68</baseRot>
@@ -827,7 +841,7 @@
         <length>1</length>
         <locomotive>0</locomotive>
         <cartType>CART_BLACK</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>613</baseX>
         <baseY>460</baseY>
         <baseRot>15</baseRot>
@@ -839,7 +853,7 @@
         <length>1</length>
         <locomotive>0</locomotive>
         <cartType>CART_BLUE</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>688</baseX>
         <baseY>450</baseY>
         <baseRot>120</baseRot>
@@ -851,7 +865,7 @@
         <length>2</length>
         <locomotive>0</locomotive>
         <cartType>CART_GREEN</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>628</baseX>
         <baseY>402</baseY>
         <baseRot>40</baseRot>
@@ -864,7 +878,7 @@
         <length>3</length>
         <locomotive>0</locomotive>
         <cartType>CART_ANY</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>619</baseX>
         <baseY>360</baseY>
         <baseRot>37</baseRot>
@@ -878,7 +892,7 @@
         <length>4</length>
         <locomotive>0</locomotive>
         <cartType>CART_ANY</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>582</baseX>
         <baseY>347</baseY>
         <baseRot>154</baseRot>
@@ -893,7 +907,7 @@
         <length>3</length>
         <locomotive>0</locomotive>
         <cartType>CART_BLACK</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>609</baseX>
         <baseY>298</baseY>
         <baseRot>100</baseRot>
@@ -907,7 +921,7 @@
         <length>2</length>
         <locomotive>0</locomotive>
         <cartType>CART_PURPLE</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>482</baseX>
         <baseY>343</baseY>
         <baseRot>44</baseRot>
@@ -920,7 +934,7 @@
         <length>1</length>
         <locomotive>0</locomotive>
         <cartType>CART_RED</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>244</baseX>
         <baseY>330</baseY>
         <baseRot>95</baseRot>
@@ -932,7 +946,7 @@
         <length>1</length>
         <locomotive>0</locomotive>
         <cartType>CART_ORANGE</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>245</baseX>
         <baseY>315</baseY>
         <baseRot>95</baseRot>
@@ -944,7 +958,7 @@
         <length>2</length>
         <locomotive>0</locomotive>
         <cartType>CART_BLACK</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>241</baseX>
         <baseY>289</baseY>
         <baseRot>-22</baseRot>
@@ -957,7 +971,7 @@
         <length>2</length>
         <locomotive>0</locomotive>
         <cartType>CART_PURPLE</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>255</baseX>
         <baseY>283</baseY>
         <baseRot>-22</baseRot>
@@ -970,7 +984,7 @@
         <length>2</length>
         <locomotive>0</locomotive>
         <cartType>CART_YELLOW</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>224</baseX>
         <baseY>202</baseY>
         <baseRot>-22</baseRot>
@@ -983,7 +997,7 @@
         <length>2</length>
         <locomotive>0</locomotive>
         <cartType>CART_GREEN</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>210</baseX>
         <baseY>208</baseY>
         <baseRot>-22</baseRot>
@@ -996,7 +1010,7 @@
         <length>2</length>
         <locomotive>0</locomotive>
         <cartType>CART_ANY</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>197</baseX>
         <baseY>279</baseY>
         <baseRot>-7</baseRot>
@@ -1009,7 +1023,7 @@
         <length>2</length>
         <locomotive>0</locomotive>
         <cartType>CART_GREEN</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>440</baseX>
         <baseY>205</baseY>
         <baseRot>20</baseRot>
@@ -1022,7 +1036,7 @@
         <length>4</length>
         <locomotive>0</locomotive>
         <cartType>CART_ANY</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>367</baseX>
         <baseY>263</baseY>
         <baseRot>-115</baseRot>
@@ -1037,7 +1051,7 @@
         <length>4</length>
         <locomotive>0</locomotive>
         <cartType>CART_ANY</cartType>
-        <type>normal</type>
+        <type>NORMAL</type>
         <baseX>360</baseX>
         <baseY>250</baseY>
         <baseRot>-115</baseRot>
@@ -1052,7 +1066,7 @@
         <length>1</length>
         <locomotive>1</locomotive>
         <cartType>CART_WHITE</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>550</baseX>
         <baseY>315</baseY>
         <baseRot>-130</baseRot>
@@ -1064,7 +1078,7 @@
         <length>3</length>
         <locomotive>1</locomotive>
         <cartType>CART_BLUE</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>470</baseX>
         <baseY>280</baseY>
         <baseRot>-45</baseRot>
@@ -1078,26 +1092,13 @@
         <length>2</length>
         <locomotive>1</locomotive>
         <cartType>CART_GREEN</cartType>
-        <type>ferry</type>
+        <type>FERRY</type>
         <baseX>943</baseX>
         <baseY>257</baseY>
         <baseRot>-160</baseRot>
         <cart x="0" y="0" rot="0"/>
         <cart x="-10" y="0" rot="30"/>
     </route>
-    <route id="81">
-        <location1>MURMANSK</location1>
-        <location2>KIRKENES</location2>
-        <length>3</length>
-        <locomotive>1</locomotive>
-        <cartType>CART_WHITE</cartType>
-        <type>ferry</type>
-        <baseX>972</baseX>
-        <baseY>315</baseY>
-        <baseRot>-195</baseRot>
-        <cart x="10" y="0" rot="45"/>
-        <cart x="0" y="0" rot="0"/>
-        <cart x="10" y="0" rot="-45"/>
-    </route>
+
 
 </Routes>
