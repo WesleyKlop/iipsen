@@ -28,10 +28,11 @@ public class LayoutCardController {
 
     @FXML
     ImageView blackimgv, blueimgv, greenimgv, orangeimgv, purpleimgv, redimgv, whiteimgv, yellowimgv, locomotiveimgv;
-    @FXML
-    Image blackimg, blueimg, greenimg, orangeimg, purpleimg, redimg, whiteimg, yellowimg, locomotiveimg;
+
     @FXML
     HBox cards;
+
+    Image blackimg, blueimg, greenimg, orangeimg, purpleimg, redimg, whiteimg, yellowimg, locomotiveimg;
 
     private Observable<GameStore> storeObervable = GameStoreProvider.getInstance();
     private GameStore store = GameStoreProvider.getStore();
