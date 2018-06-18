@@ -27,7 +27,8 @@ class BuildRouteActionTest {
         player.setId(1);
         testRoute1 = new Route(1, 2, 1, ELocation.GOTEBORG, ELocation.ALBORG, CardType.CART_GREEN, RouteType.NORMAL);
         store = new GameStore();
-        action = new BuildRouteAction(player, testRoute1);
+        store.getPlayers().add(player);
+        action = new BuildRouteAction(player.getId(), testRoute1);
     }
 
     @AfterEach
@@ -50,7 +51,7 @@ class BuildRouteActionTest {
         player.getCardStack().addCard(CardType.CART_GREEN);
         player.getCardStack().addCard(CardType.LOCOMOTIVE);
         action.executeAction(store);
-        assertEquals(testRoute1.getOwner(), 1);
+        assertEquals(1, testRoute1.getOwner());
     }
 
     @Test
@@ -59,7 +60,7 @@ class BuildRouteActionTest {
         player.getCardStack().addCard(CardType.CART_GREEN);
         player.getCardStack().addCard(CardType.LOCOMOTIVE);
         action.executeAction(store);
-        assertEquals(testRoute1.getOwner(), 2);
+        assertEquals(1, testRoute1.getOwner());
     }
 
 }

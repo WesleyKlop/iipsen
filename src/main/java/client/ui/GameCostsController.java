@@ -176,7 +176,7 @@ public class GameCostsController {
         Player player = store.getPlayerById(store.getPlayersTurn());
         Route route = store.getRouteStore().getRouteById(currentId);
         if (BuildRouteControle(route, player)) {
-            Action buildAction = new BuildRouteAction(GameStoreProvider.getStore().getPlayersTurn(), route);
+            Action buildAction = new BuildRouteAction(player.getId(), route);
             GameStoreProvider.sendAction(buildAction);
         }
     }

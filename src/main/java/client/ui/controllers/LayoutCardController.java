@@ -84,7 +84,7 @@ public class LayoutCardController {
          */
 
         for (int i = 0; i < 4; i++) {
-            var action = new GetCardAction(GameStoreProvider.getStore().getPlayersTurn(), 0);
+            var action = new GetCardAction(player.getId(), 0);
             try {
                 GameStoreProvider.sendAction(action);
             } catch (RemoteException e) {

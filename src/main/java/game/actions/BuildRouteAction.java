@@ -53,7 +53,7 @@ public class BuildRouteAction implements Action {
             player.getCardStack().takeCards(costs);
             route.setOwner(player.getId());
         } catch (Exception e) {
-            Log.error(e.toString());
+            Log.error("Couldn't build route", e);
         }
     }
 }
