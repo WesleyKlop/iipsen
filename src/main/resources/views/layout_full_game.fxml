@@ -28,6 +28,6 @@
     <fx:include source="overlay_pause_menu.fxml" fx:id="pauseMenu" layoutX="1920"/>
 
     <!--Overlay messages:-->
-    <fx:include source="overlay_build_message.fxml" fx:id="route_costs" layoutY="100" layoutX="2020"/>
+    <fx:include source="layout_messages.fxml" fx:id="messages" layoutY="1180" layoutX="460"/>
 
 </Pane>

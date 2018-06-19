@@ -26,8 +26,11 @@ public class FullGameController {
     private Pane routesMap, rootPane, pauseMenu;
     @FXML
     private pauseMenuController pauseMenuController;
+    @FXML
+    private MessagesController messagesController;
 
     public void initialize() {
+        MessagesControllerProvider.setMessageController(messagesController);
         players = GameStoreProvider.getStore().getPlayers();
         playerBoxController.setPlayers(players);
         pauseMenuController.resumeLabel.setOnMouseClicked(e -> closePauseMenu());

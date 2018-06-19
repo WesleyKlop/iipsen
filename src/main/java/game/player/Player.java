@@ -70,4 +70,12 @@ public class Player implements Serializable {
     public ConnectionKeeper getConnectionKeeper() {
         return connectionKeeper;
     }
+
+    public void givePoints(int points) {
+        score += points;
+    }
+
+    public void takeTrains(int trains) {
+        traincarts -= trains;
+    }
 }

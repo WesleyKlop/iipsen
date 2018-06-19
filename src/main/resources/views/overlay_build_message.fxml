@@ -7,24 +7,23 @@
 <StackPane xmlns:fx="http://javafx.com/fxml"
            xmlns="http://javafx.com/javafx"
            fx:controller="client.ui.GameCostsController"
-           prefHeight="325.0" prefWidth="700.0"
+           prefHeight="600.0" prefWidth="1000.0"
            fx:id="rootPane">
 
-    <Rectangle width="700" height="325" fill="#333" opacity="0.75" arcHeight="20" arcWidth="20"
+    <Rectangle width="1000" height="600" fill="#333" opacity="0.75" arcHeight="20" arcWidth="20"
                style="-fx-background-color: #333"/>
     <VBox alignment="CENTER" spacing="5">
-        <HBox fx:id="trainBox1" maxHeight="200" maxWidth="600" layoutX="50" layoutY="62" spacing="10"
+        <HBox fx:id="trainBox1" maxWidth="1000" layoutX="50" layoutY="62" spacing="10"
               alignment="CENTER"/>
-        <HBox fx:id="trainBox2" maxHeight="200" maxWidth="600" layoutX="50" layoutY="62" spacing="10"
+        <HBox fx:id="trainBox2" maxWidth="600" layoutX="50" layoutY="62" spacing="10"
               alignment="CENTER"/>
-        <HBox fx:id="trainBox3" maxHeight="200" maxWidth="600" layoutX="50" layoutY="62" spacing="10"
+        <HBox fx:id="trainBox3" maxWidth="600" layoutX="50" layoutY="62" spacing="10"
               alignment="CENTER"/>
         <Label fx:id="locations" textFill="#FFF"/>
         <HBox alignment="CENTER" spacing="10">
             <Button text="Cancel" onMouseClicked="#closeAnimation"/>
-            <Button text="Build" onMouseClicked="#buildRoute"/>
+            <Button fx:id="buildButton" text="Build" onMouseClicked="#buildRoute"/>
         </HBox>
-
     </VBox>
 
 

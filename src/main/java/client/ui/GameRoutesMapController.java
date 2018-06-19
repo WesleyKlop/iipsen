@@ -36,6 +36,8 @@ public class GameRoutesMapController {
     @FXML
     private GameCostsController route_costsController;
 
+    private MessagesController mCon = MessagesControllerProvider.getMessageController();
+
 
 
     public void initialize() {
@@ -130,7 +132,7 @@ public class GameRoutesMapController {
     }
 
     private void routeOnMouseClicked(MouseEvent mouseEvent) {
-        route_costsController.ActivationAction(mouseEvent);
+        MessagesControllerProvider.getMessageController().openBuildMessage(mouseEvent);
     }
 
 }

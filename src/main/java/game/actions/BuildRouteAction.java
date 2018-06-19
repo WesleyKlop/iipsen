@@ -52,6 +52,8 @@ public class BuildRouteAction implements Action {
         try {
             player.getCardStack().takeCards(costs);
             route.setOwner(player.getId());
+            player.givePoints(route.getPoints());
+            player.takeTrains(route.getLength());
         } catch (Exception e) {
             Log.error("Couldn't build route", e);
         }

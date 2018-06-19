@@ -1,6 +1,6 @@
 package game.cards;
 
-import client.UserPreferences;
+import static client.UserPreferences.isColorBlind;
 
 /**
  * Card class
@@ -19,7 +19,7 @@ public class Card {
      */
     Card(CardType cardType) {
         this.cardType = cardType;
-        this.path = "/cards/" + UserPreferences.isColorBlind() + "/" + cardType + ".png";
+        this.path = "/cards/" + isColorBlind() + "/" + cardType + ".png";
     }
 
     /**

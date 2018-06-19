@@ -2,8 +2,6 @@ package client.ui;
 
 import game.GameStore;
 import game.GameStoreProvider;
-import game.actions.Action;
-import game.actions.GetCardAction;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -14,8 +12,6 @@ import javafx.util.Duration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import util.Observable;
-
-import java.rmi.RemoteException;
 
 public class LayoutBankController implements Observable.Observer<GameStore> {
 
@@ -42,21 +38,7 @@ public class LayoutBankController implements Observable.Observer<GameStore> {
 
     private void updateCard(int index) {
         ImageView imageView = (ImageView) rootBox.getChildren().get(index);
-        imageView.setImage(new Image(getClass().getResourceAsStream(store.getCardStackController().getOpenCards()[index - 1].getPath())));
-    }
-
-    @FXML
-    private void pickUpOpenCard(MouseEvent mE) throws RemoteException {
-        ImageView imageView = (ImageView) mE.getSource();
-        int index = Integer.parseInt(imageView.getId());
-        Action randomCardAction = new GetCardAction(store.getPlayersTurn(), index);
-        GameStoreProvider.sendAction(randomCardAction);
-    }
-
-    @FXML
-    private void pickUpClosedCard() throws RemoteException {
-        Action randomCardAction = new GetCardAction(store.getPlayersTurn(), 0);
-        GameStoreProvider.sendAction(randomCardAction);
+        imageView.setImage(new Image(getClass().getResourceAsStream(GameStoreProvider.getStore().getCardStackController().getOpenCards()[index - 1].getPath())));
     }
 
     @FXML
@@ -65,9 +47,16 @@ public class LayoutBankController implements Observable.Observer<GameStore> {
         int index = Integer.parseInt(source.getId());
         if (!isSelectedNull()) {
             if (isSelectedCurrent(index)) {
-                deselectSelected();
+                if (isSelectedCurrent(0)) {
+                    int[] indexes = {selectedIndex, index};
+                    MessagesControllerProvider.getMessageController().openTrainCardMessage(indexes);
+                    deselectSelected();
+                } else {
+                    deselectSelected();
+                }
             } else {
-                //ACTION (selectedIndex, index);
+                int[] indexes = {selectedIndex, index};
+                MessagesControllerProvider.getMessageController().openTrainCardMessage(indexes);
                 deselectSelected();
             }
         } else {

@@ -102,6 +102,14 @@ public class Route {
         return stack;
     }
 
+    public int getPoints() {
+        return points;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
     @Override
     public String toString() {
         return String.format("Route connects %s to %s with length %d and color %s", location1, location2, length, color);
