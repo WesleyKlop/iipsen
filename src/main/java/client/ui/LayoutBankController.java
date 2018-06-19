@@ -14,39 +14,41 @@ import javafx.util.Duration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import util.Observable;
+import util.Observer;
 
 import java.rmi.RemoteException;
 
-public class LayoutBankController implements Observable.Observer<GameStore> {
+public class LayoutBankController implements Observer<GameStore> {
 
     private static final Logger Log = LogManager.getLogger(LayoutBankController.class);
     private static final int NOT_SELECTED = -1;
     private Observable<GameStore> storeObservable = GameStoreProvider.getInstance();
-    private GameStore store = GameStoreProvider.getStore();
+
     @FXML
     private VBox rootBox;
     private int selectedIndex = NOT_SELECTED;
 
     @FXML
     public void initialize() {
-        store.getCardStackController().populateOpenCards();
-        setCardImages();
+        storeObservable.getValue().getCardStackController().populateOpenCards();
+        setCardImages(storeObservable.getValue());
         storeObservable.addObserver(this);
     }
 
-    private void setCardImages() {
+    private void setCardImages(GameStore store) {
         for (int i = 1; i < rootBox.getChildren().size(); i++) {
-            updateCard(i);
+            updateCard(store, i);
         }
     }
 
-    private void updateCard(int index) {
+    private void updateCard(GameStore store, int index) {
         ImageView imageView = (ImageView) rootBox.getChildren().get(index);
         imageView.setImage(new Image(getClass().getResourceAsStream(store.getCardStackController().getOpenCards()[index - 1].getPath())));
     }
 
     @FXML
     private void pickUpOpenCard(MouseEvent mE) throws RemoteException {
+        GameStore store = storeObservable.getValue();
         ImageView imageView = (ImageView) mE.getSource();
         int index = Integer.parseInt(imageView.getId());
         Action randomCardAction = new GetCardAction(store.getPlayersTurn(), index);
@@ -55,6 +57,7 @@ public class LayoutBankController implements Observable.Observer<GameStore> {
 
     @FXML
     private void pickUpClosedCard() throws RemoteException {
+        GameStore store = storeObservable.getValue();
         Action randomCardAction = new GetCardAction(store.getPlayersTurn(), 0);
         GameStoreProvider.sendAction(randomCardAction);
     }
@@ -118,8 +121,7 @@ public class LayoutBankController implements Observable.Observer<GameStore> {
 
 
     @Override
-    public void onUpdate(GameStore value) {
-        store = value;
-        setCardImages();
+    public void onUpdate(GameStore store) {
+        setCardImages(store);
     }
 }

@@ -8,14 +8,14 @@ import game.actions.ChangeStateAction;
 import javafx.scene.paint.Color;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import util.Observable;
+import util.Observer;
 
 import java.rmi.RemoteException;
 
 /**
  * @author Wesley Klop
  */
-public class LobbyController implements Observable.Observer<GameStore> {
+public class LobbyController implements Observer<GameStore> {
     private static final Logger Log = LogManager.getLogger(LobbyController.class);
 
     private final LobbyView view;
