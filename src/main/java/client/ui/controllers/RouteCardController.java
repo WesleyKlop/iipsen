@@ -2,13 +2,19 @@ package client.ui.controllers;
 
 import game.GameStore;
 import game.GameStoreProvider;
+import game.actions.Action;
+import game.actions.SelectRouteCardsAction;
 import game.routecards.RouteCard;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import util.Observable;
+
+import java.util.Arrays;
 
 
 public class RouteCardController {
@@ -17,10 +23,15 @@ public class RouteCardController {
     private Observable<GameStore> storeObervable = GameStoreProvider.getInstance();
     private GameStore store = GameStoreProvider.getStore();
     private RouteCard[] routecardtemp = new RouteCard[5];
-    private RouteCard[] routecardchosen = new RouteCard[2];
+    boolean[] BooleanRouteCards = new boolean[5];
+    boolean currentState = false;
+    int routefalse = 0;
+
+    @FXML
+    private Text Textroutecards;
 
     public void initialize() {
-        // FillRouteCards();
+        Arrays.fill(BooleanRouteCards, Boolean.FALSE);
         store.getSelectableRouteCards().populatePickableCards();
         setrouteCardsimg();
     }
@@ -41,17 +52,33 @@ public class RouteCardController {
     public void isClicked(MouseEvent mouseEvent) {
         ImageView imageview = (ImageView) mouseEvent.getSource();
         int index = Integer.parseInt(imageview.getId());
-        if (routecardchosen[0] == null) {
-            routecardchosen[0] = routecardtemp[index];
-            imageview.setStyle("-fx-effect: dropshadow(three-pass-box, green, 10, 10, 0, 0);");
-        } else if (routecardchosen[0] != null) {
-            routecardchosen[1] = routecardtemp[index];
-            imageview.setStyle("-fx-effect: dropshadow(three-pass-box, green, 10, 10, 0, 0);");
+
+        if (BooleanRouteCards[index] == false) {
+            imageview.setStyle("-fx-effect: dropshadow(three-pass-box, green, 5, 5, 0, 0);");
+            BooleanRouteCards[index] = true;
+        } else {
+            imageview.setStyle("");
+            BooleanRouteCards[index] = false;
         }
     }
 
     public void ConfirmClicked(MouseEvent mouseEvent) {
-        store.getPlayerById(0).addRouteCard(routecardchosen[0]);
-        store.getPlayerById(0).addRouteCard(routecardchosen[1]);
+        for (int i = 0; i < BooleanRouteCards.length; i++) {
+            if (BooleanRouteCards[i] == false) {
+                routefalse++;
+            }
+        }
+        if (routefalse == 5 || routefalse == 4) {
+            Textroutecards.setFill(Color.RED);
+        }
+        if (routefalse < 4) {
+            for (int i = 0; i < BooleanRouteCards.length; i++) {
+                if (BooleanRouteCards[i] == true) {
+                    System.out.println(routecardtemp[i]);
+                }
+            }
+            Action RouteCardAction = new SelectRouteCardsAction(store.getPlayersTurn(), routecardtemp);
+        }
+        routefalse = 0;
     }
 }
