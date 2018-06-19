@@ -4,6 +4,7 @@ import game.location.ELocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -12,9 +13,9 @@ import java.util.Set;
 /**
  * @author Thom
  */
-public class ConnectionKeeper {
+public class ConnectionKeeper implements Serializable {
 
-    private static final Logger Log = LogManager.getLogger(ConnectionKeeper.class);
+    private transient static final Logger Log = LogManager.getLogger(ConnectionKeeper.class);
     private List<Set<ELocation>> connections = new ArrayList<>();
     private static final int NOT_A_SET = -1;
 

@@ -6,10 +6,12 @@ import game.location.ELocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.Serializable;
+
 /**
  */
-public class Route {
-    private static final Logger Log = LogManager.getLogger(Route.class);
+public class Route implements Serializable {
+    private transient static final Logger Log = LogManager.getLogger(Route.class);
 
     private int id;
     private int length;

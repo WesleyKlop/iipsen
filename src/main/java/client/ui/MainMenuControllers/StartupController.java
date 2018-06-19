@@ -1,6 +1,6 @@
 package client.ui.MainMenuControllers;
 
-import client.ui.views.LobbyView;
+import client.ui.views.LobbyController;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
@@ -8,7 +8,6 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import util.TempException;
 
 /**
  */
@@ -24,7 +23,7 @@ public class StartupController {
     @FXML
     private PreferencesController preferencesPaneController;
     @FXML
-    private LobbyView lobbyPaneController;
+    private LobbyController lobbyPaneController;
 
     @FXML
     public void initialize() {
@@ -36,11 +35,11 @@ public class StartupController {
     }
 
     public void quitGame() {
-        try {
-            throw new TempException();
-        } catch (TempException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            throw new TempException();
+//        } catch (TempException e) {
+//            e.printStackTrace();
+//        }
         System.exit(0);
     }
 
