@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -16,6 +15,4 @@
     </ImageView>
     <Pane fx:id="mainPane" prefWidth="1920" prefHeight="1080"/>
     <Pane fx:id="informationPane" prefWidth="1920" prefHeight="1080"/>
-    <Label styleClass="routePointsButton" fx:id="score" layoutX="870" layoutY="10"
-           text="Points per route" onMouseEntered="#ScoreEntered" onMouseExited="#ScoreExited"/>
 </Pane>

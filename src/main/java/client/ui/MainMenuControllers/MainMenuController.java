@@ -7,18 +7,12 @@ import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.util.Duration;
 import util.TempException;
 
@@ -47,9 +41,6 @@ public class MainMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
-        style(VBoxMain);
-        style(VBoxPlay);
-        style(VBoxLoad);
         rootPane.setStyle("-fx-background-color: linear-gradient(to bottom, #bfe8f9 0%,#0082ED 70%);");
         snow();
         rotateClock(gear1);
@@ -72,41 +63,6 @@ public class MainMenuController implements Initializable {
         rotAni.setInterpolator(Interpolator.LINEAR);
         rotAni.setToAngle(-360);
         rotAni.play();
-    }
-
-    public void style(Label label) {
-        Font font = Font.loadFont(getClass().getResourceAsStream("/fonts/MavenPro-Medium.ttf"), 25);
-        label.setFont(font);
-        label.setStyle("-fx-background-color: white;" + "-fx-background-radius: 10;");
-        label.setAlignment(Pos.CENTER);
-        label.setTextFill(Color.BLACK);
-        label.setPadding(new Insets(10));
-        label.setPrefHeight(50);
-        label.setPrefWidth(250);
-    }
-
-    private void style(VBox menu) {
-        for (int i = 1; i < menu.getChildren().size(); i++) {
-            style((Label) menu.getChildren().get(i));
-        }
-    }
-
-    void style(HBox menu) {
-        for (int i = 0; i < menu.getChildren().size(); i++) {
-            style((Label) menu.getChildren().get(i));
-        }
-    }
-
-    public void hoverEnter(MouseEvent mouseEvent) {
-        Label label = (Label) mouseEvent.getSource();
-        label.setTextFill(Color.RED);
-        label.setCursor(Cursor.HAND);
-    }
-
-    public void hoverExit(MouseEvent mouseEvent) {
-        Label label = (Label) mouseEvent.getSource();
-        label.setTextFill(Color.BLACK);
-        label.setCursor(Cursor.DEFAULT);
     }
 
     /**

@@ -6,7 +6,7 @@
 <Pane xmlns:fx="http://javafx.com/fxml/1" prefHeight="1080.0" prefWidth="3840.0"
       xmlns="http://javafx.com/javafx/8.0.121"
       fx:controller="client.ui.MainMenuControllers.MainMenuController" fx:id="rootPane"
->
+      stylesheets="/css/defaultStyling.css">
 
     <Pane fx:id="snowPane"/>
     <HBox spacing="-40" scaleX="0.9" scaleY="0.9" layoutX="-80" layoutY="-60">

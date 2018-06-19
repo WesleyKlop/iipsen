@@ -5,7 +5,7 @@
 <VBox xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
       fx:controller="client.ui.LayoutBankController"
-      prefHeight="400.0" prefWidth="600.0"
+      prefHeight="780.0" prefWidth="200.0"
       spacing="10" fx:id="rootBox">
 
     <ImageView fx:id="0" onMouseClicked="#onMouseAction">
