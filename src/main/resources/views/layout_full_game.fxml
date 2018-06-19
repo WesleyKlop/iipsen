@@ -14,6 +14,7 @@
     <fx:include source="layout_routes_map.fxml" fx:id="routesMap" scaleX="1.3" scaleY="1.3" layoutX="843"
                 layoutY="194"/>
     <fx:include source="layout_game_bank.fxml" layoutX="16" layoutY="16"/>
+    <fx:include source="layout_game_routecard.fxml"/>
 
     <!--Image Buttons-->
     <ImageView styleClass="imageButton" layoutX="1860" layoutY="76" onMouseEntered="#ScoreEntered"
