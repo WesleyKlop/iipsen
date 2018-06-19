@@ -8,7 +8,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
-import util.TempException;
 
 
 public class pauseMenuController {
@@ -84,11 +83,6 @@ public class pauseMenuController {
 
 
     public void quitGame() {
-        try {
-            throw new TempException();
-        } catch (TempException e) {
-            e.printStackTrace();
-        }
         System.exit(0);
     }
 

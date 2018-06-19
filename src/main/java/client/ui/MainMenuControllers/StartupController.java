@@ -35,11 +35,6 @@ public class StartupController {
     }
 
     public void quitGame() {
-//        try {
-//            throw new TempException();
-//        } catch (TempException e) {
-//            e.printStackTrace();
-//        }
         System.exit(0);
     }
 
