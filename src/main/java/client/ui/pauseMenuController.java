@@ -13,6 +13,7 @@ import util.TempException;
 
 public class pauseMenuController {
 
+    @FXML
     public Label resumeLabel;
     @FXML
     private VBox labels, optionsMenu, rulesMenu, saveMenu, quickFinishMenu;

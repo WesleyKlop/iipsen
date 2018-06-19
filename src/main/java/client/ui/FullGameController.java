@@ -28,6 +28,7 @@ public class FullGameController implements DialogContainer {
     private ImageView iv1 = new ImageView();
     @FXML
     private GameRoutesMapController routesMapController;
+    @FXML
     private pauseMenuController pauseMenuController;
 
     public void initialize() {
