@@ -16,6 +16,6 @@
     <fx:include source="layout_game_routecard.fxml"/>
 
     <!--Overlay messages:-->
-    <fx:include source="overlay_build_message.fxml" fx:id="route_costs" layoutY="100" layoutX="2020"/>
+    <Pane layoutX="2020" layoutY="100" fx:id="dialogHolder"/>
 
 </Pane>

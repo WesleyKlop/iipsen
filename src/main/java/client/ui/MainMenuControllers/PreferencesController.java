@@ -5,7 +5,6 @@ import game.GameStoreProvider;
 import game.actions.AddPlayerAction;
 import game.player.Player;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -15,9 +14,7 @@ import javafx.scene.paint.Color;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.net.URL;
 import java.rmi.RemoteException;
-import java.util.ResourceBundle;
 
 public class PreferencesController {
     private static final Logger Log = LogManager.getLogger(PreferencesController.class);
@@ -32,6 +29,9 @@ public class PreferencesController {
 
     @FXML
     public void initialize() {
+        // Remove both join and create buttons to prevent an exception
+        buttons.getChildren().removeAll(createButton, joinButton);
+        ipBox.getChildren().removeAll(ipInput, ipLabel);
     }
 
 

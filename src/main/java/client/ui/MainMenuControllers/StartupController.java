@@ -3,7 +3,6 @@ package client.ui.MainMenuControllers;
 import client.ui.views.LobbyView;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -11,12 +10,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import util.TempException;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 /**
  */
-public class StartupController implements Initializable {
+public class StartupController {
 
     private static final Logger Log = LogManager.getLogger(StartupController.class);
 
@@ -30,7 +26,8 @@ public class StartupController implements Initializable {
     @FXML
     private LobbyView lobbyPaneController;
 
-    public void initialize(URL url, ResourceBundle bundle) {
+    @FXML
+    public void initialize() {
         MainMenuPaneController.getPlayController().createLobby.setOnMouseClicked(e -> switchMenuCreate());
         MainMenuPaneController.getPlayController().joinLobby.setOnMouseClicked(e -> switchMenuJoin());
         MainMenuPaneController.getLoadController().loadLevelLabel.setOnMouseClicked(e -> openLoadMenu());
@@ -49,7 +46,8 @@ public class StartupController implements Initializable {
 
     private void switchMenuCreate() {
         try {
-            preferencesPaneController.buttons.getChildren().add(preferencesPaneController.createButton);
+            if (!preferencesPaneController.buttons.getChildren().contains(preferencesPaneController.createButton))
+                preferencesPaneController.buttons.getChildren().add(preferencesPaneController.createButton);
         } catch (Exception e) {
             Log.error("Exception found: ", e);
         }
@@ -60,8 +58,13 @@ public class StartupController implements Initializable {
 
     private void switchMenuJoin() {
         try {
-            preferencesPaneController.buttons.getChildren().add(preferencesPaneController.joinButton);
-            preferencesPaneController.ipBox.getChildren().addAll(preferencesPaneController.ipLabel, preferencesPaneController.ipInput);
+            if (!preferencesPaneController.buttons.getChildren().contains(preferencesPaneController.joinButton))
+                preferencesPaneController.buttons.getChildren().add(preferencesPaneController.joinButton);
+
+            var ipBoxChildren = preferencesPaneController.ipBox.getChildren();
+            if (!ipBoxChildren.contains(preferencesPaneController.ipLabel)
+                || !ipBoxChildren.contains(preferencesPaneController.ipInput))
+                ipBoxChildren.addAll(preferencesPaneController.ipLabel, preferencesPaneController.ipInput);
         } catch (Exception e) {
             Log.error("Exception found: ", e);
         }

@@ -12,6 +12,7 @@ import java.util.function.Consumer;
  * @author Wesley Klop
  * @deprecated
  */
+@Deprecated
 public class WeakSet<T> extends AbstractSet<T> implements Set<T> {
 
     private static final Object fakeValue = new Object();

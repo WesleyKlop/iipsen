@@ -1,5 +1,6 @@
-package client.ui;
+package client.ui.dialogs;
 
+import client.ui.factories.RouteViewFactory;
 import game.GameStore;
 import game.GameStoreProvider;
 import game.actions.Action;
@@ -19,34 +20,31 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import java.rmi.RemoteException;
 
 import static client.UserPreferences.isColorBlind;
 
-public class GameCostsController {
+public class GameCostsDialogController {
     @FXML
     StackPane rootPane;
     @FXML
     private HBox trainBox1, trainBox2, trainBox3;
     @FXML
     private Label locations;
-    private Image image;
 
     private int currentId;
 
-    public void initialize() {
+    @FXML
+    private void initialize() {
         rootPane.setDisable(true);
         locations.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/MavenPro-Medium.ttf"), 25));
     }
 
-    void ActivationAction(MouseEvent mouseEvent) {
+    public void onActivate(MouseEvent mouseEvent) {
         closeAndOpenAnimation(mouseEvent);
     }
 
@@ -77,6 +75,7 @@ public class GameCostsController {
         int trainWidth = (int) Math.min((trainBox1.getMaxWidth() / Math.min(length, 4)) - ((Math.min(length, 4) - 1) * 10), 250);
 
         for (int i = 0; i < length; i++) {
+            Image image;
             if (i < locomotives) {
                 image = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/LOCOMOTIVE.png"));
             } else {
@@ -97,35 +96,25 @@ public class GameCostsController {
 
     private String[] getRouteInformation(VBox source) {
         String[] information = new String[7]; //0 = Length, 1 = Locomotives, 2 = CartType, 3=RouteType, 4 = Location1, 5 = Location2, 6 = Id;
-        try {
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document routesDoc = dBuilder.parse(getClass().getResourceAsStream("/string/gameRoutes.xml"));
-            routesDoc.normalize();
+        RouteViewFactory viewFactory = new RouteViewFactory(getClass().getResourceAsStream("/string/gameRoutes.xml"), null, null, null);
 
-            NodeList nlRoutes = routesDoc.getElementsByTagName("route");
+        NodeList nlRoutes = viewFactory.getRouteNodes();
 
-            for (int i = 0; i < nlRoutes.getLength(); i++) {
-                if (nlRoutes.item(i).getAttributes().getNamedItem("id").getTextContent().equalsIgnoreCase(source.getId())) {
-                    Node nRoute = nlRoutes.item(i);
-                    Element eRoute = (Element) nRoute;
-                    information[0] = eRoute.getElementsByTagName("length").item(0).getTextContent();
-                    information[1] = eRoute.getElementsByTagName("locomotive").item(0).getTextContent();
-                    information[2] = eRoute.getElementsByTagName("cartType").item(0).getTextContent();
-                    information[3] = eRoute.getElementsByTagName("type").item(0).getTextContent();
-                    information[4] = eRoute.getElementsByTagName("location1").item(0).getTextContent();
-                    information[5] = eRoute.getElementsByTagName("location2").item(0).getTextContent();
-                    information[6] = eRoute.getAttribute("id");
+        for (int i = 0; i < nlRoutes.getLength(); i++) {
+            if (nlRoutes.item(i).getAttributes().getNamedItem("id").getTextContent().equalsIgnoreCase(source.getId())) {
+                Node nRoute = nlRoutes.item(i);
+                Element eRoute = (Element) nRoute;
+                information[0] = eRoute.getElementsByTagName("length").item(0).getTextContent();
+                information[1] = eRoute.getElementsByTagName("locomotive").item(0).getTextContent();
+                information[2] = eRoute.getElementsByTagName("cartType").item(0).getTextContent();
+                information[3] = eRoute.getElementsByTagName("type").item(0).getTextContent();
+                information[4] = eRoute.getElementsByTagName("location1").item(0).getTextContent();
+                information[5] = eRoute.getElementsByTagName("location2").item(0).getTextContent();
+                information[6] = eRoute.getAttribute("id");
 
-                    return information;
-                }
+                return information;
             }
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-
 
         return information;
     }
@@ -175,7 +164,7 @@ public class GameCostsController {
         GameStore store = GameStoreProvider.getStore();
         Player player = store.getPlayerById(store.getPlayersTurn());
         Route route = store.getRouteStore().getRouteById(currentId);
-        if (BuildRouteControle(route, player)) {
+        if (canRouteBeBuild(route, player)) {
             Action buildAction = new BuildRouteAction(player.getId(), route);
             GameStoreProvider.sendAction(buildAction);
         }
@@ -187,7 +176,7 @@ public class GameCostsController {
         return firstLetter + word.substring(1);
     }
 
-    private boolean BuildRouteControle(Route route, Player player) {
+    private boolean canRouteBeBuild(Route route, Player player) {
         return player.getCardStack().containsCards(route.getCostsAsCardStack()) && !route.hasOwner();
     }
 }

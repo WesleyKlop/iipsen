@@ -3,12 +3,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<Pane xmlns:fx="http://javafx.com/fxml"
-      xmlns="http://javafx.com/javafx"
-      prefHeight="1080.0" prefWidth="1920.0"
-      opacity="0.5">
+<Pane
+        xmlns="http://javafx.com/javafx"
+        prefHeight="1080.0" prefWidth="1920.0"
+        opacity="0.5">
     <ImageView fitWidth="1920" fitHeight="1080">
         <Image url="/images/pause_background.jpg"/>
     </ImageView>
-
 </Pane>
