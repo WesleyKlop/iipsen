@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <Pane xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
       fx:controller="client.ui.FullGameController"
       prefHeight="1080" prefWidth="1920"
-      fx:id="rootPane">
+      fx:id="rootPane" stylesheets="/css/defaultStyling.css">
 
-    <fx:include source="layout_game_playerbox.fxml" fx:id="playerBox"/>
-    <fx:include source="layout_game_cards.fxml" fx:id="rootCards" layoutX="200" layoutY="0"/>
-    <fx:include source="layout_routes_map.fxml" fx:id="routesMap" scaleX="1.3" scaleY="1.3" layoutX="913"
-                layoutY="162"/>
-    <fx:include source="layout_game_bank.fxml"/>
-    <fx:include source="overlay_pause_menu.fxml" layoutX="1920"/>
-    <fx:include source="layout_game_routecard.fxml"/>
+    <fx:include source="layout_game_playerbox.fxml" fx:id="playerBox" layoutY="16" layoutX="230"/>
+    <fx:include source="layout_game_cards.fxml" layoutX="16" layoutY="864"/>
+    <fx:include source="layout_routes_map.fxml" fx:id="routesMap" scaleX="1.3" scaleY="1.3" layoutX="843"
+                layoutY="194"/>
+    <fx:include source="layout_game_bank.fxml" layoutX="16" layoutY="16"/>
+
+    <!--Image Buttons-->
+    <ImageView styleClass="imageButton" layoutX="1860" layoutY="76" onMouseEntered="#ScoreEntered"
+               onMouseExited="#ScoreExited" preserveRatio="true" fitWidth="50">
+        <Image url="/images/PointsButtonImage.png"/>
+    </ImageView>
+    <ImageView styleClass="imageButton" onMouseClicked="#openPauseMenu" preserveRatio="true" fitWidth="50"
+               layoutX="1860" layoutY="16">
+        <Image url="/images/OptionsButtonImage.png"/>
+    </ImageView>
+    <!--Pause Menu-->
+    <fx:include source="overlay_pause_menu.fxml" fx:id="pauseMenu" layoutX="1920"/>
 
     <!--Overlay messages:-->
-    <Pane layoutX="2020" layoutY="100" fx:id="dialogHolder"/>
+    <fx:include source="overlay_build_message.fxml" fx:id="route_costs" layoutY="100" layoutX="2020"/>
 
 </Pane>

@@ -9,8 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -40,14 +38,11 @@ public class GameRoutesMapController {
     private Pane mainPane, informationPane;
     private LocationInformation locationInformation;
 
-    private Image image = new Image("/images/points.png");
-    private ImageView iv1 = new ImageView();
     private DialogContainer dialogContainer;
 
     public void initialize() {
         informationPane.setPickOnBounds(false);
         mainPane.setPickOnBounds(false);
-        iv1.setImage(image);
         RouteViewFactory routeViewFactory = new RouteViewFactory(
             getClass().getResourceAsStream("/string/gameRoutes.xml"),
                 this::routeOnMouseClicked,
@@ -57,7 +52,6 @@ public class GameRoutesMapController {
 
         LocationFactory locationFactory = new LocationFactory(
             getClass().getResourceAsStream("/string/gameLocations.xml"),
-            this::onLocationClick,
             this::onLocationHoverEnter,
             this::onLocationHoverLeave
         );
@@ -125,12 +119,6 @@ public class GameRoutesMapController {
         return position;
     }
 
-
-    private void onLocationClick(MouseEvent mouseEvent) {
-//        Circle source = (Circle) mouseEvent.getSource();
-//        locationInformation.show(source.getId(), getLocationPosition(source));
-    }
-
     private void onLocationHoverEnter(MouseEvent mouseEvent) {
         Circle source = (Circle) mouseEvent.getSource();
         source.setStroke(Color.WHITE);
@@ -141,17 +129,6 @@ public class GameRoutesMapController {
         Circle source = (Circle) mouseEvent.getSource();
         source.setStroke(Color.ORANGE);
         locationInformation.hide();
-    }
-
-    public void ScoreEntered() {
-        iv1.setFitHeight(170);
-        iv1.setFitWidth(300);
-        mainPane.getChildren().addAll(iv1);
-    }
-
-
-    public void ScoreExited() {
-        mainPane.getChildren().removeAll(iv1);
     }
 
     private void routeOnMouseClicked(MouseEvent mouseEvent) {

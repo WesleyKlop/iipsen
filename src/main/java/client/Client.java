@@ -34,7 +34,7 @@ public class Client extends Application implements SceneListener {
     }
 
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/main_menu/layout_startup.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/layout_startup.fxml"));
         Pane rootPane = loader.load();
         rootPaneController = loader.getController();
         rootPaneController.getPreferenceController().joinButton.setOnMouseClicked(e -> {

@@ -27,13 +27,12 @@ public class LocationFactory {
     private static final int LOCATION_STROKE_WIDTH = 3;
 
     private final InputStream locationStream;
-    private final EventHandler<MouseEvent> onLocationClick, onLocationHoverEnter, onLocationHoverLeave;
+    private final EventHandler<MouseEvent> onLocationHoverEnter, onLocationHoverLeave;
 
-    public LocationFactory(InputStream locationStream, EventHandler<MouseEvent> onLocationClick, EventHandler<MouseEvent> onLocationHoverEnter, EventHandler<MouseEvent> onLocationHoverLeave) {
+    public LocationFactory(InputStream locationStream, EventHandler<MouseEvent> onLocationHoverEnter, EventHandler<MouseEvent> onLocationHoverLeave) {
         this.locationStream = locationStream;
 
         this.onLocationHoverLeave = onLocationHoverLeave;
-        this.onLocationClick = onLocationClick;
         this.onLocationHoverEnter = onLocationHoverEnter;
     }
 
@@ -79,7 +78,6 @@ public class LocationFactory {
 
             location.setOnMouseEntered(this.onLocationHoverEnter);
             location.setOnMouseExited(this.onLocationHoverLeave);
-            location.setOnMouseClicked(this.onLocationClick);
 
             locations[i] = location;
         }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      xmlns="http://javafx.com/javafx"
+      fx:controller="client.ui.MainMenuControllers.MainMenuLoadController"
+      prefHeight="400.0" prefWidth="600.0"
+      spacing="20">
+
+    <ImageView fitWidth="550" preserveRatio="true">
+        <Image url="/images/loadagame.png"/>
+    </ImageView>
+    <Label styleClass="fancy-label" fx:id="loadLevelLabel" text="Load Level"/>
+</VBox>

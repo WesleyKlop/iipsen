@@ -6,9 +6,8 @@
 <Pane xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
       fx:controller="client.ui.controllers.LayoutCardController"
-      prefHeight="200" prefWidth="1080"
-      fx:id="rootCards">
-    <HBox fx:id="cards" layoutY="560" spacing="-30">
+      prefHeight="200" prefWidth="1080">
+    <HBox fx:id="cards" spacing="-30">
         <VBox fx:id="black">
             <Label fx:id="blackammount" minWidth="30" textFill="white"
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
