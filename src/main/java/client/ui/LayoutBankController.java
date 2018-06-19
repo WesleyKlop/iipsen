@@ -92,14 +92,14 @@ public class LayoutBankController implements Observable.Observer<GameStore> {
     }
 
     private void selectedEffect() {
-        ScaleTransition scaleTrans = new ScaleTransition(Duration.millis(500), rootBox.getChildren().get(selectedIndex));
+        ScaleTransition scaleTrans = new ScaleTransition(Duration.millis(200), rootBox.getChildren().get(selectedIndex));
         scaleTrans.setToX(1.1);
         scaleTrans.setToY(1.1);
         scaleTrans.play();
     }
 
     private void takeSelectedEffect() {
-        ScaleTransition scaleTrans = new ScaleTransition(Duration.millis(500), rootBox.getChildren().get(selectedIndex));
+        ScaleTransition scaleTrans = new ScaleTransition(Duration.millis(200), rootBox.getChildren().get(selectedIndex));
         scaleTrans.setToX(1);
         scaleTrans.setToY(1);
         scaleTrans.play();

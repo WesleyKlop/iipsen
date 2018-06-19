@@ -3,25 +3,23 @@ package game.actions;
 import game.GameStore;
 import game.routecards.RouteCard;
 
+import java.util.List;
+
 /**
  * @author Wesley Klop
  */
 public class SelectRouteCardsAction implements Action {
     private final int playerId;
-    private final RouteCard[] cards;
+    private final List<RouteCard> cards;
 
-    public SelectRouteCardsAction(int playerId, RouteCard[] cards) {
+    public SelectRouteCardsAction(int playerId, List<RouteCard> cards) {
         this.playerId = playerId;
         this.cards = cards;
     }
 
     @Override
-    public void executeAction(GameStore store) throws Exception {
-        if (cards.length < 1) {
-            throw new Exception("Didn't pick enough cards, should be 1 to 3 (or 5)");
-        }
+    public void executeAction(GameStore store) {
         var player = store.getPlayerById(playerId);
-
         for (RouteCard card : cards) {
             player.addRouteCard(card);
         }

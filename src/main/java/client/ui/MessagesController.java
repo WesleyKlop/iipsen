@@ -16,7 +16,9 @@ public class MessagesController {
     @FXML
     private TrainCardMessageController trainController;
     @FXML
-    private StackPane routes, train;
+    private RouteCardMessageController routeCardsController;
+    @FXML
+    private StackPane routes, train, routeCards;
 
 
     public void initialize() {
@@ -30,12 +32,21 @@ public class MessagesController {
         routesController.ActivationAction(route);
         openMenu(routes);
         closeMenu(train);
+        closeMenu(routeCards);
     }
 
     public void openTrainCardMessage(int[] index) {
         trainController.ActivationAction(index);
         openMenu(train);
         closeMenu(routes);
+        closeMenu(routeCards);
+    }
+
+    public void openRouteCardMessage() {
+        routeCardsController.ActivationAction();
+        openMenu(routeCards);
+        closeMenu(routes);
+        closeMenu(train);
     }
 
     private void openMenu(StackPane menu) {
@@ -52,5 +63,11 @@ public class MessagesController {
 
     public GameCostsController getGameCostsController() {
         return routesController;
+    }
+
+    public void closeAllMenus() {
+        closeMenu(routes);
+        closeMenu(train);
+        closeMenu(routeCards);
     }
 }
