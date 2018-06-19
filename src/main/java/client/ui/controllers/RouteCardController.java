@@ -14,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import util.Observable;
 
+import java.rmi.RemoteException;
 import java.util.Arrays;
 
 
@@ -62,7 +63,7 @@ public class RouteCardController {
         }
     }
 
-    public void ConfirmClicked(MouseEvent mouseEvent) {
+    public void ConfirmClicked(MouseEvent mouseEvent) throws RemoteException {
         for (int i = 0; i < BooleanRouteCards.length; i++) {
             if (BooleanRouteCards[i] == false) {
                 routefalse++;
@@ -73,11 +74,12 @@ public class RouteCardController {
         }
         if (routefalse < 4) {
             for (int i = 0; i < BooleanRouteCards.length; i++) {
-                if (BooleanRouteCards[i] == true) {
-                    System.out.println(routecardtemp[i]);
+                if (BooleanRouteCards[i] == false) {
+                    routecardtemp[i] = null;
                 }
             }
             Action RouteCardAction = new SelectRouteCardsAction(store.getPlayersTurn(), routecardtemp);
+            GameStoreProvider.sendAction(RouteCardAction);
         }
         routefalse = 0;
     }
