@@ -13,6 +13,9 @@ public class SelectableRouteCards implements Serializable {
         populatePickableCards();
     }
 
+    public RouteCardStackBank getBank() {
+        return bank;
+    }
 
     public void populatePickableCards() {
         for (int i = 0; i < PICKABLE_CARD_COUNT; i++) {

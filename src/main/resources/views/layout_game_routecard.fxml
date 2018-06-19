@@ -14,12 +14,12 @@
         <Text style="-fx-font-size: 20; -fx-font-weight: bold" fill="white" stroke="black">Choose atleast two
             routecards!
         </Text>
-        <HBox spacing="10">
-            <ImageView onMouseClicked="#isClicked" fx:id="RC0"></ImageView>
-            <ImageView onMouseClicked="#isClicked" fx:id="RC1"></ImageView>
-            <ImageView onMouseClicked="#isClicked" fx:id="RC2"></ImageView>
-            <ImageView onMouseClicked="#isClicked" fx:id="RC3"></ImageView>
-            <ImageView onMouseClicked="#isClicked" fx:id="RC4"></ImageView>
+        <HBox fx:id="Routecardbox" spacing="10">
+            <ImageView onMouseClicked="#isClicked" fx:id="0"></ImageView>
+            <ImageView onMouseClicked="#isClicked" fx:id="1"></ImageView>
+            <ImageView onMouseClicked="#isClicked" fx:id="2"></ImageView>
+            <ImageView onMouseClicked="#isClicked" fx:id="3"></ImageView>
+            <ImageView onMouseClicked="#isClicked" fx:id="4"></ImageView>
         </HBox>
         <Button>Confirm</Button>
     </VBox>
