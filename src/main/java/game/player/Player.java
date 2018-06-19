@@ -70,4 +70,8 @@ public class Player implements Serializable {
     public ConnectionKeeper getConnectionKeeper() {
         return connectionKeeper;
     }
+
+    public int getScore() {
+        return score;
+    }
 }

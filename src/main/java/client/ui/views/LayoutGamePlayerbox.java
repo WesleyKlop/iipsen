@@ -1,53 +1,35 @@
 package client.ui.views;
 
-import game.player.Player;
+import client.ui.components.PlayerBox;
+import game.GameStore;
+import game.GameStoreProvider;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import util.Observer;
 
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+public class LayoutGamePlayerbox implements Observer<GameStore> {
 
-public class LayoutGamePlayerbox implements Initializable {
+    //    private static final Logger Log = LogManager.getLogger(LayoutGamePlayerbox.class);
+    @FXML
+    VBox container;
+    private PlayerBox[] boxes;
 
-    private static final Logger Log = LogManager.getLogger(LayoutGamePlayerbox.class);
     @FXML
-    VBox vbox;
-    @FXML
-    VBox background1;
-    @FXML
-    VBox background2;
-    @FXML
-    VBox background3;
-    @FXML
-    Text playerNameText1;
-    @FXML
-    Text playerNameText2;
-    @FXML
-    Text playerNameText3;
-
-    Text[] texts;
-    VBox[] backgrounds;
-
-
-    public void initialize(URL location, ResourceBundle resources) {
-        texts = new Text[]{playerNameText1, playerNameText2, playerNameText3};
-        backgrounds = new VBox[]{background1, background2, background3};
+    private void initialize() {
+        GameStoreProvider.getInstance().addObserver(this);
+        var players = GameStoreProvider.getStore().getPlayers();
+        boxes = new PlayerBox[players.size()];
+        for (int i = 0; i < players.size(); i++) {
+            var player = players.get(i);
+            boxes[i] = new PlayerBox(player);
+        }
+        container.getChildren().addAll(boxes);
     }
 
-
-    public void setPlayers(List<Player> players) {
-        for (int i = 0; i < players.size(); i++) {
-            texts[i].setText(players.get(i).getPlayerName());
-            backgrounds[i].setBackground(new Background(new BackgroundFill(players.get(i).getColorAsColor(), CornerRadii.EMPTY, Insets.EMPTY)));
+    @Override
+    public void onUpdate(GameStore value) {
+        for (int i = 0; i < boxes.length; i++) {
+            boxes[i].update(value.getPlayers().get(i));
         }
     }
 }

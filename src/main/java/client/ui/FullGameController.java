@@ -1,10 +1,7 @@
 package client.ui;
 
 import client.ui.dialogs.DialogContainer;
-import client.ui.views.LayoutGamePlayerbox;
 import game.GameStore;
-import game.GameStoreProvider;
-import game.player.Player;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -14,17 +11,12 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.util.Duration;
 
-import java.util.List;
-
 public class FullGameController implements DialogContainer {
 
     GameStore gameStore;
     private Image image = new Image("/images/points.png");
     @FXML
     private Pane routesMap, rootPane, dialogHolder, pauseMenu;
-    @FXML
-    private LayoutGamePlayerbox playerBoxController;
-    private List<Player> players;
     private ImageView iv1 = new ImageView();
     @FXML
     private GameRoutesMapController routesMapController;
@@ -32,8 +24,6 @@ public class FullGameController implements DialogContainer {
     private pauseMenuController pauseMenuController;
 
     public void initialize() {
-        players = GameStoreProvider.getStore().getPlayers();
-        playerBoxController.setPlayers(players);
         pauseMenuController.resumeLabel.setOnMouseClicked(e -> closePauseMenu());
         var screenInfo = Screen.getPrimary().getVisualBounds();
         iv1.setImage(image);

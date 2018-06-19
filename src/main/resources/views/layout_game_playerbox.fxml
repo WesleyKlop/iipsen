@@ -1,63 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.VBox?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
       fx:controller="client.ui.views.LayoutGamePlayerbox"
       prefHeight="720" prefWidth="192"
-      fx:id="vbox">
-    <VBox fx:id="background1" alignment="CENTER" spacing="5"
-          style="-fx-border-color: black; -fx-padding: 10 10 10 10;">
-        <Text fill="white" stroke="black" style="-fx-font-size: 24; -fx-font-weight: bold">Player 1:</Text>
-        <Text fill="white" stroke="black" fx:id="playerNameText1"
-              style="-fx-font-size: 20; -fx-font-weight: bold ">Name
-        </Text>
-        <Text fill="white" stroke="black" style="-fx-font-size: 20; -fx-font-weight: bold ">Score: 0</Text>
-        <HBox spacing="10" style="-fx-padding:0 0 0 20">
-            <ImageView style="-fx-effect: dropshadow(three-pass-box, white, 3, 3, 0, 0);" fitHeight="65"
-                       fitWidth="70">
-                <Image url="/images/train.png"/>
-            </ImageView>
-            <Text fill="white" stroke="black"
-                  style="-fx-font-size: 20; -fx-font-weight: bold;">40x
-            </Text>
-        </HBox>
-
-    </VBox>
-    <VBox fx:id="background2" alignment="CENTER" spacing="5"
-          style="-fx-border-color: black; -fx-padding: 10 10 10 10;">
-        <Text fill="white" stroke="black" style="-fx-font-size: 24; -fx-font-weight: bold">Player 2:</Text>
-        <Text fx:id="playerNameText2" fill="white" stroke="black"
-              style="-fx-font-size: 20; -fx-font-weight: bold ">Name
-        </Text>
-        <Text fill="white" stroke="black" style="-fx-font-size: 20; -fx-font-weight: bold ">Score: 0</Text>
-        <HBox spacing="10" style="-fx-padding:0 0 0 20">
-            <ImageView style="-fx-effect: dropshadow(three-pass-box, white, 3, 3, 0, 0);" fitHeight="65"
-                       fitWidth="70">
-                <Image url="/images/train.png"/>
-            </ImageView>
-            <Text fill="white" stroke="black"
-                  style="-fx-font-size: 20; -fx-font-weight: bold;">40x
-            </Text>
-        </HBox>
-    </VBox>
-    <VBox fx:id="background3" alignment="CENTER" spacing="5"
-          style="-fx-border-color: black; -fx-padding: 10 10 10 10;">
-        <Text fill="white" stroke="black" style="-fx-font-size: 24; -fx-font-weight: bold">Player 3:</Text>
-        <Text fx:id="playerNameText3" fill="white" stroke="black"
-              style="-fx-font-size: 20; -fx-font-weight: bold ">Name
-        </Text>
-        <Text fill="white" stroke="black" style="-fx-font-size: 20; -fx-font-weight: bold ">Score: 0</Text>
-        <HBox spacing="10" style="-fx-padding:0 0 0 20">
-            <ImageView style="-fx-effect: dropshadow(three-pass-box, white, 3, 3, 0, 0);" fitHeight="65"
-                       fitWidth="70">
-                <Image url="/images/train.png"/>
-            </ImageView>
-            <Text fill="white" stroke="black"
-                  style="-fx-font-size: 20; -fx-font-weight: bold">40x
-            </Text>
-        </HBox>
-    </VBox>
-</VBox>
+      fx:id="container"/>
