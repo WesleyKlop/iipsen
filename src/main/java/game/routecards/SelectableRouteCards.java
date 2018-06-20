@@ -10,7 +10,6 @@ public class SelectableRouteCards implements Serializable {
 
     public SelectableRouteCards(RouteCardStackBank bank) {
         this.bank = bank;
-        populatePickableCards();
     }
 
     public RouteCardStackBank getBank() {
