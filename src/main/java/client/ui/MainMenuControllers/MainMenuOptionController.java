@@ -45,7 +45,7 @@ public class MainMenuOptionController {
 
         optionVolumeMusicSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             UserPreferences.setMusicVolume(newValue.doubleValue());
-            Log.debug("Setting volume from {} to {}", MediaController.getMusicPlayer().getVolume(), newValue.doubleValue());
+//            Log.debug("Setting volume from {} to {}", MediaController.getMusicPlayer().getVolume(), newValue.doubleValue());
             MediaController.getMusicPlayer().setVolume(newValue.doubleValue());
         });
 
