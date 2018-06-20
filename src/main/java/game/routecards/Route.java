@@ -1,5 +1,6 @@
 package game.routecards;
 
+import game.GameStoreProvider;
 import game.cards.CardStack;
 import game.cards.CardType;
 import game.location.ELocation;
@@ -96,9 +97,13 @@ public class Route implements Serializable {
         for (int i = 0; i < getLocomotiveCost(); i++) {
             stack.addCard(CardType.LOCOMOTIVE);
         }
-
+        CardType cType = GameStoreProvider.getStore().getPlayerById(GameStoreProvider.getStore().getPlayersTurn()).getCardStack().getBiggestType();
         for (int i = 0; i < getCartCost(); i++) {
-            stack.addCard(color);
+            if (color == CardType.CART_ANY) {
+                stack.addCard(cType);
+            } else {
+                stack.addCard(color);
+            }
         }
 
         return stack;

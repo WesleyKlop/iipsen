@@ -59,11 +59,6 @@ public class GameRoutesMapController {
         informationPane.getChildren().add(locationInformation);
     }
 
-    public Pane getMainPane() {
-        return mainPane;
-    }
-
-
     private void onRouteHoverEnter(MouseEvent mE) {
         VBox source = (VBox) mE.getSource();
         for (Node child : source.getChildren()) {
