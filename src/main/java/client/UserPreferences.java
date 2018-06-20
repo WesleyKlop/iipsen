@@ -1,5 +1,9 @@
 package client;
 
+import util.Observer;
+
+import java.util.HashSet;
+import java.util.Set;
 import java.util.prefs.Preferences;
 
 /**
@@ -25,6 +29,26 @@ public class UserPreferences {
      * Store where we R/W our preferences
      */
     private static final Preferences prefs = Preferences.userNodeForPackage(UserPreferences.class);
+    private static final Set<Observer<PreferencesContainer>> observers = new HashSet<>();
+
+    public static void addObserver(Observer<PreferencesContainer> observer) {
+        observers.add(observer);
+    }
+
+    public static void removeObserver(Observer<PreferencesContainer> observer) {
+        observers.remove(observer);
+    }
+
+    private static void notifyObservers() {
+        for (Observer<PreferencesContainer> observer : observers) {
+            observer.onUpdate(new PreferencesContainer(
+                isSoundMuted(),
+                isColorBlind(),
+                getMusicVolume(),
+                getFxVolume()
+            ));
+        }
+    }
 
     /**
      * Sets the color blind settings in preferences
@@ -33,6 +57,7 @@ public class UserPreferences {
      */
     public static void setColorblind(boolean colorblind) {
         prefs.putBoolean(IS_COLORBLIND, colorblind);
+        notifyObservers();
     }
 
     /**
@@ -51,6 +76,7 @@ public class UserPreferences {
      */
     public static void setSoundMuted(boolean muted) {
         prefs.putBoolean(SOUND_MUTED, muted);
+        notifyObservers();
     }
 
     /**
@@ -79,6 +105,7 @@ public class UserPreferences {
      */
     public static void setMusicVolume(double volume) {
         prefs.putDouble(MUSIC_VOLUME, volume);
+        notifyObservers();
     }
 
     /**
@@ -98,5 +125,34 @@ public class UserPreferences {
      */
     public static void setFxVolume(double volume) {
         prefs.putDouble(FX_VOLUME, volume);
+        notifyObservers();
+    }
+
+    static public class PreferencesContainer {
+        private final boolean soundMuted, colorBlind;
+        private final double musicVolume, fxVolume;
+
+        private PreferencesContainer(boolean soundMuted, boolean colorBlind, double musicVolume, double fxVolume) {
+            this.soundMuted = soundMuted;
+            this.colorBlind = colorBlind;
+            this.musicVolume = musicVolume;
+            this.fxVolume = fxVolume;
+        }
+
+        public boolean isSoundMuted() {
+            return soundMuted;
+        }
+
+        public boolean isColorBlind() {
+            return colorBlind;
+        }
+
+        public double getMusicVolume() {
+            return musicVolume;
+        }
+
+        public double getFxVolume() {
+            return fxVolume;
+        }
     }
 }
