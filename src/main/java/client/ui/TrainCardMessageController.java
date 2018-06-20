@@ -19,7 +19,7 @@ public class TrainCardMessageController {
     private Image[] images = new Image[2];
     private int[] indexes = new int[2];
 
-    public void ActivationAction(int[] index) {
+    public void showDialog(int[] index) {
         indexes = index;
         clearMessage();
         for (int i = 0; i < 2; i++) {

@@ -41,7 +41,7 @@ public class GameRoutesMapController {
         mainPane.setPickOnBounds(false);
         RouteViewFactory routeViewFactory = new RouteViewFactory(
             getClass().getResourceAsStream("/string/gameRoutes.xml"),
-                this::routeOnMouseClicked,
+            this::routeOnMouseClicked,
             this::onRouteHoverEnter,
             this::onRouteHoverExit
         );

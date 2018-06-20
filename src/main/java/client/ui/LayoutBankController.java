@@ -14,8 +14,6 @@ import org.apache.logging.log4j.Logger;
 import util.Observable;
 import util.Observer;
 
-import java.rmi.RemoteException;
-
 public class LayoutBankController implements Observer<GameStore> {
 
     private static final Logger Log = LogManager.getLogger(LayoutBankController.class);
@@ -28,7 +26,6 @@ public class LayoutBankController implements Observer<GameStore> {
 
     @FXML
     public void initialize() {
-        storeObservable.getValue().getCardStackController().populateOpenCards();
         setCardImages(storeObservable.getValue());
         storeObservable.addObserver(this);
     }
@@ -41,14 +38,14 @@ public class LayoutBankController implements Observer<GameStore> {
 
     private void updateCard(GameStore store, int index) {
         ImageView imageView = (ImageView) rootBox.getChildren().get(index);
-        imageView.setImage(new Image(getClass().getResourceAsStream(GameStoreProvider.getStore().getCardStackController().getOpenCards()[index - 1].getPath())));
+        imageView.setImage(new Image(getClass().getResourceAsStream(store.getCardStackController().getOpenCards()[index - 1].getPath())));
     }
 
     @FXML
     private void onMouseAction(MouseEvent mE) {
         ImageView source = (ImageView) mE.getSource();
         int index = Integer.parseInt(source.getId());
-        if (!isSelectedNull()) {
+        if (isSelected()) {
             if (isSelectedCurrent(index)) {
                 if (isSelectedCurrent(0)) {
                     int[] indexes = {selectedIndex, index};
@@ -73,8 +70,16 @@ public class LayoutBankController implements Observer<GameStore> {
         //6. Deselect both cards.
     }
 
-    private boolean isSelectedNull() {
-        return selectedIndex == NOT_SELECTED;
+    private boolean isSelected() {
+        return selectedIndex != NOT_SELECTED;
+    }
+
+    private void setSelected(int index) {
+        if (isSelected()) {
+            takeSelectedEffect();
+        }
+        selectedIndex = index;
+        selectedEffect();
     }
 
     private boolean isSelectedCurrent(int index) {
@@ -84,14 +89,6 @@ public class LayoutBankController implements Observer<GameStore> {
     private void deselectSelected() {
         takeSelectedEffect();
         selectedIndex = NOT_SELECTED;
-    }
-
-    private void setSelected(int index) {
-        if (!isSelectedNull()) {
-            takeSelectedEffect();
-        }
-        selectedIndex = index;
-        selectedEffect();
     }
 
     private void selectedEffect() {

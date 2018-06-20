@@ -30,7 +30,7 @@ public class RouteCardMessageController {
     private RouteCard[] routeCards = new RouteCard[3];
     private boolean[] selected = new boolean[3];
 
-    public void ActivationAction() {
+    public void showDialog() {
         warningText.setText("");
         resetSelectedList();
         for (int i = 0; i < 3; i++) {
