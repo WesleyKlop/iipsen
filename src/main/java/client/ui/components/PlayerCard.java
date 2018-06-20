@@ -2,6 +2,7 @@ package client.ui.components;
 
 import game.cards.Card;
 import game.cards.CardType;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -50,9 +51,11 @@ public class PlayerCard extends VBox {
         amount.setText(String.valueOf(count));
     }
 
-    public void update(int count) {
-        this.count = count;
-        amount.setText(String.valueOf(count));
+    public void update(final int count) {
+        Platform.runLater(() -> {
+            this.count = count;
+            amount.setText(String.valueOf(count));
+        });
     }
 
     public CardType getCardType() {

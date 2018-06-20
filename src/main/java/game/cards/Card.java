@@ -1,5 +1,7 @@
 package game.cards;
 
+import java.io.Serializable;
+
 import static client.UserPreferences.isColorBlind;
 
 /**
@@ -8,7 +10,7 @@ import static client.UserPreferences.isColorBlind;
  * TODO: Path for graphic depending on #cardType
  * TODO: Custom card functionality
  */
-public class Card {
+public class Card implements Serializable {
     private final CardType cardType;
 
     /**
