@@ -38,7 +38,7 @@ public class GameCostsController {
         locations.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/MavenPro-Medium.ttf"), 25));
     }
 
-    void ActivationAction(Route route) {
+    void showBuildDialog(Route route) {
         resetMessage();
         buildButton.setDisable(route.hasOwner());
         updateCurrentId(route.getId());

@@ -29,7 +29,7 @@ public class MessagesController {
         VBox source = (VBox) mE.getSource();
         int id = Integer.parseInt(source.getId());
         Route route = GameStoreProvider.getStore().getRouteStore().getRouteById(id);
-        routesController.ActivationAction(route);
+        routesController.showBuildDialog(route);
         openMenu(routes);
         closeMenu(train);
         closeMenu(routeCards);

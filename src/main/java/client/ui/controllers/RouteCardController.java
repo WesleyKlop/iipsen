@@ -5,6 +5,7 @@ import game.GameStoreProvider;
 import game.actions.Action;
 import game.actions.SelectRouteCardsAction;
 import game.routecards.RouteCard;
+import game.routecards.RouteCardStackBank;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,75 +13,71 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import util.Observable;
+import util.Observer;
 
 import java.rmi.RemoteException;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class RouteCardController {
+public class RouteCardController implements Observer<GameStore> {
     @FXML
-    HBox Routecardbox;
-    private Observable<GameStore> storeObervable = GameStoreProvider.getInstance();
-    private GameStore store = GameStoreProvider.getStore();
-    private RouteCard[] routecardtemp = new RouteCard[5];
-    boolean[] BooleanRouteCards = new boolean[5];
-    boolean currentState = false;
-    int routefalse = 0;
+    HBox routeCardBox;
+    private List<RouteCard> routeCards = new ArrayList<>();
+    private List<RouteCard> selectedRouteCards = new ArrayList<>();
 
     @FXML
-    private Text Textroutecards;
+    private Text textRouteCards;
 
     public void initialize() {
-        Arrays.fill(BooleanRouteCards, Boolean.FALSE);
+        var store = GameStoreProvider.getStore();
         store.getSelectableRouteCards().populatePickableCards();
-        setrouteCardsimg();
+        GameStoreProvider.getInstance().addObserver(this);
+        this.onUpdate(store);
     }
 
-    private void setrouteCardsimg() {
+    private void setRouteCardsImg(RouteCardStackBank bank) {
+        routeCards.clear();
         for (int i = 0; i < 5; i++) {
-            updateCard(i);
+            updateCard(i, bank.getRandomRouteCard());
         }
     }
 
-    private void updateCard(int index) {
-        ImageView imageView = (ImageView) Routecardbox.getChildren().get(index);
-        imageView.setImage(new Image(getClass().getResourceAsStream(store.getSelectableRouteCards().getBank().getRandomRouteCard().getImagePath())));
-        routecardtemp[index] = store.getSelectableRouteCards().getBank().getRandomRouteCard();
+    private void updateCard(int index, RouteCard card) {
+        ImageView imageView = (ImageView) routeCardBox.getChildren().get(index);
+        imageView.setImage(new Image(getClass().getResourceAsStream(card.getImagePath())));
+        routeCards.add(card);
     }
 
 
-    public void isClicked(MouseEvent mouseEvent) {
-        ImageView imageview = (ImageView) mouseEvent.getSource();
-        int index = Integer.parseInt(imageview.getId());
+    public void onRouteCardClicked(MouseEvent mouseEvent) {
+        ImageView imageView = (ImageView) mouseEvent.getSource();
+        int index = Integer.parseInt(imageView.getId());
+        RouteCard selectedCard = routeCards.get(index);
 
-        if (BooleanRouteCards[index] == false) {
-            imageview.setStyle("-fx-effect: dropshadow(three-pass-box, green, 5, 5, 0, 0);");
-            BooleanRouteCards[index] = true;
+        if (!selectedRouteCards.contains(selectedCard)) {
+            imageView.setStyle("-fx-effect: dropshadow(three-pass-box, green, 5, 5, 0, 0);");
+            selectedRouteCards.add(selectedCard);
         } else {
-            imageview.setStyle("");
-            BooleanRouteCards[index] = false;
+            imageView.setStyle("");
+            selectedRouteCards.remove(selectedCard);
         }
     }
 
-    public void ConfirmClicked(MouseEvent mouseEvent) throws RemoteException {
-        for (int i = 0; i < BooleanRouteCards.length; i++) {
-            if (BooleanRouteCards[i] == false) {
-                routefalse++;
-            }
+    public void onConfirmClicked(MouseEvent mouseEvent) throws RemoteException {
+        if (selectedRouteCards.size() < 2) {
+            textRouteCards.setFill(Color.RED);
+            return;
         }
-        if (routefalse == 5 || routefalse == 4) {
-            Textroutecards.setFill(Color.RED);
-        }
-        if (routefalse < 4) {
-            for (int i = 0; i < BooleanRouteCards.length; i++) {
-                if (BooleanRouteCards[i] == false) {
-                    routecardtemp[i] = null;
-                }
-            }
-            Action RouteCardAction = new SelectRouteCardsAction(store.getPlayersTurn(), routecardtemp);
-            GameStoreProvider.sendAction(RouteCardAction);
-        }
-        routefalse = 0;
+
+        Action routeCardAction = new SelectRouteCardsAction(
+            GameStoreProvider.getStore().getPlayersTurn(),
+            selectedRouteCards);
+        GameStoreProvider.sendAction(routeCardAction);
+    }
+
+    @Override
+    public void onUpdate(GameStore value) {
+        setRouteCardsImg(value.getSelectableRouteCards().getBank());
     }
 }
