@@ -36,10 +36,6 @@ public class GameRoutesMapController {
     @FXML
     private GameCostsController route_costsController;
 
-    private MessagesController mCon = MessagesControllerProvider.getMessageController();
-
-
-
     public void initialize() {
         informationPane.setPickOnBounds(false);
         mainPane.setPickOnBounds(false);

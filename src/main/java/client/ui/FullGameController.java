@@ -1,11 +1,10 @@
 package client.ui;
 
-import client.ui.views.LayoutGamePlayerbox;
+import client.ui.dialogs.DialogContainer;
 import game.GameStore;
-import game.GameStoreProvider;
-import game.player.Player;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;

@@ -14,7 +14,7 @@
     <Slider fx:id="optionVolumeMusicSlider" max="1.0" value="0.5" showTickMarks="true" majorTickUnit="0.1"
             blockIncrement="0.1"/>
     <Label text="Sound FX Volume:" scaleX="2.0" scaleY="2.0"/>
-    <Slider fx:id="optionVolumeFXSlider" max="0.6" value="0.3" showTickMarks="true" majorTickUnit="0.15"
+    <Slider fx:id="optionVolumeFXSlider" max="1.0" value="0.3" showTickMarks="true" majorTickUnit="0.15"
             blockIncrement="0.15"/>
     <CheckBox fx:id="optionMute" text="Mute" scaleX="2.0" scaleY="2.0" minWidth="100"/>
     <CheckBox fx:id="optionColorblind" text="Colorblind" scaleX="2.0" scaleY="2.0" minWidth="100"/>

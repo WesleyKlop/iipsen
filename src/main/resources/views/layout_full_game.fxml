@@ -9,11 +9,12 @@
       prefHeight="1080" prefWidth="1920"
       fx:id="rootPane" stylesheets="/css/defaultStyling.css">
 
-    <fx:include source="layout_game_playerbox.fxml" fx:id="playerBox" layoutY="16" layoutX="230"/>
+    <fx:include source="layout_game_playerbox.fxml" layoutY="16" layoutX="230"/>
     <fx:include source="layout_game_cards.fxml" layoutX="16" layoutY="864"/>
     <fx:include source="layout_routes_map.fxml" fx:id="routesMap" scaleX="1.3" scaleY="1.3" layoutX="843"
                 layoutY="194"/>
     <fx:include source="layout_game_bank.fxml" layoutX="16" layoutY="16"/>
+    <fx:include source="layout_game_routecard.fxml"/>
 
     <!--Image Buttons-->
     <ImageView styleClass="imageButton" layoutX="1860" layoutY="76" onMouseEntered="#ScoreEntered"

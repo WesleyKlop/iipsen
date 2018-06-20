@@ -25,7 +25,7 @@ public class Observable<T> {
     /**
      * Subscribe to changes of object T
      *
-     * @param observer the Object that implements the {@see Observer<T>} interface.
+     * @param observer the Object that implements the {@code Observable.Observer<T>} interface.
      */
     public void addObserver(Observer<T> observer) {
         observers.add(observer);
@@ -69,12 +69,4 @@ public class Observable<T> {
         }
     }
 
-    /**
-     * Observer interface, on every change this observers' onUpdate will be called with the new value
-     *
-     * @param <T>
-     */
-    public interface Observer<T> {
-        void onUpdate(T value);
-    }
 }

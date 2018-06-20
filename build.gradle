@@ -40,7 +40,7 @@ test {
     useJUnitPlatform()
 
     // Always run tests, even when nothing changed.
-    dependsOn 'cleanTest'
+//    dependsOn 'cleanTest'
 
     // Show test results.
     testLogging {
@@ -51,4 +51,9 @@ test {
 javadoc {
     options.addBooleanOption('html5', true)
     destinationDir = file("docs")
+}
+
+task runServer(type: JavaExec) {
+    classpath sourceSets.main.runtimeClasspath
+    main = "server.Server"
 }

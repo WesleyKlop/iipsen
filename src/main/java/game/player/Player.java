@@ -71,6 +71,10 @@ public class Player implements Serializable {
         return connectionKeeper;
     }
 
+    public int getScore() {
+        return score;
+    }
+
     public void givePoints(int points) {
         score += points;
     }

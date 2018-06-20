@@ -7,6 +7,8 @@ import game.actions.GetCardAction;
 import game.player.Player;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import util.Observable;
@@ -14,6 +16,7 @@ import util.Observable;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import static client.UserPreferences.isColorBlind;
 import static game.cards.CardType.*;
 
 public class LayoutCardController {
@@ -24,7 +27,12 @@ public class LayoutCardController {
     VBox black, blue, green, orange, purple, red, white, yellow, locomotive;
 
     @FXML
+    ImageView blackimgv, blueimgv, greenimgv, orangeimgv, purpleimgv, redimgv, whiteimgv, yellowimgv, locomotiveimgv;
+
+    @FXML
     HBox cards;
+
+    Image blackimg, blueimg, greenimg, orangeimg, purpleimg, redimg, whiteimg, yellowimg, locomotiveimg;
 
     private Observable<GameStore> storeObervable = GameStoreProvider.getInstance();
     private GameStore store = GameStoreProvider.getStore();
@@ -36,6 +44,7 @@ public class LayoutCardController {
      */
 
     public void initialize() {
+        checkColorBlind();
         CardsOff();
         List<Player> players = store.getPlayers();
 
@@ -61,6 +70,27 @@ public class LayoutCardController {
             }
         }
         updateScreenCards(player);
+    }
+
+    private void checkColorBlind() {
+        blackimg = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/CART_BLACK.png"));
+        blackimgv.setImage(blackimg);
+        blueimg = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/CART_BLUE.png"));
+        blueimgv.setImage(blueimg);
+        greenimg = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/CART_GREEN.png"));
+        greenimgv.setImage(greenimg);
+        orangeimg = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/CART_ORANGE.png"));
+        orangeimgv.setImage(orangeimg);
+        purpleimg = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/CART_PURPLE.png"));
+        purpleimgv.setImage(purpleimg);
+        redimg = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/CART_RED.png"));
+        redimgv.setImage(redimg);
+        whiteimg = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/CART_WHITE.png"));
+        whiteimgv.setImage(whiteimg);
+        yellowimg = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/CART_YELLOW.png"));
+        yellowimgv.setImage(yellowimg);
+        locomotiveimg = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/LOCOMOTIVE.png"));
+        locomotiveimgv.setImage(locomotiveimg);
     }
 
     /**

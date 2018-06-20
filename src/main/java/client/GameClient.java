@@ -41,7 +41,7 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
             server = (GameStoreServer) Naming.lookup("//" + ip + "/" + Server.REGISTRY_NAME);
             registerClient();
         } catch (NotBoundException | MalformedURLException e) {
-            e.printStackTrace();
+            Log.error("Could not connect to server", e);
         }
 
     }

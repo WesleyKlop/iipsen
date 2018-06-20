@@ -65,5 +65,12 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
         }
     }
 
+    public static void main(String[] args) {
+        try {
+            new Server();
+        } catch (RemoteException | MalformedURLException e) {
+            Log.error("Error occured while running server", e);
+        }
+    }
 
 }

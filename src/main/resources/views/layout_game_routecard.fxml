@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<Pane xmlns:fx="http://javafx.com/fxml"
+      xmlns="http://javafx.com/javafx"
+      fx:controller="client.ui.controllers.RouteCardController">
+    <VBox spacing="10" alignment="CENTER"
+          style="-fx-background-color: rgba(0,0,0,0.8); -fx-padding: 10 10 10 10; -fx-background-radius: 10">
+        <Text fx:id="Textroutecards" style="-fx-font-size: 20; -fx-font-weight: bold" fill="white" stroke="black">Choose
+            atleast two
+            routecards!
+        </Text>
+        <HBox fx:id="Routecardbox" spacing="10">
+            <ImageView onMouseClicked="#isClicked"
+                       fx:id="0"></ImageView>
+            <ImageView onMouseClicked="#isClicked"
+                       fx:id="1"></ImageView>
+            <ImageView onMouseClicked="#isClicked"
+                       fx:id="2"></ImageView>
+            <ImageView onMouseClicked="#isClicked"
+                       fx:id="3"></ImageView>
+            <ImageView onMouseClicked="#isClicked"
+                       fx:id="4"></ImageView>
+        </HBox>
+        <Button onMousePressed="#ConfirmClicked">Confirm</Button>
+    </VBox>
+</Pane>

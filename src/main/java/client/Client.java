@@ -46,7 +46,7 @@ public class Client extends Application implements SceneListener {
 //                    }
                 }
             } catch (RemoteException e1) {
-                Log.error(e1.toString());
+                Log.error("FUCK", e1);
             }
         });
 
@@ -57,7 +57,7 @@ public class Client extends Application implements SceneListener {
                     rootPaneController.getPreferenceController().submitPreferences();
                 }
             } catch (MalformedURLException | RemoteException e1) {
-                Log.error(e1.toString());
+                Log.error(e1);
             }
         });
 

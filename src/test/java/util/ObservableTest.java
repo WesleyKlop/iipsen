@@ -33,7 +33,7 @@ class ObservableTest {
     void observerDoesNotGetCalledAfterRemoval() {
         var initial = "foo";
         var expected = "I should not have been called!";
-        Observable.Observer<String> observer = Assertions::fail;
+        Observer<String> observer = Assertions::fail;
 
         var observable = new Observable<>(initial);
         observable.addObserver(observer);
