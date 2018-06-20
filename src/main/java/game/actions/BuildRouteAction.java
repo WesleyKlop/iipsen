@@ -1,5 +1,6 @@
 package game.actions;
 
+import client.ui.MessagesControllerProvider;
 import game.GameStore;
 import game.cards.CardStack;
 import game.cards.CardType;
@@ -30,18 +31,19 @@ public class BuildRouteAction implements Action {
     public void executeAction(GameStore store) {
         Player player = store.getPlayerById(playerId);
         RouteType type = route.getRouteType();
+        int extraCosts = 0;
         if (type.toString().equalsIgnoreCase("tunnel")) {
             for (int i = 0; i < 3; i++) {
                 if (store.getCardStackController().getRandomCard().getCardType() == cType) {
                     costs.addCard(cType);
+                    extraCosts++;
                 }
             }
             if (player.getCardStack().containsCards(costs)) {
-                //TODO Message player system
-                //MESSAGE PLAYER EXTRA COSTS
+                MessagesControllerProvider.getMessageController().setBuildRouteWarning("Extra costs for tunnel: " + extraCosts);
                 build(route, player);
             } else {
-                //MESSAGE PLAYER EXTRA COSTS
+                MessagesControllerProvider.getMessageController().setBuildRouteWarning("Extra costs for tunnel: " + extraCosts);
             }
         } else {
             build(route, player);

@@ -18,6 +18,8 @@ public class FullGameController {
     private pauseMenuController pauseMenuController;
     @FXML
     private MessagesController messagesController;
+    @FXML
+    private Pane initRouteCards;
 
     public void initialize() {
         MessagesControllerProvider.setMessageController(messagesController);

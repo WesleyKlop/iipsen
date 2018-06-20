@@ -9,7 +9,7 @@
       prefHeight="200" prefWidth="1080">
     <HBox fx:id="cards" spacing="-30">
         <VBox fx:id="black">
-            <Label fx:id="blackammount" minWidth="30" textFill="white"
+            <Label fx:id="blackamount" minWidth="30" textFill="white"
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
@@ -18,7 +18,7 @@
         </VBox>
 
         <VBox fx:id="blue">
-            <Label fx:id="blueammount" minWidth="30" textFill="white"
+            <Label fx:id="blueamount" minWidth="30" textFill="white"
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
@@ -27,7 +27,7 @@
         </VBox>
 
         <VBox fx:id="green">
-            <Label fx:id="greenammount" minWidth="30" textFill="white"
+            <Label fx:id="greenamount" minWidth="30" textFill="white"
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
@@ -36,7 +36,7 @@
         </VBox>
 
         <VBox fx:id="orange">
-            <Label fx:id="orangeammount" minWidth="30" textFill="white"
+            <Label fx:id="orangeamount" minWidth="30" textFill="white"
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
@@ -45,7 +45,7 @@
         </VBox>
 
         <VBox fx:id="purple">
-            <Label fx:id="purpleammount" minWidth="30" textFill="white"
+            <Label fx:id="purpleamount" minWidth="30" textFill="white"
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
@@ -54,7 +54,7 @@
         </VBox>
 
         <VBox fx:id="red">
-            <Label fx:id="redammount" minWidth="30" textFill="white"
+            <Label fx:id="redamount" minWidth="30" textFill="white"
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
@@ -63,7 +63,7 @@
         </VBox>
 
         <VBox fx:id="white">
-            <Label fx:id="whiteammount" minWidth="30" textFill="white"
+            <Label fx:id="whiteamount" minWidth="30" textFill="white"
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
@@ -72,7 +72,7 @@
         </VBox>
 
         <VBox fx:id="yellow">
-            <Label fx:id="yellowammount" minWidth="30" textFill="white"
+            <Label fx:id="yellowamount" minWidth="30" textFill="white"
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>
@@ -81,7 +81,7 @@
         </VBox>
 
         <VBox fx:id="locomotive">
-            <Label fx:id="locomotiveammount" minWidth="30" textFill="white"
+            <Label fx:id="locomotiveamount" minWidth="30" textFill="white"
                    style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10">
                 test
             </Label>

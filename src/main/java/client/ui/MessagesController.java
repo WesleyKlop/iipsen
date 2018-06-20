@@ -70,4 +70,8 @@ public class MessagesController {
         closeMenu(train);
         closeMenu(routeCards);
     }
+
+    public void setBuildRouteWarning(String text) {
+        routesController.setRouteWarning(text);
+    }
 }

@@ -8,6 +8,9 @@ import game.cards.CardType;
 import game.location.ELocation;
 import game.player.Player;
 import game.routecards.Route;
+import game.routecards.RouteType;
+import javafx.animation.Transition;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
 
 import java.rmi.RemoteException;
 
@@ -27,7 +31,7 @@ public class GameCostsController {
     @FXML
     private HBox trainBox1, trainBox2, trainBox3;
     @FXML
-    private Label locations;
+    private Label locations, tunnelWarning;
     private Image image;
     @FXML
     private Button buildButton;
@@ -73,6 +77,7 @@ public class GameCostsController {
     }
 
     private void resetMessage() {
+        setRouteWarning("");
         emptyBox(trainBox1);
         emptyBox(trainBox2);
         emptyBox(trainBox3);
@@ -96,7 +101,11 @@ public class GameCostsController {
         if (BuildRouteControle(route, player)) {
             Action buildAction = new BuildRouteAction(player.getId(), route);
             GameStoreProvider.sendAction(buildAction);
-            closeAnimation();
+            if (route.getRouteType() == RouteType.TUNNEL) {
+                closeAnimationWait();
+            } else {
+                closeAnimation();
+            }
         } else {
             locations.setText("Player doesn't have enough cards!");
         }
@@ -107,7 +116,17 @@ public class GameCostsController {
         MessagesControllerProvider.getMessageController().closeMenu(rootPane);
     }
 
+    private void closeAnimationWait() {
+        Transition wait = new TranslateTransition(Duration.seconds(1), rootPane);
+        wait.play();
+        wait.setOnFinished(e -> closeAnimation());
+    }
+
     private boolean BuildRouteControle(Route route, Player player) {
         return player.getCardStack().containsCards(route.getCostsAsCardStack()) && !route.hasOwner();
+    }
+
+    public void setRouteWarning(String text) {
+        tunnelWarning.setText(text);
     }
 }

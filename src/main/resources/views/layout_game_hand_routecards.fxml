@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx"
+            fx:controller="client.ui.LayoutGameHandRouteCardsController"
+            prefHeight="275.0" prefWidth="600.0" vbarPolicy="AS_NEEDED">
+
+</ScrollPane>

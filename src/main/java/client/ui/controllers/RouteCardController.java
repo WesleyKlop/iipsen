@@ -6,13 +6,17 @@ import game.actions.Action;
 import game.actions.SelectRouteCardsAction;
 import game.routecards.RouteCard;
 import game.routecards.RouteCardStackBank;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import util.Observer;
 
 import java.rmi.RemoteException;
@@ -25,6 +29,8 @@ public class RouteCardController implements Observer<GameStore> {
     HBox routeCardBox;
     private List<RouteCard> routeCards = new ArrayList<>();
     private List<RouteCard> selectedRouteCards = new ArrayList<>();
+    @FXML
+    private Pane rootPane;
 
     @FXML
     private Text textRouteCards;
@@ -69,11 +75,20 @@ public class RouteCardController implements Observer<GameStore> {
             textRouteCards.setFill(Color.RED);
             return;
         }
+        Button button = (Button) mouseEvent.getSource();
+        button.setDisable(true);
 
         Action routeCardAction = new SelectRouteCardsAction(
-            GameStoreProvider.getStore().getPlayersTurn(),
-            selectedRouteCards);
+                GameStoreProvider.getStore().getPlayersTurn(),
+                selectedRouteCards);
         GameStoreProvider.sendAction(routeCardAction);
+        close();
+    }
+
+    private void close() {
+        TranslateTransition transAni = new TranslateTransition(Duration.millis(350), rootPane);
+        transAni.setToY(1080);
+        transAni.play();
     }
 
     @Override

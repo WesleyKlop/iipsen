@@ -20,6 +20,7 @@
         <HBox fx:id="trainBox3" maxWidth="600" layoutX="50" layoutY="62" spacing="10"
               alignment="CENTER"/>
         <Label fx:id="locations" textFill="#FFF"/>
+        <Label fx:id="tunnelWarning" textFill="#FFF"/>
         <HBox alignment="CENTER" spacing="10">
             <Button text="Cancel" onMouseClicked="#closeAnimation"/>
             <Button fx:id="buildButton" text="Build" onMouseClicked="#buildRoute"/>
