@@ -3,6 +3,7 @@ package client.ui.views;
 import client.ui.components.PlayerBox;
 import game.GameStore;
 import game.GameStoreProvider;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 import util.Observer;
@@ -28,8 +29,10 @@ public class LayoutGamePlayerbox implements Observer<GameStore> {
 
     @Override
     public void onUpdate(GameStore value) {
-        for (int i = 0; i < boxes.length; i++) {
-            boxes[i].update(value.getPlayers().get(i));
-        }
+        Platform.runLater(() -> {
+            for (int i = 0; i < boxes.length; i++) {
+                boxes[i].update(value.getPlayers().get(i));
+            }
+        });
     }
 }

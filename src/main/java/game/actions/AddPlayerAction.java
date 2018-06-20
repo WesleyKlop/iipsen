@@ -38,4 +38,9 @@ public class AddPlayerAction implements Action {
             player.getCardStack().addCard(store.getCardStackController().getRandomCard());
         }
     }
+
+    @Override
+    public int getPlayerId() {
+        return -1;
+    }
 }

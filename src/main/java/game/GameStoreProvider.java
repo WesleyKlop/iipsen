@@ -2,6 +2,7 @@ package game;
 
 import client.GameStoreClient;
 import game.actions.Action;
+import game.player.Player;
 import util.Observable;
 
 import java.rmi.RemoteException;
@@ -14,6 +15,16 @@ import java.rmi.RemoteException;
 public class GameStoreProvider {
     private static final Observable<GameStore> instance = new Observable<>();
     private static GameStoreClient sender;
+    // Player that corresponds to the client
+    private static Player player;
+
+    public static Player getPlayer() {
+        return player;
+    }
+
+    public static void setPlayer(Player player) {
+        GameStoreProvider.player = player;
+    }
 
     private GameStoreProvider() {
     }
@@ -31,6 +42,9 @@ public class GameStoreProvider {
     }
 
     public static void sendAction(Action action) throws RemoteException {
-        sender.sendAction(action);
+        var store = instance.getValue();
+        if (store.getGameState() != GameState.GAME || action.getPlayerId() == store.getPlayersTurn()) {
+            sender.sendAction(action);
+        }
     }
 }

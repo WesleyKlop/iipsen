@@ -7,6 +7,7 @@ import game.actions.SelectRouteCardsAction;
 import game.routecards.RouteCard;
 import game.routecards.RouteCardStackBank;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -79,8 +80,8 @@ public class RouteCardController implements Observer<GameStore> {
         button.setDisable(true);
 
         Action routeCardAction = new SelectRouteCardsAction(
-                GameStoreProvider.getStore().getPlayersTurn(),
-                selectedRouteCards);
+            GameStoreProvider.getStore().getPlayersTurn(),
+            selectedRouteCards);
         GameStoreProvider.sendAction(routeCardAction);
         close();
     }
@@ -93,6 +94,6 @@ public class RouteCardController implements Observer<GameStore> {
 
     @Override
     public void onUpdate(GameStore value) {
-        setRouteCardsImg(value.getSelectableRouteCards().getBank());
+        Platform.runLater(() -> setRouteCardsImg(value.getSelectableRouteCards().getBank()));
     }
 }

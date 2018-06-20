@@ -25,4 +25,9 @@ public class SelectRouteCardsAction implements Action {
         }
         store.getSelectableRouteCards().populatePickableCards();
     }
+
+    @Override
+    public int getPlayerId() {
+        return playerId;
+    }
 }

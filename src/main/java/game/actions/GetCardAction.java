@@ -34,4 +34,9 @@ public class GetCardAction implements Action {
             store.getPlayerById(playerId).getCardStack().addCard(card);
         }
     }
+
+    @Override
+    public int getPlayerId() {
+        return playerId;
+    }
 }

@@ -4,6 +4,7 @@ import game.GameStore;
 import game.GameStoreProvider;
 import game.player.Player;
 import game.routecards.RouteCard;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -29,13 +30,15 @@ public class LayoutGameHandRouteCardsController implements Observer<GameStore> {
 
     @Override
     public void onUpdate(GameStore store) {
-        emptyRouteContainer();
-        Player player = store.getPlayerById(1);
-        List<RouteCard> routeCardsList = player.getRouteCards();
-        for (int i = 0; i < routeCardsList.size(); i++) {
-            Image image = new Image(getClass().getResourceAsStream(routeCardsList.get(i).getImagePath()));
-            ImageView routeCardView = new ImageView(image);
-            routeCardContainer.getChildren().add(routeCardView);
-        }
+        Platform.runLater(() -> {
+            emptyRouteContainer();
+            Player player = GameStoreProvider.getPlayer();
+            List<RouteCard> routeCardsList = player.getRouteCards();
+            for (int i = 0; i < routeCardsList.size(); i++) {
+                Image image = new Image(getClass().getResourceAsStream(routeCardsList.get(i).getImagePath()));
+                ImageView routeCardView = new ImageView(image);
+                routeCardContainer.getChildren().add(routeCardView);
+            }
+        });
     }
 }

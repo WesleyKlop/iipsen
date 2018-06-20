@@ -50,6 +50,11 @@ public class BuildRouteAction implements Action {
         }
     }
 
+    @Override
+    public int getPlayerId() {
+        return playerId;
+    }
+
     private void build(Route route, Player player) {
         try {
             player.getCardStack().takeCards(costs);

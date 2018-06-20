@@ -3,6 +3,7 @@ package client.ui;
 import game.GameStore;
 import game.GameStoreProvider;
 import javafx.animation.ScaleTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -108,6 +109,6 @@ public class LayoutBankController implements Observer<GameStore> {
 
     @Override
     public void onUpdate(GameStore store) {
-        setCardImages(store);
+        Platform.runLater(() -> setCardImages(store));
     }
 }

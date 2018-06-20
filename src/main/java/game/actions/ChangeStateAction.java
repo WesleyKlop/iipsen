@@ -33,4 +33,9 @@ public class ChangeStateAction implements Action {
         }
         store.setGameState(newState);
     }
+
+    @Override
+    public int getPlayerId() {
+        return -1;
+    }
 }

@@ -6,7 +6,6 @@ import game.GameStoreProvider;
 import game.actions.Action;
 import game.actions.AddPlayerAction;
 import game.actions.ChangeStateAction;
-import game.player.Player;
 import javafx.application.Platform;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,7 +29,6 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
     private transient Observable<GameStore> storeObservable = GameStoreProvider.getInstance();
     private transient SceneListener sceneListener;
     private transient Action lastAction;
-    private Player player;
 
     public GameClient(String ip, SceneListener sceneListener) throws RemoteException {
         super();
@@ -64,6 +62,12 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
     public void onGameStoreReceived(GameStore newStore) {
         Log.debug("Received new gamestore");
 
+        if (GameStoreProvider.getPlayer() != null) {
+            // Update the player on the GameStoreProvider
+            GameStoreProvider.setPlayer(newStore.getPlayerById(GameStoreProvider.getPlayer().getId()));
+            Log.debug("Updated player");
+        }
+
         // Process previous actions' response
         if (lastAction != null) {
             Platform.runLater(() -> {
@@ -81,7 +85,7 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
 
         if (lastAction instanceof AddPlayerAction) {
             var players = store.getPlayers();
-            player = players.get(players.size() - 1);
+            GameStoreProvider.setPlayer(players.get(players.size() - 1));
             sceneListener.onSceneChange(GameState.LOBBY);
         } else if (lastAction instanceof ChangeStateAction) {
             sceneListener.onSceneChange(store.getGameState());

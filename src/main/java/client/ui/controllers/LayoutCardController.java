@@ -7,6 +7,7 @@ import game.GameStoreProvider;
 import game.cards.Card;
 import game.cards.CardType;
 import game.player.Player;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import org.apache.logging.log4j.LogManager;
@@ -60,7 +61,9 @@ public class LayoutCardController implements Observer<GameStore> {
 
     @Override
     public void onUpdate(GameStore value) {
-        Log.debug("Updating view...");
-        updateScreenCards(value.getPlayers().get(0));
+        Platform.runLater(() -> {
+            Log.debug("Updating view...");
+            updateScreenCards(GameStoreProvider.getPlayer());
+        });
     }
 }
