@@ -35,6 +35,10 @@ repositories {
     jcenter()
 }
 
+run {
+    systemProperties 'java.security.policy': file("$projectDir/ttr.policy").absolutePath
+}
+
 test {
     // Enable JUnit 5 (Gradle 4.6+).
     useJUnitPlatform()
