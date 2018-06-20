@@ -70,6 +70,7 @@ public class RouteCardController implements Observer<GameStore> {
     }
 
     public void onConfirmClicked(MouseEvent mouseEvent) throws RemoteException {
+        GameStoreProvider.getInstance().removeObserver(this);
         if (selectedRouteCards.size() < 2) {
             textRouteCards.setFill(Color.RED);
             return;
