@@ -23,7 +23,6 @@
         </HBox>
         <Label fx:id="warningText" textFill="#FFF"/>
         <HBox prefWidth="1000" alignment="CENTER" spacing="10">
-            <Button text="Cancel" prefWidth="100" onMouseClicked="#cancel"/>
             <Button text="Take" prefWidth="100" onMouseClicked="#sendAction"/>
         </HBox>
     </VBox>
