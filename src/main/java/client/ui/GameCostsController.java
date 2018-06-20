@@ -31,7 +31,7 @@ public class GameCostsController {
     @FXML
     private HBox trainBox1, trainBox2, trainBox3;
     @FXML
-    private Label locations, tunnelWarning;
+    private Label locations, tunnelWarning, owner;
     private Image image;
     @FXML
     private Button buildButton;
@@ -45,6 +45,11 @@ public class GameCostsController {
     void showBuildDialog(Route route) {
         resetMessage();
         buildButton.setDisable(route.hasOwner());
+        if (route.getOwner() == 0) {
+            owner.setText("");
+        } else {
+            owner.setText("This route is currently owned by: " + GameStoreProvider.getStore().getPlayerById(route.getOwner()).getPlayerName());
+        }
         updateCurrentId(route.getId());
         addParts(route.getLength(), route.getLocomotiveCost(), route.getCardType());
         setMessageText(route.getLocations());

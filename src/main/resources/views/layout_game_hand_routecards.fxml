@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
 <ScrollPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx"
             fx:controller="client.ui.LayoutGameHandRouteCardsController"
-            prefHeight="275.0" prefWidth="600.0" vbarPolicy="AS_NEEDED">
+            prefHeight="275.0" prefWidth="550.0">
+
+    <HBox fx:id="routeCardContainer" spacing="5"/>
 
 </ScrollPane>

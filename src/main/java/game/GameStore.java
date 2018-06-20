@@ -62,7 +62,7 @@ public class GameStore implements Serializable {
     }
 
     public void cyclePlayerTurn() {
-        playersTurn = (playersTurn + 1) % 3;
+        playersTurn = (playersTurn + 1) % players.size();
     }
 
     public int getPlayersTurn() {

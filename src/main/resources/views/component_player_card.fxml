@@ -6,7 +6,6 @@
 <fx:root xmlns:fx="http://javafx.com/fxml" type="VBox"
          xmlns="http://javafx.com/javafx"
          style="-fx-font-family: monospace; -fx-font-weight: bolder; -fx-padding: 10">
-    <Label fx:id="amount" minWidth="30" textFill="white"
-           style="-fx-background-color: purple; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black; -fx-padding: 10 10 10 10"/>
-    <ImageView fx:id="image" rotate="90" fitHeight="127"/>
+    <Label fx:id="amount" minWidth="30" textFill="black"/>
+    <ImageView fx:id="image" rotate="90" fitWidth="180" preserveRatio="true"/>
 </fx:root>

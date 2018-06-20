@@ -21,6 +21,7 @@ public class RouteCardStackBank implements Serializable {
     }
 
     public RouteCard getRandomRouteCard() {
+        System.out.println(routeCards.size());
         int index = generator.nextInt(routeCards.size());
         RouteCard card = routeCards.get(index);
         routeCards.remove(index);
