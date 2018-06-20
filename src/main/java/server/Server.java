@@ -30,6 +30,10 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
         LocateRegistry.createRegistry(PORT);
         Naming.rebind(REGISTRY_NAME, this);
         Log.debug("Server started");
+
+        gameStore.getCardStackController().populateOpenCards();
+        gameStore.getSelectableRouteCards().populatePickableCards();
+        Log.info("Initial open/pickable cards are set");
     }
 
     @Override

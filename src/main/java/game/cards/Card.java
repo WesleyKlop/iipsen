@@ -10,16 +10,14 @@ import static client.UserPreferences.isColorBlind;
  */
 public class Card {
     private final CardType cardType;
-    private String path;
 
     /**
      * Create a Card of a specific type
      *
      * @param cardType the CardType
      */
-    Card(CardType cardType) {
+    public Card(CardType cardType) {
         this.cardType = cardType;
-        this.path = "/cards/" + isColorBlind() + "/" + cardType + ".png";
     }
 
     /**
@@ -38,6 +36,6 @@ public class Card {
      * @return the filepath for a card
      */
     public String getPath() {
-        return path;
+        return String.format("/cards/%s/%s.png", String.valueOf(isColorBlind()).toUpperCase(), cardType);
     }
 }

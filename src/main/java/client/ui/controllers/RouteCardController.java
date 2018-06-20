@@ -37,7 +37,6 @@ public class RouteCardController implements Observer<GameStore> {
 
     public void initialize() {
         var store = GameStoreProvider.getStore();
-        store.getSelectableRouteCards().populatePickableCards();
         GameStoreProvider.getInstance().addObserver(this);
         this.onUpdate(store);
     }

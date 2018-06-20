@@ -36,14 +36,14 @@ public class MessagesController {
     }
 
     public void openTrainCardMessage(int[] index) {
-        trainController.ActivationAction(index);
+        trainController.showDialog(index);
         openMenu(train);
         closeMenu(routes);
         closeMenu(routeCards);
     }
 
     public void openRouteCardMessage() {
-        routeCardsController.ActivationAction();
+        routeCardsController.showDialog();
         openMenu(routeCards);
         closeMenu(routes);
         closeMenu(train);

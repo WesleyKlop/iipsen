@@ -1,159 +1,66 @@
 package client.ui.controllers;
 
 
+import client.ui.components.PlayerCard;
 import game.GameStore;
 import game.GameStoreProvider;
-import game.actions.GetCardAction;
+import game.cards.Card;
+import game.cards.CardType;
 import game.player.Player;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import util.Observable;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import util.Observer;
 
-import java.rmi.RemoteException;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-import static client.UserPreferences.isColorBlind;
-import static game.cards.CardType.*;
-
-public class LayoutCardController {
-    @FXML
-    Label blackamount, blueamount, greenamount, orangeamount, purpleamount, redamount, whiteamount, yellowamount, locomotiveamount;
-
-    @FXML
-    VBox black, blue, green, orange, purple, red, white, yellow, locomotive;
-
-    @FXML
-    ImageView blackimgv, blueimgv, greenimgv, orangeimgv, purpleimgv, redimgv, whiteimgv, yellowimgv, locomotiveimgv;
-
+public class LayoutCardController implements Observer<GameStore> {
+    private static final Logger Log = LogManager.getLogger(LayoutCardController.class);
+    private final Map<CardType, PlayerCard> views = new HashMap<>();
     @FXML
     HBox cards;
-
-    Image blackimg, blueimg, greenimg, orangeimg, purpleimg, redimg, whiteimg, yellowimg, locomotiveimg;
-
-    private Observable<GameStore> storeObervable = GameStoreProvider.getInstance();
-    private GameStore store = GameStoreProvider.getStore();
 
     /**
      * Get the player from the gamestore
      *
      * @author Ewout
      */
-
+    @FXML
     public void initialize() {
-        checkColorBlind();
-        CardsOff();
-        List<Player> players = store.getPlayers();
-
-        Player player = players.get(0);
-
-        //TODO Only gets the first player connected
-
-        /**
-         *
-         * Player gets 4 cards in the beginning of the game.
-         *
-         * @author Ewout
-         *
-         */
-
-        for (int i = 0; i < 2; i++) {
-            int[] random = {0, 0};
-            var action = new GetCardAction(player.getId(), random);
-            try {
-                GameStoreProvider.sendAction(action);
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        }
-        updateScreenCards(player);
-    }
-
-    private void checkColorBlind() {
-        blackimg = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/CART_BLACK.png"));
-        blackimgv.setImage(blackimg);
-        blueimg = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/CART_BLUE.png"));
-        blueimgv.setImage(blueimg);
-        greenimg = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/CART_GREEN.png"));
-        greenimgv.setImage(greenimg);
-        orangeimg = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/CART_ORANGE.png"));
-        orangeimgv.setImage(orangeimg);
-        purpleimg = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/CART_PURPLE.png"));
-        purpleimgv.setImage(purpleimg);
-        redimg = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/CART_RED.png"));
-        redimgv.setImage(redimg);
-        whiteimg = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/CART_WHITE.png"));
-        whiteimgv.setImage(whiteimg);
-        yellowimg = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/CART_YELLOW.png"));
-        yellowimgv.setImage(yellowimg);
-        locomotiveimg = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/LOCOMOTIVE.png"));
-        locomotiveimgv.setImage(locomotiveimg);
-    }
-
-    /**
-     * Here you put all the visable cards off, because at the start your hand is empty
-     *
-     * @author Ewout
-     */
-    private void CardsOff() {
-        cards.getChildren().removeAll(black);
-        cards.getChildren().removeAll(blue);
-        cards.getChildren().removeAll(green);
-        cards.getChildren().removeAll(orange);
-        cards.getChildren().removeAll(purple);
-        cards.getChildren().removeAll(red);
-        cards.getChildren().removeAll(white);
-        cards.getChildren().removeAll(yellow);
-        cards.getChildren().removeAll(locomotive);
+        GameStoreProvider.getInstance().addObserver(this);
+        onUpdate(GameStoreProvider.getStore());
     }
 
     public void updateScreenCards(Player player) {
-        if (player.getCardStack().get(CART_BLACK) != null && player.getCardStack().get(CART_BLACK) > 0) {
-            blackamount.setText(Integer.toString(player.getCardStack().get(CART_BLACK)));
-            cards.getChildren().addAll(black);
+        for (Map.Entry<CardType, Integer> entry : player.getCardStack().entrySet()) {
+            if (views.containsKey(entry.getKey())) {
+                // Update view
+                views.get(entry.getKey()).update(entry.getValue());
+            } else {
+                // Add new card type to map
+                PlayerCard card = new PlayerCard(new Card(entry.getKey()), entry.getValue());
+                views.put(entry.getKey(), card);
+            }
+        }
+        // Add new card types to view
+        for (PlayerCard playerCard : views.values()) {
+            if (!cards.getChildren().contains(playerCard)) {
+                cards.getChildren().add(playerCard);
+            }
         }
 
-        if (player.getCardStack().get(CART_BLUE) != null && player.getCardStack().get(CART_BLUE) > 0) {
-            blueamount.setText(Integer.toString(player.getCardStack().get(CART_BLUE)));
-            cards.getChildren().addAll(blue);
-        }
+        // Remove cards that are not in the players possession anymore
+        cards.getChildren().removeIf(node -> {
+            PlayerCard el = (PlayerCard) node;
+            return !player.getCardStack().keySet().contains(el.getCardType());
+        });
+    }
 
-        if (player.getCardStack().get(CART_GREEN) != null && player.getCardStack().get(CART_GREEN) > 0) {
-            greenamount.setText(Integer.toString(player.getCardStack().get(CART_GREEN)));
-            cards.getChildren().addAll(green);
-        }
-
-        if (player.getCardStack().get(CART_ORANGE) != null && player.getCardStack().get(CART_ORANGE) > 0) {
-            orangeamount.setText(Integer.toString(player.getCardStack().get(CART_ORANGE)));
-            cards.getChildren().addAll(orange);
-        }
-
-        if (player.getCardStack().get(CART_PURPLE) != null && player.getCardStack().get(CART_PURPLE) > 0) {
-            purpleamount.setText(Integer.toString(player.getCardStack().get(CART_PURPLE)));
-            cards.getChildren().addAll(purple);
-        }
-
-        if (player.getCardStack().get(CART_RED) != null && player.getCardStack().get(CART_RED) > 0) {
-            redamount.setText(Integer.toString(player.getCardStack().get(CART_RED)));
-            cards.getChildren().addAll(red);
-        }
-
-        if (player.getCardStack().get(CART_WHITE) != null && player.getCardStack().get(CART_WHITE) > 0) {
-            whiteamount.setText(Integer.toString(player.getCardStack().get(CART_WHITE)));
-            cards.getChildren().addAll(white);
-        }
-
-        if (player.getCardStack().get(CART_YELLOW) != null && player.getCardStack().get(CART_YELLOW) > 0) {
-            yellowamount.setText(Integer.toString(player.getCardStack().get(CART_YELLOW)));
-            cards.getChildren().addAll(yellow);
-        }
-
-        if (player.getCardStack().get(LOCOMOTIVE) != null && player.getCardStack().get(LOCOMOTIVE) > 0) {
-            locomotiveamount.setText(Integer.toString(player.getCardStack().get(LOCOMOTIVE)));
-            cards.getChildren().addAll(locomotive);
-        }
+    @Override
+    public void onUpdate(GameStore value) {
+        Log.debug("Updating view...");
+        updateScreenCards(value.getPlayers().get(0));
     }
 }

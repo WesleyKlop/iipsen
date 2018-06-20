@@ -42,7 +42,7 @@ public class Client extends Application implements SceneListener {
                 if (rootPaneController.getPreferenceController().checkName()) {
 //                    if (rootPaneController.getPreferenceController().checkNameDouble()) {
                     connectServer(rootPaneController.getPreferenceController().ipInput.getText());
-                        rootPaneController.getPreferenceController().submitPreferences();
+                    rootPaneController.getPreferenceController().submitPreferences();
 //                    }
                 }
             } catch (RemoteException e1) {
