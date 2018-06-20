@@ -134,6 +134,16 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
         this.put(type, this.get(type) - count);
     }
 
+    public CardType getBiggestType() {
+        CardType biggestType = null;
+        for (Entry<CardType, Integer> entry : this.entrySet()) {
+            if (biggestType == null || this.get(biggestType) < entry.getValue()) {
+                biggestType = entry.getKey();
+            }
+        }
+        return biggestType;
+    }
+
     @Override
     public String toString() {
         return "CardStack" + super.toString();
