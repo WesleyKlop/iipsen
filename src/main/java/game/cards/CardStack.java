@@ -113,7 +113,10 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
     public void takeCards(CardStack cards) throws Exception {
         // TODO: This throws when it notices a card is not available, but would still remove the game.cards it checked before that so we should keep track of the game.cards removed and place them back in a try-catch
         for (CardStack.Entry<CardType, Integer> entry : cards.entrySet()) {
-            this.getCard(entry.getKey());
+            for (int i = 0; i < entry.getValue(); i++) {
+                this.getCard(entry.getKey());
+                System.out.println("Taking card from the stack");
+            }
         }
     }
 

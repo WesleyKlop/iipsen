@@ -9,9 +9,13 @@ public class MessagesControllerProvider {
     }
 
     public static void setMessageController(MessagesController mesCon) {
-        if (messagesController != null) {
+        if (isMessageControllerSet()) {
             throw new IllegalStateException("Messages Controller may only be set one");
         }
         messagesController = mesCon;
+    }
+
+    private static boolean isMessageControllerSet() {
+        return messagesController != null;
     }
 }
