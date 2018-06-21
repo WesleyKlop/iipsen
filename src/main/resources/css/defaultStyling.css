@@ -2,6 +2,10 @@
     src: url('/fonts/MavenPro-Medium.ttf');
 }
 
+Label, Text, Button {
+    -fx-font-smoothing-type: lcd;
+}
+
 Label {
     -fx-font-family: 'Maven Pro Medium';
     -fx-font-size: 14;

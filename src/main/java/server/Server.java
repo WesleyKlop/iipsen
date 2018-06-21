@@ -22,18 +22,18 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
     public static final String REGISTRY_NAME = "TTRGameService";
     private static final Logger Log = LogManager.getLogger(Server.class);
     private static final int PORT = 1099;
-    private String Ip;
 
     private List<GameStoreClient> clients = new ArrayList<>();
-    private GameStore gameStore = new GameStore();
+    private GameStore gameStore;
 
     public Server() throws RemoteException, MalformedURLException, UnknownHostException {
         Log.debug("Starting server");
+        String ip = InetAddress.getLocalHost().getHostAddress();
+        gameStore = new GameStore(ip);
 
         LocateRegistry.createRegistry(PORT);
         Naming.rebind(REGISTRY_NAME, this);
-        Ip = InetAddress.getLocalHost().getHostAddress();
-        Log.debug("Server started at: " + Ip);
+        Log.debug("Server started at: " + ip);
 
         gameStore.getCardStackController().populateOpenCards();
         gameStore.getSelectableRouteCards().populatePickableCards();
@@ -80,9 +80,4 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
             Log.error("Error occured while running server", e);
         }
     }
-
-    public String getIpAddress() {
-        return Ip;
-    }
-
 }

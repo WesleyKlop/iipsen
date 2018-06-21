@@ -68,6 +68,11 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
             Log.debug("Updated player");
         }
 
+        if (newStore.getGameState() != storeObservable.getValue().getGameState()) {
+            Log.debug("Received new state, switching..");
+            sceneListener.onSceneChange(newStore.getGameState());
+        }
+
         // Process previous actions' response
         if (lastAction != null) {
             Platform.runLater(() -> {
@@ -93,9 +98,16 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
     }
 
     @Override
-    public void sendAction(Action action) throws RemoteException {
-        lastAction = action;
-        server.onActionReceived(action);
+    public void sendAction(Action action) {
+        // Run
+        new Thread(() -> {
+            lastAction = action;
+            try {
+                server.onActionReceived(action);
+            } catch (RemoteException e) {
+                Log.error("Error sending action to server", e);
+            }
+        }).start();
     }
 
     @Override
