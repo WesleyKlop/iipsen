@@ -31,6 +31,10 @@ public class LayoutBankController implements Observer<GameStore> {
         storeObservable.addObserver(this);
     }
 
+    public void updateCardImages(GameStore store) {
+        setCardImages(store);
+    }
+
     private void setCardImages(GameStore store) {
         for (int i = 1; i < rootBox.getChildren().size(); i++) {
             updateCard(store, i);

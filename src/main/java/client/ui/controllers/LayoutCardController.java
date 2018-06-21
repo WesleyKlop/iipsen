@@ -66,4 +66,10 @@ public class LayoutCardController implements Observer<GameStore> {
             updateScreenCards(GameStoreProvider.getPlayer());
         });
     }
+
+    public void switchColorBlind(Player player) {
+        cards.getChildren().remove(0, cards.getChildren().size());
+        views.clear();
+        updateScreenCards(player);
+    }
 }

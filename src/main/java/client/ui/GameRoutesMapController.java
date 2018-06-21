@@ -6,6 +6,7 @@ import client.ui.factories.RouteViewFactory;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -31,13 +32,14 @@ public class GameRoutesMapController {
     @FXML
     Label score;
     @FXML
-    private Pane mainPane, informationPane;
+    private Pane mainPane, informationPane, locationPane;
     private LocationInformation locationInformation;
     @FXML
     private GameCostsController route_costsController;
 
     public void initialize() {
         informationPane.setPickOnBounds(false);
+        locationPane.setPickOnBounds(false);
         mainPane.setPickOnBounds(false);
         RouteViewFactory routeViewFactory = new RouteViewFactory(
             getClass().getResourceAsStream("/string/gameRoutes.xml"),
@@ -55,7 +57,7 @@ public class GameRoutesMapController {
         locationInformation = new LocationInformation();
 
         mainPane.getChildren().addAll(routeViewFactory.getRoutes());
-        mainPane.getChildren().addAll(locationFactory.getLocations());
+        locationPane.getChildren().addAll(locationFactory.getLocations());
         informationPane.getChildren().add(locationInformation);
     }
 
@@ -126,4 +128,15 @@ public class GameRoutesMapController {
         MessagesControllerProvider.getMessageController().openBuildMessage(mouseEvent);
     }
 
+    public void switchColorBlind(boolean thing) {
+        int opacity = (thing) ? 1 : 0;
+        for (int i = 0; i < mainPane.getChildren().size(); i++) {
+            VBox route = (VBox) mainPane.getChildren().get(i);
+            for (int j = 0; j < route.getChildren().size(); j++) {
+                StackPane cart = (StackPane) route.getChildren().get(j);
+                ImageView routeImage = (ImageView) cart.getChildren().get(1);
+                routeImage.setOpacity(opacity);
+            }
+        }
+    }
 }

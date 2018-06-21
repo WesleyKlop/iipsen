@@ -1,5 +1,8 @@
 package client.ui;
 
+import client.UserPreferences;
+import client.ui.controllers.LayoutCardController;
+import game.GameStoreProvider;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -7,8 +10,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.util.Duration;
+import util.Observer;
 
-public class FullGameController {
+import static client.UserPreferences.isColorBlind;
+
+public class FullGameController implements Observer<UserPreferences.PreferencesContainer> {
 
     private Image image = new Image("/images/points.png");
     private ImageView iv1 = new ImageView();
@@ -19,9 +25,18 @@ public class FullGameController {
     @FXML
     private MessagesController messagesController;
     @FXML
+    private LayoutBankController bankController;
+    @FXML
+    private LayoutCardController handController;
+    @FXML
+    private GameRoutesMapController routesMapController;
+    @FXML
     private Pane initRouteCards;
+    private boolean colorBlind = isColorBlind();
+
 
     public void initialize() {
+        UserPreferences.addObserver(this);
         MessagesControllerProvider.setMessageController(messagesController);
         pauseMenuController.resumeLabel.setOnMouseClicked(e -> closePauseMenu());
         var screenInfo = Screen.getPrimary().getVisualBounds();
@@ -54,5 +69,15 @@ public class FullGameController {
 
     public void ScoreExited() {
         rootPane.getChildren().removeAll(iv1);
+    }
+
+    @Override
+    public void onUpdate(UserPreferences.PreferencesContainer value) {
+        if (colorBlind != isColorBlind()) {
+            colorBlind = isColorBlind();
+            handController.switchColorBlind(GameStoreProvider.getPlayer());
+            bankController.updateCardImages(GameStoreProvider.getStore());
+            routesMapController.switchColorBlind(colorBlind);
+        }
     }
 }
