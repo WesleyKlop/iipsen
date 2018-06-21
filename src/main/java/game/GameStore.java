@@ -24,8 +24,10 @@ public class GameStore implements Serializable {
     private SelectableRouteCards selectableRouteCards = new SelectableRouteCards(new RouteCardStackBank());
     private RouteStore routeStore = new RouteStore();
     private int playersTurn = 0;
+    private final String serverIp;
 
-    public GameStore() {
+    public GameStore(String ip) {
+        serverIp = ip;
     }
 
     public List<Player> getPlayers() {
@@ -71,6 +73,10 @@ public class GameStore implements Serializable {
 
     public boolean gameStateIsGame() {
         return getGameState() == GameState.GAME;
+    }
+
+    public String getServerIp() {
+        return serverIp;
     }
 
     //TODO

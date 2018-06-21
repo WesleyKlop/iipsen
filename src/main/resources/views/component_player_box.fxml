@@ -8,17 +8,17 @@
 <fx:root xmlns:fx="http://javafx.com/fxml" type="VBox"
          xmlns="http://javafx.com/javafx"
          alignment="CENTER" spacing="5"
-         style="-fx-border-color: black; -fx-padding: 10 10 10 10; -fx-font-family: monospace; -fx-font-weight: bolder;">
-    <Text fill="white" stroke="black" style="-fx-font-size: 24; -fx-font-weight: bolder" fx:id="playerId"/>
+         style="-fx-border-color: black; -fx-padding: 10 10 10 10; -fx-font-family: 'Helvetica'; -fx-font-weight: bold;">
+    <Text fill="white" stroke="black" style="-fx-font-size: 24; -fx-font-weight: bold;" fx:id="playerId"/>
     <Text fill="white" stroke="black" fx:id="playerName"
-          style="-fx-font-size: 20; -fx-font-weight: bolder "/>
-    <Text fill="white" stroke="black" style="-fx-font-size: 20; -fx-font-weight: bolder " fx:id="playerScore"/>
+          style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+    <Text fill="white" stroke="black" style="-fx-font-size: 20; -fx-font-weight: bold;" fx:id="playerScore"/>
     <HBox spacing="10" style="-fx-padding:0 0 0 20">
         <ImageView style="-fx-effect: dropshadow(three-pass-box, white, 3, 3, 0, 0);" fitHeight="65"
                    fitWidth="70">
             <Image url="/images/train.png"/>
         </ImageView>
         <Text fill="white" stroke="black" fx:id="playerTrainCarts"
-              style="-fx-font-size: 20; -fx-font-weight: bolder;"/>
+              style="-fx-font-size: 20; -fx-font-weight: bold;"/>
     </HBox>
 </fx:root>

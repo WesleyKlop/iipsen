@@ -29,8 +29,9 @@ public class LobbyController implements Observer<GameStore> {
 
     private static final Logger Log = LogManager.getLogger(LobbyController.class);
     @FXML
-    public VBox container;
     public Label startButtonLabel, quitButtonLabel;
+    @FXML
+    private VBox container;
     @FXML
     private Label ipAddress;
 
@@ -83,6 +84,9 @@ public class LobbyController implements Observer<GameStore> {
 
     @Override
     public void onUpdate(final GameStore value) {
-        Platform.runLater(() -> updateView(value.getPlayers()));
+        Platform.runLater(() -> {
+            updateView(value.getPlayers());
+            setIpAddress(value.getServerIp());
+        });
     }
 }

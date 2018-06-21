@@ -17,7 +17,7 @@ public class GameTestView extends Application {
     }
 
     public void start(Stage primaryStage) throws Exception {
-        GameStoreProvider.getInstance().setValue(new GameStore());
+        GameStoreProvider.getInstance().setValue(new GameStore("server ip"));
         loader = new FXMLLoader(getClass().getResource("/views/overlay_pause_menu.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root, 1920, 1080);
@@ -26,7 +26,7 @@ public class GameTestView extends Application {
         primaryStage.setTitle("GameScreen");
         primaryStage.show();
 
-        GameStore store = new GameStore();
+        GameStore store = new GameStore("server ip");
 
     }
 }
