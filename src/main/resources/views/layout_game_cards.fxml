@@ -4,4 +4,4 @@
 <HBox xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
       fx:controller="client.ui.controllers.LayoutCardController"
-      prefHeight="200" prefWidth="1080" fx:id="cards" spacing="-30"/>
+      prefHeight="200" prefWidth="1080" fx:id="cards" spacing="-75"/>

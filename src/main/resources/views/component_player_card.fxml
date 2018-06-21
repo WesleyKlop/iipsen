@@ -4,8 +4,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 <fx:root xmlns:fx="http://javafx.com/fxml" type="VBox"
-         xmlns="http://javafx.com/javafx"
-         style="-fx-font-family: monospace; -fx-font-weight: bolder; -fx-padding: 10" prefHeight="200">
-        <Label fx:id="amount" minWidth="30" textFill="black" prefHeight="20"/>
-        <ImageView fx:id="image" rotate="90" fitWidth="160" preserveRatio="true"/>
+         xmlns="http://javafx.com/javafx" stylesheets="/css/defaultStyling.css"
+         style="-fx-font-family: monospace; -fx-font-weight: bolder; -fx-padding: 10" prefHeight="200" maxWidth="130">
+    <Label fx:id="amount" minWidth="180" alignment="CENTER" textFill="black" prefHeight="200" translateY="-20"/>
+    <ImageView fx:id="image" rotate="90" fitWidth="180" preserveRatio="true"/>
 </fx:root>

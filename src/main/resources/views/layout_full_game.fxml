@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.Pane?>
 <Pane xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
       fx:controller="client.ui.FullGameController"
       prefHeight="1080" prefWidth="1920"
-      fx:id="rootPane" stylesheets="/css/defaultStyling.css">
+      fx:id="rootPane" stylesheets="/css/defaultStyling.css" styleClass="gameScreen">
+    <ImageView>
+        <Image url="/images/background_image_wood.jpg"/>
+    </ImageView>
 
     <fx:include source="layout_game_playerbox.fxml" layoutY="16" layoutX="230"/>
-    <fx:include source="layout_game_cards.fxml" fx:id="hand" layoutX="16" layoutY="864"/>
+    <fx:include source="layout_game_cards.fxml" fx:id="hand" layoutY="848"/>
     <fx:include source="layout_routes_map.fxml" fx:id="routesMap" scaleX="1.3" scaleY="1.3" layoutX="843"
                 layoutY="194"/>
     <fx:include source="layout_game_bank.fxml" fx:id="bank" layoutX="16" layoutY="16"/>
     <fx:include source="layout_route_card_stack.fxml" layoutX="230" layoutY="680"/>
-    <fx:include source="layout_game_hand_routecards.fxml" layoutY="789" layoutX="1354"/>
+    <fx:include source="layout_game_hand_routecards.fxml" layoutY="789" layoutX="1200"/>
 
     <fx:include source="layout_game_routecard.fxml" fx:id="initRouteCards"/>
 
