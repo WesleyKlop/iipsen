@@ -12,8 +12,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 class BuildRouteActionTest {
 
@@ -44,7 +43,7 @@ class BuildRouteActionTest {
     @Test
     void buildRouteNotEnoughCards() {
         player.getCardStack().addCard(CardType.LOCOMOTIVE);
-        action.executeAction(store);
+        assertThrows(Exception.class, () -> action.executeAction(store));
         assertFalse(testRoute1.hasOwner());
     }
 
@@ -52,7 +51,7 @@ class BuildRouteActionTest {
     void buildRouteEnoughCards() {
         player.getCardStack().addCard(CardType.CART_GREEN);
         player.getCardStack().addCard(CardType.LOCOMOTIVE);
-        action.executeAction(store);
+        assertDoesNotThrow(() -> action.executeAction(store));
         assertEquals(1, testRoute1.getOwner());
     }
 
@@ -61,7 +60,7 @@ class BuildRouteActionTest {
         testRoute1.setOwner(2);
         player.getCardStack().addCard(CardType.CART_GREEN);
         player.getCardStack().addCard(CardType.LOCOMOTIVE);
-        action.executeAction(store);
+        assertDoesNotThrow(() -> action.executeAction(store));
         assertEquals(1, testRoute1.getOwner());
     }
 

@@ -28,7 +28,7 @@ public class BuildRouteAction implements Action {
     }
 
     @Override
-    public void executeAction(GameStore store) {
+    public void executeAction(GameStore store) throws Exception {
         Player player = store.getPlayerById(playerId);
         RouteType type = route.getRouteType();
         int extraCosts = 0;
@@ -55,14 +55,10 @@ public class BuildRouteAction implements Action {
         return playerId;
     }
 
-    private void build(Route route, Player player) {
-        try {
+    private void build(Route route, Player player) throws Exception {
             player.getCardStack().takeCards(costs);
             route.setOwner(player.getId());
             player.givePoints(route.getPoints());
             player.takeTrains(route.getLength());
-        } catch (Exception e) {
-            Log.error("Couldn't build route", e);
-        }
     }
 }

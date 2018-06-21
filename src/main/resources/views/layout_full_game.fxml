@@ -8,7 +8,7 @@
       prefHeight="1080" prefWidth="1920"
       fx:id="rootPane" stylesheets="/css/defaultStyling.css" styleClass="gameScreen">
     <ImageView>
-        <Image url="/images/background_image_wood.jpg"/>
+        <Image url="/images/gamescreen.png"/>
     </ImageView>
 
     <fx:include source="layout_game_playerbox.fxml" layoutY="16" layoutX="230"/>
