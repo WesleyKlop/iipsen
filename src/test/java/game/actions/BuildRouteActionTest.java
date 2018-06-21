@@ -1,6 +1,7 @@
 package game.actions;
 
 import game.GameStore;
+import game.GameStoreProvider;
 import game.cards.CardType;
 import game.location.ELocation;
 import game.player.Player;
@@ -26,7 +27,8 @@ class BuildRouteActionTest {
         player = new Player("Vitas", Color.BLUEVIOLET);
         player.setId(1);
         testRoute1 = new Route(1, 2, 1, ELocation.GOTEBORG, ELocation.ALBORG, CardType.CART_GREEN, RouteType.NORMAL);
-        store = new GameStore();
+        store = new GameStore("");
+        GameStoreProvider.getInstance().setValue(store);
         store.getPlayers().add(player);
         action = new BuildRouteAction(player.getId(), testRoute1);
     }
