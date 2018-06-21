@@ -63,6 +63,10 @@ public class Player implements Serializable {
         return color;
     }
 
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     public Color getColorAsColor() {
         return Color.web(this.color);
     }

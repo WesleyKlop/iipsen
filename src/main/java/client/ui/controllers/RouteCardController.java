@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import util.Observable;
@@ -27,7 +28,8 @@ public class RouteCardController {
     boolean[] BooleanRouteCards = new boolean[5];
     boolean currentState = false;
     int routefalse = 0;
-
+    @FXML
+    Pane rootPane;
     @FXML
     private Text Textroutecards;
 
@@ -45,8 +47,8 @@ public class RouteCardController {
 
     private void updateCard(int index) {
         ImageView imageView = (ImageView) Routecardbox.getChildren().get(index);
-        imageView.setImage(new Image(getClass().getResourceAsStream(store.getSelectableRouteCards().getBank().getRandomRouteCard().getImagePath())));
         routecardtemp[index] = store.getSelectableRouteCards().getBank().getRandomRouteCard();
+        imageView.setImage(new Image(getClass().getResourceAsStream(routecardtemp[index].getImagePath())));
     }
 
 
@@ -80,6 +82,7 @@ public class RouteCardController {
             }
             Action RouteCardAction = new SelectRouteCardsAction(store.getPlayersTurn(), routecardtemp);
             GameStoreProvider.sendAction(RouteCardAction);
+            rootPane.setVisible(false);
         }
         routefalse = 0;
     }

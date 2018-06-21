@@ -30,5 +30,7 @@
 
     <!--Overlay messages:-->
     <fx:include source="overlay_build_message.fxml" fx:id="route_costs" layoutY="100" layoutX="2020"/>
+    <fx:include source="overlay_build_message.fxml"/>
+
 
 </Pane>

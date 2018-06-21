@@ -8,7 +8,8 @@
 <?import javafx.scene.text.Text?>
 <Pane xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
-      fx:controller="client.ui.controllers.RouteCardController">
+      fx:controller="client.ui.controllers.RouteCardController"
+      fx:id="rootPane">
     <VBox spacing="10" alignment="CENTER"
           style="-fx-background-color: rgba(0,0,0,0.8); -fx-padding: 10 10 10 10; -fx-background-radius: 10">
         <Text fx:id="Textroutecards" style="-fx-font-size: 20; -fx-font-weight: bold" fill="white" stroke="black">Choose
