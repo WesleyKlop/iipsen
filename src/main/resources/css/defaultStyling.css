@@ -27,8 +27,9 @@ Label {
     -fx-pref-width: 250;
 }
 
-.normal-label {
-    -fx-font-size: 20;
+.amount-label {
+    -fx-background-color: #FFF;
+    -fx-background-radius: 10 10 0 0;
 }
 
 .fancy-label:hover {

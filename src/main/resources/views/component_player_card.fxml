@@ -5,7 +5,10 @@
 <?import javafx.scene.layout.VBox?>
 <fx:root xmlns:fx="http://javafx.com/fxml" type="VBox"
          xmlns="http://javafx.com/javafx" stylesheets="/css/defaultStyling.css"
-         style="-fx-font-family: monospace; -fx-font-weight: bolder; -fx-padding: 10" prefHeight="200" maxWidth="130">
-    <Label fx:id="amount" minWidth="180" alignment="CENTER" textFill="black" prefHeight="200" translateY="-20"/>
-    <ImageView fx:id="image" rotate="90" fitWidth="180" preserveRatio="true"/>
+         style="-fx-font-family: monospace; -fx-font-weight: bolder; -fx-padding: 10" prefHeight="200" maxWidth="130"
+         alignment="CENTER"
+         spacing="-2">
+    <Label fx:id="amount" minWidth="100" alignment="CENTER" textFill="black" prefHeight="20" translateY="-20"
+           styleClass="amount-label"/>
+    <ImageView fx:id="image" rotate="90" fitWidth="180" preserveRatio="true" translateY="15"/>
 </fx:root>

@@ -87,7 +87,7 @@ public class RouteViewFactory {
             route.setLayoutY(routeY);
             route.setRotate(baseRot);
             route.setSpacing(CART_SPACING);
-            route.setAlignment(Pos.CENTER);
+            route.setAlignment(Pos.BASELINE_CENTER);
             route.setPickOnBounds(false);
             route.setOnMouseEntered(this.onHoverEnter);
             route.setOnMouseExited(this.onHoverExit);
@@ -123,12 +123,12 @@ public class RouteViewFactory {
                     cart.setWidth(CART_WIDTH);
                     cart.setArcWidth(arc);
                     cart.setArcHeight(arc);
-                    cartIcon.setFitWidth(CART_WIDTH - 2);
+                    cartIcon.setFitWidth(CART_WIDTH);
                 }
                 cartIcon.setImage(icon);
                 int opacity = (isColorBlind()) ? 1 : 0;
                 cartIcon.setOpacity(opacity);
-                cartIcon.setFitHeight(CART_LENGTH - 2);
+                cartIcon.setFitHeight(CART_LENGTH);
                 cart.setHeight(CART_LENGTH);
                 cartStack.setTranslateX(x);
                 cartStack.setTranslateY(y);
