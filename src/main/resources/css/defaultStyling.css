@@ -23,6 +23,10 @@ Label {
     -fx-pref-width: 250;
 }
 
+.normal-label {
+    -fx-font-size: 20;
+}
+
 .fancy-label:hover {
     -fx-text-fill: #F00;
     -fx-cursor: hand;

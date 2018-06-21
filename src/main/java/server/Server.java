@@ -6,7 +6,9 @@ import game.actions.Action;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.net.InetAddress;
 import java.net.MalformedURLException;
+import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -20,16 +22,18 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
     public static final String REGISTRY_NAME = "TTRGameService";
     private static final Logger Log = LogManager.getLogger(Server.class);
     private static final int PORT = 1099;
+    private String Ip;
 
     private List<GameStoreClient> clients = new ArrayList<>();
     private GameStore gameStore = new GameStore();
 
-    public Server() throws RemoteException, MalformedURLException {
+    public Server() throws RemoteException, MalformedURLException, UnknownHostException {
         Log.debug("Starting server");
 
         LocateRegistry.createRegistry(PORT);
         Naming.rebind(REGISTRY_NAME, this);
-        Log.debug("Server started");
+        Ip = InetAddress.getLocalHost().getHostAddress();
+        Log.debug("Server started at: " + Ip);
 
         gameStore.getCardStackController().populateOpenCards();
         gameStore.getSelectableRouteCards().populatePickableCards();
@@ -69,12 +73,16 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnknownHostException {
         try {
             new Server();
         } catch (RemoteException | MalformedURLException e) {
             Log.error("Error occured while running server", e);
         }
+    }
+
+    public String getIpAddress() {
+        return Ip;
     }
 
 }

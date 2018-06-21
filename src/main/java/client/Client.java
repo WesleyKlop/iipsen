@@ -17,6 +17,7 @@ import server.Server;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 
 public class Client extends Application implements SceneListener {
@@ -56,7 +57,7 @@ public class Client extends Application implements SceneListener {
                     startServer();
                     rootPaneController.getPreferenceController().submitPreferences();
                 }
-            } catch (MalformedURLException | RemoteException e1) {
+            } catch (MalformedURLException | RemoteException | UnknownHostException e1) {
                 Log.error(e1);
             }
         });
@@ -72,7 +73,7 @@ public class Client extends Application implements SceneListener {
         primaryStage.show();
     }
 
-    private void startServer() throws MalformedURLException, RemoteException {
+    private void startServer() throws MalformedURLException, RemoteException, UnknownHostException {
         client = new GameClient(new Server(), this);
     }
 

@@ -31,6 +31,8 @@ public class LobbyController implements Observer<GameStore> {
     @FXML
     public VBox container;
     public Label startButtonLabel, quitButtonLabel;
+    @FXML
+    private Label ipAddress;
 
     @FXML
     public void initialize() {
@@ -75,6 +77,9 @@ public class LobbyController implements Observer<GameStore> {
             (int) (color.getBlue() * 255));
     }
 
+    public void setIpAddress(String address) {
+        ipAddress.setText(address);
+    }
 
     @Override
     public void onUpdate(final GameStore value) {
