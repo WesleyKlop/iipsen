@@ -101,7 +101,7 @@ public class GameCostsController {
     @FXML
     private void buildRoute() throws RemoteException {
         GameStore store = GameStoreProvider.getStore();
-        Player player = store.getPlayerById(store.getPlayersTurn());
+        Player player = GameStoreProvider.getPlayer();
         Route route = store.getRouteStore().getRouteById(currentId);
         if (BuildRouteControle(route, player)) {
             Action buildAction = new BuildRouteAction(player.getId(), route);

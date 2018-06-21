@@ -2,6 +2,7 @@ package game.actions;
 
 import client.ui.MessagesControllerProvider;
 import game.GameStore;
+import game.GameStoreProvider;
 import game.cards.CardStack;
 import game.cards.CardType;
 import game.player.Player;
@@ -48,6 +49,7 @@ public class BuildRouteAction implements Action {
         } else {
             build(route, player);
         }
+        GameStoreProvider.getStore().cyclePlayerTurn();
     }
 
     @Override

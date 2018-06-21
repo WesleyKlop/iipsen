@@ -61,8 +61,6 @@ public class FullGameController implements Observer<UserPreferences.PreferencesC
 
 
     public void ScoreEntered() {
-        iv1.setFitHeight(170);
-        iv1.setFitWidth(300);
         rootPane.getChildren().addAll(iv1);
     }
 
