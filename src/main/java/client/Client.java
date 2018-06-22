@@ -120,11 +120,11 @@ public class Client extends Application implements SceneListener {
                 // Switch to pause screen
                 break;
             case FINISHED:
-                newRoot = getParent("layout_finished");
+                newRoot = getParent("layout_end_screen");
                 // Switch to end screen
                 break;
         }
-        if (newRoot != null && newTitle != null) {
+        if (newRoot != null) {
             setStage(newRoot, newTitle);
         }
     }

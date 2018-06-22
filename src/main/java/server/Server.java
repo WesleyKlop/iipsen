@@ -53,9 +53,14 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
     }
 
     @Override
-    public synchronized void notifyListeners() throws RemoteException {
+    public synchronized void notifyListeners() {
         for (GameStoreClient client : clients) {
-            client.onGameStoreReceived(gameStore);
+            try {
+                client.onGameStoreReceived(gameStore);
+            } catch (RemoteException e) {
+                Log.error("Failed to update client.. removing him from listeners");
+                clients.remove(client);
+            }
         }
     }
 

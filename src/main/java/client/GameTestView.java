@@ -10,23 +10,18 @@ import javafx.stage.Stage;
 
 public class GameTestView extends Application {
 
-    private FXMLLoader loader;
-
     public static void main(String[] args) {
         launch(args);
     }
 
     public void start(Stage primaryStage) throws Exception {
         GameStoreProvider.getInstance().setValue(new GameStore("server ip"));
-        loader = new FXMLLoader(getClass().getResource("/views/layout_eind_scherm.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/layout_end_screen.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root, 1920, 1080);
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
         primaryStage.setTitle("GameScreen");
         primaryStage.show();
-
-        GameStore store = new GameStore("server ip");
-
     }
 }

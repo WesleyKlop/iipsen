@@ -5,15 +5,11 @@
 <?import javafx.scene.layout.VBox?>
 <Pane xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
-      fx:controller="client.ui.controllers.LayoutEindScherm"
-      prefHeight="1080.0" prefWidth="1920.0" fx:id="rootPane"
+      fx:controller="client.ui.controllers.LayoutEndScreen"
+      prefHeight="1080.0" prefWidth="1920.0"
       style="-fx-background-color: linear-gradient(to bottom, #bfe8f9 0%,#0082ED 70%);">
     <HBox layoutX="560">
-        <VBox translateY="37" spacing="225" fx:id="content">
-
-        </VBox>
-        <VBox fx:id="prizes">
-
-        </VBox>
+        <VBox translateY="37" spacing="225" fx:id="content"/>
+        <VBox fx:id="prizes"/>
     </HBox>
 </Pane>
