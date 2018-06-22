@@ -18,7 +18,7 @@ public class GameTestView extends Application {
 
     public void start(Stage primaryStage) throws Exception {
         GameStoreProvider.getInstance().setValue(new GameStore("server ip"));
-        loader = new FXMLLoader(getClass().getResource("/views/overlay_pause_menu.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/views/layout_eind_scherm.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root, 1920, 1080);
         primaryStage.setScene(scene);
