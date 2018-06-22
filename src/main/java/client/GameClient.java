@@ -98,14 +98,12 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
     @Override
     public void sendAction(Action action) {
         // Run
-        new Thread(() -> {
+        try {
             lastAction = action;
-            try {
-                server.onActionReceived(action);
-            } catch (RemoteException e) {
-                Log.error("Error sending action to server", e);
-            }
-        }).start();
+            server.onActionReceived(action);
+        } catch (RemoteException e) {
+            Log.error("Error sending action to server", e);
+        }
     }
 
     @Override

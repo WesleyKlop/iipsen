@@ -33,12 +33,12 @@ public class GameCostsController {
     private HBox trainBox1, trainBox2, trainBox3;
     @FXML
     private Label locations, tunnelWarning, owner;
-    private Image image;
     @FXML
     private Button buildButton;
 
     private int currentId;
 
+    @FXML
     public void initialize() {
         locations.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/MavenPro-Medium.ttf"), 25));
     }
@@ -64,6 +64,7 @@ public class GameCostsController {
         int trainWidth = (int) Math.min((trainBox1.getMaxWidth() / Math.min(l, 4)) - ((Math.min(l, 4) - 1) * 10), 250);
 
         for (int i = 0; i < l; i++) {
+            Image image;
             if (i < locs) {
                 image = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/LOCOMOTIVE.png"));
             } else {

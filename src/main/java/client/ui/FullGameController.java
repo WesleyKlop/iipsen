@@ -1,6 +1,7 @@
 package client.ui;
 
 import client.UserPreferences;
+import client.UserPreferences.PreferencesContainer;
 import client.ui.controllers.LayoutCardController;
 import game.GameStoreProvider;
 import javafx.animation.TranslateTransition;
@@ -12,9 +13,7 @@ import javafx.stage.Screen;
 import javafx.util.Duration;
 import util.Observer;
 
-import static client.UserPreferences.isColorBlind;
-
-public class FullGameController implements Observer<UserPreferences.PreferencesContainer> {
+public class FullGameController implements Observer<PreferencesContainer> {
 
     private Image image = new Image("/images/points.png");
     private ImageView iv1 = new ImageView();
@@ -32,7 +31,7 @@ public class FullGameController implements Observer<UserPreferences.PreferencesC
     private GameRoutesMapController routesMapController;
     @FXML
     private Pane initRouteCards;
-    private boolean colorBlind = isColorBlind();
+    private boolean colorBlind = UserPreferences.isColorBlind();
 
 
     public void initialize() {
@@ -70,9 +69,9 @@ public class FullGameController implements Observer<UserPreferences.PreferencesC
     }
 
     @Override
-    public void onUpdate(UserPreferences.PreferencesContainer value) {
-        if (colorBlind != isColorBlind()) {
-            colorBlind = isColorBlind();
+    public void onUpdate(PreferencesContainer value) {
+        if (colorBlind != value.isColorBlind()) {
+            colorBlind = value.isColorBlind();
             handController.switchColorBlind(GameStoreProvider.getPlayer());
             bankController.updateCardImages(GameStoreProvider.getStore());
             routesMapController.switchColorBlind(colorBlind);
