@@ -1,7 +1,6 @@
 package game.actions;
 
 import game.GameStore;
-import game.GameStoreProvider;
 import game.routecards.RouteCard;
 
 import java.util.List;
@@ -25,7 +24,7 @@ public class SelectRouteCardsAction implements Action {
             player.addRouteCard(card);
         }
         store.getSelectableRouteCards().populatePickableCards();
-        GameStoreProvider.getStore().cyclePlayerTurn();
+        store.cyclePlayerTurn();
     }
 
     @Override

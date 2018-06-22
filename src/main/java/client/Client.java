@@ -29,6 +29,8 @@ public class Client extends Application implements SceneListener {
     private Stage stage;
     private Scene scene;
     private StartupController rootPaneController;
+    // Try to fix scene diffing
+    private GameState currentState;
 
     public static void main(String[] args) {
         launch(args);
@@ -94,8 +96,13 @@ public class Client extends Application implements SceneListener {
     }
 
     @Override
-    public void onSceneChange(GameState state) {
-        Log.debug("Got new scene {}", state);
+    public void updateSceneState(GameState state) {
+        if (this.currentState == state) {
+//            Log.warn("I think we're going to set the new scene twice.. {} to {}", this.currentState, state);
+            return;
+        }
+        Log.info("!!! CHANGING SCENE TO {} !!!", state);
+        currentState = state;
 
         Parent newRoot = null;
         String newTitle = null;

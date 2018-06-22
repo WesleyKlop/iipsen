@@ -9,8 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
@@ -18,7 +16,7 @@ import java.io.IOException;
  * @author Wesley Klop
  */
 public class PlayerCard extends VBox {
-    private static final Logger Log = LogManager.getLogger(PlayerCard.class);
+    //    private static final Logger Log = LogManager.getLogger(PlayerCard.class);
     private final Card card;
     private int count;
 
@@ -46,7 +44,7 @@ public class PlayerCard extends VBox {
     private void initialize() {
         var path = card.getPath();
         var stream = getClass().getResourceAsStream(path);
-        Log.debug("Image path: {}", path);
+//        Log.debug("Image path: {}", path);
         image.setImage(new Image(stream));
         amount.setText(String.valueOf(count));
     }

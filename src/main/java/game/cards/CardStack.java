@@ -115,7 +115,6 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
         for (CardStack.Entry<CardType, Integer> entry : cards.entrySet()) {
             for (int i = 0; i < entry.getValue(); i++) {
                 this.getCard(entry.getKey());
-                System.out.println("Taking card from the stack");
             }
         }
     }

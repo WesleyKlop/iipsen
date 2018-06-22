@@ -6,7 +6,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -22,11 +21,13 @@ public class RouteStore implements Serializable {
     private List<Route> routeList = new ArrayList<>();
 
     public RouteStore() {
-        InputStream stream = getClass().getResourceAsStream("/string/gameRoutes.xml");
-        generateRoutes(stream);
+        if (routeList.isEmpty()) {
+            InputStream stream = getClass().getResourceAsStream("/string/gameRoutes.xml");
+            generateRoutes(stream);
+        }
     }
 
-    public void generateRoutes(InputStream stream) {
+    private void generateRoutes(InputStream stream) {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -35,8 +36,7 @@ public class RouteStore implements Serializable {
             NodeList routesList = rDoc.getElementsByTagName("route");
 
             for (int i = 0; i < routesList.getLength(); i++) {
-                Node nRoute = routesList.item(i);
-                Element eRoute = (Element) nRoute;
+                Element eRoute = (Element) routesList.item(i);
 
                 int id = Integer.parseInt(eRoute.getAttribute("id"));
                 int length = Integer.parseInt(eRoute.getElementsByTagName("length").item(0).getTextContent());

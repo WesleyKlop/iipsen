@@ -5,7 +5,6 @@ import game.GameStore;
 import game.GameStoreProvider;
 import game.actions.Action;
 import game.actions.AddPlayerAction;
-import game.actions.ChangeStateAction;
 import javafx.application.Platform;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,7 +29,7 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
     private transient SceneListener sceneListener;
     private transient Action lastAction;
 
-    public GameClient(String ip, SceneListener sceneListener) throws RemoteException {
+    GameClient(String ip, SceneListener sceneListener) throws RemoteException {
         super();
         this.sceneListener = sceneListener;
 
@@ -44,7 +43,7 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
 
     }
 
-    public GameClient(GameStoreServer server, SceneListener sceneListener) throws RemoteException {
+    GameClient(GameStoreServer server, SceneListener sceneListener) throws RemoteException {
         super();
         this.sceneListener = sceneListener;
 
@@ -62,39 +61,38 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
     public void onGameStoreReceived(GameStore newStore) {
         Log.debug("Received new gamestore");
 
+        // Over RMI this would return false, on the host this returns true.. :@     Solution: Maybe create a method to clone the gamestore
+        Log.debug("Is the newStore the same as the old one? this is weird prob: {}", newStore == storeObservable.getValue());
+
         if (GameStoreProvider.getPlayer() != null) {
             // Update the player on the GameStoreProvider
             GameStoreProvider.setPlayer(newStore.getPlayerById(GameStoreProvider.getPlayer().getId()));
             Log.debug("Updated player");
         }
 
-        if (newStore.getGameState() != storeObservable.getValue().getGameState()) {
-            Log.debug("Received new state, switching..");
-            sceneListener.onSceneChange(newStore.getGameState());
-        }
 
         // Process previous actions' response
         if (lastAction != null) {
             Platform.runLater(() -> {
-                processLastActionResponse();
+                processLastActionResponse(newStore);
                 lastAction = null;
             });
         }
 
         // finally
+        sceneListener.updateSceneState(newStore.getGameState());
         storeObservable.setValue(newStore);
     }
 
-    private void processLastActionResponse() {
-        var store = storeObservable.getValue();
-
+    private void processLastActionResponse(GameStore store) {
         if (lastAction instanceof AddPlayerAction) {
             var players = store.getPlayers();
             GameStoreProvider.setPlayer(players.get(players.size() - 1));
-            sceneListener.onSceneChange(GameState.LOBBY);
-        } else if (lastAction instanceof ChangeStateAction) {
-            sceneListener.onSceneChange(store.getGameState());
+            sceneListener.updateSceneState(GameState.LOBBY);
         }
+//         else if (lastAction instanceof ChangeStateAction) {
+//            sceneListener.updateSceneState(store.getGameState());
+//        }
     }
 
     @Override

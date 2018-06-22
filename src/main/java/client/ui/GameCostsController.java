@@ -11,6 +11,7 @@ import game.routecards.Route;
 import game.routecards.RouteType;
 import javafx.animation.Transition;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -131,7 +132,7 @@ public class GameCostsController {
         return player.getCardStack().containsCards(route.getCostsAsCardStack()) && !route.hasOwner();
     }
 
-    public void setRouteWarning(String text) {
-        tunnelWarning.setText(text);
+    void setRouteWarning(String text) {
+        Platform.runLater(() -> tunnelWarning.setText(text));
     }
 }

@@ -18,12 +18,13 @@ import java.util.List;
  * @author Wesley Klop
  */
 public class GameStore implements Serializable {
-    private GameState gameState = GameState.LOBBY;
+    private GameState gameState;
     private List<Player> players = new ArrayList<>();
     private CardStackController cardStackController = new CardStackController();
     private SelectableRouteCards selectableRouteCards = new SelectableRouteCards(new RouteCardStackBank());
     private RouteStore routeStore = new RouteStore();
     private int playersTurn = 0;
+    private int lastTurn = -1;
     private final String serverIp;
 
     public GameStore(String ip) {
@@ -77,6 +78,18 @@ public class GameStore implements Serializable {
 
     public String getServerIp() {
         return serverIp;
+    }
+
+    public int getLastTurn() {
+        return lastTurn;
+    }
+
+    public void setLastTurn(int lastTurn) {
+        this.lastTurn = lastTurn;
+    }
+
+    public boolean shouldGoToLastTurn(int playerId) {
+        return getPlayerById(playerId).getTraincarts() <= 2 && lastTurn == -1;
     }
 
     //TODO

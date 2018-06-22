@@ -78,7 +78,7 @@ public class LobbyController implements Observer<GameStore> {
             (int) (color.getBlue() * 255));
     }
 
-    public void setIpAddress(String address) {
+    private void setIpAddress(String address) {
         ipAddress.setText(address);
     }
 

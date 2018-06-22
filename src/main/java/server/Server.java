@@ -1,6 +1,7 @@
 package server;
 
 import client.GameStoreClient;
+import game.GameState;
 import game.GameStore;
 import game.actions.Action;
 import org.apache.logging.log4j.LogManager;
@@ -62,11 +63,32 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
     public synchronized void onActionReceived(Action action) {
         try {
             action.executeAction(gameStore);
+
+            doSideEffects(action);
+
             Log.debug("Executed action");
             notifyListeners();
             Log.debug("Notified listeners");
         } catch (Exception ex) {
             Log.error("Server error while executing action", ex);
+        }
+    }
+
+    private void doSideEffects(Action action) {
+        // Only do side effects for actions that are caused by a "player"
+        if (action.getPlayerId() == -1) {
+            return;
+        }
+
+        if (gameStore.shouldGoToLastTurn(action.getPlayerId())) {
+            // When the player that did his turn has 2 ore less trainscarts we should set the last turn param
+            Log.info("Player has 2 or less carts left.. Going to final round..");
+            gameStore.setLastTurn(action.getPlayerId());
+        } else if (gameStore.getLastTurn() == action.getPlayerId()) {
+            // Else if the action player id is the same as the id of the last turn player
+            // We should go to finish.
+            Log.info("Going to finished state!");
+            gameStore.setGameState(GameState.FINISHED);
         }
     }
 

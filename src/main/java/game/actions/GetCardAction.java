@@ -1,7 +1,6 @@
 package game.actions;
 
 import game.GameStore;
-import game.GameStoreProvider;
 import game.cards.Card;
 
 /**
@@ -34,7 +33,7 @@ public class GetCardAction implements Action {
             }
             store.getPlayerById(playerId).getCardStack().addCard(card);
         }
-        GameStoreProvider.getStore().cyclePlayerTurn();
+        store.cyclePlayerTurn();
     }
 
     @Override

@@ -2,7 +2,6 @@ package game.actions;
 
 import client.ui.MessagesControllerProvider;
 import game.GameStore;
-import game.GameStoreProvider;
 import game.cards.CardStack;
 import game.cards.CardType;
 import game.player.Player;
@@ -40,16 +39,14 @@ public class BuildRouteAction implements Action {
                     extraCosts++;
                 }
             }
-            if (player.getCardStack().containsCards(costs)) {
-                MessagesControllerProvider.getMessageController().setBuildRouteWarning("Extra costs for tunnel: " + extraCosts);
-                build(route, player);
-            } else {
-                MessagesControllerProvider.getMessageController().setBuildRouteWarning("Extra costs for tunnel: " + extraCosts);
-            }
-        } else {
+            MessagesControllerProvider.getMessageController().setBuildRouteWarning("Extra costs for tunnel: " + extraCosts);
+        }
+
+        if (player.getCardStack().containsCards(costs)) {
             build(route, player);
         }
-        GameStoreProvider.getStore().cyclePlayerTurn();
+
+        store.cyclePlayerTurn();
     }
 
     @Override
@@ -58,9 +55,9 @@ public class BuildRouteAction implements Action {
     }
 
     private void build(Route route, Player player) throws Exception {
-            player.getCardStack().takeCards(costs);
-            route.setOwner(player.getId());
-            player.givePoints(route.getPoints());
-            player.takeTrains(route.getLength());
+        player.getCardStack().takeCards(costs);
+        route.setOwner(player.getId());
+        player.givePoints(route.getPoints());
+        player.takeTrains(route.getLength());
     }
 }

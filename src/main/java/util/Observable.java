@@ -1,5 +1,8 @@
 package util;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,6 +12,7 @@ import java.util.Set;
  * @author Wesley Klop
  */
 public class Observable<T> {
+    private static final Logger Log = LogManager.getLogger(Observable.class);
     //    private Set<Observer<T>> observers = Collections.newSetFromMap(new WeakHashMap<>());
     private Set<Observer<T>> observers = new HashSet<>();
 
@@ -55,6 +59,7 @@ public class Observable<T> {
      * @param value the new value
      */
     public void setValue(T value) {
+        Log.debug("Updating observable with new value..");
         currentValue = value;
         notifyObservers();
     }
@@ -62,7 +67,7 @@ public class Observable<T> {
     /**
      * Notify all observers
      */
-    public void notifyObservers() {
+    private void notifyObservers() {
         for (Observer<T> observer : observers) {
             if (observer != null)
                 observer.onUpdate(currentValue);
