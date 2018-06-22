@@ -19,9 +19,7 @@ public class MessagesController {
     @FXML
     private RouteCardMessageController routeCardsController;
     @FXML
-    private StackPane routes, train, routeCards;
-    @FXML
-    private StackPane notYourTurn;
+    private StackPane routes, train, routeCards, notYourTurn;
 
 
     public void initialize() {

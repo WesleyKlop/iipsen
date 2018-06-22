@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           xmlns="http://javafx.com/javafx"
+           fx:controller="client.ui.TrainCardMessageController"
+           prefHeight="600.0" prefWidth="1000.0"
+           fx:id="rootPane">
+
+    <Rectangle width="1000" height="600" fill="#333" opacity="0.75" arcHeight="20" arcWidth="20"
+               style="-fx-background-color: #333"/>
+    <VBox alignment="BASELINE_CENTER" prefWidth="1000" prefHeight="600">
+        <Label text="It is not your turn!"/>
+    </VBox>
+</StackPane>
