@@ -1,23 +1,25 @@
 package game.cards;
 
+import java.io.Serializable;
+
+import static client.UserPreferences.isColorBlind;
+
 /**
  * Card class
  * Contains CardType
  * TODO: Path for graphic depending on #cardType
  * TODO: Custom card functionality
  */
-public class Card {
+public class Card implements Serializable {
     private final CardType cardType;
-    private String path;
 
     /**
      * Create a Card of a specific type
      *
      * @param cardType the CardType
      */
-    Card(CardType cardType) {
+    public Card(CardType cardType) {
         this.cardType = cardType;
-        this.path = "/cards/" + cardType + ".png";
     }
 
     /**
@@ -25,7 +27,7 @@ public class Card {
      *
      * @return the CardType
      */
-    CardType getCardType() {
+    public CardType getCardType() {
         return cardType;
     }
 
@@ -36,6 +38,6 @@ public class Card {
      * @return the filepath for a card
      */
     public String getPath() {
-        return path;
+        return String.format("/cards/%s/%s.png", String.valueOf(isColorBlind()).toUpperCase(), cardType);
     }
 }

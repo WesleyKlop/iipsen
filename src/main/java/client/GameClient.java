@@ -5,8 +5,7 @@ import game.GameStore;
 import game.GameStoreProvider;
 import game.actions.Action;
 import game.actions.AddPlayerAction;
-import game.actions.ChangeStateAction;
-import game.player.Player;
+import javafx.application.Platform;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import server.GameStoreServer;
@@ -29,9 +28,8 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
     private transient Observable<GameStore> storeObservable = GameStoreProvider.getInstance();
     private transient SceneListener sceneListener;
     private transient Action lastAction;
-    private Player player;
 
-    public GameClient(String ip, SceneListener sceneListener) throws RemoteException {
+    GameClient(String ip, SceneListener sceneListener) throws RemoteException {
         super();
         this.sceneListener = sceneListener;
 
@@ -40,12 +38,12 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
             server = (GameStoreServer) Naming.lookup("//" + ip + "/" + Server.REGISTRY_NAME);
             registerClient();
         } catch (NotBoundException | MalformedURLException e) {
-            e.printStackTrace();
+            Log.error("Could not connect to server", e);
         }
 
     }
 
-    public GameClient(GameStoreServer server, SceneListener sceneListener) throws RemoteException {
+    GameClient(GameStoreServer server, SceneListener sceneListener) throws RemoteException {
         super();
         this.sceneListener = sceneListener;
 
@@ -63,38 +61,60 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
     public void onGameStoreReceived(GameStore newStore) {
         Log.debug("Received new gamestore");
 
+        // Over RMI this would return false, on the host this returns true.. :@     Solution: Maybe create a method to clone the gamestore
+        Log.debug("Is the newStore the same as the old one? this is weird prob: {}", newStore == storeObservable.getValue());
+
+        if (GameStoreProvider.getPlayer() != null) {
+            // Update the player on the GameStoreProvider
+            GameStoreProvider.setPlayer(newStore.getPlayerById(GameStoreProvider.getPlayer().getId()));
+            Log.debug("Updated player");
+        }
+
+
         // Process previous actions' response
         if (lastAction != null) {
-            processLastActionResponse();
-            lastAction = null;
+            Platform.runLater(() -> {
+                processLastActionResponse(newStore);
+                lastAction = null;
+            });
         }
 
         // finally
+        sceneListener.updateSceneState(newStore.getGameState());
         storeObservable.setValue(newStore);
     }
 
-    private void processLastActionResponse() {
-        var store = storeObservable.getValue();
-
+    private void processLastActionResponse(GameStore store) {
         if (lastAction instanceof AddPlayerAction) {
             var players = store.getPlayers();
-            player = players.get(players.size() - 1);
-            sceneListener.onSceneChange(GameState.LOBBY);
-        } else if (lastAction instanceof ChangeStateAction) {
-            sceneListener.onSceneChange(store.getGameState());
+            GameStoreProvider.setPlayer(players.get(players.size() - 1));
+            sceneListener.updateSceneState(GameState.LOBBY);
         }
+//         else if (lastAction instanceof ChangeStateAction) {
+//            sceneListener.updateSceneState(store.getGameState());
+//        }
     }
 
     @Override
-    public void sendAction(Action action) throws RemoteException {
-        lastAction = action;
-        server.onActionReceived(action);
+    public void sendAction(Action action) {
+        // Run
+        new Thread(() -> {
+            lastAction = action;
+            try {
+                server.onActionReceived(action);
+            } catch (RemoteException e) {
+                Log.error("Error sending action to server", e);
+            }
+        }).start();
     }
 
     @Override
     public void onConnect(GameStore initialStore) {
         storeObservable.setValue(initialStore);
         Log.debug("Connected to server");
-        sceneListener.onSceneChange(GameState.INIT);
+    }
+
+    public Observable<GameStore> getStoreObservable() {
+        return storeObservable;
     }
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<HBox xmlns:fx="http://javafx.com/fxml"
+      xmlns="http://javafx.com/javafx"
+      fx:controller="client.ui.controllers.LayoutCardController"
+      prefHeight="200" prefWidth="1080" fx:id="cards" spacing="-75"/>

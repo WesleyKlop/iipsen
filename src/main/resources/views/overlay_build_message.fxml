@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           xmlns="http://javafx.com/javafx"
+           fx:controller="client.ui.GameCostsController"
+           prefHeight="600.0" prefWidth="1000.0"
+           fx:id="rootPane">
+
+    <Rectangle width="1000" height="600" fill="#333" opacity="0.75" arcHeight="20" arcWidth="20"
+               style="-fx-background-color: #333"/>
+    <VBox alignment="CENTER" spacing="5">
+        <HBox fx:id="trainBox1" maxWidth="1000" layoutX="50" layoutY="62" spacing="10"
+              alignment="CENTER"/>
+        <HBox fx:id="trainBox2" maxWidth="600" layoutX="50" layoutY="62" spacing="10"
+              alignment="CENTER"/>
+        <HBox fx:id="trainBox3" maxWidth="600" layoutX="50" layoutY="62" spacing="10"
+              alignment="CENTER"/>
+        <Label fx:id="locations" textFill="#FFF"/>
+        <Label fx:id="owner" textFill="#FFF"/>
+        <Label fx:id="tunnelWarning" textFill="#FFF"/>
+        <HBox alignment="CENTER" spacing="10">
+            <Button text="Cancel" onMouseClicked="#closeAnimation"/>
+            <Button fx:id="buildButton" text="Build" onMouseClicked="#buildRoute"/>
+        </HBox>
+    </VBox>
+
+
+</StackPane>

@@ -1,5 +1,8 @@
 package util;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,6 +12,8 @@ import java.util.Set;
  * @author Wesley Klop
  */
 public class Observable<T> {
+    private static final Logger Log = LogManager.getLogger(Observable.class);
+    //    private Set<Observer<T>> observers = Collections.newSetFromMap(new WeakHashMap<>());
     private Set<Observer<T>> observers = new HashSet<>();
 
     private T currentValue;
@@ -24,7 +29,7 @@ public class Observable<T> {
     /**
      * Subscribe to changes of object T
      *
-     * @param observer the Object that implements the {@see Observer<T>} interface.
+     * @param observer the Object that implements the {@code Observable.Observer<T>} interface.
      */
     public void addObserver(Observer<T> observer) {
         observers.add(observer);
@@ -50,28 +55,23 @@ public class Observable<T> {
 
     /**
      * Save the value, and notify all observers
+     *
      * @param value the new value
      */
     public void setValue(T value) {
+        Log.debug("Updating observable with new value..");
         currentValue = value;
-        notifySubscribers();
+        notifyObservers();
     }
 
     /**
      * Notify all observers
      */
-    public void notifySubscribers() {
+    private void notifyObservers() {
         for (Observer<T> observer : observers) {
-            observer.onUpdate(currentValue);
+            if (observer != null)
+                observer.onUpdate(currentValue);
         }
     }
 
-    /**
-     * Observer interface, on every change this observers' onUpdate will be called with the new value
-     *
-     * @param <T>
-     */
-    public interface Observer<T> {
-        void onUpdate(T value);
-    }
 }

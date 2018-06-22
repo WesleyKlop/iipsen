@@ -113,7 +113,9 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
     public void takeCards(CardStack cards) throws Exception {
         // TODO: This throws when it notices a card is not available, but would still remove the game.cards it checked before that so we should keep track of the game.cards removed and place them back in a try-catch
         for (CardStack.Entry<CardType, Integer> entry : cards.entrySet()) {
-            this.getCard(entry.getKey());
+            for (int i = 0; i < entry.getValue(); i++) {
+                this.getCard(entry.getKey());
+            }
         }
     }
 
@@ -134,8 +136,18 @@ public class CardStack extends EnumMap<CardType, Integer> implements Serializabl
         this.put(type, this.get(type) - count);
     }
 
+    public CardType getBiggestType() {
+        CardType biggestType = null;
+        for (Entry<CardType, Integer> entry : this.entrySet()) {
+            if (entry.getKey() != CardType.LOCOMOTIVE && (biggestType == null || this.get(biggestType) < entry.getValue())) {
+                biggestType = entry.getKey();
+            }
+        }
+        return biggestType;
+    }
+
     @Override
     public String toString() {
-        return "game.cards.CardStack" + super.toString();
+        return "CardStack" + super.toString();
     }
 }

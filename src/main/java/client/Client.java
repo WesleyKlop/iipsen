@@ -1,6 +1,6 @@
 package client;
 
-import client.ui.StartupController;
+import client.ui.MainMenuControllers.StartupController;
 import game.GameState;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -17,6 +17,7 @@ import server.Server;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 
 public class Client extends Application implements SceneListener {
@@ -28,6 +29,8 @@ public class Client extends Application implements SceneListener {
     private Stage stage;
     private Scene scene;
     private StartupController rootPaneController;
+    // Try to fix scene diffing
+    private GameState currentState;
 
     public static void main(String[] args) {
         launch(args);
@@ -40,23 +43,24 @@ public class Client extends Application implements SceneListener {
         rootPaneController.getPreferenceController().joinButton.setOnMouseClicked(e -> {
             try {
                 if (rootPaneController.getPreferenceController().checkName()) {
-                    if (rootPaneController.getPreferenceController().checkNameDouble()) {
-                        connectServer(rootPaneController.getPreferenceController().IPinput.getText());
-                        rootPaneController.getPreferenceController().submitPreferences();
-                    }
+//                    if (rootPaneController.getPreferenceController().checkNameDouble()) {
+                    connectServer(rootPaneController.getPreferenceController().ipInput.getText());
+                    rootPaneController.getPreferenceController().submitPreferences();
+//                    }
                 }
             } catch (RemoteException e1) {
-                Log.error(e1.toString());
+                Log.error("FUCK", e1);
             }
         });
+
         rootPaneController.getPreferenceController().createButton.setOnMouseClicked(e -> {
             try {
                 if (rootPaneController.getPreferenceController().checkName()) {
                     startServer();
                     rootPaneController.getPreferenceController().submitPreferences();
                 }
-            } catch (MalformedURLException | RemoteException e1) {
-                Log.error(e1.toString());
+            } catch (MalformedURLException | RemoteException | UnknownHostException e1) {
+                Log.error(e1);
             }
         });
 
@@ -71,7 +75,7 @@ public class Client extends Application implements SceneListener {
         primaryStage.show();
     }
 
-    private void startServer() throws MalformedURLException, RemoteException {
+    private void startServer() throws MalformedURLException, RemoteException, UnknownHostException {
         client = new GameClient(new Server(), this);
     }
 
@@ -92,20 +96,23 @@ public class Client extends Application implements SceneListener {
     }
 
     @Override
-    public void onSceneChange(GameState state) {
-        Log.debug("Got new scene {}", state);
+    public void updateSceneState(GameState state) {
+        if (this.currentState == state) {
+//            Log.warn("I think we're going to set the new scene twice.. {} to {}", this.currentState, state);
+            return;
+        }
+        Log.info("!!! CHANGING SCENE TO {} !!!", state);
+        currentState = state;
 
         Parent newRoot = null;
         String newTitle = null;
         switch (state) {
-            case INIT:
-                break;
             case LOBBY:
                 rootPaneController.moveMenuDown();
                 break;
             case GAME:
                 newTitle = "Ticket To Ride";
-                newRoot = getParent("layout_game");
+                newRoot = getParent("layout_full_game");
                 // Switch to game view
                 break;
             case PAUSED:
@@ -113,11 +120,11 @@ public class Client extends Application implements SceneListener {
                 // Switch to pause screen
                 break;
             case FINISHED:
-                newRoot = getParent("layout_finished");
+                newRoot = getParent("layout_end_screen");
                 // Switch to end screen
                 break;
         }
-        if (newRoot != null && newTitle != null) {
+        if (newRoot != null) {
             setStage(newRoot, newTitle);
         }
     }

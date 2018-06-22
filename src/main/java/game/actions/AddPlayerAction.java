@@ -28,11 +28,19 @@ public class AddPlayerAction implements Action {
 
     /**
      * Add a player to the player list
-     * @param state the GameStore the player should be added to.
+     * @param store the GameStore the player should be added to.
      */
     @Override
-    public void executeAction(GameStore state) {
-        state.getPlayers().add(player);
-        player.setId(state.getPlayers().size());
+    public void executeAction(GameStore store) {
+        store.getPlayers().add(player);
+        player.setId(store.getPlayers().size());
+        for (int i = 0; i < 4; i++) {
+            player.getCardStack().addCard(store.getCardStackController().getRandomCard());
+        }
+    }
+
+    @Override
+    public int getPlayerId() {
+        return -1;
     }
 }

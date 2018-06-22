@@ -35,12 +35,16 @@ repositories {
     jcenter()
 }
 
+run {
+    systemProperties 'java.security.policy': file("$projectDir/ttr.policy").absolutePath
+}
+
 test {
     // Enable JUnit 5 (Gradle 4.6+).
     useJUnitPlatform()
 
     // Always run tests, even when nothing changed.
-    dependsOn 'cleanTest'
+//    dependsOn 'cleanTest'
 
     // Show test results.
     testLogging {
@@ -51,4 +55,9 @@ test {
 javadoc {
     options.addBooleanOption('html5', true)
     destinationDir = file("docs")
+}
+
+task runServer(type: JavaExec) {
+    classpath sourceSets.main.runtimeClasspath
+    main = "server.Server"
 }

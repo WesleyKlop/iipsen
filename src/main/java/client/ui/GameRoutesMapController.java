@@ -5,8 +5,11 @@ import client.ui.factories.LocationFactory;
 import client.ui.factories.RouteViewFactory;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -22,30 +25,31 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 /**
  * @author Thom
- * @since 6-6-2018
  */
 public class GameRoutesMapController {
 
     private static final Logger Log = LogManager.getLogger(GameRoutesMapController.class);
-
     @FXML
-    private Pane mainPane, informationPane;
+    Label score;
+    @FXML
+    private Pane mainPane, informationPane, locationPane;
     private LocationInformation locationInformation;
+    @FXML
+    private GameCostsController route_costsController;
 
     public void initialize() {
         informationPane.setPickOnBounds(false);
+        locationPane.setPickOnBounds(false);
         mainPane.setPickOnBounds(false);
-
         RouteViewFactory routeViewFactory = new RouteViewFactory(
             getClass().getResourceAsStream("/string/gameRoutes.xml"),
-            this::printRouteInformation,
+            this::routeOnMouseClicked,
             this::onRouteHoverEnter,
             this::onRouteHoverExit
         );
 
         LocationFactory locationFactory = new LocationFactory(
             getClass().getResourceAsStream("/string/gameLocations.xml"),
-            this::onLocationClick,
             this::onLocationHoverEnter,
             this::onLocationHoverLeave
         );
@@ -53,63 +57,33 @@ public class GameRoutesMapController {
         locationInformation = new LocationInformation();
 
         mainPane.getChildren().addAll(routeViewFactory.getRoutes());
-        mainPane.getChildren().addAll(locationFactory.getLocations());
+        locationPane.getChildren().addAll(locationFactory.getLocations());
         informationPane.getChildren().add(locationInformation);
     }
-
-
-    private void printRouteInformation(MouseEvent mE) {
-        VBox source = (VBox) mE.getSource();
-        String id = source.getId();
-
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document routesDoc = builder.parse(getClass().getResourceAsStream("/string/gameRoutes.xml"));
-            routesDoc.getDocumentElement().normalize();
-
-            NodeList nListRoutes = routesDoc.getElementsByTagName("route");
-            for (int i = 0; i < nListRoutes.getLength(); i++) {
-                if (nListRoutes.item(i).getAttributes().getNamedItem("id").getTextContent().equalsIgnoreCase(id)) {
-                    Element eRoute = (Element) nListRoutes.item(i);
-
-                    String location1 = eRoute.getElementsByTagName("location1").item(0).getTextContent();
-                    String location2 = eRoute.getElementsByTagName("location2").item(0).getTextContent();
-                    String length = eRoute.getElementsByTagName("length").item(0).getTextContent();
-                    String locomotives = eRoute.getElementsByTagName("locomotive").item(0).getTextContent();
-                    String cartType = eRoute.getElementsByTagName("cartType").item(0).getTextContent();
-                    String type = eRoute.getElementsByTagName("type").item(0).getTextContent();
-                    Log.debug("Route of type {} connects {} to {}, length of {} with {} locomotives and is of type {}", type, location1, location2, length, locomotives, cartType);
-                    break;
-                }
-            }
-
-        } catch (Exception e) {
-            Log.debug(e.toString());
-        }
-
-    }
-
 
     private void onRouteHoverEnter(MouseEvent mE) {
         VBox source = (VBox) mE.getSource();
         for (Node child : source.getChildren()) {
-            if (!(child instanceof Rectangle)) {
-                Log.warn("Found child in route that is not a rectangle!");
+            if (!(child instanceof StackPane)) {
+                Log.warn("Found child in route that is not a stackPane!");
                 continue;
             }
-            ((Rectangle) child).setStroke(Color.WHITE);
+            StackPane cartStack = (StackPane) child;
+            Rectangle cart = (Rectangle) cartStack.getChildren().get(0);
+            cart.setStroke(Color.WHITE);
         }
     }
 
     private void onRouteHoverExit(MouseEvent mE) {
         VBox source = (VBox) mE.getSource();
         for (Node child : source.getChildren()) {
-            if (!(child instanceof Rectangle)) {
-                Log.warn("Found child in route that is not a rectangle!");
+            if (!(child instanceof StackPane)) {
+                Log.warn("Found child in route that is not a stackPane!");
                 continue;
             }
-            ((Rectangle) child).setStroke(Color.BLACK);
+            StackPane cartStack = (StackPane) child;
+            Rectangle cart = (Rectangle) cartStack.getChildren().get(0);
+            cart.setStroke(Color.BLACK);
         }
     }
 
@@ -138,12 +112,6 @@ public class GameRoutesMapController {
         return position;
     }
 
-
-    private void onLocationClick(MouseEvent mouseEvent) {
-//        Circle source = (Circle) mouseEvent.getSource();
-//        locationInformation.show(source.getId(), getLocationPosition(source));
-    }
-
     private void onLocationHoverEnter(MouseEvent mouseEvent) {
         Circle source = (Circle) mouseEvent.getSource();
         source.setStroke(Color.WHITE);
@@ -156,5 +124,19 @@ public class GameRoutesMapController {
         locationInformation.hide();
     }
 
+    private void routeOnMouseClicked(MouseEvent mouseEvent) {
+        MessagesControllerProvider.getMessageController().openBuildMessage(mouseEvent);
+    }
 
+    public void switchColorBlind(boolean thing) {
+        int opacity = (thing) ? 1 : 0;
+        for (int i = 0; i < mainPane.getChildren().size(); i++) {
+            VBox route = (VBox) mainPane.getChildren().get(i);
+            for (int j = 0; j < route.getChildren().size(); j++) {
+                StackPane cart = (StackPane) route.getChildren().get(j);
+                ImageView routeImage = (ImageView) cart.getChildren().get(1);
+                routeImage.setOpacity(opacity);
+            }
+        }
+    }
 }

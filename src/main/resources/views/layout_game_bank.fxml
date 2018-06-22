@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      xmlns="http://javafx.com/javafx"
+      fx:controller="client.ui.LayoutBankController"
+      prefHeight="780.0" prefWidth="200.0"
+      spacing="10" fx:id="rootBox">
+
+    <ImageView fx:id="0" onMouseClicked="#onMouseAction">
+        <Image url="/cards/FALSE/BACK.png"/>
+    </ImageView>
+    <ImageView fx:id="1" onMouseClicked="#onMouseAction"/>
+    <ImageView fx:id="2" onMouseClicked="#onMouseAction"/>
+    <ImageView fx:id="3" onMouseClicked="#onMouseAction"/>
+    <ImageView fx:id="4" onMouseClicked="#onMouseAction"/>
+    <ImageView fx:id="5" onMouseClicked="#onMouseAction"/>
+
+</VBox>

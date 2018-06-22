@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.StackPane?>
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           xmlns="http://javafx.com/javafx"
+           fx:controller="client.ui.MessagesController"
+           prefHeight="400.0" prefWidth="600.0">
+
+    <fx:include source="overlay_build_message.fxml" fx:id="routes"/>
+    <fx:include source="overlay_train_card_message.fxml" fx:id="train"/>
+    <fx:include source="overlay_route_card_message.fxml" fx:id="routeCards"/>
+    <fx:include source="overlay_not_players_turn_message.fxml" fx:id="notYourTurn"/>
+
+
+</StackPane>

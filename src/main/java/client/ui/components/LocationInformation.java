@@ -13,7 +13,7 @@ import javafx.util.Duration;
  * @author Wesley Klop
  */
 public class LocationInformation extends StackPane {
-    private static final int WIDTH = 100;
+    private static final int WIDTH = 120;
     private static final int HEIGHT = 30;
 
     private Label locationInformation = new Label();
@@ -50,7 +50,7 @@ public class LocationInformation extends StackPane {
     public void show(String label, int[] coords) {
         this.setLabel(label);
 
-        this.setLayoutX(Math.min(Math.max(coords[0] - (this.getWidth() / 2) + 3, 0), (1000 - this.getWidth() + 3)));
+        this.setLayoutX(coords[0] - (this.getWidth() / 2) + 3);
         this.setLayoutY(coords[1] - this.getHeight() - 10);
         this.setOpacity(1);
     }

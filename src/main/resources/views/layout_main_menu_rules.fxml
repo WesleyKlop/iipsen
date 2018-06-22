@@ -9,35 +9,27 @@
 <?import javafx.scene.text.Text?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
-      fx:controller="client.ui.MainMenuRulesController"
-      prefHeight="400.0" prefWidth="600.0" spacing="5">
+      fx:controller="client.ui.MainMenuControllers.MainMenuRulesController"
+      prefHeight="400.0" prefWidth="600.0" spacing="5" alignment="CENTER">
 
     <ImageView fitWidth="550" preserveRatio="true">
         <Image url="/images/rules.png"/>
     </ImageView>
     <HBox spacing="5" fx:id="HBoxRule1">
-        <Label fx:id="ruleObjective" text="Object of the game" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
-               onMouseClicked="#manageRules"/>
-        <Label fx:id="ruleTurn" text="Game turn" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
-               onMouseClicked="#manageRules"/>
-        <Label fx:id="ruleTrainCards" text="Train cards" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
-               onMouseClicked="#manageRules"/>
+        <Label styleClass="fancy-label" fx:id="ruleObjective" text="Object of the game" onMouseClicked="#manageRules"/>
+        <Label styleClass="fancy-label" fx:id="ruleTurn" text="Game turn" onMouseClicked="#manageRules"/>
+        <Label styleClass="fancy-label" fx:id="ruleTrainCards" text="Train cards" onMouseClicked="#manageRules"/>
     </HBox>
     <HBox spacing="5" fx:id="HBoxRule2">
-        <Label fx:id="ruleRoutes" text="Routes" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
-               onMouseClicked="#manageRules"/>
-        <Label fx:id="ruleTunnels" text="Tunnels" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
-               onMouseClicked="#manageRules"/>
-        <Label fx:id="ruleFerries" text="Ferries" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
-               onMouseClicked="#manageRules"/>
+        <Label styleClass="fancy-label" fx:id="ruleRoutes" text="Routes" onMouseClicked="#manageRules"/>
+        <Label styleClass="fancy-label" fx:id="ruleTunnels" text="Tunnels" onMouseClicked="#manageRules"/>
+        <Label styleClass="fancy-label" fx:id="ruleFerries" text="Ferries" onMouseClicked="#manageRules"/>
     </HBox>
     <HBox spacing="5" fx:id="HBoxRule3">
-        <Label fx:id="ruleDestinationCards" text="Destination Cards" onMouseEntered="#hoverEnter"
-               onMouseExited="#hoverExit" onMouseClicked="#manageRules"/>
-        <Label fx:id="ruleEnd" text="End of the game" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
+        <Label styleClass="fancy-label" fx:id="ruleDestinationCards" text="Destination Cards"
                onMouseClicked="#manageRules"/>
-        <Label fx:id="ruleScore" text="Score Calculation" onMouseEntered="#hoverEnter" onMouseExited="#hoverExit"
-               onMouseClicked="#manageRules"/>
+        <Label styleClass="fancy-label" fx:id="ruleEnd" text="End of the game" onMouseClicked="#manageRules"/>
+        <Label styleClass="fancy-label" fx:id="ruleScore" text="Score Calculation" onMouseClicked="#manageRules"/>
     </HBox>
     <Label text="Size:" scaleX="2.0" scaleY="2.0"/>
     <Slider fx:id="optionFontSize" max="30.0" min="16" value="20" showTickLabels="true"

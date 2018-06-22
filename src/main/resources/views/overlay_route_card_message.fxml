@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           xmlns="http://javafx.com/javafx"
+           fx:controller="client.ui.RouteCardMessageController"
+           prefHeight="600.0" prefWidth="1000.0"
+           fx:id="rootPane">
+
+    <Rectangle width="1000" height="600" fill="#333" opacity="0.75" arcHeight="20" arcWidth="20"
+               style="-fx-background-color: #333"/>
+    <VBox alignment="CENTER" spacing="30" layoutY="20">
+        <HBox fx:id="routeBox" prefWidth="1000" alignment="CENTER" spacing="20">
+            <ImageView fx:id="0" onMouseClicked="#onMouseClickedAction"/>
+            <ImageView fx:id="1" onMouseClicked="#onMouseClickedAction"/>
+            <ImageView fx:id="2" onMouseClicked="#onMouseClickedAction"/>
+        </HBox>
+        <Label fx:id="warningText" textFill="#FFF"/>
+        <HBox prefWidth="1000" alignment="CENTER" spacing="10">
+            <Button text="Take" prefWidth="100" onMouseClicked="#sendAction"/>
+        </HBox>
+    </VBox>
+</StackPane>

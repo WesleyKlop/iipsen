@@ -18,4 +18,6 @@ public interface Action extends Serializable {
      * @throws Exception when something goes wrong. The store <b>should</b> not be changed when an Exception is thrown.
      */
     void executeAction(GameStore store) throws Exception;
+
+    int getPlayerId();
 }

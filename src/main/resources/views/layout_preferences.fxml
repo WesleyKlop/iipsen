@@ -5,20 +5,20 @@
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" prefHeight="800.0" prefWidth="1920.0" spacing="5" alignment="CENTER"
       xmlns="http://javafx.com/javafx/8.0.121"
-      fx:controller="client.ui.PreferencesController" fx:id="rootPane">
+      fx:controller="client.ui.MainMenuControllers.PreferencesController" fx:id="rootPane">
     <Label alignment="CENTER" prefHeight="25.0" prefWidth="335.0" text="Name" fx:id="nameLabel"/>
     <TextField fx:id="nameField" alignment="CENTER" maxWidth="200.0" minHeight="25.0" minWidth="200.0" prefHeight="30.0"
                prefWidth="200.0"/>
     <fx:include source="layout_color_preference.fxml" fx:id="colorPreference"/>
     <VBox fx:id="ipBox" alignment="CENTER" prefWidth="1080">
         <Label alignment="CENTER" prefHeight="25.0" prefWidth="335.0" text="IP-address" fx:id="ipLabel"/>
-        <TextField fx:id="IPinput" alignment="CENTER" maxWidth="200.0" minHeight="25.0" minWidth="200.0"
+        <TextField fx:id="ipInput" alignment="CENTER" maxWidth="200.0" minHeight="25.0" minWidth="200.0"
                    prefHeight="30.0"
                    prefWidth="200.0"/>
     </VBox>
     <HBox fx:id="buttons" prefWidth="1920" alignment="CENTER" spacing="20">
-        <Label fx:id="backButton" text="Back" onMouseEntered="#entered" onMouseExited="#exited"/>
-        <Label fx:id="createButton" text="Create lobby" onMouseEntered="#entered" onMouseExited="#exited"/>
-        <Label fx:id="joinButton" text="Join lobby" onMouseEntered="#entered" onMouseExited="#exited"/>
+        <Label styleClass="fancy-label" fx:id="backButton" text="Back"/>
+        <Label styleClass="fancy-label" fx:id="createButton" text="Create lobby"/>
+        <Label styleClass="fancy-label" fx:id="joinButton" text="Join lobby"/>
     </HBox>
 </VBox>

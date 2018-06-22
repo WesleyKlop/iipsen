@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<Pane xmlns:fx="http://javafx.com/fxml/1"
+      xmlns="http://javafx.com/javafx/8.0.121"
+      prefHeight="1080.0" prefWidth="1920.0"
+      stylesheets="/css/defaultStyling.css"
+      fx:controller="client.ui.pauseMenuController">
+    <ImageView fitWidth="1920" fitHeight="1080" opacity="0.78">
+        <Image url="/images/pause_background.jpg"/>
+    </ImageView>
+
+    <VBox fx:id="labels" layoutX="100" layoutY="75" spacing="10">
+        <Label styleClass="fancy-label" text="Resume" fx:id="resumeLabel"/>
+        <Label styleClass="fancy-label" text="Options" fx:id="optionsLabel" onMouseClicked="#menuOpeningSequence"/>
+        <Label styleClass="fancy-label" text="Rules" fx:id="rulesLabel" onMouseClicked="#menuOpeningSequence"/>
+        <Label styleClass="fancy-label" text="Save" fx:id="saveLabel" onMouseClicked="#menuOpeningSequence"/>
+        <Label styleClass="fancy-label" text="Quick Finish" fx:id="quickFinishLabel"
+               onMouseClicked="#menuOpeningSequence"/>
+        <Label styleClass="fancy-label" text="Quit" onMouseClicked="#quitGame"/>
+    </VBox>
+    <StackPane fx:id="menus" translateX="850" translateY="1180">
+        <fx:include source="layout_main_menu_options.fxml" fx:id="optionsMenu" alignment="BASELINE_CENTER"/>
+        <fx:include source="layout_main_menu_rules.fxml" fx:id="rulesMenu" alignment="BASELINE_CENTER"
+                    prefHeight="800"/>
+        <fx:include source="layout_save_menu.fxml" fx:id="saveMenu" alignment="BASELINE_CENTER"/>
+        <fx:include source="layout_quick_finish.fxml" fx:id="quickFinishMenu" alignment="BASELINE_CENTER"/>
+    </StackPane>
+</Pane>

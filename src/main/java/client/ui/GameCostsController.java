@@ -1,0 +1,138 @@
+package client.ui;
+
+import game.GameStore;
+import game.GameStoreProvider;
+import game.actions.Action;
+import game.actions.BuildRouteAction;
+import game.cards.CardType;
+import game.location.ELocation;
+import game.player.Player;
+import game.routecards.Route;
+import game.routecards.RouteType;
+import javafx.animation.Transition;
+import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
+import javafx.util.Duration;
+
+import java.rmi.RemoteException;
+
+import static client.UserPreferences.isColorBlind;
+
+public class GameCostsController {
+    @FXML
+    StackPane rootPane;
+    @FXML
+    private HBox trainBox1, trainBox2, trainBox3;
+    @FXML
+    private Label locations, tunnelWarning, owner;
+    private Image image;
+    @FXML
+    private Button buildButton;
+
+    private int currentId;
+
+    public void initialize() {
+        locations.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/MavenPro-Medium.ttf"), 25));
+    }
+
+    void showBuildDialog(Route route) {
+        resetMessage();
+        buildButton.setDisable(route.hasOwner());
+        if (route.getOwner() == 0) {
+            owner.setText("");
+        } else {
+            owner.setText("This route is currently owned by: " + GameStoreProvider.getStore().getPlayerById(route.getOwner()).getPlayerName());
+        }
+        updateCurrentId(route.getId());
+        addParts(route.getLength(), route.getLocomotiveCost(), route.getCardType());
+        setMessageText(route.getLocations());
+    }
+
+    private void updateCurrentId(int newId) {
+        this.currentId = (newId);
+    }
+
+    private void addParts(int l, int locs, CardType cType) {
+        int trainWidth = (int) Math.min((trainBox1.getMaxWidth() / Math.min(l, 4)) - ((Math.min(l, 4) - 1) * 10), 250);
+
+        for (int i = 0; i < l; i++) {
+            if (i < locs) {
+                image = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/LOCOMOTIVE.png"));
+            } else {
+                image = new Image(getClass().getResourceAsStream("/cards/" + isColorBlind() + "/" + cType + ".png"));
+            }
+            ImageView train = new ImageView(image);
+            train.setPreserveRatio(true);
+            train.setFitWidth(trainWidth);
+            if (i < 3) {
+                trainBox1.getChildren().add(train);
+            } else if (i < 6) {
+                trainBox2.getChildren().add(train);
+            } else {
+                trainBox3.getChildren().add(train);
+            }
+        }
+    }
+
+    private void resetMessage() {
+        setRouteWarning("");
+        emptyBox(trainBox1);
+        emptyBox(trainBox2);
+        emptyBox(trainBox3);
+    }
+
+    private void emptyBox(HBox box) {
+        while (box.getChildren().size() > 0) {
+            box.getChildren().remove(0);
+        }
+    }
+
+    private void setMessageText(ELocation[] locationList) {
+        locations.setText(locationList[0] + " --> " + locationList[1]);
+    }
+
+    @FXML
+    private void buildRoute() throws RemoteException {
+        GameStore store = GameStoreProvider.getStore();
+        Player player = GameStoreProvider.getPlayer();
+        Route route = store.getRouteStore().getRouteById(currentId);
+        if (BuildRouteControle(route, player)) {
+            Action buildAction = new BuildRouteAction(player.getId(), route);
+            GameStoreProvider.sendAction(buildAction);
+            if (route.getRouteType() == RouteType.TUNNEL) {
+                closeAnimationWait();
+            } else {
+                closeAnimation();
+            }
+        } else {
+            locations.setText("Player doesn't have enough cards!");
+        }
+    }
+
+    @FXML
+    private void closeAnimation() {
+        MessagesControllerProvider.getMessageController().closeMenu(rootPane);
+    }
+
+    private void closeAnimationWait() {
+        Transition wait = new TranslateTransition(Duration.seconds(1), rootPane);
+        wait.play();
+        wait.setOnFinished(e -> closeAnimation());
+    }
+
+    private boolean BuildRouteControle(Route route, Player player) {
+        return player.getCardStack().containsCards(route.getCostsAsCardStack()) && !route.hasOwner();
+    }
+
+    void setRouteWarning(String text) {
+        Platform.runLater(() -> tunnelWarning.setText(text));
+    }
+}
