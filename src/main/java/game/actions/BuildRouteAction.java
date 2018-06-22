@@ -42,9 +42,7 @@ public class BuildRouteAction implements Action {
             MessagesControllerProvider.getMessageController().setBuildRouteWarning("Extra costs for tunnel: " + extraCosts);
         }
 
-        if (player.getCardStack().containsCards(costs)) {
-            build(route, player);
-        }
+        build(route, player);
 
         store.cyclePlayerTurn();
     }
