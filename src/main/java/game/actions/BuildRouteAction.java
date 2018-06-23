@@ -6,6 +6,7 @@ import game.cards.CardStack;
 import game.cards.CardType;
 import game.player.Player;
 import game.routecards.Route;
+import game.routecards.RouteType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -32,7 +33,7 @@ public class BuildRouteAction implements Action {
         Route route = store.getRouteStore().getRouteById(routeId);
         int extraCosts = 0;
         Log.debug("Route type: {}", route.getRouteType());
-        if (route.getRouteType().toString().equalsIgnoreCase("tunnel")) {
+        if (route.getRouteType() == RouteType.TUNNEL) {
             for (int i = 0; i < 3; i++) {
                 if (store.getCardStackController().getRandomCard().getCardType() == cType) {
                     costs.addCard(cType);
