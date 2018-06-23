@@ -6,6 +6,7 @@ import client.ui.factories.RouteViewFactory;
 import game.GameStore;
 import game.GameStoreProvider;
 import game.routecards.Route;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -148,21 +149,23 @@ public class GameRoutesMapController implements Observer<GameStore> {
 
     @Override
     public void onUpdate(GameStore store) {
-        for (Node route : mainPane.getChildren()) {
-            Route routeObj = store.getRouteStore().getRouteById(Integer.parseInt(route.getId()));
-            if (!routeObj.hasOwner()) {
-                continue;
-            }
+        Platform.runLater(() -> {
+            for (Node route : mainPane.getChildren()) {
+                Route routeObj = store.getRouteStore().getRouteById(Integer.parseInt(route.getId()));
+                if (!routeObj.hasOwner()) {
+                    continue;
+                }
 
-            var player = store.getPlayerById(routeObj.getOwner());
-            for (Node node : ((VBox) route).getChildren()) {
-                StackPane cart = (StackPane) node;
-                if (cart.getChildren().size() == 2) {
-                    // 2 because of the colorblind overlay!!
-                    // If it's not 2 there is probably already a rectangle on it
-                    cart.getChildren().add(new Rectangle(9, 22, player.getColorAsColor()));
+                var player = store.getPlayerById(routeObj.getOwner());
+                for (Node node : ((VBox) route).getChildren()) {
+                    StackPane cart = (StackPane) node;
+                    if (cart.getChildren().size() == 2) {
+                        // 2 because of the colorblind overlay!!
+                        // If it's not 2 there is probably already a rectangle on it
+                        cart.getChildren().add(new Rectangle(9, 22, player.getColorAsColor()));
+                    }
                 }
             }
-        }
+        });
     }
 }

@@ -6,7 +6,6 @@ import game.cards.CardStack;
 import game.cards.CardType;
 import game.player.Player;
 import game.routecards.Route;
-import game.routecards.RouteType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,13 +15,13 @@ public class BuildRouteAction implements Action {
     private static final Logger Log = LogManager.getLogger(BuildRouteAction.class);
 
     private int playerId;
-    private Route route;
+    private int routeId;
     private CardType cType;
     private CardStack costs;
 
     public BuildRouteAction(int playerId, Route route) {
         this.playerId = playerId;
-        this.route = route;
+        this.routeId = route.getId();
         cType = route.getCardType();
         costs = route.getCostsAsCardStack();
     }
@@ -30,16 +29,22 @@ public class BuildRouteAction implements Action {
     @Override
     public void executeAction(GameStore store) throws Exception {
         Player player = store.getPlayerById(playerId);
-        RouteType type = route.getRouteType();
+        Route route = store.getRouteStore().getRouteById(routeId);
         int extraCosts = 0;
-        if (type.toString().equalsIgnoreCase("tunnel")) {
+        Log.debug("Route type: {}", route.getRouteType());
+        if (route.getRouteType().toString().equalsIgnoreCase("tunnel")) {
             for (int i = 0; i < 3; i++) {
                 if (store.getCardStackController().getRandomCard().getCardType() == cType) {
                     costs.addCard(cType);
                     extraCosts++;
                 }
             }
-            MessagesControllerProvider.getMessageController().setBuildRouteWarning("Extra costs for tunnel: " + extraCosts);
+            // FIXME this does not work over rmi
+            try {
+                MessagesControllerProvider.getMessageController().setBuildRouteWarning("Extra costs for tunnel: " + extraCosts);
+            } catch (NullPointerException ex) {
+                Log.error("NullPointerError showing BuildRouteWarning... (BuildRouteAction.java:43)");
+            }
         }
 
         build(route, player);
