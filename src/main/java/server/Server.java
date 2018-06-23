@@ -104,8 +104,8 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
         // Loop through all players their routecards, and check which ones are completed
         for (Player player : gameStore.getPlayers()) {
             for (RouteCard routeCard : player.getRouteCards()) {
-                if (player.getConnectionKeeper().checkForRouteCompleted(routeCard.getStart(), routeCard.getEnd())) {
-                    Log.info("Player completed routecard, awarding points... {}", routeCard);
+                if (player.getConnectionKeeper().isRouteCardCompleted(routeCard)) {
+                    Log.debug("Player completed routecard, awarding points... {}", routeCard);
                     player.givePoints(routeCard.getValue());
                 }
             }

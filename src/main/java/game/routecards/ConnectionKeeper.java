@@ -44,6 +44,11 @@ public class ConnectionKeeper implements Serializable {
         }
     }
 
+    public void addRoute(Route route) {
+        ELocation[] locs = route.getLocations();
+        addLocations(locs[0], locs[1]);
+    }
+
 
     private boolean isMergeable(int set1, int set2) {
         return set1 != set2 && set1 != NOT_A_SET && set2 != NOT_A_SET;
@@ -98,6 +103,10 @@ public class ConnectionKeeper implements Serializable {
         int set1 = getSetForELocation(ELocation1);
         int set2 = getSetForELocation(ELocation2);
         return set1 == set2 && set1 != NOT_A_SET;
+    }
+
+    public boolean isRouteCardCompleted(RouteCard routeCard) {
+        return checkForRouteCompleted(routeCard.getStart(), routeCard.getEnd());
     }
 }
 

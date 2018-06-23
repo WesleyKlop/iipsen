@@ -4,7 +4,6 @@ import client.ui.MessagesControllerProvider;
 import game.GameStore;
 import game.cards.CardStack;
 import game.cards.CardType;
-import game.location.ELocation;
 import game.player.Player;
 import game.routecards.Route;
 import org.apache.logging.log4j.LogManager;
@@ -60,8 +59,7 @@ public class BuildRouteAction implements Action {
 
     private void build(Route route, Player player) throws Exception {
         player.getCardStack().takeCards(costs);
-        ELocation[] locs = route.getLocations();
-        player.getConnectionKeeper().addLocations(locs[0], locs[1]);
+        player.getConnectionKeeper().addRoute(route);
         route.setOwner(player.getId());
         player.givePoints(route.getPoints());
         player.takeTrains(route.getLength());
