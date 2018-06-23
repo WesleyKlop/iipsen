@@ -3,6 +3,10 @@ package client.ui;
 import client.ui.components.LocationInformation;
 import client.ui.factories.LocationFactory;
 import client.ui.factories.RouteViewFactory;
+import game.GameStore;
+import game.GameStoreProvider;
+import game.routecards.Route;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -19,6 +23,7 @@ import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import util.Observer;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -26,7 +31,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 /**
  * @author Thom
  */
-public class GameRoutesMapController {
+public class GameRoutesMapController implements Observer<GameStore> {
 
     private static final Logger Log = LogManager.getLogger(GameRoutesMapController.class);
     @FXML
@@ -43,7 +48,7 @@ public class GameRoutesMapController {
         mainPane.setPickOnBounds(false);
         RouteViewFactory routeViewFactory = new RouteViewFactory(
             getClass().getResourceAsStream("/string/gameRoutes.xml"),
-            this::routeOnMouseClicked,
+            this::onRouteMouseClicked,
             this::onRouteHoverEnter,
             this::onRouteHoverExit
         );
@@ -59,6 +64,8 @@ public class GameRoutesMapController {
         mainPane.getChildren().addAll(routeViewFactory.getRoutes());
         locationPane.getChildren().addAll(locationFactory.getLocations());
         informationPane.getChildren().add(locationInformation);
+
+        GameStoreProvider.getInstance().addObserver(this);
     }
 
     private void onRouteHoverEnter(MouseEvent mE) {
@@ -124,12 +131,12 @@ public class GameRoutesMapController {
         locationInformation.hide();
     }
 
-    private void routeOnMouseClicked(MouseEvent mouseEvent) {
+    private void onRouteMouseClicked(MouseEvent mouseEvent) {
         MessagesControllerProvider.getMessageController().openBuildMessage(mouseEvent);
     }
 
-    public void switchColorBlind(boolean thing) {
-        int opacity = (thing) ? 1 : 0;
+    void switchColorBlind(boolean isColorBlind) {
+        int opacity = isColorBlind ? 1 : 0;
         for (int i = 0; i < mainPane.getChildren().size(); i++) {
             VBox route = (VBox) mainPane.getChildren().get(i);
             for (int j = 0; j < route.getChildren().size(); j++) {
@@ -138,5 +145,27 @@ public class GameRoutesMapController {
                 routeImage.setOpacity(opacity);
             }
         }
+    }
+
+    @Override
+    public void onUpdate(GameStore store) {
+        Platform.runLater(() -> {
+            for (Node route : mainPane.getChildren()) {
+                Route routeObj = store.getRouteStore().getRouteById(Integer.parseInt(route.getId()));
+                if (!routeObj.hasOwner()) {
+                    continue;
+                }
+
+                var player = store.getPlayerById(routeObj.getOwner());
+                for (Node node : ((VBox) route).getChildren()) {
+                    StackPane cart = (StackPane) node;
+                    if (cart.getChildren().size() == 2) {
+                        // 2 because of the colorblind overlay!!
+                        // If it's not 2 there is probably already a rectangle on it
+                        cart.getChildren().add(new Rectangle(9, 22, player.getColorAsColor()));
+                    }
+                }
+            }
+        });
     }
 }
