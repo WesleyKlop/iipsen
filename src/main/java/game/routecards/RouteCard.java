@@ -8,11 +8,20 @@ public class RouteCard implements Serializable {
     private final ELocation start;
     private final ELocation end;
     private final int value;
+    private boolean completed;
 
     public RouteCard(ELocation start, ELocation end, int value) {
         this.start = start;
         this.end = end;
         this.value = value;
+    }
+
+    public void setCompleted() {
+        completed = true;
+    }
+
+    public boolean isCompleted() {
+        return completed;
     }
 
     public ELocation getStart() {

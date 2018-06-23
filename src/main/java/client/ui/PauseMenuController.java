@@ -8,14 +8,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
-public class pauseMenuController {
+public class PauseMenuController {
+    private static final Logger Log = LogManager.getLogger(PauseMenuController.class);
 
     @FXML
     public Label resumeLabel;
     @FXML
-    private VBox labels, optionsMenu, rulesMenu, saveMenu, quickFinishMenu;
+    private VBox labels, optionsMenu, rulesMenu, saveMenu;
     @FXML
     private StackPane menus;
 
@@ -51,8 +54,6 @@ public class pauseMenuController {
                 return rulesMenu;
             case "saveLabel":
                 return saveMenu;
-            case "quickFinishLabel":
-                return quickFinishMenu;
             default:
                 return null;
         }

@@ -4,8 +4,6 @@ import client.GameStoreClient;
 import game.GameState;
 import game.GameStore;
 import game.actions.Action;
-import game.player.Player;
-import game.routecards.RouteCard;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -66,18 +64,11 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
         }
     }
 
-    @Override
-    public synchronized void onActionReceived(Action action) {
+    public static void main(String[] args) throws UnknownHostException {
         try {
-            action.executeAction(gameStore);
-
-            doSideEffects(action);
-
-            Log.debug("Executed action");
-            notifyListeners();
-            Log.debug("Notified listeners");
-        } catch (Exception ex) {
-            Log.error("Server error while executing action", ex);
+            new Server();
+        } catch (RemoteException | MalformedURLException e) {
+            Log.catching(e);
         }
     }
 
@@ -94,29 +85,23 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
         } else if (gameStore.getLastTurn() == action.getPlayerId()) {
             // Else if the action player id is the same as the id of the last turn player
             // We should go to finish.
-            calculateEndScore();
             Log.info("Going to finished state!");
             gameStore.setGameState(GameState.FINISHED);
         }
     }
 
-    private void calculateEndScore() {
-        // Loop through all players their routecards, and check which ones are completed
-        for (Player player : gameStore.getPlayers()) {
-            for (RouteCard routeCard : player.getRouteCards()) {
-                if (player.getConnectionKeeper().isRouteCardCompleted(routeCard)) {
-                    Log.debug("Player completed routecard, awarding points... {}", routeCard);
-                    player.givePoints(routeCard.getValue());
-                }
-            }
-        }
-    }
-
-    public static void main(String[] args) throws UnknownHostException {
+    @Override
+    public synchronized void onActionReceived(Action action) {
         try {
-            new Server();
-        } catch (RemoteException | MalformedURLException e) {
-            Log.error("Error occured while running server", e);
+            action.executeAction(gameStore);
+
+            doSideEffects(action);
+
+            Log.info("Executed action {}", action.getClass().getSimpleName());
+            notifyListeners();
+            Log.debug("Notified listeners");
+        } catch (Exception ex) {
+            Log.error("Server error while executing action", ex);
         }
     }
 }

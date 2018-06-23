@@ -10,7 +10,7 @@
       xmlns="http://javafx.com/javafx/8.0.121"
       prefHeight="1080.0" prefWidth="1920.0"
       stylesheets="/css/defaultStyling.css"
-      fx:controller="client.ui.pauseMenuController">
+      fx:controller="client.ui.PauseMenuController">
     <ImageView fitWidth="1920" fitHeight="1080" opacity="0.78">
         <Image url="/images/pause_background.jpg"/>
     </ImageView>
@@ -29,6 +29,5 @@
         <fx:include source="layout_main_menu_rules.fxml" fx:id="rulesMenu" alignment="BASELINE_CENTER"
                     prefHeight="800"/>
         <fx:include source="layout_save_menu.fxml" fx:id="saveMenu" alignment="BASELINE_CENTER"/>
-        <fx:include source="layout_quick_finish.fxml" fx:id="quickFinishMenu" alignment="BASELINE_CENTER"/>
     </StackPane>
 </Pane>
