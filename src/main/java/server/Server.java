@@ -4,6 +4,8 @@ import client.GameStoreClient;
 import game.GameState;
 import game.GameStore;
 import game.actions.Action;
+import game.player.Player;
+import game.routecards.RouteCard;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -92,8 +94,21 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
         } else if (gameStore.getLastTurn() == action.getPlayerId()) {
             // Else if the action player id is the same as the id of the last turn player
             // We should go to finish.
+            calculateEndScore();
             Log.info("Going to finished state!");
             gameStore.setGameState(GameState.FINISHED);
+        }
+    }
+
+    private void calculateEndScore() {
+        // Loop through all players their routecards, and check which ones are completed
+        for (Player player : gameStore.getPlayers()) {
+            for (RouteCard routeCard : player.getRouteCards()) {
+                if (player.getConnectionKeeper().checkForRouteCompleted(routeCard.getStart(), routeCard.getEnd())) {
+                    Log.info("Player completed routecard, awarding points... {}", routeCard);
+                    player.givePoints(routeCard.getValue());
+                }
+            }
         }
     }
 
