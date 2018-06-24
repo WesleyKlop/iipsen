@@ -1,4 +1,4 @@
-package client.ui;
+package client.ui.game;
 
 
 import javafx.animation.TranslateTransition;

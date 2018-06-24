@@ -1,7 +1,7 @@
-package client.ui.MainMenuControllers;
+package client.ui.mainmenu;
 
-import client.MediaController;
-import client.UserPreferences;
+import client.util.MediaController;
+import client.util.UserPreferences;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;

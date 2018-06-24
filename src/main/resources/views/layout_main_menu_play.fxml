@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
-      fx:controller="client.ui.MainMenuControllers.MainMenuPlayController"
+      fx:controller="client.ui.mainmenu.MainMenuPlayController"
       prefHeight="400.0" prefWidth="600.0"
       spacing="20">
     <ImageView fitWidth="550" preserveRatio="true">

@@ -1,6 +1,6 @@
-package client.ui.MainMenuControllers;
+package client.ui.mainmenu;
 
-import client.MediaController;
+import client.util.MediaController;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;

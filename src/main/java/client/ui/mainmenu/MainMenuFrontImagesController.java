@@ -1,4 +1,4 @@
-package client.ui.MainMenuControllers;
+package client.ui.mainmenu;
 
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;

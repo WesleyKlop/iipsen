@@ -5,7 +5,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <StackPane xmlns:fx="http://javafx.com/fxml"
            xmlns="http://javafx.com/javafx"
-           fx:controller="client.ui.GameCostsController"
+           fx:controller="client.ui.game.GameCostsController"
            prefHeight="600.0" prefWidth="1000.0"
            fx:id="rootPane">
 

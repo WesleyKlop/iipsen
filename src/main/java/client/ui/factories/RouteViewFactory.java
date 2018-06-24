@@ -24,7 +24,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static client.UserPreferences.isColorBlind;
+import static client.util.UserPreferences.isColorBlind;
 
 /**
  * @author Wesley Klop

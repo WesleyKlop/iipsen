@@ -1,6 +1,7 @@
-package client.ui;
+package client.ui.game;
 
 import client.ui.components.LocationInformation;
+import client.ui.dialogs.MessagesControllerProvider;
 import client.ui.factories.LocationFactory;
 import client.ui.factories.RouteViewFactory;
 import game.GameStore;

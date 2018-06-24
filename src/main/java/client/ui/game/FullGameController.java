@@ -1,8 +1,10 @@
-package client.ui;
+package client.ui.game;
 
-import client.UserPreferences;
-import client.UserPreferences.PreferencesContainer;
 import client.ui.controllers.LayoutCardController;
+import client.ui.dialogs.MessagesController;
+import client.ui.dialogs.MessagesControllerProvider;
+import client.util.UserPreferences;
+import client.util.UserPreferences.PreferencesContainer;
 import game.GameStoreProvider;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;

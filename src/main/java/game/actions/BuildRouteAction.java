@@ -1,6 +1,6 @@
 package game.actions;
 
-import client.ui.MessagesControllerProvider;
+import client.ui.dialogs.MessagesControllerProvider;
 import game.GameStore;
 import game.cards.CardStack;
 import game.cards.CardType;

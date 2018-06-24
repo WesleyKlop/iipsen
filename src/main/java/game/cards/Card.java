@@ -2,7 +2,7 @@ package game.cards;
 
 import java.io.Serializable;
 
-import static client.UserPreferences.isColorBlind;
+import static client.util.UserPreferences.isColorBlind;
 
 /**
  * Card class

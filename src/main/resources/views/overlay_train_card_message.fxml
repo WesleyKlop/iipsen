@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <StackPane xmlns:fx="http://javafx.com/fxml"
            xmlns="http://javafx.com/javafx"
-           fx:controller="client.ui.TrainCardMessageController"
+           fx:controller="client.ui.dialogs.TrainCardMessageController"
            prefHeight="600.0" prefWidth="1000.0"
            fx:id="rootPane">
 

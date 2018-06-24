@@ -1,4 +1,4 @@
-package client.ui.MainMenuControllers;
+package client.ui.mainmenu;
 
 import client.ui.views.ColorPreferenceView;
 import game.GameStoreProvider;

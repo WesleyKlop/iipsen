@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.StackPane?>
 <StackPane xmlns:fx="http://javafx.com/fxml"
            xmlns="http://javafx.com/javafx"
-           fx:controller="client.ui.MessagesController"
+           fx:controller="client.ui.dialogs.MessagesController"
            prefHeight="400.0" prefWidth="600.0">
 
     <fx:include source="overlay_build_message.fxml" fx:id="routes"/>

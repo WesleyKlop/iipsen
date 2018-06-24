@@ -1,4 +1,4 @@
-package client.ui;
+package client.ui.game;
 
 import game.GameStore;
 import game.GameStoreProvider;

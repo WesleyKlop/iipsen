@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.HBox?>
 <ScrollPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx"
-            fx:controller="client.ui.LayoutGameHandRouteCardsController"
+            fx:controller="client.ui.game.LayoutGameHandRouteCardsController"
             prefHeight="265.0" prefWidth="655.0">
 
     <HBox fx:id="routeCardContainer" spacing="5"/>

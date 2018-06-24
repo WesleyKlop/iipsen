@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <StackPane xmlns:fx="http://javafx.com/fxml/1" fx:id="rootPane" prefHeight="600.0" prefWidth="1000.0"
-           xmlns="http://javafx.com/javafx/8.0.121" fx:controller="client.ui.TrainCardMessageController">
+           xmlns="http://javafx.com/javafx/8.0.121" fx:controller="client.ui.dialogs.TrainCardMessageController">
 
     <Rectangle arcHeight="20" arcWidth="20" fill="#333" height="600" opacity="0.75" style="-fx-background-color: #333"
                width="1000"/>
