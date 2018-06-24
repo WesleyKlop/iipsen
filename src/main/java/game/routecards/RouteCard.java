@@ -8,7 +8,7 @@ public class RouteCard implements Serializable {
     private final ELocation start;
     private final ELocation end;
     private final int value;
-    private boolean completed = false;
+    private boolean completed;
 
     public RouteCard(ELocation start, ELocation end, int value) {
         this.start = start;
@@ -37,5 +37,14 @@ public class RouteCard implements Serializable {
             start.toString().toLowerCase(),
             end.toString().toLowerCase()
         );
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("RouteCard{ start=%s, end=%s, value=%d }", start, end, value);
     }
 }

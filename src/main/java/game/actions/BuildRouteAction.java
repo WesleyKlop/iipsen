@@ -6,6 +6,8 @@ import game.cards.CardStack;
 import game.cards.CardType;
 import game.player.Player;
 import game.routecards.Route;
+import game.routecards.RouteCard;
+import game.routecards.RouteType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -32,13 +34,14 @@ public class BuildRouteAction implements Action {
         Route route = store.getRouteStore().getRouteById(routeId);
         int extraCosts = 0;
         Log.debug("Route type: {}", route.getRouteType());
-        if (route.getRouteType().toString().equalsIgnoreCase("tunnel")) {
+        if (route.getRouteType() == RouteType.TUNNEL) {
             for (int i = 0; i < 3; i++) {
                 if (store.getCardStackController().getRandomCard().getCardType() == cType) {
                     costs.addCard(cType);
                     extraCosts++;
                 }
             }
+            Log.info("Extra costs for tunnel are {}", extraCosts);
             // FIXME this does not work over rmi
             try {
                 MessagesControllerProvider.getMessageController().setBuildRouteWarning("Extra costs for tunnel: " + extraCosts);
@@ -48,8 +51,24 @@ public class BuildRouteAction implements Action {
         }
 
         build(route, player);
+        updateRouteCards(player);
 
         store.cyclePlayerTurn();
+    }
+
+    private void updateRouteCards(Player player) {
+        for (RouteCard routeCard : player.getRouteCards()) {
+            Log.debug("Checking routecard {}", routeCard);
+            if (routeCard.isCompleted()) {
+                continue;
+            }
+
+            if (player.getConnectionKeeper().isRouteCardCompleted(routeCard)) {
+                Log.debug("Awarding points for routecard");
+                player.givePoints(routeCard.getValue());
+                routeCard.setCompleted();
+            }
+        }
     }
 
     @Override
@@ -59,6 +78,7 @@ public class BuildRouteAction implements Action {
 
     private void build(Route route, Player player) throws Exception {
         player.getCardStack().takeCards(costs);
+        player.getConnectionKeeper().addRoute(route);
         route.setOwner(player.getId());
         player.givePoints(route.getPoints());
         player.takeTrains(route.getLength());

@@ -64,18 +64,11 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
         }
     }
 
-    @Override
-    public synchronized void onActionReceived(Action action) {
+    public static void main(String[] args) throws UnknownHostException {
         try {
-            action.executeAction(gameStore);
-
-            doSideEffects(action);
-
-            Log.debug("Executed action");
-            notifyListeners();
-            Log.debug("Notified listeners");
-        } catch (Exception ex) {
-            Log.error("Server error while executing action", ex);
+            new Server();
+        } catch (RemoteException | MalformedURLException e) {
+            Log.catching(e);
         }
     }
 
@@ -97,11 +90,18 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
         }
     }
 
-    public static void main(String[] args) throws UnknownHostException {
+    @Override
+    public synchronized void onActionReceived(Action action) {
         try {
-            new Server();
-        } catch (RemoteException | MalformedURLException e) {
-            Log.error("Error occured while running server", e);
+            action.executeAction(gameStore);
+
+            doSideEffects(action);
+
+            Log.info("Executed action {}", action.getClass().getSimpleName());
+            notifyListeners();
+            Log.debug("Notified listeners");
+        } catch (Exception ex) {
+            Log.error("Server error while executing action", ex);
         }
     }
 }

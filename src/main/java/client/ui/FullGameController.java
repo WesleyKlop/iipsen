@@ -20,7 +20,7 @@ public class FullGameController implements Observer<PreferencesContainer> {
     @FXML
     private Pane routesMap, rootPane, pauseMenu;
     @FXML
-    private pauseMenuController pauseMenuController;
+    private PauseMenuController pauseMenuController;
     @FXML
     private MessagesController messagesController;
     @FXML
