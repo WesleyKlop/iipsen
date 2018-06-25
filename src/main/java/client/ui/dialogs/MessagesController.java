@@ -1,6 +1,7 @@
 package client.ui.dialogs;
 
 import client.ui.game.GameCostsController;
+import game.GameStore;
 import game.GameStoreProvider;
 import game.routecards.Route;
 import javafx.animation.TranslateTransition;
@@ -10,8 +11,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import util.Observer;
 
-public class MessagesController {
+public class MessagesController implements Observer<GameStore> {
 
     @FXML
     private GameCostsController routesController;
@@ -20,11 +22,11 @@ public class MessagesController {
     @FXML
     private RouteCardMessageController routeCardsController;
     @FXML
-    private StackPane routes, train, routeCards, notYourTurn;
+    private StackPane routes, train, routeCards, notYourTurn, turn;
 
 
     public void initialize() {
-
+        GameStoreProvider.getInstance().addObserver(this);
     }
 
     public void openBuildMessage(MouseEvent mE) {
@@ -106,5 +108,12 @@ public class MessagesController {
 
     private boolean isPlayersTurn() {
         return GameStoreProvider.getStore().getPlayersTurn() == GameStoreProvider.getPlayer().getId();
+    }
+
+    @Override
+    public void onUpdate(GameStore value) {
+        if (GameStoreProvider.getStore().getPlayersTurn() == GameStoreProvider.getPlayer().getId()) {
+            openWaitAndClose(turn);
+        }
     }
 }

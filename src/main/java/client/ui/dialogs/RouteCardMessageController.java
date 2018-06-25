@@ -13,6 +13,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -29,6 +31,8 @@ public class RouteCardMessageController {
     private Image[] images = new Image[3];
     private RouteCard[] routeCards = new RouteCard[3];
     private boolean[] selected = new boolean[3];
+
+    private static final Logger Log = LogManager.getLogger(RouteCardMessageController.class);
 
     public void showDialog() {
         warningText.setText("");
@@ -78,7 +82,7 @@ public class RouteCardMessageController {
     private void sendAction() throws RemoteException {
         int amount = getSelectedAmount();
         if (AtleastOneSelected()) {
-            Action action = new SelectRouteCardsAction(GameStoreProvider.getStore().getPlayersTurn(), getSelectedRouteCardStack());
+            Action action = new SelectRouteCardsAction(GameStoreProvider.getPlayer().getId(), getSelectedRouteCardStack());
             GameStoreProvider.sendAction(action);
             cancel();
         } else {
