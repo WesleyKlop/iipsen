@@ -1,6 +1,3 @@
-# Java class files
-out/
-
 # Log Files
 *.log
 
@@ -11,4 +8,5 @@ out/
 .gradle/
 build/
 !gradle-wrapper.jar
-lib/
+
+TTRGameSave.dat

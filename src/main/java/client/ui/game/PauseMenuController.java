@@ -1,6 +1,8 @@
 package client.ui.game;
 
 
+import client.util.GameSaver;
+import game.GameStoreProvider;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -18,14 +20,28 @@ public class PauseMenuController {
     @FXML
     public Label resumeLabel;
     @FXML
+    private Label saveLabel;
+    @FXML
     private VBox labels, optionsMenu, rulesMenu, saveMenu;
     @FXML
     private StackPane menus;
+
+    @FXML
 
     public void initialize() {
         for (int i = 0; i < menus.getChildren().size(); i++) {
             menus.getChildren().get(i).setDisable(true);
         }
+
+        saveLabel.setOnMouseClicked(this::onSaveClicked);
+    }
+
+    private void onSaveClicked(MouseEvent mouseEvent) {
+        Log.info("Saving game...");
+        GameSaver saver = new GameSaver(GameStoreProvider.getStore());
+        saver.saveGame();
+        Log.info("Game saved!");
+        quitGame();
     }
 
     @FXML

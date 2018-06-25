@@ -3,6 +3,8 @@ package game;
 import client.GameStoreClient;
 import game.actions.Action;
 import game.player.Player;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import util.Observable;
 
 import java.rmi.RemoteException;
@@ -13,16 +15,26 @@ import java.rmi.RemoteException;
  * @author Wesley Klop
  */
 public class GameStoreProvider {
+    private static final Logger Log = LogManager.getLogger(GameStoreProvider.class);
     private static final Observable<GameStore> instance = new Observable<>();
     private static GameStoreClient sender;
     // Player that corresponds to the client
 
     public static Player getPlayer() {
-        return sender.getPlayer();
+        try {
+            return sender.getPlayer();
+        } catch (RemoteException e) {
+            Log.error("Failed to get player from sender..", e);
+            return null;
+        }
     }
 
     public static void setPlayer(Player player) {
-        sender.setPlayer(player);
+        try {
+            sender.setPlayer(player);
+        } catch (RemoteException e) {
+            Log.catching(e);
+        }
     }
 
     private GameStoreProvider() {

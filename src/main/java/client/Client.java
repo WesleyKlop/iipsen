@@ -7,7 +7,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -67,11 +66,12 @@ public class Client extends Application implements SceneListener {
 
         stage = primaryStage;
         var screenInfo = Screen.getPrimary().getVisualBounds();
-        scene = new Scene(rootPane, screenInfo.getWidth(), screenInfo.getHeight());
+        scene = new Scene(rootPane, 1920, 1080);
+//        scene = new Scene(rootPane, screenInfo.getWidth(), screenInfo.getHeight());
         primaryStage.setTitle("Main Menu");
         primaryStage.setScene(scene);
-        primaryStage.setFullScreen(true);
-        primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+//        primaryStage.setFullScreen(true);
+//        primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         primaryStage.show();
     }
 

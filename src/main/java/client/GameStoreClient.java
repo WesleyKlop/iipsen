@@ -18,7 +18,7 @@ public interface GameStoreClient extends Remote {
 
     void onConnect(GameStore initialStore) throws RemoteException;
 
-    Player getPlayer();
+    Player getPlayer() throws RemoteException;
 
-    void setPlayer(Player player);
+    void setPlayer(Player player) throws RemoteException;
 }

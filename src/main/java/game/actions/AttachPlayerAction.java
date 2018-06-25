@@ -3,6 +3,8 @@ package game.actions;
 import client.GameStoreClient;
 import game.GameStore;
 
+import java.rmi.RemoteException;
+
 /**
  * @author Wesley Klop
  */
@@ -18,7 +20,7 @@ public class AttachPlayerAction implements Action {
 
 
     @Override
-    public void executeAction(GameStore store) {
+    public void executeAction(GameStore store) throws RemoteException {
         client.setPlayer(store.getPlayerController().getPlayerById(playerId));
     }
 

@@ -19,9 +19,9 @@
         <Label styleClass="fancy-label" text="Resume" fx:id="resumeLabel"/>
         <Label styleClass="fancy-label" text="Options" fx:id="optionsLabel" onMouseClicked="#menuOpeningSequence"/>
         <Label styleClass="fancy-label" text="Rules" fx:id="rulesLabel" onMouseClicked="#menuOpeningSequence"/>
-        <Label styleClass="fancy-label" text="Save" fx:id="saveLabel" onMouseClicked="#menuOpeningSequence"/>
         <Label styleClass="fancy-label" text="Quick Finish" fx:id="quickFinishLabel"
                onMouseClicked="#menuOpeningSequence"/>
+        <Label styleClass="fancy-label" text="Save and Quit" fx:id="saveLabel" onMouseClicked="#menuOpeningSequence"/>
         <Label styleClass="fancy-label" text="Quit" onMouseClicked="#quitGame"/>
     </VBox>
     <StackPane fx:id="menus" translateX="850" translateY="1180">
