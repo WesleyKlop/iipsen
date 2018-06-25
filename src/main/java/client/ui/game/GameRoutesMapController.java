@@ -6,6 +6,7 @@ import client.ui.factories.LocationFactory;
 import client.ui.factories.RouteViewFactory;
 import game.GameStore;
 import game.GameStoreProvider;
+import game.location.ELocation;
 import game.routecards.Route;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -95,6 +96,15 @@ public class GameRoutesMapController implements Observer<GameStore> {
         }
     }
 
+    private Circle getLocation(ELocation location) {
+        for (int i = 0; i < locationPane.getChildren().size(); i++) {
+            if (locationPane.getChildren().get(i).getId().equalsIgnoreCase(location.toString())) {
+                return (Circle) locationPane.getChildren().get(i);
+            }
+        }
+        return null;
+    }
+
     private int[] getLocationPosition(Circle location) {
         String id = location.getId();
         int[] position = {0, 0};
@@ -170,5 +180,17 @@ public class GameRoutesMapController implements Observer<GameStore> {
                 }
             }
         });
+    }
+
+    public void showLocations(ELocation loc1, ELocation loc2) {
+        Log.debug("Showing locations {} {}", loc1, loc2);
+        getLocation(loc1).setStroke(Color.BLUE);
+        getLocation(loc2).setStroke(Color.BLUE);
+    }
+
+    public void unShowLocations(ELocation loc1, ELocation loc2) {
+        Log.debug("Unshowing locations {} {}", loc1, loc2);
+        getLocation(loc1).setStroke(Color.ORANGE);
+        getLocation(loc2).setStroke(Color.ORANGE);
     }
 }

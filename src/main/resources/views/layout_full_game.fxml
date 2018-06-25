@@ -11,13 +11,13 @@
         <Image url="/images/gamescreen.png"/>
     </ImageView>
 
-    <fx:include source="layout_game_playerbox.fxml" layoutY="16" layoutX="230"/>
+    <fx:include source="layout_game_playerbox.fxml" layoutY="16" layoutX="259"/>
     <fx:include source="layout_game_cards.fxml" fx:id="hand" layoutX="0" layoutY="848"/>
     <fx:include source="layout_routes_map.fxml" fx:id="routesMap" scaleX="1.3" scaleY="1.3" layoutX="843"
                 layoutY="194"/>
     <fx:include source="layout_game_bank.fxml" fx:id="bank" layoutX="16" layoutY="16"/>
     <fx:include source="layout_route_card_stack.fxml" layoutX="230" layoutY="680"/>
-    <fx:include source="layout_game_hand_routecards.fxml" layoutY="789" layoutX="1200"/>
+    <fx:include source="layout_game_hand_routecards.fxml" fx:id="routeHand" layoutY="789" layoutX="1200"/>
 
     <fx:include source="layout_game_routecard.fxml" fx:id="initRouteCards"/>
 

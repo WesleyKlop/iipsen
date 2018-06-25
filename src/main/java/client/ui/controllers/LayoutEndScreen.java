@@ -37,7 +37,7 @@ public class LayoutEndScreen implements Observer<GameStore> {
             Label label = new Label("Naam: " + player.getPlayerName() + "                Score: " + player.getScore());
             label.setStyle("-fx-background-color: lightblue; -fx-font-size: 20;-fx-font-weight: Bold;-fx-border-color: black; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 20");
             content.getChildren().add(label);
-            prizes.getChildren().add(new ImageView(new Image("/Prizes/Number_" + (i + 1) + ".png")));
+            prizes.getChildren().add(new ImageView(new Image("/prizes/Number_" + (i + 1) + ".png")));
 
         }
     }
