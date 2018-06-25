@@ -169,5 +169,4 @@ public class GameRoutesMapController implements Observer<GameStore> {
             }
         });
     }
-
 }

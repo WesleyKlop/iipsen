@@ -45,7 +45,7 @@ public class TrainCardMessageController {
 
     @FXML
     private void take() throws RemoteException {
-        Action action = new GetCardAction(GameStoreProvider.getStore().getPlayersTurn(), indexes);
+        Action action = new GetCardAction(GameStoreProvider.getPlayer().getId(), indexes);
         GameStoreProvider.sendAction(action);
         MessagesControllerProvider.getMessageController().closeMenu(rootPane);
     }

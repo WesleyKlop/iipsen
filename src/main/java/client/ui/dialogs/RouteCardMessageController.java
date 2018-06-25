@@ -82,7 +82,7 @@ public class RouteCardMessageController {
     private void sendAction() throws RemoteException {
         int amount = getSelectedAmount();
         if (AtleastOneSelected()) {
-            Action action = new SelectRouteCardsAction(GameStoreProvider.getStore().getPlayersTurn(), getSelectedRouteCardStack());
+            Action action = new SelectRouteCardsAction(GameStoreProvider.getPlayer().getId(), getSelectedRouteCardStack());
             GameStoreProvider.sendAction(action);
             cancel();
         } else {
