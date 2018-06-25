@@ -10,8 +10,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static game.GameState.INIT;
-
 /**
  * GameStore keeps track of all game state.
  * This is the object that should be saved to disk and be passed around via RMI
@@ -20,7 +18,7 @@ import static game.GameState.INIT;
  * @author Wesley Klop
  */
 public class GameStore implements Serializable {
-    private GameState gameState = INIT;
+    private GameState gameState = GameState.INIT;
     private List<Player> players = new ArrayList<>();
     private CardStackController cardStackController = new CardStackController();
     private SelectableRouteCards selectableRouteCards = new SelectableRouteCards(new RouteCardStackBank());

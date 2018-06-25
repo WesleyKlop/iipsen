@@ -27,7 +27,7 @@ class ChangeStateActionTest {
     @Test
     void executingActionChangesState() {
         var store = new GameStore("");
-        assertNull(store.getGameState());
+        assertEquals(GameState.INIT, store.getGameState());
         assertDoesNotThrow(() -> testAction.executeAction(store));
         assertEquals(GameState.GAME, store.getGameState());
     }
