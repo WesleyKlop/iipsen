@@ -166,7 +166,6 @@ public class GameRoutesMapController implements Observer<GameStore> {
                         Rectangle rectangle = new Rectangle(9, 22, player.getColorAsColor());
                         rectangle.setStroke(Color.BLACK);
                         cart.getChildren().add(rectangle);
-
                     }
                 }
             }
