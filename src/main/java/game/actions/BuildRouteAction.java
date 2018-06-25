@@ -34,8 +34,10 @@ public class BuildRouteAction implements Action {
         Player player = store.getPlayerById(playerId);
         Route route = store.getRouteStore().getRouteById(routeId);
         Log.debug("Route type: {}", route.getRouteType());
-        build(route, player);
-        updateRouteCards(player);
+        if (player.getCardStack().containsCards(costs)) {
+            build(route, player);
+            updateRouteCards(player);
+        }
         store.cyclePlayerTurn();
     }
 
