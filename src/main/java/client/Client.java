@@ -122,7 +122,6 @@ public class Client extends Application implements SceneListener {
             case FINISHED:
                 newRoot = getParent("layout_end_screen");
                 // Switch to end screen
-                break;
         }
         if (newRoot != null) {
             setStage(newRoot, newTitle);

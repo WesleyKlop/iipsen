@@ -10,7 +10,6 @@
     <Rectangle arcHeight="20" arcWidth="20" fill="#333" height="600" opacity="0.75" style="-fx-background-color: #333"
                width="1000"/>
     <VBox alignment="BASELINE_CENTER" prefHeight="600" prefWidth="1000">
-        <Label prefHeight="320.0" prefWidth="360.0" text="It is not your turn!" textFill="#FFF"
-               style="-fx-font-size: 41px"/>
+        <Label prefHeight="320.0" prefWidth="360.0" text="It's your turn!" textFill="#FFF" style="-fx-font-size: 41px"/>
     </VBox>
 </StackPane>
