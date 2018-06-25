@@ -1,5 +1,6 @@
-package client.ui;
+package client.ui.dialogs;
 
+import client.ui.game.GameCostsController;
 import game.GameStoreProvider;
 import game.routecards.Route;
 import javafx.animation.TranslateTransition;

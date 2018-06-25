@@ -10,7 +10,7 @@
       xmlns="http://javafx.com/javafx/8.0.121"
       prefHeight="1080.0" prefWidth="1920.0"
       stylesheets="/css/defaultStyling.css"
-      fx:controller="client.ui.PauseMenuController">
+      fx:controller="client.ui.game.PauseMenuController">
     <ImageView fitWidth="1920" fitHeight="1080" opacity="0.78">
         <Image url="/images/pause_background.jpg"/>
     </ImageView>

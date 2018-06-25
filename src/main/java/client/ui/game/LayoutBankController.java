@@ -1,5 +1,6 @@
-package client.ui;
+package client.ui.game;
 
+import client.ui.dialogs.MessagesControllerProvider;
 import game.GameStore;
 import game.GameStoreProvider;
 import javafx.animation.ScaleTransition;

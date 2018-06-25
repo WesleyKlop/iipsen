@@ -1,4 +1,4 @@
-package client;
+package client.util;
 
 import game.GameStore;
 import org.apache.logging.log4j.LogManager;

@@ -1,4 +1,4 @@
-package client;
+package client.util;
 
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
@@ -29,18 +29,18 @@ public class MediaController {
             return;
         }
 
-        player.setVolume(prefs.getMusicVolume());
-        player.setMute(prefs.isSoundMuted());
+        player.setVolume(UserPreferences.getMusicVolume());
+        player.setMute(UserPreferences.isSoundMuted());
         player.play();
     }
 
     public static void playClickSound() {
         var prefs = getController().prefs;
-        if (prefs.isSoundMuted()) {
+        if (UserPreferences.isSoundMuted()) {
             return;
         }
         getController().clickClip.stop();
-        getController().clickClip.play(prefs.getFxVolume());
+        getController().clickClip.play(UserPreferences.getFxVolume());
     }
 
     private static MediaController getController() {

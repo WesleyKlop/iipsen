@@ -1,4 +1,4 @@
-package client.ui;
+package client.ui.game;
 
 import client.ui.components.PlayerRouteCard;
 import game.GameStore;

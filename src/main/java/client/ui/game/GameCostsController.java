@@ -1,5 +1,6 @@
-package client.ui;
+package client.ui.game;
 
+import client.ui.dialogs.MessagesControllerProvider;
 import game.GameStore;
 import game.GameStoreProvider;
 import game.actions.Action;
@@ -24,7 +25,7 @@ import javafx.util.Duration;
 
 import java.rmi.RemoteException;
 
-import static client.UserPreferences.isColorBlind;
+import static client.util.UserPreferences.isColorBlind;
 
 public class GameCostsController {
     @FXML
@@ -43,7 +44,7 @@ public class GameCostsController {
         locations.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/MavenPro-Medium.ttf"), 25));
     }
 
-    void showBuildDialog(Route route) {
+    public void showBuildDialog(Route route) {
         resetMessage();
         buildButton.setDisable(route.hasOwner());
         if (route.getOwner() == 0) {
@@ -133,7 +134,7 @@ public class GameCostsController {
         return player.getCardStack().containsCards(route.getCostsAsCardStack()) && !route.hasOwner();
     }
 
-    void setRouteWarning(String text) {
+    public void setRouteWarning(String text) {
         Platform.runLater(() -> tunnelWarning.setText(text));
     }
 }

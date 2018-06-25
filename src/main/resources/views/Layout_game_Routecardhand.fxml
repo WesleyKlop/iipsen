@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.Pane?>
 <Pane xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
-      fx:controller="client.ui.RouteCardHandController"
+      fx:controller="client.ui.game.RouteCardHandController"
 >
 
     <ScrollPane minHeight="165" minWidth="500" maxHeight="500" maxWidth="165" hbarPolicy="ALWAYS">
