@@ -41,9 +41,10 @@ class BuildRouteActionTest {
     @Test
     void buildRouteNotEnoughCards() {
         player.getCardStack().addCard(CardType.LOCOMOTIVE);
-        assertThrows(Exception.class, () -> action.executeAction(store));
+        assertDoesNotThrow(() -> action.executeAction(store));
         assertFalse(testRoute1.hasOwner());
     }
+
 
     @Test
     void buildRouteEnoughCards() {
