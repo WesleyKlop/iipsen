@@ -16,14 +16,13 @@ public class GameStoreProvider {
     private static final Observable<GameStore> instance = new Observable<>();
     private static GameStoreClient sender;
     // Player that corresponds to the client
-    private static Player player;
 
     public static Player getPlayer() {
-        return player;
+        return sender.getPlayer();
     }
 
     public static void setPlayer(Player player) {
-        GameStoreProvider.player = player;
+        sender.setPlayer(player);
     }
 
     private GameStoreProvider() {

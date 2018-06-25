@@ -5,6 +5,7 @@ import game.GameStore;
 import game.GameStoreProvider;
 import game.actions.Action;
 import game.actions.AddPlayerAction;
+import game.player.Player;
 import javafx.application.Platform;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,6 +29,7 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
     private transient Observable<GameStore> storeObservable = GameStoreProvider.getInstance();
     private transient SceneListener sceneListener;
     private transient Action lastAction;
+    private Player player;
 
     GameClient(String ip, SceneListener sceneListener) throws RemoteException {
         super();
@@ -112,7 +114,13 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
         Log.debug("Connected to server");
     }
 
-    public Observable<GameStore> getStoreObservable() {
-        return storeObservable;
+    @Override
+    public Player getPlayer() {
+        return player;
+    }
+
+    @Override
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }

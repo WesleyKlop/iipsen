@@ -25,7 +25,7 @@ public class Client extends Application implements SceneListener {
 
     private static final String DEFAULT_IP = "127.0.0.1";
 
-    private GameClient client;
+    private GameStoreClient client;
     private Stage stage;
     private Scene scene;
     private StartupController rootPaneController;
