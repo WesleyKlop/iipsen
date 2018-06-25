@@ -163,7 +163,10 @@ public class GameRoutesMapController implements Observer<GameStore> {
                     if (cart.getChildren().size() == 2) {
                         // 2 because of the colorblind overlay!!
                         // If it's not 2 there is probably already a rectangle on it
-                        cart.getChildren().add(new Rectangle(9, 22, player.getColorAsColor()));
+                        Rectangle rectangle = new Rectangle(9, 22, player.getColorAsColor());
+                        rectangle.setStroke(Color.BLACK);
+                        cart.getChildren().add(rectangle);
+
                     }
                 }
             }
