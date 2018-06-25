@@ -61,7 +61,7 @@ public class PreferencesController {
 
     public boolean checkNameDouble() {
         String name = nameField.getText();
-        for (Player player : GameStoreProvider.getStore().getPlayers()) { // <--- FIXME dit werkt niet
+        for (Player player : GameStoreProvider.getStore().getPlayerController().getPlayers()) { // <--- FIXME dit werkt niet
             if (name.equalsIgnoreCase(player.getPlayerName())) {
                 nameLabel.setText("Name is already taken, please choose another name");
                 return false;

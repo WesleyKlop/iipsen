@@ -43,7 +43,7 @@ public class GameStoreProvider {
 
     public static void sendAction(Action action) throws RemoteException {
         var store = instance.getValue();
-        if (store.getGameState() != GameState.GAME || action.getPlayerId() == store.getPlayersTurn()) {
+        if (store.getGameState() != GameState.GAME || action.getPlayerId() == store.getPlayerController().getCurrentTurn()) {
             sender.sendAction(action);
         }
     }

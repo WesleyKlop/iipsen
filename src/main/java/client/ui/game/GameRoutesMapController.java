@@ -157,7 +157,7 @@ public class GameRoutesMapController implements Observer<GameStore> {
                     continue;
                 }
 
-                var player = store.getPlayerById(routeObj.getOwner());
+                var player = store.getPlayerController().getPlayerById(routeObj.getOwner());
                 for (Node node : ((VBox) route).getChildren()) {
                     StackPane cart = (StackPane) node;
                     if (cart.getChildren().size() == 2) {

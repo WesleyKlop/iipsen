@@ -2,6 +2,7 @@ package game.actions;
 
 import game.GameStore;
 import game.cards.Card;
+import game.player.PlayerController;
 
 /**
  * @author Thom
@@ -25,15 +26,16 @@ public class GetCardAction implements Action {
     @Override
     public void executeAction(GameStore store) {
         Card card;
+        PlayerController controller = store.getPlayerController();
         for (int i = 0; i < 2; i++) {
             if (index[i] == 0) {
                 card = store.getCardStackController().getRandomCard();
             } else {
                 card = store.getCardStackController().getOpenCard(index[i] - 1);
             }
-            store.getPlayerById(playerId).getCardStack().addCard(card);
+            controller.getPlayerById(playerId).getCardStack().addCard(card);
         }
-        store.cyclePlayerTurn();
+        controller.cyclePlayerTurn();
     }
 
     @Override

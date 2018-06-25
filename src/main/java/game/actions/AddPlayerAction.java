@@ -32,8 +32,8 @@ public class AddPlayerAction implements Action {
      */
     @Override
     public void executeAction(GameStore store) {
-        store.getPlayers().add(player);
-        player.setId(store.getPlayers().size());
+        store.getPlayerController().getPlayers().add(player);
+        player.setId(store.getPlayerController().getPlayers().size());
         for (int i = 0; i < 4; i++) {
             player.getCardStack().addCard(store.getCardStackController().getRandomCard());
         }

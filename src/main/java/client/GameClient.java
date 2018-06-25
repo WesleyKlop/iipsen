@@ -66,7 +66,7 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
 
         if (GameStoreProvider.getPlayer() != null) {
             // Update the player on the GameStoreProvider
-            GameStoreProvider.setPlayer(newStore.getPlayerById(GameStoreProvider.getPlayer().getId()));
+            GameStoreProvider.setPlayer(newStore.getPlayerController().getPlayerById(GameStoreProvider.getPlayer().getId()));
             Log.debug("Updated player");
         }
 
@@ -86,7 +86,7 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
 
     private void processLastActionResponse(GameStore store) {
         if (lastAction instanceof AddPlayerAction) {
-            var players = store.getPlayers();
+            var players = store.getPlayerController().getPlayers();
             GameStoreProvider.setPlayer(players.get(players.size() - 1));
             sceneListener.updateSceneState(GameState.LOBBY);
         }

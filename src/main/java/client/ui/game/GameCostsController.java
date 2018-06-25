@@ -54,7 +54,10 @@ public class GameCostsController {
         if (route.getOwner() == 0) {
             owner.setText("");
         } else {
-            owner.setText("This route is currently owned by: " + GameStoreProvider.getStore().getPlayerById(route.getOwner()).getPlayerName());
+            owner.setText(String.format(
+                "This route is currently owned by: %s",
+                GameStoreProvider.getStore().getPlayerController().getPlayerById(route.getOwner()).getPlayerName())
+            );
         }
         updateCurrentId(route.getId());
         addParts(route.getLength(), route.getLocomotiveCost(), route.getCardType());

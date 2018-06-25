@@ -1,6 +1,7 @@
 package game.actions;
 
 import game.GameStore;
+import game.player.PlayerController;
 import game.routecards.RouteCard;
 
 import java.util.List;
@@ -19,12 +20,13 @@ public class SelectRouteCardsAction implements Action {
 
     @Override
     public void executeAction(GameStore store) {
-        var player = store.getPlayerById(playerId);
+        PlayerController controller = store.getPlayerController();
+        var player = controller.getPlayerById(playerId);
         for (RouteCard card : cards) {
             player.addRouteCard(card);
         }
         store.getSelectableRouteCards().populatePickableCards();
-        store.cyclePlayerTurn();
+        controller.cyclePlayerTurn();
     }
 
     @Override

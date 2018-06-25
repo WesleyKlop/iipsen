@@ -107,12 +107,12 @@ public class MessagesController implements Observer<GameStore> {
     }
 
     private boolean isPlayersTurn() {
-        return GameStoreProvider.getStore().getPlayersTurn() == GameStoreProvider.getPlayer().getId();
+        return GameStoreProvider.getStore().getPlayerController().getCurrentTurn() == GameStoreProvider.getPlayer().getId();
     }
 
     @Override
     public void onUpdate(GameStore value) {
-        if (GameStoreProvider.getStore().getPlayersTurn() == GameStoreProvider.getPlayer().getId()) {
+        if (GameStoreProvider.getStore().getPlayerController().getCurrentTurn() == GameStoreProvider.getPlayer().getId()) {
             openWaitAndClose(turn);
         }
     }

@@ -4,6 +4,7 @@ import game.GameStore;
 import game.cards.CardStack;
 import game.cards.CardType;
 import game.player.Player;
+import game.player.PlayerController;
 import game.routecards.Route;
 import game.routecards.RouteCard;
 import org.apache.logging.log4j.LogManager;
@@ -31,14 +32,15 @@ public class BuildRouteAction implements Action {
 
     @Override
     public void executeAction(GameStore store) throws Exception {
-        Player player = store.getPlayerById(playerId);
+        PlayerController controller = store.getPlayerController();
+        Player player = controller.getPlayerById(playerId);
         Route route = store.getRouteStore().getRouteById(routeId);
         Log.debug("Route type: {}", route.getRouteType());
         if (player.getCardStack().containsCards(costs)) {
             build(route, player);
             updateRouteCards(player);
         }
-        store.cyclePlayerTurn();
+        controller.cyclePlayerTurn();
     }
 
     private void updateRouteCards(Player player) {

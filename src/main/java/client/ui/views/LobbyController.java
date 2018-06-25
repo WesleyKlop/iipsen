@@ -85,7 +85,7 @@ public class LobbyController implements Observer<GameStore> {
     @Override
     public void onUpdate(final GameStore value) {
         Platform.runLater(() -> {
-            updateView(value.getPlayers());
+            updateView(value.getPlayerController().getPlayers());
             setIpAddress(value.getServerIp());
         });
     }

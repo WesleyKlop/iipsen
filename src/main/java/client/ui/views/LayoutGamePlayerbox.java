@@ -18,7 +18,7 @@ public class LayoutGamePlayerbox implements Observer<GameStore> {
     @FXML
     private void initialize() {
         GameStoreProvider.getInstance().addObserver(this);
-        var players = GameStoreProvider.getStore().getPlayers();
+        var players = GameStoreProvider.getStore().getPlayerController().getPlayers();
         boxes = new PlayerBox[players.size()];
         for (int i = 0; i < players.size(); i++) {
             var player = players.get(i);
@@ -31,7 +31,7 @@ public class LayoutGamePlayerbox implements Observer<GameStore> {
     public void onUpdate(GameStore value) {
         Platform.runLater(() -> {
             for (int i = 0; i < boxes.length; i++) {
-                boxes[i].update(value.getPlayers().get(i));
+                boxes[i].update(value.getPlayerController().getPlayers().get(i));
             }
         });
     }

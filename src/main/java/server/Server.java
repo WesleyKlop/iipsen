@@ -4,6 +4,7 @@ import client.GameStoreClient;
 import game.GameState;
 import game.GameStore;
 import game.actions.Action;
+import game.player.PlayerController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -78,11 +79,13 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
             return;
         }
 
-        if (gameStore.shouldGoToLastTurn(action.getPlayerId())) {
+        PlayerController playerController = gameStore.getPlayerController();
+
+        if (playerController.shouldGoToLastTurn(action.getPlayerId())) {
             // When the player that did his turn has 2 ore less trainscarts we should set the last turn param
             Log.info("Player has 2 or less carts left.. Going to final round..");
-            gameStore.setLastTurn(action.getPlayerId());
-        } else if (gameStore.getLastTurn() == action.getPlayerId()) {
+            playerController.setLastTurn(action.getPlayerId());
+        } else if (playerController.getFinalTurn() == action.getPlayerId()) {
             // Else if the action player id is the same as the id of the last turn player
             // We should go to finish.
             Log.info("Going to finished state!");

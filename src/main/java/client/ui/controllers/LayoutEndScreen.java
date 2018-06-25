@@ -28,7 +28,7 @@ public class LayoutEndScreen implements Observer<GameStore> {
 
     @Override
     public void onUpdate(GameStore store) {
-        List<Player> players = store.getPlayers();
+        List<Player> players = store.getPlayerController().getPlayers();
         players.sort(Comparator.comparingInt(Player::getScore));
         Collections.reverse(players);
 
