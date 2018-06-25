@@ -5,6 +5,7 @@ import client.ui.dialogs.MessagesController;
 import client.ui.dialogs.MessagesControllerProvider;
 import client.util.UserPreferences;
 import client.util.UserPreferences.PreferencesContainer;
+import game.GameStore;
 import game.GameStoreProvider;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -15,7 +16,7 @@ import javafx.stage.Screen;
 import javafx.util.Duration;
 import util.Observer;
 
-public class FullGameController implements Observer<PreferencesContainer> {
+public class FullGameController implements Observer<GameStore>, UserPreferences.PreferencesListener {
 
     private Image image = new Image("/images/points.png");
     private ImageView iv1 = new ImageView();
@@ -38,6 +39,7 @@ public class FullGameController implements Observer<PreferencesContainer> {
 
     public void initialize() {
         UserPreferences.addObserver(this);
+        GameStoreProvider.getInstance().addObserver(this);
         MessagesControllerProvider.setMessageController(messagesController);
         pauseMenuController.resumeLabel.setOnMouseClicked(e -> closePauseMenu());
         var screenInfo = Screen.getPrimary().getVisualBounds();
@@ -78,5 +80,10 @@ public class FullGameController implements Observer<PreferencesContainer> {
             bankController.updateCardImages(GameStoreProvider.getStore());
             routesMapController.switchColorBlind(colorBlind);
         }
+    }
+
+    @Override
+    public void onUpdate(GameStore value) {
+
     }
 }

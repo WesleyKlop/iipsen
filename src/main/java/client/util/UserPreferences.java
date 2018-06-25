@@ -1,7 +1,5 @@
 package client.util;
 
-import util.Observer;
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.prefs.Preferences;
@@ -29,18 +27,18 @@ public class UserPreferences {
      * Store where we R/W our preferences
      */
     private static final Preferences prefs = Preferences.userNodeForPackage(UserPreferences.class);
-    private static final Set<Observer<PreferencesContainer>> observers = new HashSet<>();
+    private static final Set<PreferencesListener> observers = new HashSet<>();
 
-    public static void addObserver(Observer<PreferencesContainer> observer) {
+    public static void addObserver(PreferencesListener observer) {
         observers.add(observer);
     }
 
-    public static void removeObserver(Observer<PreferencesContainer> observer) {
+    public static void removeObserver(PreferencesListener observer) {
         observers.remove(observer);
     }
 
     private static void notifyObservers() {
-        for (Observer<PreferencesContainer> observer : observers) {
+        for (PreferencesListener observer : observers) {
             observer.onUpdate(new PreferencesContainer(
                 isSoundMuted(),
                 isColorBlind(),
@@ -126,6 +124,10 @@ public class UserPreferences {
     public static void setFxVolume(double volume) {
         prefs.putDouble(FX_VOLUME, volume);
         notifyObservers();
+    }
+
+    static public interface PreferencesListener {
+        void onUpdate(PreferencesContainer preferences);
     }
 
     static public class PreferencesContainer {
