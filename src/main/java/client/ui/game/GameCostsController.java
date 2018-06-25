@@ -22,6 +22,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.rmi.RemoteException;
 
@@ -38,6 +40,8 @@ public class GameCostsController {
     private Button buildButton;
 
     private int currentId;
+
+    private static final Logger Log = LogManager.getLogger(GameCostsController.class);
 
     @FXML
     public void initialize() {
@@ -107,7 +111,8 @@ public class GameCostsController {
         Player player = GameStoreProvider.getPlayer();
         Route route = store.getRouteStore().getRouteById(currentId);
         if (BuildRouteControle(route, player)) {
-            Action buildAction = new BuildRouteAction(player.getId(), route);
+            int extraCosts = (route.getRouteType() == RouteType.TUNNEL) ? calculateExtraCosts(route.getCardType()) : 0;
+            Action buildAction = new BuildRouteAction(player.getId(), route, extraCosts);
             GameStoreProvider.sendAction(buildAction);
             if (route.getRouteType() == RouteType.TUNNEL) {
                 closeAnimationWait();
@@ -136,5 +141,21 @@ public class GameCostsController {
 
     public void setRouteWarning(String text) {
         Platform.runLater(() -> tunnelWarning.setText(text));
+    }
+
+    private int calculateExtraCosts(CardType type) {
+        int extraCosts = 0;
+        for (int i = 0; i < 3; i++) {
+            if (GameStoreProvider.getStore().getCardStackController().getRandomCard().getCardType() == type) {
+                extraCosts++;
+            }
+        }
+        Log.info("Extra costs for tunnel are {}", extraCosts);
+        try {
+            MessagesControllerProvider.getMessageController().setBuildRouteWarning("Extra costs for tunnel: " + extraCosts);
+        } catch (NullPointerException ex) {
+            Log.error("NullPointerError showing BuildRouteWarning... ", ex);
+        }
+        return extraCosts;
     }
 }

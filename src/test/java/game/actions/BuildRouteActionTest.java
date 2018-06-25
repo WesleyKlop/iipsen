@@ -27,7 +27,7 @@ class BuildRouteActionTest {
         GameStoreProvider.getInstance().setValue(store);
         testRoute1 = store.getRouteStore().getRouteById(TEST_ROUTE_ID);
         store.getPlayers().add(player);
-        action = new BuildRouteAction(player.getId(), testRoute1);
+        action = new BuildRouteAction(player.getId(), testRoute1, 0);
     }
 
     @AfterEach
@@ -41,9 +41,10 @@ class BuildRouteActionTest {
     @Test
     void buildRouteNotEnoughCards() {
         player.getCardStack().addCard(CardType.LOCOMOTIVE);
-        assertThrows(Exception.class, () -> action.executeAction(store));
+        assertDoesNotThrow(() -> action.executeAction(store));
         assertFalse(testRoute1.hasOwner());
     }
+
 
     @Test
     void buildRouteEnoughCards() {

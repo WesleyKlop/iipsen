@@ -80,7 +80,7 @@ public class RouteCardController implements Observer<GameStore> {
         button.setDisable(true);
 
         Action routeCardAction = new SelectRouteCardsAction(
-            GameStoreProvider.getStore().getPlayersTurn(),
+                GameStoreProvider.getPlayer().getId(),
             selectedRouteCards);
         GameStoreProvider.sendAction(routeCardAction);
         close();
