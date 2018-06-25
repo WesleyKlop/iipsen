@@ -1,11 +1,12 @@
 package client.ui.mainmenu;
 
-import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
 /**
  */
 public class MainMenuLoadController {
 
-    public Label loadLevelLabel;
+    public void onLoadButtonClicked(MouseEvent mouseEvent) {
 
+    }
 }

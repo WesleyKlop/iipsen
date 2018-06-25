@@ -12,13 +12,8 @@ import java.io.*;
 public class GameSaver {
     private static final Logger Log = LogManager.getLogger(GameSaver.class);
     private static final String SAVE_PATH = "./TTRGameSave.dat";
-    private final GameStore store;
 
-    public GameSaver(GameStore store) {
-        this.store = store;
-    }
-
-    public void saveGame() {
+    public static void saveGame(GameStore store) {
         try (var stream = new ObjectOutputStream(new FileOutputStream(SAVE_PATH))) {
             stream.writeObject(store);
         } catch (IOException ex) {
@@ -26,7 +21,7 @@ public class GameSaver {
         }
     }
 
-    public GameStore loadGame() {
+    public static GameStore loadGame() {
         try (var stream = new ObjectInputStream(new FileInputStream(SAVE_PATH))) {
             return (GameStore) stream.readObject();
         } catch (IOException | ClassNotFoundException ex) {
