@@ -27,7 +27,6 @@ public class PauseMenuController {
     private StackPane menus;
 
     @FXML
-
     public void initialize() {
         for (int i = 0; i < menus.getChildren().size(); i++) {
             menus.getChildren().get(i).setDisable(true);

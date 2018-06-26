@@ -29,7 +29,6 @@ public class StartupController {
     public void initialize() {
         MainMenuPaneController.getPlayController().createLobby.setOnMouseClicked(e -> switchMenuCreate());
         MainMenuPaneController.getPlayController().joinLobby.setOnMouseClicked(e -> switchMenuJoin());
-        MainMenuPaneController.getLoadController().loadLevelLabel.setOnMouseClicked(e -> openLoadMenu());
         preferencesPaneController.backButton.setOnMouseClicked(e -> moveMenuRight());
         lobbyPaneController.quitButtonLabel.setOnMouseClicked(e -> moveMenuUp());
     }
@@ -96,12 +95,12 @@ public class StartupController {
         closeMenuVertical(rulesLobby);
     }
 
-    private void openLoadMenu() {
-        System.out.println("Trying to load game");
-    }
-
     public PreferencesController getPreferenceController() {
         return preferencesPaneController;
+    }
+
+    public MainMenuLoadController getLoadMenuController() {
+        return MainMenuPaneController.getLoadController();
     }
 
     public void openRulesVertical() {

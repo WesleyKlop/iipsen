@@ -1,14 +1,15 @@
 package client;
 
 import client.ui.mainmenu.StartupController;
+import client.util.GameSaver;
 import game.GameState;
+import game.GameStore;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -55,17 +56,25 @@ public class Client extends Application implements SceneListener {
         rootPaneController.getPreferenceController().createButton.setOnMouseClicked(e -> {
             try {
                 if (rootPaneController.getPreferenceController().checkName()) {
-                    startServer();
+                    startServer(null);
                     rootPaneController.getPreferenceController().submitPreferences();
                 }
-            } catch (MalformedURLException | RemoteException | UnknownHostException e1) {
-                Log.error(e1);
+            } catch (MalformedURLException | RemoteException | UnknownHostException ex) {
+                Log.error(ex);
             }
         });
 
+        rootPaneController.getLoadMenuController().setOnLoadClicked(e -> {
+            GameStore store = GameSaver.loadGame();
+            try {
+                startServer(store);
+            } catch (MalformedURLException | UnknownHostException | RemoteException ex) {
+                Log.catching(ex);
+            }
+        });
 
         stage = primaryStage;
-        var screenInfo = Screen.getPrimary().getVisualBounds();
+//        var screenInfo = Screen.getPrimary().getVisualBounds();
         scene = new Scene(rootPane, 1920, 1080);
 //        scene = new Scene(rootPane, screenInfo.getWidth(), screenInfo.getHeight());
         primaryStage.setTitle("Main Menu");
@@ -75,8 +84,8 @@ public class Client extends Application implements SceneListener {
         primaryStage.show();
     }
 
-    private void startServer() throws MalformedURLException, RemoteException, UnknownHostException {
-        client = new GameClient(new Server(), this);
+    private void startServer(GameStore store) throws MalformedURLException, RemoteException, UnknownHostException {
+        client = new GameClient(new Server(store), this);
     }
 
     private void connectServer(String ip) throws RemoteException {

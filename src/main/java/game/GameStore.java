@@ -21,13 +21,13 @@ public class GameStore implements Serializable {
     private CardStackController cardStackController = new CardStackController();
     private SelectableRouteCards selectableRouteCards = new SelectableRouteCards(new RouteCardStackBank());
     private RouteStore routeStore = new RouteStore();
-    private final String serverIp;
+    private String serverIp;
 
     public PlayerController getPlayerController() {
         return playerController;
     }
 
-    public GameStore(String ip) {
+    public void setServerIp(String ip) {
         serverIp = ip;
     }
 
