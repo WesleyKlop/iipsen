@@ -6,6 +6,7 @@ import client.ui.factories.LocationFactory;
 import client.ui.factories.RouteViewFactory;
 import game.GameStore;
 import game.GameStoreProvider;
+import game.location.ELocation;
 import game.routecards.Route;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -95,6 +96,15 @@ public class GameRoutesMapController implements Observer<GameStore> {
         }
     }
 
+    private Circle getLocation(ELocation location) {
+        for (int i = 0; i < locationPane.getChildren().size(); i++) {
+            if (locationPane.getChildren().get(i).getId().equalsIgnoreCase(location.toString())) {
+                return (Circle) locationPane.getChildren().get(i);
+            }
+        }
+        return null;
+    }
+
     private int[] getLocationPosition(Circle location) {
         String id = location.getId();
         int[] position = {0, 0};
@@ -163,10 +173,24 @@ public class GameRoutesMapController implements Observer<GameStore> {
                     if (cart.getChildren().size() == 2) {
                         // 2 because of the colorblind overlay!!
                         // If it's not 2 there is probably already a rectangle on it
-                        cart.getChildren().add(new Rectangle(9, 22, player.getColorAsColor()));
+                        Rectangle rectangle = new Rectangle(9, 22, player.getColorAsColor());
+                        rectangle.setStroke(Color.BLACK);
+                        cart.getChildren().add(rectangle);
                     }
                 }
             }
         });
+    }
+
+    public void showLocations(ELocation loc1, ELocation loc2) {
+        Log.debug("Showing locations {} {}", loc1, loc2);
+        getLocation(loc1).setStroke(Color.BLUE);
+        getLocation(loc2).setStroke(Color.BLUE);
+    }
+
+    public void unShowLocations(ELocation loc1, ELocation loc2) {
+        Log.debug("Unshowing locations {} {}", loc1, loc2);
+        getLocation(loc1).setStroke(Color.ORANGE);
+        getLocation(loc2).setStroke(Color.ORANGE);
     }
 }
