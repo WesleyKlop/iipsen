@@ -62,6 +62,7 @@ public class LobbyController implements Observer<GameStore> {
         Action action = new AttachPlayerAction(GameStoreProvider.getClient(), player.getId());
         try {
             GameStoreProvider.sendAction(action);
+            GameStoreProvider.setPlayer(player);
         } catch (RemoteException e) {
             Log.error("Failed to attach player to client :(", e);
         }
