@@ -17,31 +17,35 @@ import java.rmi.RemoteException;
 public class GameStoreProvider {
     private static final Logger Log = LogManager.getLogger(GameStoreProvider.class);
     private static final Observable<GameStore> instance = new Observable<>();
-    private static GameStoreClient sender;
+    private static GameStoreClient client;
+
+    private GameStoreProvider() {
+    }
     // Player that corresponds to the client
+
+    public static GameStoreClient getClient() {
+        return client;
+    }
+
+    public static void setClient(GameStoreClient client) {
+        GameStoreProvider.client = client;
+    }
 
     public static Player getPlayer() {
         try {
-            return sender.getPlayer();
+            return client.getPlayer();
         } catch (RemoteException e) {
-            Log.error("Failed to get player from sender..", e);
+            Log.error("Failed to get player from client..", e);
             return null;
         }
     }
 
     public static void setPlayer(Player player) {
         try {
-            sender.setPlayer(player);
+            client.setPlayer(player);
         } catch (RemoteException e) {
             Log.catching(e);
         }
-    }
-
-    private GameStoreProvider() {
-    }
-
-    public static void setSender(GameStoreClient sender) {
-        GameStoreProvider.sender = sender;
     }
 
     public static Observable<GameStore> getInstance() {
@@ -55,7 +59,7 @@ public class GameStoreProvider {
     public static void sendAction(Action action) throws RemoteException {
         var store = instance.getValue();
         if (store.getGameState() != GameState.GAME || action.getPlayerId() == store.getPlayerController().getCurrentTurn()) {
-            sender.sendAction(action);
+            client.sendAction(action);
         }
     }
 }

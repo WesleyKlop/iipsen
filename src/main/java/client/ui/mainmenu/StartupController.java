@@ -30,7 +30,10 @@ public class StartupController {
         MainMenuPaneController.getPlayController().createLobby.setOnMouseClicked(e -> switchMenuCreate());
         MainMenuPaneController.getPlayController().joinLobby.setOnMouseClicked(e -> switchMenuJoin());
         preferencesPaneController.backButton.setOnMouseClicked(e -> moveMenuRight());
-        lobbyPaneController.quitButtonLabel.setOnMouseClicked(e -> moveMenuUp());
+        lobbyPaneController.quitButtonLabel.setOnMouseClicked(e -> {
+            moveMenuUp();
+            moveMenuRight();
+        });
     }
 
     public void quitGame() {
@@ -65,7 +68,7 @@ public class StartupController {
         moveMenuLeft();
     }
 
-    private void moveMenuLeft() {
+    public void moveMenuLeft() {
         TranslateTransition menuAni = new TranslateTransition(Duration.seconds(1), allPanes);
         menuAni.setToX(-1920);
         menuAni.play();

@@ -3,6 +3,8 @@ package client.ui.views;
 import game.GameState;
 import game.GameStore;
 import game.GameStoreProvider;
+import game.actions.Action;
+import game.actions.AttachPlayerAction;
 import game.actions.ChangeStateAction;
 import game.player.Player;
 import javafx.application.Platform;
@@ -43,7 +45,7 @@ public class LobbyController implements Observer<GameStore> {
     private void updateView(List<Player> players) {
         var children = this.container.getChildren();
         children.remove(0, children.size());
-        for (Player player : players) {
+        for (final Player player : players) {
             Label playerLabel = new Label(player.getPlayerName());
             playerLabel.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/MavenPro-Medium.ttf"), 25));
             playerLabel.setTextFill(player.getColorAsColor());
@@ -51,7 +53,17 @@ public class LobbyController implements Observer<GameStore> {
             playerLabel.setPrefWidth(500);
             playerLabel.setAlignment(CENTER);
             playerLabel.setPadding(new Insets(5, 10, 5, 10));
+            playerLabel.setOnMouseClicked(e -> this.onPlayerLabelClicked(player));
             container.getChildren().add(playerLabel);
+        }
+    }
+
+    private void onPlayerLabelClicked(final Player player) {
+        Action action = new AttachPlayerAction(GameStoreProvider.getClient(), player.getId());
+        try {
+            GameStoreProvider.sendAction(action);
+        } catch (RemoteException e) {
+            Log.error("Failed to attach player to client :(", e);
         }
     }
 

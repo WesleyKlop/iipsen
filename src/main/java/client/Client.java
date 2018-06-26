@@ -68,6 +68,8 @@ public class Client extends Application implements SceneListener {
             GameStore store = GameSaver.loadGame();
             try {
                 startServer(store);
+                rootPaneController.moveMenuLeft();
+                rootPaneController.moveMenuDown();
             } catch (MalformedURLException | UnknownHostException | RemoteException ex) {
                 Log.catching(ex);
             }
@@ -99,7 +101,7 @@ public class Client extends Application implements SceneListener {
         try {
             return FXMLLoader.load(getClass().getResource("/views/" + layoutName + ".fxml"));
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.catching(e);
         }
         return null;
     }

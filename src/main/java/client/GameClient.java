@@ -56,7 +56,7 @@ public class GameClient extends UnicastRemoteObject implements GameStoreClient {
 
     private void registerClient() throws RemoteException {
         server.registerObserver(this);
-        GameStoreProvider.setSender(this);
+        GameStoreProvider.setClient(this);
     }
 
     @Override

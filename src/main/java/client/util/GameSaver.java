@@ -1,5 +1,6 @@
 package client.util;
 
+import game.GameState;
 import game.GameStore;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,7 +24,10 @@ public class GameSaver {
 
     public static GameStore loadGame() {
         try (var stream = new ObjectInputStream(new FileInputStream(SAVE_PATH))) {
-            return (GameStore) stream.readObject();
+            GameStore store = (GameStore) stream.readObject();
+            store.setGameState(GameState.LOBBY);
+
+            return store;
         } catch (IOException | ClassNotFoundException ex) {
             Log.error("Error loading game", ex);
         }
