@@ -65,7 +65,10 @@ public class Client extends Application implements SceneListener {
         });
 
         rootPaneController.getLoadMenuController().setOnLoadClicked(e -> {
-            GameStore store = GameSaver.loadGame();
+            GameStore store = GameSaver.loadGame(stage);
+            if (store == null) {
+                return;
+            }
             try {
                 startServer(store);
                 rootPaneController.moveMenuLeft();

@@ -37,7 +37,7 @@ public class PauseMenuController {
 
     private void onSaveClicked(MouseEvent mouseEvent) {
         Log.info("Saving game...");
-        GameSaver.saveGame(GameStoreProvider.getStore());
+        GameSaver.saveGame(GameStoreProvider.getStore(), menus.getScene().getWindow());
         Log.info("Game saved!");
         quitGame();
     }
