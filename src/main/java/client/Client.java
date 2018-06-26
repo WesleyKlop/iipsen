@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
@@ -25,7 +26,7 @@ public class Client extends Application implements SceneListener {
     private static final String DEFAULT_IP = "127.0.0.1";
 
     private GameStoreClient client;
-    private Stage stage;
+    private static Stage stage;
     private Scene scene;
     private StartupController rootPaneController;
     // Try to fix scene diffing
@@ -77,6 +78,12 @@ public class Client extends Application implements SceneListener {
 
     private void startServer() throws MalformedURLException, RemoteException, UnknownHostException {
         client = new GameClient(new Server(), this);
+    }
+
+    public static void startload() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        fileChooser.showOpenDialog(stage);
     }
 
     private void connectServer(String ip) throws RemoteException {

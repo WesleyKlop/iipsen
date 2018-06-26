@@ -1,5 +1,6 @@
 package client.ui.mainmenu;
 
+import client.Client;
 import client.ui.views.LobbyController;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -97,7 +98,7 @@ public class StartupController {
     }
 
     private void openLoadMenu() {
-        System.out.println("Trying to load game");
+        Client.startload();
     }
 
     public PreferencesController getPreferenceController() {
