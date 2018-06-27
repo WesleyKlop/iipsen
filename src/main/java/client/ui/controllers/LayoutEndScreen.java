@@ -6,7 +6,6 @@ import game.routecards.RouteCard;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
@@ -44,22 +43,24 @@ public class LayoutEndScreen {
         for (int i = 0; i < scores.length; i++) {
             scores[i] = pL[i].getScore();
         }
-        pL[0].getConnectionKeeper().addLocations(ELocation.ALBORG, ELocation.ARHUS);
-        pL[0].addRouteCard(new RouteCard(ELocation.ALBORG, ELocation.ARHUS, 21));
+        pL[2].getConnectionKeeper().addLocations(ELocation.ALBORG, ELocation.ARHUS);
+        pL[2].addRouteCard(new RouteCard(ELocation.ALBORG, ELocation.ARHUS, 21));
         pL[0].getConnectionKeeper().addLocations(ELocation.HONNINGSVAG, ELocation.BODEN);
         pL[0].addRouteCard(new RouteCard(ELocation.HONNINGSVAG, ELocation.BODEN, 10));
-        pL[0].getConnectionKeeper().addLocations(ELocation.KAJAANI, ELocation.ARHUS);
-        pL[0].addRouteCard(new RouteCard(ELocation.KAJAANI, ELocation.ARHUS, 12));
-        pL[1].getConnectionKeeper().addLocations(ELocation.ALBORG, ELocation.ARHUS);
-        pL[1].addRouteCard(new RouteCard(ELocation.ALBORG, ELocation.ARHUS, 18));
+        pL[1].getConnectionKeeper().addLocations(ELocation.KAJAANI, ELocation.ARHUS);
+        pL[1].addRouteCard(new RouteCard(ELocation.KAJAANI, ELocation.ARHUS, 12));
+        pL[2].getConnectionKeeper().addLocations(ELocation.ALBORG, ELocation.ARHUS);
+        pL[2].addRouteCard(new RouteCard(ELocation.ALBORG, ELocation.ARHUS, 18));
         pL[1].getConnectionKeeper().addLocations(ELocation.HONNINGSVAG, ELocation.BODEN);
         pL[1].addRouteCard(new RouteCard(ELocation.HONNINGSVAG, ELocation.BODEN, 10));
-        pL[2].getConnectionKeeper().addLocations(ELocation.KAJAANI, ELocation.ARHUS);
-        pL[2].addRouteCard(new RouteCard(ELocation.KAJAANI, ELocation.ARHUS, 12));
+        pL[0].getConnectionKeeper().addLocations(ELocation.KAJAANI, ELocation.ARHUS);
+        pL[0].addRouteCard(new RouteCard(ELocation.KAJAANI, ELocation.ARHUS, 12));
 
 
         line.setCycleCount(Animation.INDEFINITE);
         addPlayers();
+
+        onMouseClickedAction();
 
         //constructKeyFramesArray();  // Cycle through the players and check for route cards
     }
@@ -71,9 +72,11 @@ public class LayoutEndScreen {
             Label routeAmount = new Label("Routes Finished: 0");
             VBox player = new VBox(name, score, routeAmount);
             player.setAlignment(Pos.CENTER);
-            Rectangle background = new Rectangle(200, 50);
+            Rectangle background = new Rectangle(200, 100);
             background.setFill(pL[i].getColorAsColor());
             StackPane playerPane = new StackPane(background, player);
+            playerPane.setId(String.valueOf(i));
+            playerPane.setPrefHeight(100);
             playerList.getChildren().add(playerPane);
         }
     }
@@ -100,7 +103,7 @@ public class LayoutEndScreen {
             }
             timelines.add(getAddPointsTimeline(i, points, routes));
         }
-        loopTheTimeLines(timelines, new SimpleIntegerProperty(0));
+        sortPlayers(timelines);
     }
 
 
@@ -153,27 +156,94 @@ public class LayoutEndScreen {
             index.set(index.get() + 1);
             timeline.setOnFinished(e -> {
                 System.out.println("Next KeyFrame: " + index.get());
+                timeline.getOnFinished();
                 loopTheTimeLines(timelines, index);
             });
-        } else {
-            sortPlayers();
         }
     }
 
-    private void sortPlayers() {
+    private void sortPlayers(List<Timeline> timelines) {
+        System.out.println("Sorting players");
+        boolean switchMade;
 
+        do {
+            switchMade = false;
+            for (int i = 0; i < 2; i++) {
+                System.out.println(i + ": " + scores[i]);
+                System.out.println(Integer.sum(i, 1) + ": " + scores[i + 1]);
+                if (scores[i] < scores[i + 1]) {
+                    System.out.println("Player: " + i + " has a lower score than the player underneath him");
+                    switchScorePositions(i, i + 1);
+                    switchRoutesFinished(i, i + 1);
+                    timelines.add(getMovePlayerUpTimeLine(getNodeById(i + 1)));
+                    timelines.add(getMovePlayerDownTimeLine(getNodeById(i)));
+                    switchNodes(i, i + 1);
+                    switchMade = true;
+                }
+            }
+            System.out.println("For loop finished");
+        } while (switchMade);
+        awardGlobeTrotter(timelines);
+        loopTheTimeLines(timelines, new SimpleIntegerProperty(0));
     }
 
-    private void getMovePlayerUpTimeLine(Node target) {
-        TranslateTransition transAni = new TranslateTransition(Duration.millis(500), target);
-        transAni.setByY(-playerList.getSpacing());
-        transAni.play();
+    private Node getNodeById(int id) {
+        for (int i = 0; i < playerList.getChildren().size(); i++) {
+            if (Integer.parseInt(playerList.getChildren().get(i).getId()) == id) {
+                return playerList.getChildren().get(i);
+            }
+        }
+        return null;
     }
 
-    private void getMovePlayerDownTimeLine(Node target) {
-        TranslateTransition transAni = new TranslateTransition(Duration.millis(500), target);
-        transAni.setByY(playerList.getSpacing());
-        transAni.play();
+    private void switchScorePositions(int index1, int index2) {
+        int temp = scores[index1];
+        scores[index1] = scores[index2];
+        scores[index2] = temp;
+    }
+
+    private void switchRoutesFinished(int index1, int index2) {
+        int temp = routesFinished[index1];
+        routesFinished[index1] = routesFinished[index2];
+        routesFinished[index2] = temp;
+    }
+
+    private void switchNodes(int index1, int index2) {
+        playerList.getChildren().get(index1).setId(String.valueOf(index2));
+        playerList.getChildren().get(index2).setId(String.valueOf(index1));
+    }
+
+    private Timeline getMovePlayerUpTimeLine(Node target) {
+        KeyFrame frame = new KeyFrame(
+                Duration.millis(5),
+                event -> {
+                    target.setTranslateY(target.getTranslateY() - 1);
+                });
+        Timeline timeline = new Timeline(frame);
+        timeline.setCycleCount((int) playerList.getSpacing() + 100);
+        return timeline;
+    }
+
+    private Timeline getMovePlayerDownTimeLine(Node target) {
+        KeyFrame frame = new KeyFrame(
+                Duration.millis(5),
+                event -> {
+                    target.setTranslateY(target.getTranslateY() + 1);
+                });
+        Timeline timeline = new Timeline(frame);
+        timeline.setCycleCount((int) playerList.getSpacing() + 100);
+        return timeline;
+    }
+
+    private void awardGlobeTrotter(List<Timeline> timelines) {
+        int maxRoutes = 0;
+        int indexMaxRoutes = 0;
+        for (int i = 0; i < routesFinished.length; i++) {
+            if (routesFinished[i] > maxRoutes) {
+                indexMaxRoutes = i;
+                maxRoutes = routesFinished[i];
+            }
+        }
     }
 
 }

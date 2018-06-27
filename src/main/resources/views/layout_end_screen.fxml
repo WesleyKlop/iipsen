@@ -8,6 +8,6 @@
       fx:controller="client.ui.controllers.LayoutEndScreen"
       prefHeight="1080.0" prefWidth="1920.0"
       style="-fx-background-color: linear-gradient(to bottom, #bfe8f9 0%,#0082ED 70%);">
-    <VBox fx:id="playerList" spacing="20"/>
+    <VBox fx:id="playerList" spacing="20" prefWidth="1920" prefHeight="1080" alignment="CENTER"/>
     <Button text="Start" onMouseClicked="#onMouseClickedAction"/>
 </Pane>
