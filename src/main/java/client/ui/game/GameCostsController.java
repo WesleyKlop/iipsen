@@ -110,7 +110,6 @@ public class GameCostsController {
 
     @FXML
     private void buildRoute() throws RemoteException {
-        RouteDoubleCheck check = new RouteDoubleCheck();
         GameStore store = GameStoreProvider.getStore();
         Player player = GameStoreProvider.getPlayer();
         Route route = store.getRouteStore().getRouteById(currentId);
