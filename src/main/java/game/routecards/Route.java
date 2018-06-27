@@ -22,8 +22,9 @@ public class Route implements Serializable {
     private CardType color;
     private RouteType routeType;
     private int points;
+    private int doubleRoute;
 
-    public Route(int id, int length, int locomotiveCost, ELocation location1, ELocation location2, CardType color, RouteType routeType) {
+    public Route(int id, int length, int locomotiveCost, ELocation location1, ELocation location2, CardType color, RouteType routeType, int doubleRoute) {
         this.id = id;
         this.length = length;
         this.locomotiveCost = locomotiveCost;
@@ -32,6 +33,7 @@ public class Route implements Serializable {
         this.color = color;
         this.routeType = routeType;
         this.points = calculatePoints();
+        this.doubleRoute = doubleRoute;
     }
 
     public boolean hasOwner() {
@@ -109,12 +111,20 @@ public class Route implements Serializable {
         return stack;
     }
 
+    public int getdoubleRoute() {
+        return doubleRoute;
+    }
+
     public int getPoints() {
         return points;
     }
 
     public int getLength() {
         return length;
+    }
+
+    public void setdoubleRoute() {
+        this.doubleRoute = doubleRoute;
     }
 
     @Override

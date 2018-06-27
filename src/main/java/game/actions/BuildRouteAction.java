@@ -6,6 +6,7 @@ import game.cards.CardType;
 import game.player.Player;
 import game.routecards.Route;
 import game.routecards.RouteCard;
+import game.routecards.RouteDoubleCheck;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,12 +32,32 @@ public class BuildRouteAction implements Action {
 
     @Override
     public void executeAction(GameStore store) throws Exception {
+        RouteDoubleCheck check = new RouteDoubleCheck();
         Player player = store.getPlayerById(playerId);
         Route route = store.getRouteStore().getRouteById(routeId);
-        Log.debug("Route type: {}", route.getRouteType());
-        if (player.getCardStack().containsCards(costs)) {
-            build(route, player);
-            updateRouteCards(player);
+        if (store.getPlayers().size() == 1) {
+            if (route.getdoubleRoute() == 1) {
+                boolean answer = check.checkDouble(route, store);
+                System.out.println(answer);
+                if (answer == true) {
+                    if (player.getCardStack().containsCards(costs)) {
+                        build(route, player);
+                        updateRouteCards(player);
+                    }
+                }
+            } else {
+                Log.debug("Route type: {}", route.getRouteType());
+                if (player.getCardStack().containsCards(costs)) {
+                    build(route, player);
+                    updateRouteCards(player);
+                }
+            }
+        } else {
+            Log.debug("Route type: {}", route.getRouteType());
+            if (player.getCardStack().containsCards(costs)) {
+                build(route, player);
+                updateRouteCards(player);
+            }
         }
         store.cyclePlayerTurn();
     }
@@ -68,4 +89,6 @@ public class BuildRouteAction implements Action {
         player.givePoints(route.getPoints());
         player.takeTrains(route.getLength());
     }
+
+
 }
