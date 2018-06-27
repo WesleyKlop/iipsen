@@ -1,0 +1,25 @@
+.player-box {
+    -fx-border-color: black;
+    -fx-padding: 10 10 10 10;
+    -fx-font-family: 'Helvetica';
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-spacing: 5;
+}
+
+.player-box__name, .player-box__score, .player-box__id, .player-box__carts {
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-stroke: black;
+}
+
+.player-box__id {
+    -fx-font-size: 24;
+}
+
+.player-box__image {
+    -fx-effect: dropshadow(three-pass-box, white, 3, 3, 0, 0);
+    -fx-fit-to-height: 65;
+    -fx-fit-to-width: 70;
+}
