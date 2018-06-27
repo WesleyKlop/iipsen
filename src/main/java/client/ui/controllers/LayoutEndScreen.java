@@ -41,10 +41,7 @@ public class LayoutEndScreen {
 
         line.setCycleCount(Animation.INDEFINITE);
         addPlayers();
-
-        onMouseClickedAction();
-
-        //constructKeyFramesArray();  // Cycle through the players and check for route cards
+        constructKeyFramesArray();
     }
 
     private void addPlayers() {
@@ -62,11 +59,6 @@ public class LayoutEndScreen {
             playerPane.setPrefHeight(200);
             playerList.getChildren().add(playerPane);
         }
-    }
-
-    @FXML
-    private void onMouseClickedAction() {
-        constructKeyFramesArray();
     }
 
     private void constructKeyFramesArray() {
