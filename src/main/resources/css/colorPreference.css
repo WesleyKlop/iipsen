@@ -1,0 +1,21 @@
+.color-preference {
+    -fx-alignment: TOP_CENTER;
+    -fx-pref-height: 80;
+    -fx-pref-width: 300;
+}
+
+.color-preference__label {
+    -fx-alignment: BASELINE_CENTER;
+    -fx-background-color: #fff;
+    -fx-background-radius: 15;
+    -fx-pref-height: 80;
+    -fx-pref-width: 300;
+    -fx-font-size: 25;
+    -fx-text-fill: #000;
+}
+
+.color-preference__picker {
+    -fx-min-height: 80;
+    -fx-min-width: 300;
+    -fx-opacity: 0;
+}

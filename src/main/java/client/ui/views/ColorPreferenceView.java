@@ -4,7 +4,6 @@ import client.ui.controllers.ColorPreferenceController;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 
 /**
@@ -15,15 +14,11 @@ import javafx.scene.text.Font;
 public class ColorPreferenceView {
     public ColorPicker colorPreferencePicker;
     public Label colorPreferenceLabel;
-    public Rectangle colorPreferenceRectangle;
     private ColorPreferenceController controller;
 
     public void initialize() {
         controller = new ColorPreferenceController(this);
-        colorPreferencePicker.getStyleClass().add("button");
         colorPreferenceLabel.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/MavenPro-Medium.ttf"), 25));
-        colorPreferenceRectangle.setArcHeight(20);
-        colorPreferenceRectangle.setArcWidth(20);
         onColorPickerHide();
     }
 
@@ -48,6 +43,9 @@ public class ColorPreferenceView {
     }
 
     public void setColor(Color color) {
-        colorPreferenceRectangle.setFill(color);
+        colorPreferenceLabel.setStyle(String.format("-fx-background-color: #%02X%02X%02X",
+            (int) (color.getRed() * 255),
+            (int) (color.getGreen() * 255),
+            (int) (color.getBlue() * 255)));
     }
 }

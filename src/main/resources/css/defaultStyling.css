@@ -11,11 +11,6 @@ Label {
     -fx-font-size: 14;
 }
 
-.colorPickerLabel {
-    -fx-font-size: 25;
-    -fx-text-fill: #000;
-}
-
 .fancy-label {
     -fx-font-size: 25;
     -fx-text-fill: #000;
