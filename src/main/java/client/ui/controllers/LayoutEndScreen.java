@@ -1,6 +1,6 @@
 package client.ui.controllers;
 
-import game.location.ELocation;
+import game.GameStoreProvider;
 import game.player.Player;
 import game.routecards.RouteCard;
 import javafx.animation.Animation;
@@ -17,7 +17,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
@@ -28,35 +27,17 @@ public class LayoutEndScreen {
 
     @FXML
     private VBox playerList;
-    private List<Player> playerListArray = new ArrayList<>();//= GameStoreProvider.getStore().getPlayers();
-    private Player[] pL = new Player[3];//= new Player[playerListArray.size()];
+    private List<Player> playerListArray = GameStoreProvider.getStore().getPlayers();
+    private Player[] pL = new Player[playerListArray.size()];
     private int[] scores = new int[pL.length];
     private int[] routesFinished = new int[pL.length];
     private Timeline line = new Timeline();
 
     public void initialize() {
-        playerListArray.add(new Player("Phillip", Color.PINK));
-        playerListArray.add(new Player("Chuck", Color.GOLD));
-        playerListArray.add(new Player("HAHA BIEER", Color.BISQUE));
         pL = playerListArray.toArray(pL);
         for (int i = 0; i < scores.length; i++) {
             scores[i] = pL[i].getScore();
         }
-        pL[2].getConnectionKeeper().addLocations(ELocation.ALBORG, ELocation.ARHUS);
-        pL[2].addRouteCard(new RouteCard(ELocation.ALBORG, ELocation.ARHUS, 21));
-        pL[0].getConnectionKeeper().addLocations(ELocation.HONNINGSVAG, ELocation.BODEN);
-        pL[0].addRouteCard(new RouteCard(ELocation.HONNINGSVAG, ELocation.BODEN, 10));
-        pL[1].getConnectionKeeper().addLocations(ELocation.KAJAANI, ELocation.ARHUS);
-        pL[1].addRouteCard(new RouteCard(ELocation.KAJAANI, ELocation.ARHUS, 12));
-        pL[2].getConnectionKeeper().addLocations(ELocation.ALBORG, ELocation.ARHUS);
-        pL[2].addRouteCard(new RouteCard(ELocation.ALBORG, ELocation.ARHUS, 18));
-        pL[1].getConnectionKeeper().addLocations(ELocation.HONNINGSVAG, ELocation.BODEN);
-        pL[1].addRouteCard(new RouteCard(ELocation.HONNINGSVAG, ELocation.BODEN, 10));
-        pL[0].getConnectionKeeper().addLocations(ELocation.KAJAANI, ELocation.ARHUS);
-        pL[0].addRouteCard(new RouteCard(ELocation.KAJAANI, ELocation.ARHUS, 12));
-        pL[2].getConnectionKeeper().addLocations(ELocation.KAJAANI, ELocation.GOTEBORG);
-        pL[2].addRouteCard(new RouteCard(ELocation.KAJAANI, ELocation.GOTEBORG, 12));
-
 
         line.setCycleCount(Animation.INDEFINITE);
         addPlayers();
@@ -107,7 +88,6 @@ public class LayoutEndScreen {
         }
         awardGlobeTrotter(timelines);
     }
-
 
     private Timeline getAddPointsRoutesTimeline(int index, int increment, List<Integer> checks) {
         StackPane p = (StackPane) playerList.getChildren().get(index);
