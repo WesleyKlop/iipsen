@@ -3,7 +3,7 @@ package game.routecards;
 import game.GameStore;
 
 public class RouteDoubleCheck {
-    boolean answer;
+    boolean answer = false;
     boolean answer2;
 
     public boolean checkDouble(Route route, GameStore store) {
@@ -19,8 +19,6 @@ public class RouteDoubleCheck {
     private boolean even(int id, GameStore store) {
         if (store.getRouteStore().getRouteById(id + 1).getOwner() == 0) {
             answer = true;
-        } else {
-            answer = false;
         }
         return answer;
     }
@@ -28,8 +26,6 @@ public class RouteDoubleCheck {
     private boolean uneven(int id, GameStore store) {
         if (store.getRouteStore().getRouteById(id - 1).getOwner() == 0) {
             answer = true;
-        } else {
-            answer = false;
         }
         return answer;
     }

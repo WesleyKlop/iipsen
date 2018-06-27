@@ -114,7 +114,7 @@ public class GameCostsController {
         GameStore store = GameStoreProvider.getStore();
         Player player = GameStoreProvider.getPlayer();
         Route route = store.getRouteStore().getRouteById(currentId);
-        if (store.getPlayers().size() == 1) {
+        if (store.getPlayers().size() == 2) {
             if (route.getdoubleRoute() == 1) {
                 boolean answer = check.checkDouble(route, store);
                 if (answer == true) {
