@@ -3,12 +3,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
-<fx:root xmlns:fx="http://javafx.com/fxml" type="VBox"
-         xmlns="http://javafx.com/javafx" stylesheets="/css/defaultStyling.css"
-         style="-fx-font-family: monospace; -fx-font-weight: bolder; -fx-padding: 10" prefHeight="200" maxWidth="130"
-         alignment="CENTER"
-         spacing="-2">
-    <Label fx:id="amount" minWidth="100" alignment="CENTER" textFill="black" prefHeight="20" translateY="-20"
-           styleClass="amount-label"/>
-    <ImageView fx:id="image" rotate="90" fitWidth="180" preserveRatio="true" translateY="15"/>
+<fx:root xmlns:fx="http://javafx.com/fxml" type="VBox" xmlns="http://javafx.com/javafx"
+         stylesheets="/css/playerCard.css" styleClass="player-card">
+    <Label fx:id="amount" styleClass="player-card__amount-label"/>
+    <ImageView fx:id="image" styleClass="player-card__image" preserveRatio="true"/>
 </fx:root>

@@ -1,0 +1,25 @@
+.player-card {
+    -fx-font-family: monospace;
+    -fx-font-weight: bolder;
+    -fx-padding: 10;
+    -fx-pref-height: 200;
+    -fx-max-width: 130;
+    -fx-alignment: center;
+    -fx-spacing: -2;
+}
+
+.player-card__amount-label {
+    -fx-background-color: #FFF;
+    -fx-background-radius: 10 10 0 0;
+    -fx-text-fill: black;
+    -fx-min-width: 100;
+    -fx-alignment: center;
+    -fx-translate-y: -20;
+    -fx-pref-height: 20;
+}
+
+.player-card__image {
+    -fx-rotate: 90;
+    -fx-fit-to-width: 180;
+    -fx-translate-y: 15;
+}

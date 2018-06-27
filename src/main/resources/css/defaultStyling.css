@@ -27,11 +27,6 @@ Label {
     -fx-pref-width: 250;
 }
 
-.amount-label {
-    -fx-background-color: #FFF;
-    -fx-background-radius: 10 10 0 0;
-}
-
 .fancy-label:hover {
     -fx-text-fill: #F00;
     -fx-cursor: hand;
