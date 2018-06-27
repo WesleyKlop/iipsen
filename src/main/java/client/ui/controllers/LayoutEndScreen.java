@@ -20,22 +20,18 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LayoutEndScreen {
 
-    private static final Logger Log = LogManager.getLogger(LayoutEndScreen.class);
     @FXML
     private VBox playerList;
     private List<Player> playerListArray = new ArrayList<>();//= GameStoreProvider.getStore().getPlayers();
     private Player[] pL = new Player[3];//= new Player[playerListArray.size()];
     private int[] scores = new int[pL.length];
     private int[] routesFinished = new int[pL.length];
-    private int globeTrotterWinner;
     private Timeline line = new Timeline();
 
     public void initialize() {
@@ -174,7 +170,6 @@ public class LayoutEndScreen {
             timeline.play();
             index.set(index.get() + 1);
             timeline.setOnFinished(e -> {
-                System.out.println("Next KeyFrame: " + index.get());
                 timeline.getOnFinished();
                 loopTheTimeLines(timelines, index);
             });
@@ -182,16 +177,12 @@ public class LayoutEndScreen {
     }
 
     private void sortPlayers(List<Timeline> timelines) {
-        System.out.println("Sorting players");
         boolean switchMade;
 
         do {
             switchMade = false;
             for (int i = 0; i < 2; i++) {
-                System.out.println(i + ": " + scores[i]);
-                System.out.println(Integer.sum(i, 1) + ": " + scores[i + 1]);
                 if (scores[i] < scores[i + 1]) {
-                    System.out.println("Player: " + i + " has a lower score than the player underneath him");
                     switchScorePositions(i, i + 1);
                     switchRoutesFinished(i, i + 1);
                     timelines.add(getMovePlayerUpTimeLine(getNodeById(i + 1)));
@@ -200,7 +191,6 @@ public class LayoutEndScreen {
                     switchMade = true;
                 }
             }
-            System.out.println("For loop finished");
         } while (switchMade);
         loopTheTimeLines(timelines, new SimpleIntegerProperty(0));
     }
