@@ -35,29 +35,9 @@ public class BuildRouteAction implements Action {
         RouteDoubleCheck check = new RouteDoubleCheck();
         Player player = store.getPlayerById(playerId);
         Route route = store.getRouteStore().getRouteById(routeId);
-        if (store.getPlayers().size() == 1) {
-            if (route.getdoubleRoute() == 1) {
-                boolean answer = check.checkDouble(route, store);
-                System.out.println(answer);
-                if (answer == true) {
-                    if (player.getCardStack().containsCards(costs)) {
-                        build(route, player);
-                        updateRouteCards(player);
-                    }
-                }
-            } else {
-                Log.debug("Route type: {}", route.getRouteType());
-                if (player.getCardStack().containsCards(costs)) {
-                    build(route, player);
-                    updateRouteCards(player);
-                }
-            }
-        } else {
-            Log.debug("Route type: {}", route.getRouteType());
-            if (player.getCardStack().containsCards(costs)) {
+        if (player.getCardStack().containsCards(costs)) {
                 build(route, player);
                 updateRouteCards(player);
-            }
         }
         store.cyclePlayerTurn();
     }
