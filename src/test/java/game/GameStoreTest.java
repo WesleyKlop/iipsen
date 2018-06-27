@@ -11,7 +11,7 @@ class GameStoreTest {
 
     @Test
     void testGameState() {
-        var store = new GameStore("");
+        var store = new GameStore();
         var finishedGameState = GameState.FINISHED;
 
         assertEquals(GameState.INIT, store.getGameState());

@@ -21,6 +21,7 @@ public class Player implements Serializable {
     private int id;
     private int score;
     private int traincarts = 40;
+    private boolean hasClient = false;
 
     public Player(String name, Color color) {
         this.color = color.toString();
@@ -29,6 +30,14 @@ public class Player implements Serializable {
 
     public int getId() {
         return id;
+    }
+
+    public void setHasClient(boolean val) {
+        hasClient = val;
+    }
+
+    public boolean hasClient() {
+        return hasClient;
     }
 
     public void setId(int player) {

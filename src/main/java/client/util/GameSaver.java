@@ -40,6 +40,7 @@ public class GameSaver {
         try (var stream = new ObjectInputStream(new FileInputStream(chooser.showOpenDialog(stage)))) {
             GameStore store = (GameStore) stream.readObject();
             store.setGameState(GameState.LOBBY);
+            store.getPlayerController().removeClients();
 
             return store;
         } catch (IOException | ClassNotFoundException ex) {

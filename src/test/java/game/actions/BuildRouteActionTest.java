@@ -23,7 +23,7 @@ class BuildRouteActionTest {
     void setUp() {
         player = new Player("Vitas", Color.BLUEVIOLET);
         player.setId(1);
-        store = new GameStore("");
+        store = new GameStore();
         GameStoreProvider.getInstance().setValue(store);
         testRoute1 = store.getRouteStore().getRouteById(TEST_ROUTE_ID);
         store.getPlayerController().getPlayers().add(player);

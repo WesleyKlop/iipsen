@@ -25,14 +25,14 @@ class AddPlayerActionTest {
     @Test
     void canExecuteAction() {
         var action = getPlayerAction();
-        var store = new GameStore("");
+        var store = new GameStore();
         assertDoesNotThrow(() -> action.executeAction(store));
     }
 
     @Test
     void executingActionAddsPlayerToList() {
         var action = getPlayerAction();
-        var store = new GameStore("");
+        var store = new GameStore();
         PlayerController controller = store.getPlayerController();
         assertEquals(0, controller.getPlayers().size(), "Players in store should be 0");
         assertDoesNotThrow(() -> action.executeAction(store), "Executing action threw an Exception");

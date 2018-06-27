@@ -20,13 +20,13 @@ class ChangeStateActionTest {
 
     @Test
     void canExecuteAction() {
-        var store = new GameStore("");
+        var store = new GameStore();
         assertDoesNotThrow(() -> testAction.executeAction(store));
     }
 
     @Test
     void executingActionChangesState() {
-        var store = new GameStore("");
+        var store = new GameStore();
         assertEquals(GameState.INIT, store.getGameState());
         assertDoesNotThrow(() -> testAction.executeAction(store));
         assertEquals(GameState.GAME, store.getGameState());
@@ -35,7 +35,7 @@ class ChangeStateActionTest {
     @Test
     void throwsWhenActionIsNull() {
         var action = new ChangeStateAction(null);
-        var store = new GameStore("");
+        var store = new GameStore();
         assertThrows(Exception.class, () -> action.executeAction(store));
     }
 }

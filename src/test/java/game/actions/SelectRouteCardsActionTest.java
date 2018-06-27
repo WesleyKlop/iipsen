@@ -12,6 +12,6 @@ class SelectRouteCardsActionTest {
     @Test
     void playerCanAdd1RouteCard() {
         var player = new Player("Thierry baudet", Color.LAVENDER);
-        var store = new GameStore("");
+        var store = new GameStore();
     }
 }

@@ -45,4 +45,10 @@ public class PlayerController implements Serializable {
     public boolean shouldGoToLastTurn(int playerId) {
         return getPlayerById(playerId).getTraincarts() <= 2 && finalTurn == -1;
     }
+
+    public void removeClients() {
+        for (Player player : players) {
+            player.setHasClient(false);
+        }
+    }
 }
