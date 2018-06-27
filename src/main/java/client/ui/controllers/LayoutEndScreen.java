@@ -9,9 +9,12 @@ import javafx.animation.Timeline;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -55,6 +58,8 @@ public class LayoutEndScreen {
         pL[1].addRouteCard(new RouteCard(ELocation.HONNINGSVAG, ELocation.BODEN, 10));
         pL[0].getConnectionKeeper().addLocations(ELocation.KAJAANI, ELocation.ARHUS);
         pL[0].addRouteCard(new RouteCard(ELocation.KAJAANI, ELocation.ARHUS, 12));
+        pL[2].getConnectionKeeper().addLocations(ELocation.KAJAANI, ELocation.GOTEBORG);
+        pL[2].addRouteCard(new RouteCard(ELocation.KAJAANI, ELocation.GOTEBORG, 12));
 
 
         line.setCycleCount(Animation.INDEFINITE);
@@ -71,12 +76,13 @@ public class LayoutEndScreen {
             Label score = new Label("Score: " + String.valueOf(scores[i]));
             Label routeAmount = new Label("Routes Finished: 0");
             VBox player = new VBox(name, score, routeAmount);
-            player.setAlignment(Pos.CENTER);
-            Rectangle background = new Rectangle(200, 100);
+            player.setAlignment(Pos.TOP_CENTER);
+            player.setPadding(new Insets(10));
+            Rectangle background = new Rectangle(200, 200);
             background.setFill(pL[i].getColorAsColor());
             StackPane playerPane = new StackPane(background, player);
             playerPane.setId(String.valueOf(i));
-            playerPane.setPrefHeight(100);
+            playerPane.setPrefHeight(200);
             playerList.getChildren().add(playerPane);
         }
     }
@@ -101,13 +107,13 @@ public class LayoutEndScreen {
                     routes.add(points);
                 }
             }
-            timelines.add(getAddPointsTimeline(i, points, routes));
+            timelines.add(getAddPointsRoutesTimeline(i, points, routes));
         }
-        sortPlayers(timelines);
+        awardGlobeTrotter(timelines);
     }
 
 
-    private Timeline getAddPointsTimeline(int index, int increment, List<Integer> checks) {
+    private Timeline getAddPointsRoutesTimeline(int index, int increment, List<Integer> checks) {
         StackPane p = (StackPane) playerList.getChildren().get(index);
         VBox pv = (VBox) p.getChildren().get(1);
         Label target = (Label) pv.getChildren().get(1);
@@ -131,9 +137,23 @@ public class LayoutEndScreen {
         return timeline;
     }
 
-    private Timeline getPauseTimeLine() {
+    private Timeline getAddPointsTimeline(int index, int increment) {
+        StackPane p = (StackPane) playerList.getChildren().get(index);
+        VBox pv = (VBox) p.getChildren().get(1);
+        Label target = (Label) pv.getChildren().get(1);
+        int targetScore = scores[index] + increment;
+        IntegerProperty start = new SimpleIntegerProperty(scores[index]);
+        scores[index] = targetScore;
         Timeline timeline = new Timeline();
-        KeyFrame frame = new KeyFrame(Duration.seconds(1));
+        timeline.setCycleCount(increment);
+        IntegerProperty currentCycle = new SimpleIntegerProperty(0);
+        KeyFrame frame = new KeyFrame(
+                Duration.millis(50),
+                event -> {
+                    start.set(start.get() + 1);
+                    target.setText("Score: " + start.get());
+                    currentCycle.set(currentCycle.get() + 1);
+                });
         timeline.getKeyFrames().add(frame);
         return timeline;
     }
@@ -146,7 +166,6 @@ public class LayoutEndScreen {
         int currentRoutes = Integer.parseInt(currentString.substring(17));
         currentRoutes += 1;
         target.setText("Routes Finished: " + currentRoutes);
-
     }
 
     private void loopTheTimeLines(List<Timeline> timelines, SimpleIntegerProperty index) {
@@ -183,7 +202,6 @@ public class LayoutEndScreen {
             }
             System.out.println("For loop finished");
         } while (switchMade);
-        awardGlobeTrotter(timelines);
         loopTheTimeLines(timelines, new SimpleIntegerProperty(0));
     }
 
@@ -220,7 +238,7 @@ public class LayoutEndScreen {
                     target.setTranslateY(target.getTranslateY() - 1);
                 });
         Timeline timeline = new Timeline(frame);
-        timeline.setCycleCount((int) playerList.getSpacing() + 100);
+        timeline.setCycleCount((int) playerList.getSpacing() + 200);
         return timeline;
     }
 
@@ -231,7 +249,7 @@ public class LayoutEndScreen {
                     target.setTranslateY(target.getTranslateY() + 1);
                 });
         Timeline timeline = new Timeline(frame);
-        timeline.setCycleCount((int) playerList.getSpacing() + 100);
+        timeline.setCycleCount((int) playerList.getSpacing() + 200);
         return timeline;
     }
 
@@ -244,6 +262,29 @@ public class LayoutEndScreen {
                 maxRoutes = routesFinished[i];
             }
         }
+        timelines.add(getGlobeTrotterTimeline(indexMaxRoutes));
+        timelines.add(getAddPointsTimeline(indexMaxRoutes, 10));
+        sortPlayers(timelines);
     }
 
+    private Timeline getGlobeTrotterTimeline(int index) {
+        StackPane playerPane = (StackPane) playerList.getChildren().get(index);
+        VBox playerBox = (VBox) playerPane.getChildren().get(1);
+        Image globetrotter = new Image(getClass().getResourceAsStream("/images/globetrotter.jpg"));
+        ImageView trotterView = new ImageView(globetrotter);
+        trotterView.setPreserveRatio(true);
+        playerBox.getChildren().add(trotterView);
+        trotterView.setFitHeight(80);
+        trotterView.setTranslateY(20);
+        trotterView.setOpacity(0);
+        KeyFrame frame = new KeyFrame(
+                Duration.millis(5),
+                event -> {
+                    trotterView.setOpacity(trotterView.getOpacity() + 0.01);
+                }
+        );
+        Timeline line = new Timeline(frame);
+        line.setCycleCount(100);
+        return line;
+    }
 }
