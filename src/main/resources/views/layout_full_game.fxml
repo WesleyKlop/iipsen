@@ -6,18 +6,18 @@
       xmlns="http://javafx.com/javafx"
       fx:controller="client.ui.game.FullGameController"
       prefHeight="1080" prefWidth="1920"
-      fx:id="rootPane" stylesheets="/css/defaultStyling.css" styleClass="gameScreen">
+      fx:id="rootPane" stylesheets="/css/defaultStyling.css">
     <ImageView>
         <Image url="/images/gamescreen.png"/>
     </ImageView>
 
     <fx:include source="layout_game_playerbox.fxml" layoutY="16" layoutX="259"/>
-    <fx:include source="layout_game_cards.fxml" fx:id="hand" layoutX="0" layoutY="848"/>
+    <fx:include source="layout_game_cards.fxml" layoutX="0" layoutY="848"/>
     <fx:include source="layout_routes_map.fxml" fx:id="routesMap" scaleX="1.3" scaleY="1.3" layoutX="843"
                 layoutY="194"/>
-    <fx:include source="layout_game_bank.fxml" fx:id="bank" layoutX="16" layoutY="16"/>
+    <fx:include source="layout_game_bank.fxml" layoutX="16" layoutY="16"/>
     <fx:include source="layout_route_card_stack.fxml" layoutX="230" layoutY="680"/>
-    <fx:include source="layout_game_hand_routecards.fxml" fx:id="routeHand" layoutY="789" layoutX="1200"/>
+    <fx:include source="layout_game_hand_routecards.fxml" layoutY="789" layoutX="1200"/>
 
     <fx:include source="layout_game_routecard.fxml" fx:id="initRouteCards"/>
 
@@ -32,7 +32,7 @@
     </ImageView>
 
     <!--Overlay messages:-->
-    <fx:include source="layout_messages.fxml" fx:id="messages" layoutY="1180" layoutX="460"/>
+    <fx:include source="layout_messages.fxml" layoutY="1180" layoutX="460"/>
 
     <!--Pause Menu-->
     <fx:include source="overlay_pause_menu.fxml" fx:id="pauseMenu" layoutX="1920"/>
