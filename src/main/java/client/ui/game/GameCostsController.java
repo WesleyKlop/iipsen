@@ -9,6 +9,7 @@ import game.cards.CardType;
 import game.location.ELocation;
 import game.player.Player;
 import game.routecards.Route;
+import game.routecards.RouteDoubleCheck;
 import game.routecards.RouteType;
 import javafx.animation.Transition;
 import javafx.animation.TranslateTransition;
@@ -40,6 +41,8 @@ public class GameCostsController {
     private Button buildButton;
 
     private int currentId;
+
+    private RouteDoubleCheck check = new RouteDoubleCheck();
 
     private static final Logger Log = LogManager.getLogger(GameCostsController.class);
 
@@ -110,6 +113,23 @@ public class GameCostsController {
         GameStore store = GameStoreProvider.getStore();
         Player player = GameStoreProvider.getPlayer();
         Route route = store.getRouteStore().getRouteById(currentId);
+        if (store.getPlayers().size() == 2) {
+            if (route.getdoubleRoute() == 1) {
+                boolean answer = check.checkDouble(route, store);
+                if (answer == true) {
+                    build(player, route);
+                } else {
+                    locations.setText("Double route has been taken!");
+                }
+            } else {
+                build(player, route);
+            }
+        } else {
+            build(player, route);
+        }
+    }
+
+    private void build(Player player, Route route) throws RemoteException {
         if (BuildRouteControle(route, player)) {
             int extraCosts = (route.getRouteType() == RouteType.TUNNEL) ? calculateExtraCosts(route.getCardType()) : 0;
             Action buildAction = new BuildRouteAction(player.getId(), route, extraCosts);
@@ -121,6 +141,14 @@ public class GameCostsController {
             }
         } else {
             locations.setText("Player doesn't have enough cards!");
+        }
+    }
+
+    private void checkRouteForDouble(GameStore store, Route route) {
+        if (store.getPlayers().size() == 1) {
+            if (route.getdoubleRoute() == 1) {
+                boolean answer = check.checkDouble(route, store);
+            }
         }
     }
 

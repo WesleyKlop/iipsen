@@ -45,8 +45,9 @@ public class RouteStore implements Serializable {
                 ELocation loc2 = ELocation.valueOf(eRoute.getElementsByTagName("location2").item(0).getTextContent());
                 RouteType routeType = RouteType.valueOf(eRoute.getElementsByTagName("type").item(0).getTextContent());
                 CardType cartType = CardType.valueOf(eRoute.getElementsByTagName("cartType").item(0).getTextContent());
+                int doubleRoute = Integer.parseInt(eRoute.getElementsByTagName("doubleRoute").item(0).getTextContent());
 
-                Route route = new Route(id, length, locomotives, loc1, loc2, cartType, routeType);
+                Route route = new Route(id, length, locomotives, loc1, loc2, cartType, routeType, doubleRoute);
                 addRoute(route);
             }
 

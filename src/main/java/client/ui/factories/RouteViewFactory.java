@@ -75,7 +75,6 @@ public class RouteViewFactory {
             Element routeElement = (Element) routeNode;
 
             NodeList nCartList = routeElement.getElementsByTagName("cart");
-
             int routeX = Integer.parseInt(routeElement.getElementsByTagName("baseX").item(0).getTextContent());
             int routeY = Integer.parseInt(routeElement.getElementsByTagName("baseY").item(0).getTextContent());
             int baseRot = Integer.parseInt(routeElement.getElementsByTagName("baseRot").item(0).getTextContent());
@@ -99,9 +98,9 @@ public class RouteViewFactory {
             double arc = (type.equals("FERRY")) ? 10 : 0;
 
             int locomotiveAmount = Integer.parseInt(routeElement.getElementsByTagName("locomotive").item(0).getTextContent());
-
             CardType cardType = CardType.valueOf(routeElement.getElementsByTagName("cartType").item(0).getTextContent());
             Color routeColor = typeToColor(cardType.toString());
+
 
             for (int j = 0, cartLength = nCartList.getLength(); j < cartLength; j++) {
                 Element eElement = (Element) nCartList.item(j);
