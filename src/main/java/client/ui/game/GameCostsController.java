@@ -144,13 +144,6 @@ public class GameCostsController {
         }
     }
 
-    private void checkRouteForDouble(GameStore store, Route route) {
-        if (store.getPlayers().size() == 1) {
-            if (route.getdoubleRoute() == 1) {
-                boolean answer = check.checkDouble(route, store);
-            }
-        }
-    }
 
     @FXML
     private void closeAnimation() {
