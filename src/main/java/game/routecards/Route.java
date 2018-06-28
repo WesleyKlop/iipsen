@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  */
@@ -22,9 +23,10 @@ public class Route implements Serializable {
     private CardType color;
     private RouteType routeType;
     private int points;
-    private int doubleRoute;
+    private List<Integer> arrayDoubleRoute;
 
-    public Route(int id, int length, int locomotiveCost, ELocation location1, ELocation location2, CardType color, RouteType routeType, int doubleRoute) {
+
+    public Route(int id, int length, int locomotiveCost, ELocation location1, ELocation location2, CardType color, RouteType routeType, List<Integer> arrayDoubleRoute) {
         this.id = id;
         this.length = length;
         this.locomotiveCost = locomotiveCost;
@@ -33,7 +35,7 @@ public class Route implements Serializable {
         this.color = color;
         this.routeType = routeType;
         this.points = calculatePoints();
-        this.doubleRoute = doubleRoute;
+        this.arrayDoubleRoute = arrayDoubleRoute;
     }
 
     public boolean hasOwner() {
@@ -111,10 +113,6 @@ public class Route implements Serializable {
         return stack;
     }
 
-    public int getdoubleRoute() {
-        return doubleRoute;
-    }
-
     public int getPoints() {
         return points;
     }
@@ -123,12 +121,12 @@ public class Route implements Serializable {
         return length;
     }
 
-    public void setdoubleRoute() {
-        this.doubleRoute = doubleRoute;
-    }
-
     @Override
     public String toString() {
         return String.format("Route connects %s to %s with length %d and color %s", location1, location2, length, color);
+    }
+
+    public List<Integer> getarrayDoubleRoute() {
+        return arrayDoubleRoute;
     }
 }

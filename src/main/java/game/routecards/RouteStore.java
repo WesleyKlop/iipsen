@@ -46,8 +46,11 @@ public class RouteStore implements Serializable {
                 RouteType routeType = RouteType.valueOf(eRoute.getElementsByTagName("type").item(0).getTextContent());
                 CardType cartType = CardType.valueOf(eRoute.getElementsByTagName("cartType").item(0).getTextContent());
                 int doubleRoute = Integer.parseInt(eRoute.getElementsByTagName("doubleRoute").item(0).getTextContent());
-
-                Route route = new Route(id, length, locomotives, loc1, loc2, cartType, routeType, doubleRoute);
+                int coupleId = Integer.parseInt(eRoute.getElementsByTagName("coupleId").item(0).getTextContent());
+                List<Integer> arrayDoubleRoute = new ArrayList<>();
+                arrayDoubleRoute.add(doubleRoute);
+                arrayDoubleRoute.add(coupleId);
+                Route route = new Route(id, length, locomotives, loc1, loc2, cartType, routeType, arrayDoubleRoute);
                 addRoute(route);
             }
 

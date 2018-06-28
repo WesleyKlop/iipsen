@@ -113,20 +113,15 @@ public class GameCostsController {
         GameStore store = GameStoreProvider.getStore();
         Player player = GameStoreProvider.getPlayer();
         Route route = store.getRouteStore().getRouteById(currentId);
-        if (store.getPlayers().size() == 2) {
-            if (route.getdoubleRoute() == 1) {
-                boolean answer = check.checkDouble(route, store);
-                if (answer == true) {
-                    build(player, route);
-                } else {
-                    locations.setText("Double route has been taken!");
-                }
-            } else {
-                build(player, route);
-            }
-        } else {
-            build(player, route);
+        if (store.getPlayers().size() == 2 && route.getarrayDoubleRoute().get(0) == 1 && check.checkDouble(route, store) == true) {
+            locations.setText("One of the double routes has been taken already!");
+            return;
         }
+        if (store.getPlayers().size() == 3 && route.getarrayDoubleRoute().get(0) == 1 && check.checkSameOwner(route, store, player) == true) {
+            locations.setText("You already own one of the double routes!");
+            return;
+        }
+        build(player, route);
     }
 
     private void build(Player player, Route route) throws RemoteException {
