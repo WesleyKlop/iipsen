@@ -20,6 +20,4 @@
 
 .player-box__image {
     -fx-effect: dropshadow(three-pass-box, white, 3, 3, 0, 0);
-    -fx-fit-to-height: 65;
-    -fx-fit-to-width: 70;
 }

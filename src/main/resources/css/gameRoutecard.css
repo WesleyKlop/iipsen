@@ -1,0 +1,9 @@
+.game-routecard {
+    -fx-alignment: center center;
+    -fx-spacing: 10;
+    -fx-max-width: 1000;
+    -fx-max-height: 400;
+    -fx-background-color: rgba(0, 0, 0, 0.8);
+    -fx-padding: 10 10 10 10;
+    -fx-background-radius: 10;
+}

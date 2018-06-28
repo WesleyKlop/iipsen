@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--suppress JavaFxUnresolvedFxIdReference -->
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns:fx="http://javafx.com/fxml"
@@ -16,5 +17,4 @@
     <ImageView fx:id="3" onMouseClicked="#onMouseAction"/>
     <ImageView fx:id="4" onMouseClicked="#onMouseAction"/>
     <ImageView fx:id="5" onMouseClicked="#onMouseAction"/>
-
 </VBox>

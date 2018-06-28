@@ -8,10 +8,9 @@
 <?import javafx.scene.text.Text?>
 <StackPane xmlns:fx="http://javafx.com/fxml"
            xmlns="http://javafx.com/javafx"
-           fx:controller="client.ui.controllers.RouteCardController" fx:id="rootPane" prefWidth="1920" prefHeight="1080"
-           alignment="BASELINE_CENTER">
-    <VBox spacing="10" alignment="CENTER" maxWidth="1000" maxHeight="400" translateY="300"
-          style="-fx-background-color: rgba(0,0,0,0.8); -fx-padding: 10 10 10 10; -fx-background-radius: 10">
+           fx:controller="client.ui.controllers.RouteCardController" fx:id="rootPane"
+           stylesheets="/css/gameRoutecard.css" prefWidth="1920" prefHeight="1080" alignment="BASELINE_CENTER">
+    <VBox styleClass="game-routecard">
         <Text fx:id="textRouteCards" style="-fx-font-size: 20; -fx-font-weight: bold" fill="white" stroke="black">
             Choose atleast two routecards!
         </Text>

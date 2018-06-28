@@ -17,7 +17,7 @@
                 layoutY="194"/>
     <fx:include source="layout_game_bank.fxml" layoutX="16" layoutY="16"/>
     <fx:include source="layout_route_card_stack.fxml" layoutX="230" layoutY="680"/>
-    <fx:include source="layout_game_hand_routecards.fxml" layoutY="789" layoutX="1200"/>
+    <fx:include source="layout_game_hand_routecards.fxml" fx:id="routeHand" layoutY="789" layoutX="1200"/>
 
     <fx:include source="layout_game_routecard.fxml" fx:id="initRouteCards"/>
 
