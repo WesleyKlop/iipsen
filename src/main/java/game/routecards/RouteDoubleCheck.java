@@ -5,8 +5,6 @@ import game.player.Player;
 
 public class RouteDoubleCheck {
 
-    final int coupleId = -1;
-
     public boolean checkDouble(Route route, GameStore store) {
         return store.getRouteStore().getRouteById(route.getcoupleId()).hasOwner();
     }

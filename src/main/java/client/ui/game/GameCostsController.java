@@ -42,6 +42,8 @@ public class GameCostsController {
 
     private int currentId;
 
+    private int NotDoubleRoute = -1;
+
     private RouteDoubleCheck check = new RouteDoubleCheck();
 
     private static final Logger Log = LogManager.getLogger(GameCostsController.class);
@@ -113,11 +115,11 @@ public class GameCostsController {
         GameStore store = GameStoreProvider.getStore();
         Player player = GameStoreProvider.getPlayer();
         Route route = store.getRouteStore().getRouteById(currentId);
-        if (store.getPlayers().size() == 2 && route.getcoupleId() != -1 && check.checkDouble(route, store) == true) {
+        if (store.getPlayers().size() == 2 && route.getcoupleId() != NotDoubleRoute && check.checkDouble(route, store)) {
             locations.setText("One of the double routes has been taken already!");
             return;
         }
-        if (store.getPlayers().size() == 3 && route.getcoupleId() != -1 && check.checkSameOwner(route, store, player) == true) {
+        if (store.getPlayers().size() == 1 && route.getcoupleId() != NotDoubleRoute && check.checkSameOwner(route, store, player)) {
             locations.setText("You already own one of the double routes!");
             return;
         }
