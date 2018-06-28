@@ -23,8 +23,10 @@ public class Route implements Serializable {
     private CardType color;
     private RouteType routeType;
     private int points;
+    private int coupleId;
 
-    public Route(int id, int length, int locomotiveCost, ELocation location1, ELocation location2, CardType color, RouteType routeType) {
+
+    public Route(int id, int length, int locomotiveCost, ELocation location1, ELocation location2, CardType color, RouteType routeType, int coupleId) {
         this.id = id;
         this.length = length;
         this.locomotiveCost = locomotiveCost;
@@ -33,6 +35,7 @@ public class Route implements Serializable {
         this.color = color;
         this.routeType = routeType;
         this.points = calculatePoints();
+        this.coupleId = coupleId;
     }
 
     public boolean hasOwner() {
@@ -122,5 +125,9 @@ public class Route implements Serializable {
     @Override
     public String toString() {
         return String.format("Route connects %s to %s with length %d and color %s", location1, location2, length, color);
+    }
+
+    public int getcoupleId() {
+        return coupleId;
     }
 }

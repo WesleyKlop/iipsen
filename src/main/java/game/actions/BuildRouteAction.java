@@ -7,6 +7,7 @@ import game.player.Player;
 import game.player.PlayerController;
 import game.routecards.Route;
 import game.routecards.RouteCard;
+import game.routecards.RouteDoubleCheck;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -34,8 +35,8 @@ public class BuildRouteAction implements Action {
     public void executeAction(GameStore store) throws Exception {
         PlayerController controller = store.getPlayerController();
         Player player = controller.getPlayerById(playerId);
+        RouteDoubleCheck check = new RouteDoubleCheck();
         Route route = store.getRouteStore().getRouteById(routeId);
-        Log.debug("Route type: {}", route.getRouteType());
         if (player.getCardStack().containsCards(costs)) {
             build(route, player);
             updateRouteCards(player);
