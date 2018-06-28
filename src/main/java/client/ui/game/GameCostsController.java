@@ -113,11 +113,11 @@ public class GameCostsController {
         GameStore store = GameStoreProvider.getStore();
         Player player = GameStoreProvider.getPlayer();
         Route route = store.getRouteStore().getRouteById(currentId);
-        if (store.getPlayers().size() == 2 && route.getarrayDoubleRoute().get(0) == 1 && check.checkDouble(route, store) == true) {
+        if (store.getPlayers().size() == 1 && route.getcoupleId() != -1 && check.checkDouble(route, store) == true) {
             locations.setText("One of the double routes has been taken already!");
             return;
         }
-        if (store.getPlayers().size() == 3 && route.getarrayDoubleRoute().get(0) == 1 && check.checkSameOwner(route, store, player) == true) {
+        if (store.getPlayers().size() == 3 && route.getcoupleId() != -1 && check.checkSameOwner(route, store, player) == true) {
             locations.setText("You already own one of the double routes!");
             return;
         }

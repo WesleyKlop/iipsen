@@ -6,9 +6,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -24,10 +21,7 @@ class RouteTest {
 
     @BeforeEach
     void setUp() {
-        List<Integer> arrayDoubleRoute = new ArrayList<>();
-        arrayDoubleRoute.add(0);
-        arrayDoubleRoute.add(-1);
-        testRoute = new Route(1, 3, 1, ELocation.ALBORG, ELocation.ANDALSNES, CardType.CART_BLACK, RouteType.NORMAL, arrayDoubleRoute);
+        testRoute = new Route(1, 3, 1, ELocation.ALBORG, ELocation.ANDALSNES, CardType.CART_BLACK, RouteType.NORMAL, -1);
     }
 
     @Test
