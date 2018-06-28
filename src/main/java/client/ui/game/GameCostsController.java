@@ -113,7 +113,7 @@ public class GameCostsController {
         GameStore store = GameStoreProvider.getStore();
         Player player = GameStoreProvider.getPlayer();
         Route route = store.getRouteStore().getRouteById(currentId);
-        if (store.getPlayers().size() == 1 && route.getcoupleId() != -1 && check.checkDouble(route, store) == true) {
+        if (store.getPlayers().size() == 2 && route.getcoupleId() != -1 && check.checkDouble(route, store) == true) {
             locations.setText("One of the double routes has been taken already!");
             return;
         }
