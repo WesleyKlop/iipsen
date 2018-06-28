@@ -21,7 +21,7 @@ class RouteTest {
 
     @BeforeEach
     void setUp() {
-        testRoute = new Route(1, 3, 1, ELocation.ALBORG, ELocation.ANDALSNES, CardType.CART_BLACK, RouteType.NORMAL);
+        testRoute = new Route(1, 3, 1, ELocation.ALBORG, ELocation.ANDALSNES, CardType.CART_BLACK, RouteType.NORMAL, -1);
     }
 
     @Test
