@@ -10,6 +10,9 @@ import javafx.scene.layout.StackPane;
 
 import java.rmi.RemoteException;
 
+/**
+ * @author Thom
+ */
 public class TrainCardMessageController {
 
     @FXML
@@ -19,6 +22,12 @@ public class TrainCardMessageController {
     private Image[] images = new Image[2];
     private int[] indexes = new int[2];
 
+    /**
+     * Clears the message and fills it up with new information based on the open cards in the CardStackController
+     * and the indexes given with it.
+     *
+     * @param index index numbers of the cards selected.
+     */
     public void showDialog(int[] index) {
         indexes = index;
         clearMessage();

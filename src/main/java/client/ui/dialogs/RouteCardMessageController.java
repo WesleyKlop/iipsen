@@ -20,6 +20,9 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Thom
+ */
 public class RouteCardMessageController {
 
     @FXML
@@ -34,6 +37,10 @@ public class RouteCardMessageController {
 
     private static final Logger Log = LogManager.getLogger(RouteCardMessageController.class);
 
+    /**
+     * Resets the dialog and opens up a new one
+     * based on the cards in the selectableRouteCards class.
+     */
     public void showDialog() {
         warningText.setText("");
         resetSelectedList();

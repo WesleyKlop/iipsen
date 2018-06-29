@@ -29,6 +29,9 @@ import java.rmi.RemoteException;
 
 import static client.util.UserPreferences.isColorBlind;
 
+/**
+ * @author Thom
+ */
 public class GameCostsController {
     @FXML
     StackPane rootPane;
@@ -48,6 +51,11 @@ public class GameCostsController {
         locations.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/MavenPro-Medium.ttf"), 25));
     }
 
+    /**
+     * Opens message for building a route.
+     *
+     * @param route
+     */
     public void showBuildDialog(Route route) {
         resetMessage();
         buildButton.setDisable(route.hasOwner());

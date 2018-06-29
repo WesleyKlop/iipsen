@@ -6,7 +6,6 @@ import client.ui.dialogs.MessagesController;
 import client.ui.dialogs.MessagesControllerProvider;
 import client.util.UserPreferences;
 import client.util.UserPreferences.PreferencesContainer;
-import game.GameStore;
 import game.GameStoreProvider;
 import game.location.ELocation;
 import game.routecards.RouteCard;
@@ -20,10 +19,11 @@ import javafx.stage.Screen;
 import javafx.util.Duration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import util.Observer;
 
-
-public class FullGameController implements Observer<GameStore>, UserPreferences.PreferencesListener {
+/**
+ * @author Thom
+ */
+public class FullGameController implements UserPreferences.PreferencesListener {
 
     private Image image = new Image("/images/points.png");
     private ImageView iv1 = new ImageView();
@@ -48,7 +48,6 @@ public class FullGameController implements Observer<GameStore>, UserPreferences.
 
     public void initialize() {
         UserPreferences.addObserver(this);
-        GameStoreProvider.getInstance().addObserver(this);
         MessagesControllerProvider.setMessageController(messagesController);
         pauseMenuController.resumeLabel.setOnMouseClicked(e -> closePauseMenu());
         var screenInfo = Screen.getPrimary().getVisualBounds();
@@ -73,30 +72,40 @@ public class FullGameController implements Observer<GameStore>, UserPreferences.
         transAni.play();
     }
 
-
+    /**
+     * Opens the score tabel for route lengths
+     */
     public void ScoreEntered() {
         rootPane.getChildren().addAll(iv1);
     }
 
-
+    /**
+     * Closes the score tabel for route lengths
+     */
     public void ScoreExited() {
         rootPane.getChildren().removeAll(iv1);
     }
 
+    /**
+     * Updates the gamescreen when someone changed his colorblind settings.
+     *
+     * @param preferences The new user Preferences.
+     */
     @Override
-    public void onUpdate(PreferencesContainer value) {
-        if (colorBlind != value.isColorBlind()) {
-            colorBlind = value.isColorBlind();
+    public void onUpdate(PreferencesContainer preferences) {
+        if (colorBlind != preferences.isColorBlind()) {
+            colorBlind = preferences.isColorBlind();
             handController.switchColorBlind(GameStoreProvider.getPlayer());
             bankController.updateCardImages(GameStoreProvider.getStore());
             routesMapController.switchColorBlind(colorBlind);
         }
     }
 
-    @Override
-    public void onUpdate(GameStore value) {
-    }
-
+    /**
+     * Gives a glow to the hovered route
+     *
+     * @param mE The mouse event from the hover
+     */
     public void onRouteCardHover(MouseEvent mE) {
         PlayerRouteCard source = (PlayerRouteCard) mE.getSource();
         RouteCard card = source.getRouteCard();
@@ -105,6 +114,11 @@ public class FullGameController implements Observer<GameStore>, UserPreferences.
         routesMapController.showLocations(loc1, loc2);
     }
 
+    /**
+     * Takes the glow from the unhovered route
+     *
+     * @param mE The mouse event from the unhover
+     */
     public void onRouteCardExit(MouseEvent mE) {
         PlayerRouteCard source = (PlayerRouteCard) mE.getSource();
         RouteCard card = source.getRouteCard();
