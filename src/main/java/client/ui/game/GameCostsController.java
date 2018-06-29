@@ -60,7 +60,7 @@ public class GameCostsController {
     /**
      * Opens message for building a route.
      *
-     * @param route
+     * @param route the route to show the info for
      */
     public void showBuildDialog(Route route) {
         resetMessage();

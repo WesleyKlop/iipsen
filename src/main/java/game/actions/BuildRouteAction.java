@@ -33,7 +33,7 @@ public class BuildRouteAction implements Action {
      * Build a route for the set Player, and check if the player has than completed a routecard
      *
      * @param store the GameStore to execute the action on
-     * @throws Exception
+     * @throws Exception when the route could not be build
      */
     @Override
     public void executeAction(GameStore store) throws Exception {

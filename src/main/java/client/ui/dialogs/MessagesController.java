@@ -126,7 +126,7 @@ public class MessagesController implements Observer<GameStore> {
     /**
      * Sets the text for the build route message
      *
-     * @param text
+     * @param text the text to show
      */
     public void setBuildRouteWarning(String text) {
         routesController.setRouteWarning(text);

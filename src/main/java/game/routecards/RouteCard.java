@@ -35,7 +35,7 @@ public class RouteCard implements Serializable {
     /**
      * Returns the image path of a RouteCard
      *
-     * @return
+     * @return the image path as a string
      */
     public String getImagePath() {
         return String.format("/routecards/nc-%s-%s.png",
