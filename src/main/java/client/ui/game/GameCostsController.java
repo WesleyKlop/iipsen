@@ -114,6 +114,12 @@ public class GameCostsController {
         locations.setText(locationList[0] + " --> " + locationList[1]);
     }
 
+    /**
+     * Here the build action is send if it goes through the checks.
+     *
+     * @throws RemoteException
+     * @author ewout
+     */
     @FXML
     private void buildRoute() throws RemoteException {
         GameStore store = GameStoreProvider.getStore();
