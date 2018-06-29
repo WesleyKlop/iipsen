@@ -183,13 +183,15 @@ public class GameRoutesMapController implements Observer<GameStore> {
     }
 
     public void showLocations(ELocation loc1, ELocation loc2) {
-        Log.debug("Showing locations {} {}", loc1, loc2);
+        getLocation(loc1).setFill(Color.BLUE);
+        getLocation(loc2).setFill(Color.BLUE);
         getLocation(loc1).setStroke(Color.BLUE);
         getLocation(loc2).setStroke(Color.BLUE);
     }
 
     public void unShowLocations(ELocation loc1, ELocation loc2) {
-        Log.debug("Unshowing locations {} {}", loc1, loc2);
+        getLocation(loc1).setFill(Color.GOLD);
+        getLocation(loc2).setFill(Color.GOLD);
         getLocation(loc1).setStroke(Color.ORANGE);
         getLocation(loc2).setStroke(Color.ORANGE);
     }

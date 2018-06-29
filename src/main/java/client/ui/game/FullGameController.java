@@ -98,7 +98,6 @@ public class FullGameController implements Observer<GameStore>, UserPreferences.
     }
 
     public void onRouteCardHover(MouseEvent mE) {
-        Log.debug("Hover on card detected");
         PlayerRouteCard source = (PlayerRouteCard) mE.getSource();
         RouteCard card = source.getRouteCard();
         ELocation loc1 = card.getStart();
@@ -107,7 +106,6 @@ public class FullGameController implements Observer<GameStore>, UserPreferences.
     }
 
     public void onRouteCardExit(MouseEvent mE) {
-        Log.debug("Hover out of card detected");
         PlayerRouteCard source = (PlayerRouteCard) mE.getSource();
         RouteCard card = source.getRouteCard();
         ELocation loc1 = card.getStart();
