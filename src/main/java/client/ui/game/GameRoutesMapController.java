@@ -143,7 +143,9 @@ public class GameRoutesMapController implements Observer<GameStore> {
     }
 
     private void onRouteMouseClicked(MouseEvent mouseEvent) {
-        MessagesControllerProvider.getMessageController().openBuildMessage(mouseEvent);
+        Node source = (Node) mouseEvent.getSource();
+        int id = Integer.parseInt(source.getId());
+        MessagesControllerProvider.getMessageController().openBuildMessage(id);
     }
 
     void switchColorBlind(boolean isColorBlind) {
