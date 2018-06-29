@@ -20,6 +20,12 @@ public class AttachPlayerAction implements Action {
     }
 
 
+    /**
+     * Takes a player, connects it to the GameStoreClient and set the player.hasClient property
+     *
+     * @param store the GameStore to execute the action on
+     * @throws RemoteException when RMI errors
+     */
     @Override
     public void executeAction(GameStore store) throws RemoteException {
         Player player = store.getPlayerController().getPlayerById(playerId);

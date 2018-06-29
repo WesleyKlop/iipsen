@@ -7,7 +7,6 @@ import game.player.Player;
 import game.player.PlayerController;
 import game.routecards.Route;
 import game.routecards.RouteCard;
-import game.routecards.RouteDoubleCheck;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,24 +17,28 @@ public class BuildRouteAction implements Action {
 
     private int playerId;
     private int routeId;
-    private CardType cType;
     private CardStack costs;
 
     public BuildRouteAction(int playerId, Route route, int extraCards) {
         this.playerId = playerId;
         this.routeId = route.getId();
-        cType = route.getCardType();
+        CardType cType = route.getCardType();
         costs = route.getCostsAsCardStack();
         for (int i = 0; i < extraCards; i++) {
             costs.addCard(cType);
         }
     }
 
+    /**
+     * Build a route for the set Player, and check if the player has than completed a routecard
+     *
+     * @param store the GameStore to execute the action on
+     * @throws Exception
+     */
     @Override
     public void executeAction(GameStore store) throws Exception {
         PlayerController controller = store.getPlayerController();
         Player player = controller.getPlayerById(playerId);
-        RouteDoubleCheck check = new RouteDoubleCheck();
         Route route = store.getRouteStore().getRouteById(routeId);
         if (player.getCardStack().containsCards(costs)) {
             build(route, player);

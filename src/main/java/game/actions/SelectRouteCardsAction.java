@@ -13,6 +13,12 @@ public class SelectRouteCardsAction implements Action {
     private final int playerId;
     private final List<RouteCard> cards;
 
+    /**
+     * Gives the player x amount of RouteCards
+     *
+     * @param playerId the player to give cards
+     * @param cards the RouteCards to give
+     */
     public SelectRouteCardsAction(int playerId, List<RouteCard> cards) {
         this.playerId = playerId;
         this.cards = cards;
