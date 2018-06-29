@@ -15,12 +15,12 @@ import java.util.List;
 public class Player implements Serializable {
     private final String playerName;
     private final String color;
-    private CardStack stack = new CardStack();
-    private List<RouteCard> routeCards = new ArrayList<>();
-    private ConnectionKeeper connectionKeeper = new ConnectionKeeper();
+    private final CardStack stack = new CardStack();
+    private final List<RouteCard> routeCards = new ArrayList<>();
+    private final ConnectionKeeper connectionKeeper = new ConnectionKeeper();
     private int id;
     private int score;
-    private int traincarts = 40;
+    private int trainCarts = 40;
     private boolean hasClient = false;
 
     public Player(String name, Color color) {
@@ -48,6 +48,11 @@ public class Player implements Serializable {
         return stack;
     }
 
+    /**
+     * Add a route card to the players RouteCards
+     *
+     * @param card the card to add
+     */
     public void addRouteCard(RouteCard card) {
         routeCards.add(card);
     }
@@ -60,22 +65,18 @@ public class Player implements Serializable {
         return playerName;
     }
 
-    public void removeTrainCarts(int count) {
-        this.traincarts -= count;
-    }
-
-    public int getTraincarts() {
-        return this.traincarts;
+    public int getTrainCarts() {
+        return this.trainCarts;
     }
 
     public String getColor() {
         return color;
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
-
+    /**
+     * Get the color property of the player as a Color object
+     * @return the players' color
+     */
     public Color getColorAsColor() {
         return Color.web(this.color);
     }
@@ -88,11 +89,20 @@ public class Player implements Serializable {
         return score;
     }
 
+    /**
+     * Add x points to the player
+     * @param points amount of points to add
+     */
     public void givePoints(int points) {
         score += points;
     }
 
+    /**
+     * Remove x amount of train pieces from a player
+     *
+     * @param trains the amount of trains to remove
+     */
     public void takeTrains(int trains) {
-        traincarts -= trains;
+        trainCarts -= trains;
     }
 }

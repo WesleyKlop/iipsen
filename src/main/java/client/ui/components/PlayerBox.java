@@ -48,13 +48,13 @@ public class PlayerBox extends VBox {
         playerId.setText(String.format("player %d", player.getId()));
         playerName.setText(player.getPlayerName());
         playerScore.setText(String.format("score: %d", player.getScore()));
-        playerTrainCarts.setText(String.format("%dx", player.getTraincarts()));
+        playerTrainCarts.setText(String.format("%dx", player.getTrainCarts()));
 
     }
 
     public void update(Player player) {
         this.player = player;
         playerScore.setText(String.format("score: %d", player.getScore()));
-        playerTrainCarts.setText(String.format("%dx", player.getTraincarts()));
+        playerTrainCarts.setText(String.format("%dx", player.getTrainCarts()));
     }
 }

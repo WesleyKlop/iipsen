@@ -57,9 +57,9 @@ class PlayerTest {
 
     @Test
     void removeTrainCarts() {
-        assertEquals(40, player.getTraincarts());
-        player.removeTrainCarts(3);
-        assertEquals(37, player.getTraincarts());
+        assertEquals(40, player.getTrainCarts());
+        player.takeTrains(3);
+        assertEquals(37, player.getTrainCarts());
     }
 
     @Test
