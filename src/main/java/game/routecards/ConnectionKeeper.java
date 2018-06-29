@@ -44,6 +44,11 @@ public class ConnectionKeeper implements Serializable {
         }
     }
 
+    /**
+     * Add the locations associated with a route to the ConnectionKeeper
+     *
+     * @param route the route with the locations to add
+     */
     public void addRoute(Route route) {
         ELocation[] locs = route.getLocations();
         addLocations(locs[0], locs[1]);
@@ -74,10 +79,20 @@ public class ConnectionKeeper implements Serializable {
         return NOT_A_SET;
     }
 
+    /**
+     * Add ELocation to given set id
+     * @param set the set to add to
+     * @param loc the location to add
+     */
     private void addELocationToSet(int set, ELocation loc) {
         connections.get(set).add(loc);
     }
 
+    /**
+     * Creates a new set for the given location
+     * @param ELocation1 first location
+     * @param ELocation2 second location
+     */
     private void createNewSet(ELocation ELocation1, ELocation ELocation2) {
         Log.debug("Creating new set for locations: " + ELocation1 + " and " + ELocation2);
         Set<ELocation> newSet = new HashSet<>();
@@ -86,6 +101,11 @@ public class ConnectionKeeper implements Serializable {
         connections.add(newSet);
     }
 
+    /**
+     * Merge two sets into one
+     * @param set1 first set
+     * @param set2 second set
+     */
     private void mergeSets(int set1, int set2) {
         Log.debug("Merging sets: " + set1 + " and " + set2);
         connections.get(set1).addAll(connections.get(set2));
@@ -105,6 +125,11 @@ public class ConnectionKeeper implements Serializable {
         return set1 == set2 && set1 != NOT_A_SET;
     }
 
+    /**
+     * Checks if a RouteCrd is finished. Calls checkForRouteCompleted internally
+     * @param routeCard the RouteCard to check
+     * @return true if a routecard is completed or false
+     */
     public boolean isRouteCardCompleted(RouteCard routeCard) {
         return checkForRouteCompleted(routeCard.getStart(), routeCard.getEnd());
     }

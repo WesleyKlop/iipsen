@@ -74,6 +74,11 @@ public class Route implements Serializable {
         return routeType;
     }
 
+    /**
+     * Returns the amount of points a route is worth
+     *
+     * @return the amount of points based on route length
+     */
     private int calculatePoints() {
         switch (length) {
             case 1:

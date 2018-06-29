@@ -16,6 +16,9 @@ public class SelectableRouteCards implements Serializable {
         return bank;
     }
 
+    /**
+     * Sets 3 cards on the selectable card array, removing the old ones
+     */
     public void populatePickableCards() {
         for (int i = 0; i < PICKABLE_CARD_COUNT; i++) {
             pickableCards[i] = bank.getRandomRouteCard();

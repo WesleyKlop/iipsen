@@ -27,7 +27,10 @@ public class RouteCardStackBank implements Serializable {
         return card;
     }
 
-    public void fillRouteBank() {
+    /**
+     * Adds all routecards in the game to the bank
+     */
+    private void fillRouteBank() {
         routeCards.add(new RouteCard(ALBORG, NORRKOPING, 5));
         routeCards.add(new RouteCard(ALBORG, UMEA, 11));
         routeCards.add(new RouteCard(ARHUS, LILLEHAMMER, 6));

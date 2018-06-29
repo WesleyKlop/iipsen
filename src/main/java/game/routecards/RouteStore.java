@@ -27,6 +27,11 @@ public class RouteStore implements Serializable {
         }
     }
 
+    /**
+     * Generate the routes given a correct XML file
+     *
+     * @param stream the stream for the input file
+     */
     private void generateRoutes(InputStream stream) {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -59,6 +64,11 @@ public class RouteStore implements Serializable {
         routeList.add(route);
     }
 
+    /**
+     * Return the route with the given ID
+     * @param id the id to search for
+     * @return the route or null
+     */
     public Route getRouteById(int id) {
         for (Route route : routeList) {
             if (route.getId() == id) {
