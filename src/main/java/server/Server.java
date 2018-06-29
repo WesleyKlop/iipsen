@@ -28,6 +28,13 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
     private List<GameStoreClient> clients = new ArrayList<>();
     private GameStore gameStore;
 
+    /**
+     * Starts an RMI service with the givens GameStore
+     * @param store GameStore to use
+     * @throws RemoteException RMI exception
+     * @throws MalformedURLException registry name uses invalid chars
+     * @throws UnknownHostException when localhost has no address
+     */
     public Server(GameStore store) throws RemoteException, MalformedURLException, UnknownHostException {
         Log.debug("Starting server");
 
@@ -56,6 +63,9 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
         clients.remove(listener);
     }
 
+    /**
+     * Notifies all clients with a new GameStore
+     */
     @Override
     public synchronized void notifyListeners() {
         for (GameStoreClient client : clients) {
@@ -63,19 +73,27 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
                 client.onGameStoreReceived(gameStore);
             } catch (RemoteException e) {
                 Log.error("Failed to update client.. removing him from listeners");
-                clients.remove(client);
+                unregisterObserver(client);
             }
         }
     }
 
-    public static void main(String[] args) throws UnknownHostException {
+    /**
+     * Start a standalone server
+     * @param args *unused* arguments
+     */
+    public static void main(String[] args) {
         try {
             new Server(null);
-        } catch (RemoteException | MalformedURLException e) {
+        } catch (RemoteException | MalformedURLException | UnknownHostException e) {
             Log.catching(e);
         }
     }
 
+    /**
+     * Execute side effects when an action was caused by a player
+     * @param action the action to do side effects for
+     */
     private void doSideEffects(Action action) {
         // Only do side effects for actions that are caused by a "player"
         if (action.getPlayerId() == -1) {
@@ -96,6 +114,10 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
         }
     }
 
+    /**
+     * Executes the given action, does side effects and notifies the clients of the change
+     * @param action the action to execute
+     */
     @Override
     public synchronized void onActionReceived(Action action) {
         try {
