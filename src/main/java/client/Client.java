@@ -1,15 +1,15 @@
 package client;
 
 import client.ui.mainmenu.StartupController;
+import client.util.GameSaver;
 import game.GameState;
+import game.GameStore;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,7 +25,7 @@ public class Client extends Application implements SceneListener {
 
     private static final String DEFAULT_IP = "127.0.0.1";
 
-    private GameClient client;
+    private GameStoreClient client;
     private Stage stage;
     private Scene scene;
     private StartupController rootPaneController;
@@ -56,27 +56,41 @@ public class Client extends Application implements SceneListener {
         rootPaneController.getPreferenceController().createButton.setOnMouseClicked(e -> {
             try {
                 if (rootPaneController.getPreferenceController().checkName()) {
-                    startServer();
+                    startServer(null);
                     rootPaneController.getPreferenceController().submitPreferences();
                 }
-            } catch (MalformedURLException | RemoteException | UnknownHostException e1) {
-                Log.error(e1);
+            } catch (MalformedURLException | RemoteException | UnknownHostException ex) {
+                Log.error(ex);
             }
         });
 
+        rootPaneController.getLoadMenuController().setOnLoadClicked(e -> {
+            GameStore store = GameSaver.loadGame(stage);
+            if (store == null) {
+                return;
+            }
+            try {
+                startServer(store);
+                rootPaneController.moveMenuLeft();
+                rootPaneController.moveMenuDown();
+            } catch (MalformedURLException | UnknownHostException | RemoteException ex) {
+                Log.catching(ex);
+            }
+        });
 
         stage = primaryStage;
-        var screenInfo = Screen.getPrimary().getVisualBounds();
-        scene = new Scene(rootPane, screenInfo.getWidth(), screenInfo.getHeight());
+//        var screenInfo = Screen.getPrimary().getVisualBounds();
+        scene = new Scene(rootPane, 1920, 1080);
+//        scene = new Scene(rootPane, screenInfo.getWidth(), screenInfo.getHeight());
         primaryStage.setTitle("Main Menu");
         primaryStage.setScene(scene);
-        primaryStage.setFullScreen(true);
-        primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+//        primaryStage.setFullScreen(true);
+//        primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         primaryStage.show();
     }
 
-    private void startServer() throws MalformedURLException, RemoteException, UnknownHostException {
-        client = new GameClient(new Server(), this);
+    private void startServer(GameStore store) throws MalformedURLException, RemoteException, UnknownHostException {
+        client = new GameClient(new Server(store), this);
     }
 
     private void connectServer(String ip) throws RemoteException {
@@ -90,7 +104,7 @@ public class Client extends Application implements SceneListener {
         try {
             return FXMLLoader.load(getClass().getResource("/views/" + layoutName + ".fxml"));
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.catching(e);
         }
         return null;
     }

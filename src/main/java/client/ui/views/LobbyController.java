@@ -3,6 +3,8 @@ package client.ui.views;
 import game.GameState;
 import game.GameStore;
 import game.GameStoreProvider;
+import game.actions.Action;
+import game.actions.AttachPlayerAction;
 import game.actions.ChangeStateAction;
 import game.player.Player;
 import javafx.application.Platform;
@@ -43,15 +45,36 @@ public class LobbyController implements Observer<GameStore> {
     private void updateView(List<Player> players) {
         var children = this.container.getChildren();
         children.remove(0, children.size());
-        for (Player player : players) {
+        for (final Player player : players) {
             Label playerLabel = new Label(player.getPlayerName());
             playerLabel.setFont(Font.loadFont(getClass().getResourceAsStream("/fonts/MavenPro-Medium.ttf"), 25));
             playerLabel.setTextFill(player.getColorAsColor());
-            playerLabel.setStyle("-fx-background-color:" + contrastCalculator(player.getColorAsColor()) + ";");
             playerLabel.setPrefWidth(500);
             playerLabel.setAlignment(CENTER);
             playerLabel.setPadding(new Insets(5, 10, 5, 10));
+            String style = String.format("-fx-background-color: %s;", contrastCalculator(player.getColorAsColor()));
+            if (!player.hasClient()) {
+                playerLabel.setOnMouseClicked(e -> this.onPlayerLabelClicked(player));
+            } else {
+                Color color = player.getColorAsColor();
+                style += String.format("-fx-border-width: 2; -fx-border-color: #%02X%02X%02X;",
+                    (int) (color.getRed() * 255),
+                    (int) (color.getGreen() * 255),
+                    (int) (color.getBlue() * 255));
+            }
+            playerLabel.setStyle(style);
+
             container.getChildren().add(playerLabel);
+        }
+    }
+
+    private void onPlayerLabelClicked(final Player player) {
+        Action action = new AttachPlayerAction(GameStoreProvider.getClient(), player.getId());
+        try {
+            GameStoreProvider.sendAction(action);
+            GameStoreProvider.setPlayer(player);
+        } catch (RemoteException e) {
+            Log.error("Failed to attach player to client :(", e);
         }
     }
 
@@ -85,7 +108,7 @@ public class LobbyController implements Observer<GameStore> {
     @Override
     public void onUpdate(final GameStore value) {
         Platform.runLater(() -> {
-            updateView(value.getPlayers());
+            updateView(value.getPlayerController().getPlayers());
             setIpAddress(value.getServerIp());
         });
     }

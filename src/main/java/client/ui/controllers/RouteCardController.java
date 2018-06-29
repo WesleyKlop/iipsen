@@ -37,9 +37,12 @@ public class RouteCardController implements Observer<GameStore> {
     private Text textRouteCards;
 
     public void initialize() {
-        var store = GameStoreProvider.getStore();
-        GameStoreProvider.getInstance().addObserver(this);
-        this.onUpdate(store);
+        if (GameStoreProvider.getPlayer().getRouteCards().size() > 0) {
+            close();
+        } else {
+            GameStoreProvider.getInstance().addObserver(this);
+            this.onUpdate(GameStoreProvider.getStore());
+        }
     }
 
     private void setRouteCardsImg(RouteCardStackBank bank) {
@@ -80,7 +83,7 @@ public class RouteCardController implements Observer<GameStore> {
         button.setDisable(true);
 
         Action routeCardAction = new SelectRouteCardsAction(
-                GameStoreProvider.getPlayer().getId(),
+            GameStoreProvider.getPlayer().getId(),
             selectedRouteCards);
         GameStoreProvider.sendAction(routeCardAction);
         close();

@@ -27,7 +27,7 @@ public class LayoutEndScreen {
 
     @FXML
     private VBox playerList;
-    private List<Player> playerListArray = GameStoreProvider.getStore().getPlayers();
+    private List<Player> playerListArray = GameStoreProvider.getStore().getPlayerController().getPlayers();
     private Player[] pL = new Player[playerListArray.size()];
     private int[] scores = new int[pL.length];
     private int[] routesFinished = new int[pL.length];

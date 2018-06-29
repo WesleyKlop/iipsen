@@ -4,6 +4,7 @@ import client.GameStoreClient;
 import game.GameState;
 import game.GameStore;
 import game.actions.Action;
+import game.player.PlayerController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,18 +28,21 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
     private List<GameStoreClient> clients = new ArrayList<>();
     private GameStore gameStore;
 
-    public Server() throws RemoteException, MalformedURLException, UnknownHostException {
+    public Server(GameStore store) throws RemoteException, MalformedURLException, UnknownHostException {
         Log.debug("Starting server");
+
         String ip = InetAddress.getLocalHost().getHostAddress();
-        gameStore = new GameStore(ip);
+        gameStore = store == null ? new GameStore() : store;
+
+        gameStore.setServerIp(ip);
 
         LocateRegistry.createRegistry(PORT);
         Naming.rebind(REGISTRY_NAME, this);
-        Log.debug("Server started at: " + ip);
+        Log.info("Server started at: " + ip);
 
         gameStore.getCardStackController().populateOpenCards();
         gameStore.getSelectableRouteCards().populatePickableCards();
-        Log.info("Initial open/pickable cards are set");
+        Log.debug("Initial open/pickable cards are set");
     }
 
     @Override
@@ -66,7 +70,7 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
 
     public static void main(String[] args) throws UnknownHostException {
         try {
-            new Server();
+            new Server(null);
         } catch (RemoteException | MalformedURLException e) {
             Log.catching(e);
         }
@@ -78,11 +82,13 @@ public class Server extends UnicastRemoteObject implements GameStoreServer {
             return;
         }
 
-        if (gameStore.shouldGoToLastTurn(action.getPlayerId())) {
+        PlayerController playerController = gameStore.getPlayerController();
+
+        if (playerController.shouldGoToLastTurn(action.getPlayerId())) {
             // When the player that did his turn has 2 ore less trainscarts we should set the last turn param
             Log.info("Player has 2 or less carts left.. Going to final round..");
-            gameStore.setLastTurn(action.getPlayerId());
-        } else if (gameStore.getLastTurn() == action.getPlayerId()) {
+            playerController.setLastTurn(action.getPlayerId());
+        } else if (playerController.getFinalTurn() == action.getPlayerId()) {
             // Else if the action player id is the same as the id of the last turn player
             // We should go to finish.
             Log.info("Going to finished state!");

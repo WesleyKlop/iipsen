@@ -8,6 +8,7 @@ import game.actions.BuildRouteAction;
 import game.cards.CardType;
 import game.location.ELocation;
 import game.player.Player;
+import game.player.PlayerController;
 import game.routecards.Route;
 import game.routecards.RouteDoubleCheck;
 import game.routecards.RouteType;
@@ -59,7 +60,10 @@ public class GameCostsController {
         if (route.getOwner() == 0) {
             owner.setText("");
         } else {
-            owner.setText("This route is currently owned by: " + GameStoreProvider.getStore().getPlayerById(route.getOwner()).getPlayerName());
+            owner.setText(String.format(
+                "This route is currently owned by: %s",
+                GameStoreProvider.getStore().getPlayerController().getPlayerById(route.getOwner()).getPlayerName())
+            );
         }
         updateCurrentId(route.getId());
         addParts(route.getLength(), route.getLocomotiveCost(), route.getCardType());
@@ -113,13 +117,14 @@ public class GameCostsController {
     @FXML
     private void buildRoute() throws RemoteException {
         GameStore store = GameStoreProvider.getStore();
+        PlayerController playerController = store.getPlayerController();
         Player player = GameStoreProvider.getPlayer();
         Route route = store.getRouteStore().getRouteById(currentId);
-        if (store.getPlayers().size() == 2 && route.getcoupleId() != NotDoubleRoute && check.checkDouble(route, store)) {
+        if (playerController.getPlayers().size() == 2 && route.getcoupleId() != NotDoubleRoute && check.checkDouble(route, store)) {
             locations.setText("One of the double routes has been taken already!");
             return;
         }
-        if (store.getPlayers().size() == 1 && route.getcoupleId() != NotDoubleRoute && check.checkSameOwner(route, store, player)) {
+        if (playerController.getPlayers().size() == 1 && route.getcoupleId() != NotDoubleRoute && check.checkSameOwner(route, store, player)) {
             locations.setText("You already own one of the double routes!");
             return;
         }

@@ -4,6 +4,7 @@ import game.GameStoreProvider;
 import game.cards.CardStack;
 import game.cards.CardType;
 import game.location.ELocation;
+import game.player.PlayerController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -100,7 +101,8 @@ public class Route implements Serializable {
         for (int i = 0; i < getLocomotiveCost(); i++) {
             stack.addCard(CardType.LOCOMOTIVE);
         }
-        CardType cType = GameStoreProvider.getStore().getPlayerById(GameStoreProvider.getStore().getPlayersTurn()).getCardStack().getBiggestType();
+        PlayerController controller = GameStoreProvider.getStore().getPlayerController();
+        CardType cType = controller.getPlayerById(controller.getCurrentTurn()).getCardStack().getBiggestType();
         for (int i = 0; i < getCartCost(); i++) {
             if (color == CardType.CART_ANY) {
                 stack.addCard(cType);

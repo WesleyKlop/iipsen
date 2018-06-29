@@ -1,14 +1,12 @@
 package game;
 
 import game.cards.CardStackController;
-import game.player.Player;
+import game.player.PlayerController;
 import game.routecards.RouteCardStackBank;
 import game.routecards.RouteStore;
 import game.routecards.SelectableRouteCards;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * GameStore keeps track of all game state.
@@ -19,29 +17,18 @@ import java.util.List;
  */
 public class GameStore implements Serializable {
     private GameState gameState = GameState.INIT;
-    private List<Player> players = new ArrayList<>();
+    private PlayerController playerController = new PlayerController();
     private CardStackController cardStackController = new CardStackController();
     private SelectableRouteCards selectableRouteCards = new SelectableRouteCards(new RouteCardStackBank());
     private RouteStore routeStore = new RouteStore();
-    private int playersTurn = 0;
-    private int lastTurn = -1;
-    private final String serverIp;
+    private String serverIp;
 
-    public GameStore(String ip) {
+    public PlayerController getPlayerController() {
+        return playerController;
+    }
+
+    public void setServerIp(String ip) {
         serverIp = ip;
-    }
-
-    public List<Player> getPlayers() {
-        return players;
-    }
-
-    public Player getPlayerById(int id) {
-        for (Player player : players) {
-            if (player.getId() == id) {
-                return player;
-            }
-        }
-        return null;
     }
 
     public GameState getGameState() {
@@ -64,33 +51,8 @@ public class GameStore implements Serializable {
         return routeStore;
     }
 
-    public void cyclePlayerTurn() {
-        playersTurn = (playersTurn + 1) % players.size();
-    }
-
-    public int getPlayersTurn() {
-        return playersTurn + 1;
-    }
-
-    public boolean gameStateIsGame() {
-        return getGameState() == GameState.GAME;
-    }
-
     public String getServerIp() {
         return serverIp;
     }
-
-    public int getLastTurn() {
-        return lastTurn;
-    }
-
-    public void setLastTurn(int lastTurn) {
-        this.lastTurn = lastTurn;
-    }
-
-    public boolean shouldGoToLastTurn(int playerId) {
-        return getPlayerById(playerId).getTraincarts() <= 2 && lastTurn == -1;
-    }
-
     //TODO
 }

@@ -7,5 +7,5 @@
       prefHeight="400.0" prefWidth="600.0"
       stylesheets="/css/defaultStyling.css">
 
-    <Label styleClass="fancy-label" text="Save"/>
+    <Label styleClass="fancy-label" text="Save and Exit" fx:id="saveButton"/>
 </VBox>

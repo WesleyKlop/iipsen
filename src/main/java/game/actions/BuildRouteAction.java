@@ -4,6 +4,7 @@ import game.GameStore;
 import game.cards.CardStack;
 import game.cards.CardType;
 import game.player.Player;
+import game.player.PlayerController;
 import game.routecards.Route;
 import game.routecards.RouteCard;
 import game.routecards.RouteDoubleCheck;
@@ -32,14 +33,15 @@ public class BuildRouteAction implements Action {
 
     @Override
     public void executeAction(GameStore store) throws Exception {
+        PlayerController controller = store.getPlayerController();
+        Player player = controller.getPlayerById(playerId);
         RouteDoubleCheck check = new RouteDoubleCheck();
-        Player player = store.getPlayerById(playerId);
         Route route = store.getRouteStore().getRouteById(routeId);
         if (player.getCardStack().containsCards(costs)) {
-                build(route, player);
-                updateRouteCards(player);
+            build(route, player);
+            updateRouteCards(player);
         }
-        store.cyclePlayerTurn();
+        controller.cyclePlayerTurn();
     }
 
     private void updateRouteCards(Player player) {
@@ -69,6 +71,4 @@ public class BuildRouteAction implements Action {
         player.givePoints(route.getPoints());
         player.takeTrains(route.getLength());
     }
-
-
 }
