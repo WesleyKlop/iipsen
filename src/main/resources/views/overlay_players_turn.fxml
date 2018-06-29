@@ -8,7 +8,7 @@
            xmlns="http://javafx.com/javafx/8.0.121" fx:controller="client.ui.dialogs.TrainCardMessageController">
 
     <Rectangle arcHeight="20" arcWidth="20" fill="#333" height="600" opacity="0.75" style="-fx-background-color: #333"
-               width="1000"/>
+               width="500"/>
     <VBox alignment="BASELINE_CENTER" prefHeight="600" prefWidth="1000">
         <Label prefHeight="320.0" prefWidth="360.0" text="It's your turn!" textFill="#FFF" style="-fx-font-size: 41px"/>
     </VBox>

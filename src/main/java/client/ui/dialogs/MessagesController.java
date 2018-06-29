@@ -6,10 +6,8 @@ import game.GameStoreProvider;
 import game.routecards.Route;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import util.Observer;
 
@@ -24,15 +22,21 @@ public class MessagesController implements Observer<GameStore> {
     @FXML
     private StackPane routes, train, routeCards, notYourTurn, turn;
 
-
+    /**
+     * @author Thom
+     */
     public void initialize() {
         GameStoreProvider.getInstance().addObserver(this);
     }
 
-    public void openBuildMessage(MouseEvent mE) {
+
+    /**
+     * This method opens a message to the player with costs of the route about to be build.
+     *
+     * @param id the ID of the route to be build;
+     */
+    public void openBuildMessage(int id) {
         if (isPlayersTurn()) {
-            VBox source = (VBox) mE.getSource();
-            int id = Integer.parseInt(source.getId());
             Route route = GameStoreProvider.getStore().getRouteStore().getRouteById(id);
             routesController.showBuildDialog(route);
             openMenu(routes);
@@ -42,6 +46,12 @@ public class MessagesController implements Observer<GameStore> {
             openNotYourTurnMenu();
         }
     }
+
+    /**
+     * Opens a message for train cards to be picked from the bank
+     *
+     * @param index Takes 2 indexes of the bank cards (0 = random, 1 - 5 = the 5 open cards);
+     */
 
     public void openTrainCardMessage(int[] index) {
         if (isPlayersTurn()) {
@@ -54,6 +64,9 @@ public class MessagesController implements Observer<GameStore> {
         }
     }
 
+    /**
+     * Opens a message with the 3 cards from the open route cards.
+     */
     public void openRouteCardMessage() {
         if (isPlayersTurn()) {
             routeCardsController.showDialog();
@@ -86,6 +99,11 @@ public class MessagesController implements Observer<GameStore> {
         transAni.play();
     }
 
+    /**
+     * Closes a single message
+     *
+     * @param menu takes the Pane message to be closed
+     */
     public void closeMenu(Pane menu) {
         TranslateTransition transAni = new TranslateTransition(Duration.millis(500), menu);
         transAni.setToY(0);
@@ -96,12 +114,20 @@ public class MessagesController implements Observer<GameStore> {
         return routesController;
     }
 
-    public void closeAllMenus() {
+    /**
+     * Closes all messages
+     */
+    public void closeAllMessages() {
         closeMenu(routes);
         closeMenu(train);
         closeMenu(routeCards);
     }
 
+    /**
+     * Sets the text for the build route message
+     *
+     * @param text
+     */
     public void setBuildRouteWarning(String text) {
         routesController.setRouteWarning(text);
     }
@@ -110,9 +136,14 @@ public class MessagesController implements Observer<GameStore> {
         return GameStoreProvider.getStore().getPlayerController().getCurrentTurn() == GameStoreProvider.getPlayer().getId();
     }
 
+    /**
+     * Shows message when it's the players turn.
+     *
+     * @param store the new GameStore
+     */
     @Override
-    public void onUpdate(GameStore value) {
-        if (GameStoreProvider.getStore().getPlayerController().getCurrentTurn() == GameStoreProvider.getPlayer().getId()) {
+    public void onUpdate(GameStore store) {
+        if (store.getPlayerController().getCurrentTurn() == GameStoreProvider.getPlayer().getId()) {
             openWaitAndClose(turn);
         }
     }

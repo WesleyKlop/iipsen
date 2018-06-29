@@ -23,6 +23,9 @@ import javafx.util.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Thom
+ */
 public class LayoutEndScreen {
 
     @FXML
